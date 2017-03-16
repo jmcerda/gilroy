@@ -1,6 +1,6 @@
 name = FH Config
 core = 7.x
-package = Features
+package = Freighthouse
 version = 7.x-1.0
 dependencies[] = addressfield
 dependencies[] = addtocal
