@@ -1,0 +1,290 @@
+<?php
+/**
+ * @file
+ * Code for the RedHen Raiser Core feature.
+ */
+
+include_once 'redhen_raiser_core.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function redhen_raiser_core_menu() {
+  $items = array();
+
+  $items['fundraise'] = array(
+    'title' => 'Become a Fundraiser',
+    'access callback' => TRUE,
+    'page callback' => 'redhen_raiser_core_fundraise_now_page',
+    'page arguments' => array(),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function redhen_raiser_core_menu_alter(&$items) {
+  $items['user/login']['type'] = MENU_NORMAL_ITEM;
+  $items['user/register']['title'] = "Create Account";
+  $items['user/register']['type'] = MENU_SUGGESTED_ITEM;
+  $items['user/password']['type'] = MENU_NORMAL_ITEM;
+}
+
+/**
+ * Return the UI for creating a fundraiser.
+ * 
+ * If the user is not authenticated, gives them an authentication workflow.
+ */
+function redhen_raiser_core_fundraise_now_page() {
+  if (user_is_anonymous()) {
+    if (!isset($_GET['destination'])) {
+      $_GET['destination'] = 'fundraise';
+    }
+    if (isset($_GET['action'])) {
+      switch ($_GET['action']) {
+        case "register":
+          $form = redhen_raiser_core_register_form('fundraise');
+          break;
+
+        case "reset":
+          $form = redhen_raiser_core_password_form('fundraise');
+          break;
+      }
+    }
+    else {
+      $form = redhen_raiser_login_form('fundraise');
+    }
+    return drupal_render($form);
+  }
+  else {
+    if (user_access('create redhen campaign pages')) {
+      return drupal_get_form('redhen_raiser_campaign_pages_create_fundraiser_form');
+    }
+  }
+}
+
+// todo: assert this module runs hooks after redhen_contact
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function redhen_raiser_core_form_user_login_alter(&$form, &$form_state, $form_id) {
+  $form['name']['#description'] = NULL;
+  $form['pass']['#description'] = NULL;
+  $form['register'] = array(
+    '#type' => 'link',
+    '#title' => t("Don't have an account? Create one."),
+    '#href' => 'user/register',
+    '#weight' => 20,
+  );
+  $form['reset'] = array(
+    '#type' => 'link',
+    '#title' => t("Forgot your password? Reset it."),
+    '#href' => 'user/password',
+    '#weight' => 21,
+  );
+  if (isset($_GET['destination'])) {
+    $form['register']['#options']['query']['destination'] = $_GET['destination'];
+    $form['reset']['#options']['query']['destination'] = $_GET['destination'];
+  }
+  $form['actions']['cancel'] = array(
+    '#type' => 'link',
+    '#title' => t('Cancel'),
+    '#href' => '<front>',
+    '#weight' => 100,
+  );
+  $form['actions']['submit']['#value'] = "Log In";
+}
+
+/**
+ * A customized version of the login form.
+ */
+function redhen_raiser_login_form($override_link = FALSE) {
+  $content = drupal_get_form('user_login');
+  $content['register']['#href'] = $override_link ? $override_link : 'user/register';
+  $content['register']['#options']['query']['action'] = 'register';
+  $content['reset']['#href'] = $override_link ? $override_link : 'user/password';
+  $content['reset']['#options']['query']['action'] = 'reset';
+  return $content;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * We universally make some customizations to the registration form.
+ */
+function redhen_raiser_core_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  if (!user_access('administer users')){
+    $form['account']['name']['#description'] = NULL;
+    $form['account']['mail']['#description'] = NULL;
+    $form['account']['pass']['#description'] = NULL;
+    $form['actions']['submit']['#value'] = "Create Account";
+    // Fix up the RedHen form:
+    unset($form['redhen_contact']['#title']);
+    $form['redhen_contact']['form']['#weight'] = $form['account']['#weight'] - .1;
+    $allowed_fields = array('name');
+    foreach (element_children($form['redhen_contact']['form']) as $fieldname) {
+      $field = &$form['redhen_contact']['form'][$fieldname];
+      if (!in_array($fieldname, $allowed_fields) && empty($field['#required'])) {
+        $field['#access'] = FALSE;
+      }
+    }
+    $form['redhen_contact']['form']['name']['middle_name']['#access'] = FALSE;
+    $form['login'] = array(
+      '#type' => 'link',
+      '#title' => t("Already have an account? Sign in."),
+      '#href' => 'user/login',
+      '#weight' => 20,
+    );
+    if (isset($_GET['destination'])) {
+      $form['login']['#options']['query']['destination'] = $_GET['destination'];
+    }
+
+    $form['actions']['cancel'] = array(
+      '#type' => 'link',
+      '#title' => t('Cancel'),
+      '#href' => '<front>',
+      '#weight' => 100,
+    );
+    $form['redhen_contact']['account'] = $form['account'];
+    $form['account']['mail']['#required'] = FALSE;
+    $form['account']['#access'] = FALSE;
+    array_unshift($form['#validate'], 'redhen_raiser_core_registration_validate');
+  }
+}
+
+/**
+ * Form validator for altered registration form.
+ *
+ * Ensures that the email input is in the expected place for the User module.
+ */
+function redhen_raiser_core_registration_validate($form, &$form_state) {
+  $form_state['values']['mail'] = $form_state['input']['mail'];
+  // When registering, destinations may be inaccessible, so reset them:
+  if (isset($_GET['destination'])) {
+    $_GET['login_destination'] = $_GET['destination'];
+    unset($_GET['destination']);
+    drupal_static_reset('drupal_get_destination');
+    drupal_get_destination();
+  }
+}
+
+/**
+ * A customized version of the registration form for embedding.
+ */
+function redhen_raiser_core_register_form($override_link = FALSE) {
+  $content = drupal_get_form('user_register_form');
+  $content['login']['#href'] = $override_link ? $override_link : 'user/login';
+  $content['actions']['cancel']['#href'] = $override_link ? $override_link : '<front>';
+  return $content;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function redhen_raiser_core_form_user_pass_alter(&$form, &$form_state, $form_id) {
+  $form['account']['mail']['#description'] = NULL;
+  $form['account']['pass']['#description'] = NULL;
+  $form['actions']['submit']['#value'] = "Reset Password";
+  $form['login'] = array(
+    '#type' => 'link',
+    '#title' => t("Already have an account? Sign in."),
+    '#href' => 'user/login',
+    '#weight' => 20,
+  );
+  if (isset($_GET['destination'])) {
+    $form['login']['#options']['query']['destination'] = $_GET['destination'];
+  }
+  $form['register'] = array(
+    '#type' => 'link',
+    '#title' => t("Don't have an account? Create one."),
+    '#href' => 'user/register',
+    '#weight' => 21,
+  );
+  $form['actions']['cancel'] = array(
+    '#type' => 'link',
+    '#title' => t('Cancel'),
+    '#href' => '<front>',
+    '#weight' => 100,
+  );
+}
+
+/**
+ * A customized version of the password reset form.
+ */
+function redhen_raiser_core_password_form($override_link = FALSE) {
+  module_load_include('inc', 'user', 'user.pages');
+  $content = drupal_get_form('user_pass');
+  $content['login']['#href'] = $override_link ? $override_link : 'user/login';
+  $content['register']['#href'] = $override_link ? $override_link : 'user/register';
+  $content['register']['#options']['query']['action'] = 'register';
+  $content['actions']['cancel']['#href'] = $override_link ? $override_link : '<front>';
+  return $content;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function redhen_raiser_core_form_user_pass_reset_alter(&$form, &$form_state, $form_id) {
+  if (!empty($_GET['destination'])) {
+    $_SESSION['destination'] = $_GET['destination'];
+    if (!empty($_GET['team'])) {
+      $_SESSION['destination'] .= '&team=' . $_GET['team'];
+    }
+  }
+  $reset_user = user_load(arg(2));
+  if ($reset_user) {
+    $contact = redhen_contact_load_by_user($reset_user);
+    if ($contact) {
+      $form['message']['#markup'] = '<p>Click below to login as <em class="placeholder">' . $contact->first_name . ' ' . $contact->last_name . '</em>.</p><p>You can set your password on the next page.</p>';
+      unset($form['help']);
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function redhen_raiser_core_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($_SESSION['destination'])) {
+    $form['#submit'][] = 'redhen_raiser_core_session_destination';
+  }
+}
+
+/**
+ * Form submission handler to redirect new users to their original destination.
+ */
+function redhen_raiser_core_session_destination($form, &$form_state) {
+  $url_parts = drupal_parse_url($_SESSION['destination']);
+  $path = $url_parts['path'];
+  unset($url_parts['path']);
+  $form_state['redirect'] = array($path, $url_parts);
+  unset($_SESSION['destination']);
+}
+
+/**
+ * Helper to allow field_extra_fields enabled properties to be colectomified.
+ *
+ * See the colectomy module.
+ */
+function _redhen_raiser_core_colectomify(&$field) {
+  $field['#label_display'] = 'inlinec';
+  $field['#post_render'] = array('colectomy' => 'colectomy_post_render');
+}
+
+/**
+ * Implements hook_media_browser_plugins_alter().
+ *
+ * Provides more intuitive names for the media selection tabs.
+ */
+function redhen_raiser_core_media_browser_plugins_alter(&$plugin_output) {
+  if (isset($plugin_output['upload'])) {
+    $plugin_output['upload']['#title'] = 'Image';
+  }
+  if (isset($plugin_output['media_internet'])) {
+    $plugin_output['media_internet']['#title'] = 'Video';
+  }
+}

@@ -1,0 +1,39 @@
+@import "../../../neato/bower_components/neat/app/assets/stylesheets/neat-helpers";
+
+header {
+  background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #9F9170 100%); /* ff3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ffffff), color-stop(100%, #9F9170)); /* safari4+,chrome */
+  background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #9F9170 100%); /* safari5.1+,chrome10+ */
+  background: -o-radial-gradient(center, ellipse cover, #ffffff 0%, #9F9170 100%); /* opera 11.10+ */
+  background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%, #9F9170 100%); /* ie10+ */
+  background: radial-gradient(ellipse at center, #ffffff 0%, #9F9170 100%); /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#9F9170',GradientType=1 ); /* ie6-9 */
+
+  .gilroy_brand {
+   width: 20%;
+  }
+}
+
+.slicknav_menu {
+  display:none;
+}
+
+#gmenu {
+  ul {
+    float: right;
+    li {
+      display: inline;
+    }
+  }
+}
+
+@media screen and (max-width: 40em) {
+  /* #menu is the original menu */
+  .js #gmenu {
+    display:none;
+  }
+
+  .js .slicknav_menu {
+    display:block;
+  }
+}

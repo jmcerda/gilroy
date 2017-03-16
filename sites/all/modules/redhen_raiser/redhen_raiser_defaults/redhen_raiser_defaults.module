@@ -1,0 +1,62 @@
+<?php
+/**
+ * @file
+ * Code for the RedHen Raiser Defaults feature.
+ */
+
+include_once 'redhen_raiser_defaults.features.inc';
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function redhen_raiser_defaults_block_view_system_user_menu_alter(&$data, $block) {
+  foreach (element_children($data['content']) as $menu_id) {
+    if ($data['content'][$menu_id]['#href'] == 'fundraise') {
+      $data['content'][$menu_id]['#attributes']['class'][] = 'fundraise-now';
+    }
+  }
+}
+
+/**
+ * Implements hook_navbar().
+ */
+function redhen_raiser_defaults_navbar() {
+  $items = array();
+
+  $tree = menu_tree_all_data('navigation');
+  foreach ($tree as $key => $menu) {
+    if ($menu['link']['link_path'] == 'redhen') {
+      $tree_element = !empty($tree[$key]['below']) ? $tree[$key]['below'] : array();
+      break;
+    }
+  }
+
+  navbar_menu_navigation_links($tree_element);
+
+  $items['redhen'] = array(
+    '#type' => 'navbar_item',
+    'tab' => array(
+      '#type' => 'link',
+      '#title' => t('RedHen CRM'),
+      '#href' => 'redhen',
+      '#options' => array(
+        'attributes' => array(
+          'title' => t('RedHen CRM'),
+          'class' => array('navbar-icon', 'navbar-icon-redhen'), // icon is styled in redhen_raiser_styles
+        ),
+      ),
+    ),
+    'tray' => array(
+      '#heading' => t('RedHen menu'),
+      'navbar_administration' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('navbar-menu', 'navbar-menu-user'),
+        ),
+        'administration_menu' => menu_tree_output($tree_element),
+      ),
+    ),
+  );
+
+  return $items;
+}

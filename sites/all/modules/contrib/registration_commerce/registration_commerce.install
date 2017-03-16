@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * @file
+ * Install, update, & uninstall functions for the registration_commerce module.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function registration_commerce_enable() {
+  // Create a simple product to be used as the referenced product on
+  // registration line items:
+  if (!variable_get('registration_commerce_product', FALSE)) {
+    // Configure product type in case commerce has not yet done this:
+    commerce_product_configure_product_type('product');
+
+    // Create default donation product:
+    $registration_product_settings = array(
+      'sku' => 'REGISTRATION',
+      'title' => t('Registration'),
+      'type' => 'product',
+    );
+    $registration_product = entity_create('commerce_product', $registration_product_settings);
+    $wrapper = entity_metadata_wrapper('commerce_product', $registration_product);
+    $wrapper->commerce_price = array(
+      'amount' => 0,
+      'currency_code' => 'USD',
+    );
+    $wrapper->uid = 1;
+    entity_save('commerce_product', $registration_product);
+
+    variable_set('registration_commerce_product', $registration_product->product_id);
+  }
+}
+
+/**
+ * Implements hook_schema_alter().
+ */
+function registration_commerce_schema_alter(&$schema) {
+  // Add registration_commerce_settings blob to existing registration schema.
+  $schema['registration_type']['fields']['registration_commerce_settings'] = array(
+    'type' => 'blob',
+    'default' => NULL,
+    'serialize' => TRUE,
+    'description' => 'Configuration options for Registration Commerce.',
+  );
+}
+
+/**
+ * Implements hook_install().
+ */
+function registration_commerce_install() {
+  $new_schema = array();
+  registration_commerce_schema_alter($new_schema);
+  foreach ($new_schema['registration_type']['fields'] as $name => $spec) {
+    db_add_field('registration_type', $name, $spec);
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function registration_commerce_uninstall() {
+  $new_schema = array();
+  registration_commerce_schema_alter($new_schema);
+  foreach ($new_schema['registration_type']['fields'] as $name => $spec) {
+    db_drop_field('registration_type', $name);
+  }
+}

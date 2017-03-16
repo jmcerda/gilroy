@@ -1,0 +1,89 @@
+<?php
+/**
+ * @file
+ * Code for the RedHen Raiser Contacts feature.
+ */
+
+include_once 'redhen_raiser_contacts.features.inc';
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function redhen_raiser_contacts_entity_info_alter(&$entity_info) {
+  $entity_info['redhen_contact']['view modes']['byline'] = array(
+    'label' => t('Byline'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function redhen_raiser_contacts_entity_view_alter(&$build, $type) {
+  if ($type == 'redhen_contact') {
+    $contact_wrapper = entity_metadata_wrapper("redhen_contact", $build['#entity']);
+    $user = $contact_wrapper->user->value();
+    $add_picture = FALSE;
+    switch ($build['#view_mode']) {
+      case "byline":
+        $build['name']['#label'] = 'By';
+        $add_picture = TRUE;
+        $style = 'avatar';
+        break;
+
+      case "redhen_campaign_page_owner":
+        $add_picture = TRUE;
+        $style = 'avatar';
+        break;
+
+      case "redhen_campaign_page_owner_teaser":
+        $add_picture = TRUE;
+        $style = 'tile';
+        break;
+
+      case "snippet":
+        $add_picture = TRUE;
+        $style = 'snippet_tile';
+        break;
+    }
+    if ($add_picture) {
+      $uri = FALSE;
+      $user_profile = '/fundraiser-profile/' . $user->uid;
+      if (isset($user->picture->uri)) {
+        $uri = $user->picture->uri;
+      }
+      else {
+        $default = variable_get('user_picture_default');
+        $val = str_replace('/sites/default/files/', '', $default, $count);
+        if ($count) {
+          $uri = $val;
+        }
+      }
+      if ($uri) {
+        $build['avatar'] = array(
+          '#theme' => 'image_style',
+          '#prefix' => '<a href="'.$user_profile.'" class="user-profile">',
+          '#path' => $uri,
+          '#suffix' => '</a>',
+          '#style_name' => $style,
+        );
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Hide the complex version of the email address form from users.
+ */
+function redhen_raiser_contacts_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+  $form['redhen_contact']['redhen_contact_email']['#access'] = user_access('administer redhen contacts');
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function redhen_raiser_contacts_menu_alter(&$items) {
+  $items['user/%user_category/edit/redhen_contact']['title arguments'][0] = "Contact Details";
+}

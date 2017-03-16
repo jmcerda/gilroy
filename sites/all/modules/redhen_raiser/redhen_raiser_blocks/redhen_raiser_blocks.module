@@ -1,0 +1,400 @@
+<?php
+/**
+ * @file
+ * Code for the RedHen Raiser Blocks & Widgets feature.
+ */
+
+include_once 'redhen_raiser_blocks.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function redhen_raiser_blocks_block_info() {
+  $blocks = array();
+
+  $blocks['branding'] = array(
+    'info' => t('Branding'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['social_media_share'] = array(
+    'info' => t('Social Media Share'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['copyright_statement'] = array(
+    'info' => t('Copyright Statement'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['tax_exempt_status'] = array(
+    'info' => t('Tax Exemption Details'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function redhen_raiser_blocks_block_configure($delta = '') {
+  $form = array();
+
+  switch ($delta) {
+    case 'copyright_statement':
+      $sitename = variable_get('site_name', '');
+      $form['statement'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Statement text',
+        '#default_value' => variable_get('redhen_raiser_copyright_statement', 'Copyright © 2016 ' . $sitename . '. All Rights Reserved.'),
+      );
+    break;
+
+    case 'tax_exempt_status':
+      $sitename = variable_get('site_name', '');
+      $form['exemption'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Exemption text',
+        '#size' => 100,
+        '#maxlength' => 200,
+        '#default_value' => variable_get('redhen_raiser_exemption_text', $sitename . ' is a 501(c)(3) tax exempt organization, tax ID: #00-0000000. Donations and contributions are tax-deductible as allowed by law.'),
+      );
+      break;
+
+  }
+
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function redhen_raiser_blocks_block_save($delta = '', $edit = array()) {
+  switch ($delta) {
+    case 'copyright_statement':
+      variable_set('redhen_raiser_copyright_statement', $edit['statement']);
+      break;
+
+    case 'tax_exempt_status':
+      variable_set('redhen_raiser_exemption_text', $edit['exemption']);
+      break;
+
+  }
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function redhen_raiser_blocks_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'branding':
+      $block['content'] = array();
+      $logo = theme_get_setting('logo');
+      if ($logo) {
+        $image = theme('image', array(
+          'path' => $logo,
+          'alt' => variable_get('site_name'),
+          'attributes' => array(
+            'class' => 'header__logo-image',
+          )));
+        $block['content']['logo'] = array(
+          '#type'    => 'link',
+          '#title'   => $image,
+          '#href'    => 'home',
+          '#options' => array(
+            'html' => TRUE,
+            'attributes' => array(
+              'class' => 'header__logo',
+              'id' => 'logo',
+            ),
+          ),
+        );
+      }
+      $slogan = variable_get('site_slogan');
+      if ($slogan) {
+        $block['content']['slogan'] = array(
+          '#markup' => '<p class="tagline">' . $slogan . '</p>',
+        );
+      }
+      break;
+
+    case 'social_media_share':
+      $url = url(current_path(), array('absolute' => true));
+      $block = bean_block_view('social_media_links');
+      $links = &$block['content']['bean']['social_media_links']['field_links'];
+      foreach (element_children($links) as $index) {
+        switch ($links[$index]['#element']['title']) {
+          case 'Twitter':
+            $links[$index]['#element']['url'] = 'https://twitter.com/home?status=' . $url;
+            break;
+
+          case 'Facebook':
+            $links[$index]['#element']['url'] = 'https://www.facebook.com/sharer/sharer.php?u=' . $url;
+            break;
+
+          case 'LinkedIn':
+            $links[$index]['#element']['url'] = 'https://www.linkedin.com/shareArticle?mini=true&url=' . $url . '&title=' . drupal_get_title() . '&summary=&source=';
+            break;
+
+          case 'Google+':
+            $links[$index]['#element']['url'] = 'https://plus.google.com/share?url=' . $url;
+            break;
+        }
+      }
+      break;
+
+    case 'copyright_statement':
+      $sitename = variable_get('site_name', '');
+      $block['content'] = variable_get('redhen_raiser_copyright_statement', 'Copyright © 2015 ' . $sitename . '. All Rights Reserved.');
+      break;
+
+    case 'tax_exempt_status':
+      $sitename = variable_get('site_name', '');
+      $block['content'] = variable_get('redhen_raiser_exemption_text', $sitename . ' is a 501(c)(3) tax exempt organization, tax ID: #00-0000000. Donations and contributions are tax-deductible as allowed by law.');
+      break;
+  }
+
+  return $block;
+}
+
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function redhen_raiser_blocks_entity_view_alter(&$build, $type) {
+  switch ($type) {
+    case "bean":
+      if ($build['#bundle'] == 'promo') {
+        if (isset($build['field_promo_image'])) {
+          if (isset($build['field_promo_image_link'])) {
+            $build['field_promo_image'][0]['#path']['path'] = $build['field_promo_image_link']['#items'][0]['url'];
+            $build['field_promo_image_link']['#access'] = FALSE;
+          }
+          else {
+            unset($build['field_promo_image'][0]['#path']);
+          }
+        }
+      }
+      break;
+
+    case "redhen_campaign_page":
+      if ($build['#view_mode'] == 'progress') {
+        $parent = redhen_campaign_load($build['#entity']->campaign);
+        $build['field_start_date'] = field_view_field('redhen_campaign', $parent, 'field_start_date', 'progress');
+        _redhen_raiser_blocks_format_dates($build);
+      }
+      break;
+
+    case "redhen_campaign":
+      if ($build['#view_mode'] == 'progress') {
+        _redhen_raiser_blocks_format_dates($build);
+      }
+      break;
+
+  }
+}
+
+/**
+ * Helper function to format start and end dates.
+ */
+function _redhen_raiser_blocks_format_dates(&$build) {
+  if (isset($build['field_start_date'])) {
+    $start = strtotime($build['field_start_date']['#items'][0]['value']);
+    if (time() < $start) {
+      $prepend = '<span class="date-display-interval-all">';
+      $prepend .= "Fundraiser begins in ";
+      $build['field_start_date'][0]['#markup'] = $prepend . $build['field_start_date'][0]['#markup'] . "</span>";
+      $build['field_end_date']['#access'] = FALSE;
+    }
+    else {
+      $build['field_start_date']['#access'] = FALSE;
+    }
+  }
+  if (isset($build['field_end_date'])) {
+    $end = strtotime($build['field_end_date']['#items'][0]['value']);
+    $remaining = $end - time();
+    // @todo: add configuration options to control these behaviors.
+    if ($remaining <= 0) {
+      $build['field_end_date'][0]['#markup'] = '<span class="date-display-interval-past">Fundraiser has ended.</span>';
+    }
+    else {
+      $prepend = '<span class="date-display-interval-all">';
+      if ($remaining < (7 * 24 * 60 * 60)) {
+        $prepend .= "Only ";
+      }
+      $build['field_end_date'][0]['#markup'] = $prepend . $build['field_end_date'][0]['#markup'] . " left.</span>";
+    }
+  }
+}
+
+
+/**
+ * Create default Blocks.
+ */
+function redhen_raiser_blocks_create_default_blocks() {
+
+  $stubbed_beans = array(
+    // Link beans.
+    'social_media_links' => array(
+      'type' => 'link_group',
+      'label' => 'Social Media Links',
+      'title' => '',
+      'properties' => array(
+        'field_links' => array(
+          array(
+            'url' => 'http://www.twitter.com',
+            'title' => 'Twitter',
+            'attributes' => array('class' => 'twitter-link'),
+          ),
+          array(
+            'url' => 'http://www.facebook.com',
+            'title' => 'Facebook',
+            'attributes' => array('class' => 'facebook-link'),
+          ),
+          array(
+            'url' => 'http://www.linkedin.com',
+            'title' => 'LinkedIn',
+            'attributes' => array('class' => 'linkedin-link'),
+          ),
+          array(
+            'url' => 'http://plus.google.com',
+            'title' => 'Google+',
+            'attributes' => array('class' => 'googleplus-link'),
+          ),
+        ),
+      ),
+    ),
+    'campaign-page-progress' => array(
+      'type' => 'bean_entity_view',
+      'label' => 'Campaign Page Progress',
+      'title' => '',
+      'data' => array(
+        'entity_type' => 'redhen_campaign_page',
+        'entity_view_mode' => 'progress',
+        'entity_id_position' => '2',
+      ),
+    ),
+    'campaign-progress' => array(
+      'type' => 'bean_entity_view',
+      'label' => 'Campaign Progress',
+      'title' => '',
+      'data' => array(
+        'entity_type' => 'redhen_campaign',
+        'entity_view_mode' => 'progress',
+        'entity_id_position' => '1',
+      ),
+    ),
+    'campaign-page-banner' => array(
+      'type' => 'bean_entity_view',
+      'label' => 'Campaign Page Banner',
+      'title' => '',
+      'data' => array(
+        'entity_type' => 'redhen_campaign_page',
+        'entity_view_mode' => 'banner',
+        'entity_id_position' => '2',
+      ),
+    ),
+    'campaign-banner' => array(
+      'type' => 'bean_entity_view',
+      'label' => 'Campaign Banner',
+      'title' => '',
+      'data' => array(
+        'entity_type' => 'redhen_campaign',
+        'entity_view_mode' => 'banner',
+        'entity_id_position' => '1',
+      ),
+    ),
+    'campaign-promotion' => array(
+      'type' => 'bean_entity_view',
+      'label' => 'Campaign Promotion',
+      'title' => '',
+      'data' => array(
+        'entity_type' => 'redhen_campaign',
+        'entity_view_mode' => 'promotion',
+        'entity_id_position' => '1',
+      ),
+    ),
+    'campaign-page-promotion' => array(
+      'type' => 'bean_entity_view',
+      'label' => 'Campaign Page Promotion',
+      'title' => '',
+      'data' => array(
+        'entity_type' => 'redhen_campaign_page',
+        'entity_view_mode' => 'promotion',
+        'entity_id_position' => '2',
+      ),
+    ),
+    'campaign-context-banner' => array(
+      'type' => 'bean_entity_view',
+      'label' => 'Campaign Context Banner',
+      'title' => '',
+      'data' => array(
+        'entity_type' => 'redhen_campaign',
+        'entity_view_mode' => 'contextual_banner',
+        'entity_id_position' => '1',
+      ),
+    ),
+    'campaign-page-context-banner' => array(
+      'type' => 'bean_entity_view',
+      'label' => 'Campaign Page Context Banner',
+      'title' => '',
+      'data' => array(
+        'entity_type' => 'redhen_campaign_page',
+        'entity_view_mode' => 'contextual_banner',
+        'entity_id_position' => '',
+        'entity_argument' => 'campaign_page',
+      ),
+    ),
+    'campaign-page-progress-query-con' => array(
+      'type' => 'bean_entity_view',
+      'label' => 'Campaign Page Progress (query context)',
+      'title' => '',
+      'data' => array(
+        'entity_type' => 'redhen_campaign_page',
+        'entity_view_mode' => 'progress',
+        'entity_id_position' => '',
+        'entity_argument' => 'campaign_page',
+      ),
+    ),
+  );
+  redhen_raiser_blocks_create_beans($stubbed_beans);
+}
+
+/**
+ * Helper to create beans.
+ */
+function redhen_raiser_blocks_create_beans($stubbed_beans) {
+  foreach ($stubbed_beans as $name => $stubbed_bean) {
+    $new_bean = bean_create(array('type' => $stubbed_bean['type']));
+    $new_bean->label = $stubbed_bean['label'];
+    $new_bean->title = $stubbed_bean['title'];
+    $new_bean->delta = $name;
+    if (!empty($stubbed_bean['data'])) {
+      $new_bean->data = $stubbed_bean['data'];
+    }
+    $bean_wrapper = entity_metadata_wrapper('bean', $new_bean);
+    if (!empty($stubbed_bean['properties'])) {
+      foreach ($stubbed_bean['properties'] as $prop => $value) {
+        if (strpos($bean_wrapper->field_links->type(), 'list<') === FALSE) {
+          $bean_wrapper->{$prop} = $value;
+        }
+        else {
+          foreach ($value as $item) {
+            $bean_wrapper->{$prop}[] = $item;
+          }
+        }
+      }
+    }
+    $new_bean->save();
+  }
+}
+
+/**
+ * Implements hook_block_view_MODULE_DELTA_alter().
+ */
+function redhen_raiser_blocks_block_view_bean_social_media_links_alter(&$data, $block) {
+  $data['content']['bean']['social_media_links']['field_links']['#theme'] = 'item_list';
+  foreach ($data['content']['bean']['social_media_links']['field_links']['#items'] as &$item) {
+    $item = theme_link_formatter_link_default(array('element' => $item));
+  }
+}

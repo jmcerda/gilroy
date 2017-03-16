@@ -1,0 +1,21 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+
+/**
+ * Hide the library tab from authenticated users.
+ */
+function redhen_raiser_core_access_media_browser_plugins_alter(&$plugins) {
+  if (!user_access('Administer content')) {
+    unset($plugins['library']);
+  }
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function redhen_raiser_core_access_menu_alter(&$items) {
+  $items['admin/config']['access arguments'][0] = 'administer site configuration';
+}

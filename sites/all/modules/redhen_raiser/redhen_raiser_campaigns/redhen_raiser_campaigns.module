@@ -1,0 +1,101 @@
+<?php
+/**
+ * @file
+ * Code for the RedHen Raiser Campaigns feature.
+ */
+
+include_once 'redhen_raiser_campaigns.features.inc';
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function redhen_raiser_campaigns_entity_info_alter(&$entity_info) {
+  $entity_info['redhen_campaign']['view modes']['progress'] = array(
+    'label' => t('Progress'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['redhen_campaign']['view modes']['banner'] = array(
+    'label' => t('Banner'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['redhen_campaign']['view modes']['contextual_banner'] = array(
+    'label' => t('Contextual Banner'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['redhen_campaign']['view modes']['promotion'] = array(
+    'label' => t('Promo'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function redhen_raiser_campaigns_entity_view_alter(&$build, $type) {
+  if ($type == 'redhen_campaign') {
+    switch ($build['#view_mode']) {
+      case 'banner':
+      case 'contextual_banner':
+      case 'teaser':
+        // Link the label.
+        if (!empty($build['label']['#items'][0]['#markup'])) {
+          $uri = $build['#entity']->uri();
+          $path = $uri['path'];
+
+          $build['label']['#items'][0]['#markup'] = l(
+            $build['label']['#items'][0]['#markup'],
+            $path
+          );
+        }
+        break;
+
+      case 'full':
+        $options = array(
+          'attributes' => array(
+            'class' => 'redhen-campaign-pages-button',
+          ),
+        );
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'redhen_campaign_page')
+          ->propertyCondition('campaign', $build['#entity']->campaign_id, '=');
+        $total_pages = $query->count()->execute();
+        $build['pages'] = array(
+          '#markup' => l(t('View all Teams and Individuals'), 'redhen_campaign/' . $build['#entity']->campaign_id . '/pages', $options),
+          '#weight' => 100,
+          '#prefix' => '<div class="view-all-button">',
+          '#suffix' => '</div>',
+          '#access' => $total_pages,
+        );
+        $build['join']['#label_hidden'] = FALSE;
+        $build['join']['#label'] = 'Ready to contribute to the cause? Fundraise for this campaign now.';
+        _redhen_raiser_core_colectomify($build['join']);
+        break;
+
+    }
+  }
+}
+
+/**
+ * Load all active campaigns.
+ */
+function redhen_raiser_campaigns_load_active() {
+  $now = date('Y-m-d G:i:s');
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'redhen_campaign')
+    ->fieldCondition('field_start_date', 'value', $now, '<')
+    ->fieldCondition('field_end_date', 'value', $now, '>');
+  $results = $query->execute();
+  if (isset($results['redhen_campaign'])) {
+    return redhen_campaign_load_multiple(array_keys($results['redhen_campaign']));
+  }
+  return array();
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function redhen_raiser_campaigns_form_redhen_campaign_campaign_form_alter(&$form, &$form_state, $form_id) {
+  $form['field_teaser'][$form['field_teaser']['#language']][0]['value']['#maxlength'] = 128;
+  $form['label']['#maxlength'] = 50;
+  $form['label']['#description'] = t('<i>(50 character limit)</i>');
+}

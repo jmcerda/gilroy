@@ -1,0 +1,97 @@
+<!--.page -->
+<div role="document" class="page">
+    <div id="umenu">
+        <?php
+        $menu = menu_navigation_links('user-menu');
+        print theme('links__user_menu', array('links' => $menu));
+        ?>
+    </div>
+    <main id="panel">
+        <header role="banner">
+            <div class="gilroy_brand">
+                <?php if (!empty($linked_logo)) {
+                    print $linked_logo;
+                } ?>
+            </div>
+            <div id="gmenu">
+                <?php
+                $menu = menu_navigation_links('main-menu');
+                print theme('links__main_menu', array('links' => $menu));
+                ?>
+            </div>
+            <?php print render($page['header']); ?>
+            <div id="hero">
+                <div class="hero">
+                    <div class="hero-inner">
+                        <div class="hero-copy">
+                            <h2>Welcome to <strong>Chamber</strong>.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main role="main" class="outer-wrapper">
+            <h1>I am an H1.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat tincidunt lorem id volutpat. Pellentesque quis velit condimentum, tincidunt orci eu, scelerisque sem. Morbi tincidunt erat eu elit finibus, in tincidunt erat euismod. Vestibulum ut fermentum justo, ultrices mollis magna. Ut condimentum nibh a felis vulputate, in sodales turpis molestie. Nunc consequat finibus commodo. Curabitur sed consequat ante, a eleifend massa. Morbi id justo pharetra, tincidunt massa vel, ornare urna. Suspendisse vitae justo sagittis, aliquet nibh vitae, maximus ipsum. Aliquam tempor gravida iaculis. Etiam a dui nec leo mollis dapibus eu ut purus. Nunc rhoncus malesuada lacus semper feugiat. Fusce consectetur pharetra justo.</p>
+
+            <h2>I am an H2.</h2>
+            <p>Lorem ipsum dolorf sit amet, consectetur adipiscing elit. Nam consequat tincidunt lorem id volutpat. Pellentesque quis velit condimentum, tincidunt orci eu, scelerisque sem. Morbi tincidunt erat eu elit finibus, in tincidunt erat euismod. Vestibulum ut fermentum justo, ultrices mollis magna. Ut condimentum nibh a felis vulputate, in sodales turpis molestie. Nunc consequat finibus commodo. Curabitur sed consequat ante, a eleifend massa. Morbi id justo pharetra, tincidunt massa vel, ornare urna. Suspendisse vitae justo sagittis, aliquet nibh vitae, maximus ipsum. Aliquam tempor gravida iaculis. Etiam a dui nec leo mollis dapibus eu ut purus. Nunc rhoncus malesuada lacus semper feugiat. Fusce consectetur pharetra justo.</p>
+
+            <h3>I am an H3.</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat tincidunt lorem id volutpat. Pellentesque quis velit condimentum, tincidunt orci eu, scelerisque sem. Morbi tincidunt erat eu elit finibus, in tincidunt erat euismod. Vestibulum ut fermentum justo, ultrices mollis magna. Ut condimentum nibh a felis vulputate, in sodales turpis molestie. Nunc consequat finibus commodo. Curabitur sed consequat ante, a eleifend massa. Morbi id justo pharetra, tincidunt massa vel, ornare urna. Suspendisse vitae justo sagittis, aliquet nibh vitae, maximus ipsum. Aliquam tempor gravida iaculis. Etiam a dui nec leo mollis dapibus eu ut purus. Nunc rhoncus malesuada lacus semper feugiat. Fusce consectetur pharetra justo.</p>
+
+            <h4>I am an H4.</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat tincidunt lorem id volutpat. Pellentesque quis velit condimentum, tincidunt orci eu, scelerisque sem. Morbi tincidunt erat eu elit finibus, in tincidunt erat euismod. Vestibulum ut fermentum justo, ultrices mollis magna. Ut condimentum nibh a felis vulputate, in sodales turpis molestie. Nunc consequat finibus commodo. Curabitur sed consequat ante, a eleifend massa. Morbi id justo pharetra, tincidunt massa vel, ornare urna. Suspendisse vitae justo sagittis, aliquet nibh vitae, maximus ipsum. Aliquam tempor gravida iaculis. Etiam a dui nec leo mollis dapibus eu ut purus. Nunc rhoncus malesuada lacus semper feugiat. Fusce consectetur pharetra justo.</p>
+        </main>
+
+
+
+        <footer id="site-footer" role="contentinfo">
+            <section class="footer-top">
+                <div class="flex-boxes">
+                    <div class="flex-box">
+                        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png" alt="">
+                        <h1 class="flex-title">Block Example 1</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum molestiae fugiat tenetur fugit atque dignissimos, fugiat natus vitae.</p>
+                    </div>
+                    <div class="flex-box">
+                        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
+                        <h1 class="flex-title">Block Example 2</h1>
+                        <p>Lorem adipisicing elit. Voluptas consectetur tempora quis nam, officia tenetur blanditiis in illo dolor?</p>
+                    </div>
+                    <div class="flex-box">
+                        <div itemscope itemtype="http://schema.org/LocalBusiness">
+                            <h2><span itemprop="name">The Gilroy Chamber of Commerce</span></h2>
+                            <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
+                            <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
+                            <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
+                        </div>
+                    </div>
+                    <div class="flex-box">
+                        <?php if (!empty($linked_logo)) {
+                            print $linked_logo;
+                        } ?>
+                    </div>
+                </div>
+            </section>
+
+            <section class="footer-bottom">
+                <div class="copyright">
+                    <p>
+                        &copy; <?php print date('Y') . ' ' . $linked_site_name . ' ' . t('All rights reserved.'); ?>
+                    </p>
+                </div>
+
+                <div class="utility-menu">
+                    <ul>
+                        <li><a href="/">Privacy Policy</a></li>
+                        <li><a href="/">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </section>
+        </footer>
+        <a href="#" class="scrollToTop">Scroll To Top</a><div></div>
+    </main>
+</div>
+<!--/.page -->

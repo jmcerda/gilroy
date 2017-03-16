@@ -1,0 +1,387 @@
+<?php
+/**
+ * @file
+ * Code for the RedHen Raiser Campaign Updates feature.
+ */
+
+include_once 'redhen_raiser_campaign_updates.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function redhen_raiser_campaign_updates_block_info() {
+  $blocks = array();
+
+  $blocks['campaign_page_updates'] = array(
+    'info' => t('Fundraising Page Updates'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['campaign_updates'] = array(
+    'info' => t('Fundraising Campaign Updates'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['campaign_update_banner'] = array(
+    'info' => t('Campaign Banner for Updates'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function redhen_raiser_campaign_updates_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'campaign_page_updates':
+      $block['content'] = redhen_raiser_campaign_updates_page_list();
+      break;
+
+    case 'campaign_updates':
+      $block['content'] = redhen_raiser_campaign_updates_campaign_list();
+      break;
+
+    case 'campaign_update_banner':
+      $block['content'] = redhen_raiser_campaign_updates_campaign_context_banner();
+      break;
+
+  }
+
+  return $block;
+}
+
+/**
+ * Generate a list of a campaigns updates for display in a block.
+ */
+function redhen_raiser_campaign_updates_campaign_list() {
+  $campaign_id = arg(1);
+  if (is_numeric($campaign_id)) {
+    $include = array(
+      'campaign',
+    );
+    return redhen_raiser_campaign_updates_list($include, $campaign_id);
+  }
+}
+
+/**
+ * Generate a list of a page's campaign updates for display in a block.
+ */
+function redhen_raiser_campaign_updates_page_list() {
+  $page_id = arg(2);
+  if (is_numeric($page_id)) {
+    $page = redhen_campaign_page_load($page_id);
+    $include = array(
+      'campaign',
+      'team',
+    );
+    return redhen_raiser_campaign_updates_list($include, $page->campaign, $page_id, $page->team);
+  }
+}
+
+/**
+ * Render the parent campaign (or page) banner style for update context.
+ */
+function redhen_raiser_campaign_updates_campaign_context_banner() {
+  $nid = arg(1);
+  if ($nid) {
+    $update = node_load($nid);
+    if ($update) {
+      $wrapper = entity_metadata_wrapper('node', $update);
+      $entity = NULL;
+      if ($page = $wrapper->field_page_context->value()) {
+        $entity = $page;
+        $entity_type = 'redhen_campaign_page';
+      }
+      else {
+        $entity = $wrapper->field_campaign_context->value();
+        $entity_type = 'redhen_campaign';
+      }
+      if ($entity) {
+        return entity_view($entity_type, array($entity), 'contextual_banner');
+      }
+    }
+  }
+  return array();
+}
+
+/**
+ * Helper function to generate campaign update displays.
+ */
+function redhen_raiser_campaign_updates_list($include, $campaign_id, $page_id = NULL, $team_id = NULL) {
+  $view_mode = 'teaser';
+  $count = 3;
+  $updates = array();
+
+  // Collect Updates for the specific Page:
+  if ($page_id) {
+    $p_query = new EntityFieldQuery();
+    $p_query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'campaign_update')
+      ->propertyOrderBy('created', 'DESC')
+      ->fieldCondition('field_page_context', 'target_id', $page_id)
+      ->range(0, $count);
+    $results = $p_query->execute();
+    if (!empty($results['node'])) {
+      $updates = array_keys($results['node']);
+    }
+  }
+
+  // Collect Campaign-level updates:
+  if (in_array('campaign', $include)) {
+    $c_query = new EntityFieldQuery();
+    $c_query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'campaign_update')
+      ->propertyOrderBy('created', 'DESC')
+      ->fieldCondition('field_campaign_context', 'target_id', $campaign_id)
+      ->addTag('page_context_is_blank')
+      ->range(0, $count);
+    $results = $c_query->execute();
+    if (!empty($results['node'])) {
+      $updates = array_merge($updates, array_keys($results['node']));
+    }
+  }
+
+  // Collect Team-level updates:
+  if ($team_id && in_array('team', $include)) {
+    $t_query = new EntityFieldQuery();
+    $t_query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'campaign_update')
+      ->propertyOrderBy('created', 'DESC')
+      ->fieldCondition('field_page_context', 'target_id', $team_id)
+      ->range(0, $count);
+    $results = $t_query->execute();
+    if (!empty($results['node'])) {
+      $updates = array_merge($updates, array_keys($results['node']));
+    }
+  }
+
+  // Collect Team-member updates:
+  if (in_array('team members', $include)) {
+    // @todo: will require a joined query.
+  }
+  if (count($updates)) {
+    // Merge all updates and render the most recent ones:
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+      ->propertyCondition('type', 'campaign_update')
+      ->propertyOrderBy('created', 'DESC')
+      ->propertyCondition('nid', $updates, 'in')
+      ->range(0, $count);
+    $results = $query->execute();
+    if (!empty($results['node'])) {
+      $nodes = node_load_multiple(array_keys($results['node']));
+    }
+
+    return node_view_multiple($nodes, $view_mode);
+  }
+  return array();
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ */
+function redhen_raiser_campaign_updates_query_page_context_is_blank_alter(QueryAlterableInterface $query) {
+  // The intuitive names for the arguments have been stripped.
+  // ":db_condition_placeholder_2" is the argument containing "node".
+  $query->leftJoin('field_data_field_page_context', 'c', 'node.nid = c.entity_id AND c.entity_type = :db_condition_placeholder_2');
+  $query->isNull('c.field_page_context_target_id');
+}
+
+/**
+ * Implements hook_node_view_alter().
+ */
+function redhen_raiser_campaign_updates_node_view_alter(&$build) {
+  if ($build['#bundle'] == "campaign_update") {
+    // Show author image, and sometimes name, on Campaign Updates.
+    $node_wrapper = entity_metadata_wrapper("node", $build['#node']);
+    $user = $node_wrapper->author->value();
+    $redhen_contact = redhen_contact_load_by_user($user);
+    switch ($build['#view_mode']) {
+      case "full":
+        if ($redhen_contact) {
+          $build['author'] = entity_view('redhen_contact', array($redhen_contact), 'byline', NULL, TRUE);
+        }
+        break;
+
+      case "teaser":
+        if ($user->picture) {
+          $build['avatar'] = array(
+            '#theme' => 'image_style',
+            '#path' => $user->picture->uri,
+            '#style_name' => 'mini-avatar',
+            '#weight' => -1,
+          );
+        }
+        break;
+
+    }
+  }
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function redhen_raiser_campaign_updates_views_query_alter(&$view, &$query) {
+  // We want page updates to include general campaign updates.
+  if ($view->name == "campaign_updates" && $view->current_display == 'page_block') {
+    $query->where[0]['type'] = 'OR';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function redhen_raiser_campaign_updates_form_campaign_update_node_form_alter(&$form, &$form_state, $form_id) {
+  if (!$form['nid']['#value']) {
+    // This is a brand new node:
+    $access = FALSE;
+    $params = drupal_get_query_parameters();
+    if (isset($params['page']) && user_access('create campaign_update content')) {
+      $access = 'page';
+    }
+    if (isset($params['campaign']) && user_access('create campaign_update content')) {
+      $access = 'campaign';
+    }
+    if ($access) {
+      switch ($access) {
+        case "page":
+          $page = redhen_campaign_page_load($params['page']);
+          if (!$page || !redhen_campaign_page_access('edit', $page)) {
+            $access = FALSE;
+          }
+          else {
+            // There is a valid page argument and the user has access to edit
+            // the page and post updates. Populate the contextual elements.
+            $lang = $form['language']['#value'];
+            $form['field_campaign_context'][$lang]['#default_value'] = $page->campaign;
+            $form['field_page_context'][$lang]['#default_value'] = $page->page_id;
+            $uri = entity_uri('redhen_campaign_page', $page);
+            $form_state['destination'] = $uri['path'];
+            $form['actions']['submit']['#submit'][] = 'redhen_raiser_campaign_updates_redirect';
+          }
+          break;
+
+        case "campaign":
+          $campaign = redhen_campaign_load($params['campaign']);
+          if (!$campaign || !redhen_campaign_access('edit', $campaign)) {
+            $access = FALSE;
+          }
+          else {
+            // There is a valid campaign argument and the user has access to
+            // edit the page and post updates. Populate the contextual elements.
+            $lang = $form['language']['#value'];
+            $form['field_campaign_context'][$lang]['#default_value'] = $campaign->campaign_id;
+            $uri = entity_uri('redhen_campaign', $campaign);
+            $form_state['destination'] = $uri['path'];
+            $form['actions']['submit']['#submit'][] = 'redhen_raiser_campaign_updates_redirect';
+          }
+          break;
+
+      }
+    }
+    if (!$access && !user_access('administer content')) {
+      drupal_set_message(t('To create an update, go to your Campaign or Fundraising Page and use the "Updates" tab.'), 'warning');
+      foreach (element_children($form) as $element) {
+        $form[$element]['#access'] = FALSE;
+      }
+    }
+  }
+  // Hide context fields from non-admin users (auto-populated based on context):
+  if (!user_access('administer nodes')) {
+    $form['field_campaign_context']['#access'] = FALSE;
+    $form['field_page_context']['#access'] = FALSE;
+  }
+  // Otherwise, shine up the context selection UI:
+  else {
+    $lang = $form['field_page_context']['#language'];
+    if (!isset($form_state['all_pages'])) {
+      $form_state['all_pages'] = array(
+        'teams' => isset($form['field_page_context'][$lang]['#options']['Team']) ? $form['field_page_context'][$lang]['#options']['Team'] : array(),
+        'individuals' => isset($form['field_page_context'][$lang]['#options']['Individual']) ? $form['field_page_context'][$lang]['#options']['Individual'] : array(),
+      );
+    }
+    // Rebuild our page selection to make it more intuitive:
+    $team_member_options = array();
+    $team_options = $form_state['all_pages']['teams'];
+    $individual_options = $form_state['all_pages']['individuals'];
+    $individual_pages = redhen_campaign_page_load_multiple(array_keys($individual_options));
+    $form['field_page_context']['#attributes']['id'] = 'campaign-page-context-select';
+    $form['field_campaign_context'][$lang]['#ajax'] = array(
+      'callback' => 'redhen_raiser_campaign_updates_page_context_callback',
+      'wrapper' => 'campaign-page-context-select',
+    );
+    if (isset($form_state['values']['field_campaign_context'][$lang][0]['target_id'])) {
+      $campaign_context = $form_state['values']['field_campaign_context'][$lang][0]['target_id'];
+    }
+    elseif (!empty($form['field_campaign_context'][$lang]['#default_value'])) {
+      $campaign_context = $form['field_campaign_context'][$lang]['#default_value'];
+    }
+    foreach ($individual_pages as $page) {
+      if (isset($campaign_context) && $page->campaign != $campaign_context) {
+        unset($individual_options[$page->page_id]);
+      }
+      elseif ($page->team) {
+        $team_member_options[$team_options[$page->team] . ' members'][$page->page_id] = $page->label;
+        unset($individual_options[$page->page_id]);
+      }
+    }
+    if (isset($campaign_context)) {
+      $team_pages = redhen_campaign_page_load_multiple(array_keys($team_options));
+      foreach ($team_pages as $teampage) {
+        if ($teampage->campaign != $campaign_context) {
+          unset($team_options[$teampage->page_id]);
+        }
+      }
+    }
+    // Display teams before individuals:
+    unset($form['field_page_context'][$lang]['#options']['Team']);
+    unset($form['field_page_context'][$lang]['#options']['Individual']);
+    $form['field_page_context'][$lang]['#options']['TEAMS'] = $team_options;
+    $form['field_page_context'][$lang]['#options']['TEAM MEMBERS'] = $team_member_options;
+    $form['field_page_context'][$lang]['#options']['INDIVIDUALS'] = $individual_options;
+  }
+}
+
+/**
+ * Simple redirect for new update creation back to the host entity.
+ */
+function redhen_raiser_campaign_updates_redirect($form, &$form_state) {
+  $form_state['redirect'] = $form_state['destination'];
+}
+
+/**
+ * Javascript callback for .
+ */
+function redhen_raiser_campaign_updates_page_context_callback($form, &$form_state) {
+  return $form['field_page_context'];
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function redhen_raiser_campaign_updates_menu_alter(&$items) {
+  ksort($items);
+  if (isset($items['redhen_campaign/%redhen_campaign/update'])) {
+    $items['redhen_campaign/%redhen_campaign/update']['access callback'] = 'redhen_campaign_access';
+    $items['redhen_campaign/%redhen_campaign/update']['access arguments'] = array('edit', 1);
+  }
+  if (isset($items['redhen_campaign/page/%redhen_campaign_page/update'])) {
+    $items['redhen_campaign/page/%redhen_campaign_page/update']['access callback'] = 'redhen_campaign_page_access';
+    $items['redhen_campaign/page/%redhen_campaign_page/update']['access arguments'] = array('edit', 2);
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function redhen_raiser_campaign_updates_module_implements_alter(&$implementations, $hook) {
+  switch ($hook) {
+    case 'menu_alter':
+      unset ($implementations['redhen_raiser_campaign_updates']);
+      $implementations['redhen_raiser_campaign_updates'] = FALSE;
+      break;
+
+  }
+}
