@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * fh_content.pages_default.inc
+ * fh_config.pages_default.inc
  */
 
 /**
  * Implements hook_default_page_manager_handlers().
  */
-function fh_content_default_page_manager_handlers() {
+function fh_config_default_page_manager_handlers() {
   $export = array();
 
   $handler = new stdClass();
@@ -80,7 +80,7 @@ function fh_content_default_page_manager_handlers() {
 /**
  * Implements hook_default_page_manager_pages().
  */
-function fh_content_default_page_manager_pages() {
+function fh_config_default_page_manager_pages() {
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;

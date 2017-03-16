@@ -11,6 +11,9 @@ function fh_config_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "bean_admin_ui" && $api == "bean") {
     return array("version" => "5");
   }
+  if ($module == "page_manager" && $api == "pages_default") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -130,74 +133,6 @@ function fh_config_node_info() {
     ),
   );
   drupal_alter('node_info', $items);
-  return $items;
-}
-
-/**
- * Implements hook_default_registration_state().
- */
-function fh_config_default_registration_state() {
-  $items = array();
-  $items['attended'] = entity_import('registration_state', '{
-    "name" : "attended",
-    "label" : "Attended",
-    "description" : "Registrant has attended.",
-    "default_state" : "0",
-    "active" : "1",
-    "held" : "0",
-    "show_on_form" : "1",
-    "weight" : "0",
-    "attended" : "1",
-    "rdf_mapping" : []
-  }');
-  $items['canceled'] = entity_import('registration_state', '{
-    "name" : "canceled",
-    "label" : "Canceled",
-    "description" : "Registration was cancelled",
-    "default_state" : "0",
-    "active" : "0",
-    "held" : "0",
-    "show_on_form" : "0",
-    "weight" : "1",
-    "attended" : "0",
-    "rdf_mapping" : []
-  }');
-  $items['complete'] = entity_import('registration_state', '{
-    "name" : "complete",
-    "label" : "Complete",
-    "description" : "Registration has been completed.",
-    "default_state" : "1",
-    "active" : "1",
-    "held" : "0",
-    "show_on_form" : "0",
-    "weight" : "1",
-    "attended" : "0",
-    "rdf_mapping" : []
-  }');
-  $items['held'] = entity_import('registration_state', '{
-    "name" : "held",
-    "label" : "Held",
-    "description" : "Registration is held.",
-    "default_state" : "0",
-    "active" : "0",
-    "held" : "1",
-    "show_on_form" : "0",
-    "weight" : "1",
-    "attended" : "0",
-    "rdf_mapping" : []
-  }');
-  $items['pending'] = entity_import('registration_state', '{
-    "name" : "pending",
-    "label" : "Pending",
-    "description" : "Registration is pending.",
-    "default_state" : "0",
-    "active" : "0",
-    "held" : "0",
-    "show_on_form" : "0",
-    "weight" : "1",
-    "attended" : "0",
-    "rdf_mapping" : []
-  }');
   return $items;
 }
 

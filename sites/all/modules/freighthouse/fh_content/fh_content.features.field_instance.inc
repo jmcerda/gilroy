@@ -326,48 +326,6 @@ function fh_content_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-feed_item-title_field'.
-  $field_instances['node-feed_item-title_field'] = array(
-    'bundle' => 'feed_item',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'title_field',
-    'label' => 'Title',
-    'required' => TRUE,
-    'settings' => array(
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -5,
-    ),
-  );
-
   // Exported field_instance: 'node-page-field_image'.
   $field_instances['node-page-field_image'] = array(
     'bundle' => 'page',
