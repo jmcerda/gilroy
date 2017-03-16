@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the FH Blocks feature.
+ */
+
+include_once 'fh_blocks.features.inc';
