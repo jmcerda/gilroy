@@ -1,0 +1,16 @@
+name = FH Pages
+core = 7.x
+package = Freighthouse
+version = 7.x-1.0
+dependencies[] = ctools
+dependencies[] = page_manager
+features[ctools][] = page_manager:pages_default:1
+features[features_api][] = api:2
+features[page_manager_pages][] = about
+features[page_manager_pages][] = directory
+features[page_manager_pages][] = events
+features[page_manager_pages][] = front_page
+features[page_manager_pages][] = gallery
+features[page_manager_pages][] = membership
+features[page_manager_pages][] = news_feeds
+features[page_manager_pages][] = resources
