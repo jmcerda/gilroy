@@ -1,0 +1,25 @@
+<?php
+
+function node_export_webforms_install() {
+
+  node_export_webforms_set_module_weight();
+}
+
+/**
+ * Sets this module's weight to -1.
+ */
+function node_export_webforms_update_7001(&$sandbod) {
+
+  node_export_webforms_set_module_weight();
+}
+
+/**
+ * This module needs to be ran before things like node_export_features.
+ * Set the weight to -1 so it runs before all other modules.
+ */
+function node_export_webforms_set_module_weight() {
+  db_update('system')
+    ->fields(array('weight' => '-1'))
+    ->condition('name', 'node_export_webforms')
+    ->execute();
+}
