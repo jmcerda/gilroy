@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the FH Forms feature.
+ */
+
+include_once 'fh_forms.features.inc';
