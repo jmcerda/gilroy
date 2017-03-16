@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the FH Content feature.
+ */
+
+include_once 'fh_content.features.inc';
