@@ -60,7 +60,7 @@ function membership_entity_entity_info() {
       'membership' => array(
         'label' => t('Membership'),
         'admin' => array(
-          'path' => 'admin/structure/memberships/types/manage/membership',
+          'path' => 'admin/memberships/types/manage/membership',
           'access arguments' => array('administer memberships'),
           'bundle argument' => 4,
         ),
@@ -211,17 +211,17 @@ function membership_entity_modal_register_access() {
  */
 function membership_entity_menu() {
   // Placeholder menu items for the memberships view.
-  $items['admin/structure/memberships'] = array(
+  $items['admin/memberships'] = array(
     'title' => 'Memberships',
     'access arguments' => array('administer memberships'),
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['admin/structure/memberships/list'] = array(
+  $items['admin/memberships/list'] = array(
     'title' => 'List',
     'type' => MENU_DEFAULT_LOCAL_TASK,
   );
 
-  $items['admin/structure/memberships/add'] = array(
+  $items['admin/memberships/add'] = array(
     'title' => 'Add a membership',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('membership_entity_edit_form'),
@@ -231,7 +231,7 @@ function membership_entity_menu() {
   );
 
   if (!module_exists('membership_entity_type')) {
-    $items['admin/structure/memberships/types/manage/membership'] = array(
+    $items['admin/memberships/types/manage/membership'] = array(
       'title' => 'Configure',
       'page callback' => 'drupal_get_form',
       'page arguments' => array('membership_entity_settings_form'),
@@ -241,7 +241,7 @@ function membership_entity_menu() {
       'weight' => 99,
     );
 
-    $items['admin/structure/memberships/types/manage/membership/settings'] = array(
+    $items['admin/memberships/types/manage/membership/settings'] = array(
       'title' => 'Settings',
       'type' => MENU_DEFAULT_LOCAL_TASK,
     );
