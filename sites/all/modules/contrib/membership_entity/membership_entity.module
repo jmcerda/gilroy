@@ -60,7 +60,7 @@ function membership_entity_entity_info() {
       'membership' => array(
         'label' => t('Membership'),
         'admin' => array(
-          'path' => 'admin/memberships/types/manage/membership',
+          'path' => 'admin/structure/memberships/types/manage/membership',
           'access arguments' => array('administer memberships'),
           'bundle argument' => 4,
         ),
@@ -216,7 +216,7 @@ function membership_entity_menu() {
     'access arguments' => array('administer memberships'),
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['admin/memberships/list'] = array(
+  $items['admin/structure/memberships/list'] = array(
     'title' => 'List',
     'type' => MENU_DEFAULT_LOCAL_TASK,
   );
