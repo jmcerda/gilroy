@@ -13,6 +13,7 @@ function fh_blocks_field_default_field_instances() {
   // Exported field_instance: 'bean-advertisement-field_image'.
   $field_instances['bean-advertisement-field_image'] = array(
     'bundle' => 'advertisement',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -38,13 +39,15 @@ function fh_blocks_field_default_field_instances() {
       'file_extensions' => 'png gif jpg jpeg',
       'max_filesize' => '',
       'max_resolution' => '',
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'min_resolution' => '',
       'title_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'image',
       'settings' => array(
         'allowed_schemes' => array(
           'private' => 'private',
@@ -58,9 +61,10 @@ function fh_blocks_field_default_field_instances() {
           'image' => 'image',
           'video' => 0,
         ),
+        'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
-      'type' => 'media_generic',
+      'type' => 'image_image',
       'weight' => 4,
     ),
   );
@@ -85,6 +89,8 @@ function fh_blocks_field_default_field_instances() {
     'label' => 'Industry',
     'required' => 0,
     'settings' => array(
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -96,125 +102,6 @@ function fh_blocks_field_default_field_instances() {
       ),
       'type' => 'taxonomy_autocomplete',
       'weight' => 7,
-    ),
-  );
-
-  // Exported field_instance: 'bean-advertisement-field_logo'.
-  $field_instances['bean-advertisement-field_logo'] = array(
-    'bundle' => 'advertisement',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'bean',
-    'field_name' => 'field_logo',
-    'label' => 'Logo',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'file_directory' => 'logos',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
-          'private' => 'private',
-          'public' => 'public',
-          'vimeo' => 0,
-          'youtube' => 0,
-        ),
-        'allowed_types' => array(
-          'audio' => 0,
-          'default' => 0,
-          'image' => 'image',
-          'video' => 0,
-        ),
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'media_generic',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'bean-advertisement-field_promo_text'.
-  $field_instances['bean-advertisement-field_promo_text'] = array(
-    'bundle' => 'advertisement',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 3,
-      ),
-    ),
-    'entity_type' => 'bean',
-    'field_name' => 'field_promo_text',
-    'label' => 'Copy',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'full_html' => 'full_html',
-          'mailchimp_campaign' => 0,
-          'plain_text' => 'plain_text',
-          'redhen_activity_message' => 0,
-          'rich_text' => 'rich_text',
-        ),
-        'allowed_formats_toggle' => 1,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'full_html' => array(
-              'weight' => 0,
-            ),
-            'mailchimp_campaign' => array(
-              'weight' => 0,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-            'redhen_activity_message' => array(
-              'weight' => 0,
-            ),
-            'rich_text' => array(
-              'weight' => 0,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 6,
     ),
   );
 
@@ -238,6 +125,8 @@ function fh_blocks_field_default_field_instances() {
     'label' => 'Tags',
     'required' => 0,
     'settings' => array(
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -276,6 +165,8 @@ function fh_blocks_field_default_field_instances() {
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -322,6 +213,8 @@ function fh_blocks_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'rel_remove' => 'default',
       'title' => 'optional',
       'title_label_use_field_label' => 0,
@@ -391,6 +284,8 @@ function fh_blocks_field_default_field_instances() {
         ),
       ),
       'display_summary' => 0,
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -409,6 +304,7 @@ function fh_blocks_field_default_field_instances() {
   // Exported field_instance: 'bean-hero_slide-field_image'.
   $field_instances['bean-hero_slide-field_image'] = array(
     'bundle' => 'hero_slide',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -434,13 +330,15 @@ function fh_blocks_field_default_field_instances() {
       'file_extensions' => 'png jpg jpeg svg',
       'max_filesize' => '1MB',
       'max_resolution' => '',
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'min_resolution' => '',
       'title_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'image',
       'settings' => array(
         'allowed_schemes' => array(
           'private' => 'private',
@@ -454,9 +352,10 @@ function fh_blocks_field_default_field_instances() {
           'image' => 'image',
           'video' => 0,
         ),
+        'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
-      'type' => 'media_generic',
+      'type' => 'image_image',
       'weight' => 4,
     ),
   );
@@ -485,6 +384,8 @@ function fh_blocks_field_default_field_instances() {
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -529,6 +430,8 @@ function fh_blocks_field_default_field_instances() {
       ),
       'description_field' => 1,
       'description_length' => 128,
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -564,6 +467,8 @@ function fh_blocks_field_default_field_instances() {
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -577,165 +482,13 @@ function fh_blocks_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-industry-description_field'.
-  $field_instances['taxonomy_term-industry-description_field'] = array(
-    'bundle' => 'industry',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'description_field',
-    'label' => 'Description',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => 0,
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => -5,
-    ),
-  );
-
-  // Exported field_instance: 'taxonomy_term-industry-name_field'.
-  $field_instances['taxonomy_term-industry-name_field'] = array(
-    'bundle' => 'industry',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'name_field',
-    'label' => 'Name',
-    'required' => TRUE,
-    'settings' => array(
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -5,
-    ),
-  );
-
-  // Exported field_instance: 'taxonomy_term-tags-description_field'.
-  $field_instances['taxonomy_term-tags-description_field'] = array(
-    'bundle' => 'tags',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'description_field',
-    'label' => 'Description',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => 0,
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => -5,
-    ),
-  );
-
-  // Exported field_instance: 'taxonomy_term-tags-name_field'.
-  $field_instances['taxonomy_term-tags-name_field'] = array(
-    'bundle' => 'tags',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'name_field',
-    'label' => 'Name',
-    'required' => TRUE,
-    'settings' => array(
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -5,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
   t('Button Link');
-  t('Copy');
-  t('Description');
   t('Featured Image');
   t('Image');
   t('Industry');
-  t('Logo');
-  t('Name');
   t('Tags');
   t('The Title of the block.');
   t('Title');

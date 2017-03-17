@@ -67,6 +67,8 @@ function fh_forms_field_default_field_instances() {
         ),
       ),
       'display_summary' => 0,
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -85,6 +87,7 @@ function fh_forms_field_default_field_instances() {
   // Exported field_instance: 'node-webform-field_document'.
   $field_instances['node-webform-field_document'] = array(
     'bundle' => 'webform',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => 'Files and documents for download and print.',
     'display' => array(
@@ -111,11 +114,13 @@ function fh_forms_field_default_field_instances() {
       'file_directory' => 'forms',
       'file_extensions' => 'txt pdf doc docx xls xlxs',
       'max_filesize' => '',
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'file',
       'settings' => array(
         'allowed_schemes' => array(
           'private' => 'private',
@@ -131,7 +136,7 @@ function fh_forms_field_default_field_instances() {
         ),
         'progress_indicator' => 'throbber',
       ),
-      'type' => 'media_generic',
+      'type' => 'file_generic',
       'weight' => 5,
     ),
   );
@@ -192,6 +197,8 @@ function fh_forms_field_default_field_instances() {
           ),
         ),
       ),
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -231,6 +238,8 @@ function fh_forms_field_default_field_instances() {
     'label' => 'Form Type',
     'required' => 0,
     'settings' => array(
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -269,6 +278,8 @@ function fh_forms_field_default_field_instances() {
     'label' => 'Tags',
     'required' => FALSE,
     'settings' => array(
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -311,6 +322,8 @@ function fh_forms_field_default_field_instances() {
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -324,87 +337,12 @@ function fh_forms_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-tags-description_field'.
-  $field_instances['taxonomy_term-tags-description_field'] = array(
-    'bundle' => 'tags',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'description_field',
-    'label' => 'Description',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => 0,
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => -5,
-    ),
-  );
-
-  // Exported field_instance: 'taxonomy_term-tags-name_field'.
-  $field_instances['taxonomy_term-tags-name_field'] = array(
-    'bundle' => 'tags',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'name_field',
-    'label' => 'Name',
-    'required' => TRUE,
-    'settings' => array(
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -5,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Description');
   t('Documents');
   t('Files and documents for download and print.');
   t('Form Type');
-  t('Name');
   t('Submission Guidelines');
   t('Submission guidelines / fine print');
   t('Tags');
