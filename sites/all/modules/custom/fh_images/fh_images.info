@@ -1,0 +1,10 @@
+name = FH Images
+core = 7.x
+package = Freighthouse
+version = 7.x-1.0
+dependencies[] = image
+features[features_api][] = api:2
+features[image][] = ad_slider_image_desktop
+features[image][] = ad_slider_image_mobile
+features[image][] = hero_image_desktop
+features[image][] = hero_image_mobile

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the FH Images feature.
+ */
+
+include_once 'fh_images.features.inc';
