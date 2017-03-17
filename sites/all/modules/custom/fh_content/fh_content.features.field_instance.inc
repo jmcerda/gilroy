@@ -10,9 +10,9 @@
 function fh_content_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-blog-body'.
-  $field_instances['node-blog-body'] = array(
-    'bundle' => 'blog',
+  // Exported field_instance: 'node-article-body'.
+  $field_instances['node-article-body'] = array(
+    'bundle' => 'article',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -40,6 +40,8 @@ function fh_content_field_default_field_instances() {
     'required' => FALSE,
     'settings' => array(
       'display_summary' => TRUE,
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -50,70 +52,35 @@ function fh_content_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 4,
+      'weight' => -4,
     ),
   );
 
-  // Exported field_instance: 'node-blog-field_category'.
-  $field_instances['node-blog-field_category'] = array(
-    'bundle' => 'blog',
-    'default_value' => NULL,
+  // Exported field_instance: 'node-article-field_image'.
+  $field_instances['node-article-field_image'] = array(
+    'bundle' => 'article',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Upload an image to go with this article.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_category',
-    'label' => 'Category',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'node-blog-field_image'.
-  $field_instances['node-blog-field_image'] = array(
-    'bundle' => 'blog',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'large',
         ),
         'type' => 'image',
-        'weight' => 1,
+        'weight' => -1,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'medium',
+        ),
+        'type' => 'image',
+        'weight' => -1,
       ),
     ),
     'entity_type' => 'node',
@@ -121,14 +88,16 @@ function fh_content_field_default_field_instances() {
     'label' => 'Featured Image',
     'required' => 0,
     'settings' => array(
-      'alt_field' => 0,
+      'alt_field' => TRUE,
       'default_image' => 0,
-      'file_directory' => 'featured/blog',
+      'file_directory' => 'field/image',
       'file_extensions' => 'png gif jpg jpeg',
       'max_filesize' => '',
       'max_resolution' => '',
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'min_resolution' => '',
-      'title_field' => 0,
+      'title_field' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -136,115 +105,74 @@ function fh_content_field_default_field_instances() {
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
-          'private' => 'private',
+          'private' => 0,
           'public' => 'public',
           'vimeo' => 0,
           'youtube' => 0,
         ),
         'allowed_types' => array(
           'audio' => 0,
-          'default' => 0,
+          'document' => 0,
           'image' => 'image',
           'video' => 0,
         ),
-        'progress_indicator' => 'throbber',
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'upload' => 0,
+        ),
       ),
       'type' => 'media_generic',
-      'weight' => 1,
+      'weight' => -1,
     ),
   );
 
-  // Exported field_instance: 'node-blog-field_tags'.
-  $field_instances['node-blog-field_tags'] = array(
-    'bundle' => 'blog',
+  // Exported field_instance: 'node-article-field_tags'.
+  $field_instances['node-article-field_tags'] = array(
+    'bundle' => 'article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of words to describe your content.',
     'display' => array(
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 3,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 10,
       ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_tags',
     'label' => 'Tags',
-    'required' => 0,
+    'required' => FALSE,
     'settings' => array(
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
       'module' => 'taxonomy',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 6,
+      'weight' => -4,
     ),
   );
 
-  // Exported field_instance: 'node-blog-field_video_embed'.
-  $field_instances['node-blog-field_video_embed'] = array(
-    'bundle' => 'blog',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'video_embed_field',
-        'settings' => array(
-          'description' => 1,
-          'description_position' => 'bottom',
-          'video_style' => 'normal',
-        ),
-        'type' => 'video_embed_field',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_video_embed',
-    'label' => 'Video Embed',
-    'required' => 0,
-    'settings' => array(
-      'allowed_providers' => array(
-        'facebook' => 'facebook',
-        'vimeo' => 'vimeo',
-        'youtube' => 'youtube',
-      ),
-      'description_field' => 0,
-      'description_length' => 128,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'video_embed_field',
-      'settings' => array(),
-      'type' => 'video_embed_field_video',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'node-blog-title_field'.
-  $field_instances['node-blog-title_field'] = array(
-    'bundle' => 'blog',
+  // Exported field_instance: 'node-article-title_field'.
+  $field_instances['node-article-title_field'] = array(
+    'bundle' => 'article',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -253,7 +181,7 @@ function fh_content_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -271,6 +199,8 @@ function fh_content_field_default_field_instances() {
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -284,116 +214,49 @@ function fh_content_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-feed-title_field'.
-  $field_instances['node-feed-title_field'] = array(
-    'bundle' => 'feed',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'title_field',
-    'label' => 'Title',
-    'required' => TRUE,
-    'settings' => array(
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -5,
-    ),
-  );
-
-  // Exported field_instance: 'node-page-field_image'.
-  $field_instances['node-page-field_image'] = array(
+  // Exported field_instance: 'node-page-body'.
+  $field_instances['node-page-body'] = array(
     'bundle' => 'page',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
         'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'colorbox',
+        'module' => 'text',
         'settings' => array(
-          'colorbox_caption' => 'auto',
-          'colorbox_caption_custom' => '',
-          'colorbox_gallery' => 'post',
-          'colorbox_gallery_custom' => '',
-          'colorbox_image_style' => '',
-          'colorbox_multivalue_index' => NULL,
-          'colorbox_node_style' => '',
-          'colorbox_node_style_first' => '',
+          'trim_length' => 600,
         ),
-        'type' => 'colorbox',
+        'type' => 'text_summary_or_trimmed',
         'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_image',
-    'label' => 'Featured Image',
-    'required' => 0,
+    'field_name' => 'body',
+    'label' => 'Body',
+    'required' => FALSE,
     'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'file_directory' => 'featured/page',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
+      'display_summary' => TRUE,
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'media',
+      'module' => 'text',
       'settings' => array(
-        'allowed_schemes' => array(
-          'private' => 'private',
-          'public' => 'public',
-          'vimeo' => 0,
-          'youtube' => 0,
-        ),
-        'allowed_types' => array(
-          'audio' => 0,
-          'default' => 0,
-          'image' => 'image',
-          'video' => 0,
-        ),
-        'progress_indicator' => 'throbber',
+        'rows' => 20,
+        'summary_rows' => 5,
       ),
-      'type' => 'media_generic',
-      'weight' => 1,
+      'type' => 'text_textarea_with_summary',
+      'weight' => -4,
     ),
   );
 
@@ -408,7 +271,7 @@ function fh_content_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -426,6 +289,8 @@ function fh_content_field_default_field_instances() {
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -496,6 +361,8 @@ function fh_content_field_default_field_instances() {
         ),
       ),
       'display_summary' => 0,
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -540,6 +407,8 @@ function fh_content_field_default_field_instances() {
       'file_directory' => 'forms',
       'file_extensions' => 'txt pdf doc docx xls xlxs',
       'max_filesize' => '',
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -558,6 +427,7 @@ function fh_content_field_default_field_instances() {
           'image' => 'image',
           'video' => 0,
         ),
+        'browser_plugins' => array(),
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
@@ -621,6 +491,8 @@ function fh_content_field_default_field_instances() {
           ),
         ),
       ),
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -660,6 +532,8 @@ function fh_content_field_default_field_instances() {
     'label' => 'Form Type',
     'required' => 0,
     'settings' => array(
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -698,6 +572,8 @@ function fh_content_field_default_field_instances() {
     'label' => 'Tags',
     'required' => FALSE,
     'settings' => array(
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -740,6 +616,8 @@ function fh_content_field_default_field_instances() {
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -753,169 +631,20 @@ function fh_content_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-category-description_field'.
-  $field_instances['taxonomy_term-category-description_field'] = array(
-    'bundle' => 'category',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'description_field',
-    'label' => 'Description',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => 0,
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => -5,
-    ),
-  );
-
-  // Exported field_instance: 'taxonomy_term-category-name_field'.
-  $field_instances['taxonomy_term-category-name_field'] = array(
-    'bundle' => 'category',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'name_field',
-    'label' => 'Name',
-    'required' => TRUE,
-    'settings' => array(
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -5,
-    ),
-  );
-
-  // Exported field_instance: 'taxonomy_term-tags-description_field'.
-  $field_instances['taxonomy_term-tags-description_field'] = array(
-    'bundle' => 'tags',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'description_field',
-    'label' => 'Description',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => 0,
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => -5,
-    ),
-  );
-
-  // Exported field_instance: 'taxonomy_term-tags-name_field'.
-  $field_instances['taxonomy_term-tags-name_field'] = array(
-    'bundle' => 'tags',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'name_field',
-    'label' => 'Name',
-    'required' => TRUE,
-    'settings' => array(
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -5,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
-  t('Category');
   t('Description');
   t('Documents');
+  t('Enter a comma-separated list of words to describe your content.');
   t('Featured Image');
   t('Files and documents for download and print.');
   t('Form Type');
-  t('Name');
   t('Submission Guidelines');
   t('Submission guidelines / fine print');
   t('Tags');
   t('Title');
-  t('Video Embed');
+  t('Upload an image to go with this article.');
 
   return $field_instances;
 }

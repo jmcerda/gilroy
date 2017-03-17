@@ -20,23 +20,9 @@ function fh_content_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'diff_enable_revisions_page_node_blog';
+  $strongarm->name = 'diff_enable_revisions_page_node_event';
   $strongarm->value = 1;
-  $export['diff_enable_revisions_page_node_blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_enable_revisions_page_node_feed';
-  $strongarm->value = 1;
-  $export['diff_enable_revisions_page_node_feed'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_enable_revisions_page_node_page';
-  $strongarm->value = 1;
-  $export['diff_enable_revisions_page_node_page'] = $strongarm;
+  $export['diff_enable_revisions_page_node_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -48,23 +34,9 @@ function fh_content_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'diff_show_preview_changes_node_blog';
+  $strongarm->name = 'diff_show_preview_changes_node_event';
   $strongarm->value = 1;
-  $export['diff_show_preview_changes_node_blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_show_preview_changes_node_feed';
-  $strongarm->value = 1;
-  $export['diff_show_preview_changes_node_feed'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_show_preview_changes_node_page';
-  $strongarm->value = 1;
-  $export['diff_show_preview_changes_node_page'] = $strongarm;
+  $export['diff_show_preview_changes_node_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -76,23 +48,9 @@ function fh_content_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'diff_view_mode_preview_node_blog';
+  $strongarm->name = 'diff_view_mode_preview_node_event';
   $strongarm->value = 'full';
-  $export['diff_view_mode_preview_node_blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_view_mode_preview_node_feed';
-  $strongarm->value = 'full';
-  $export['diff_view_mode_preview_node_feed'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'diff_view_mode_preview_node_page';
-  $strongarm->value = 'full';
-  $export['diff_view_mode_preview_node_page'] = $strongarm;
+  $export['diff_view_mode_preview_node_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -104,30 +62,7 @@ function fh_content_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__blog';
-  $strongarm->value = array(
-    'view_modes' => array(),
-    'extra_fields' => array(
-      'form' => array(
-        'metatags' => array(
-          'weight' => '2',
-        ),
-        'title' => array(
-          'weight' => '0',
-        ),
-        'path' => array(
-          'weight' => '7',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
-  $export['field_bundle_settings_node__blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__page';
+  $strongarm->name = 'field_bundle_settings_node__event';
   $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
@@ -151,17 +86,21 @@ function fh_content_strongarm() {
         'metatags' => array(
           'weight' => '5',
         ),
-        'title' => array(
-          'weight' => '0',
-        ),
         'path' => array(
           'weight' => '2',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'webform' => array(
+          'default' => array(
+            'weight' => '10',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
-  $export['field_bundle_settings_node__page'] = $strongarm;
+  $export['field_bundle_settings_node__event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -209,20 +148,11 @@ function fh_content_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_blog';
+  $strongarm->name = 'menu_options_event';
   $strongarm->value = array(
     0 => 'main-menu',
   );
-  $export['menu_options_blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_feed';
-  $strongarm->value = array(
-    0 => 'main-menu',
-  );
-  $export['menu_options_feed'] = $strongarm;
+  $export['menu_options_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -236,16 +166,9 @@ function fh_content_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_blog';
+  $strongarm->name = 'menu_parent_event';
   $strongarm->value = 'main-menu:0';
-  $export['menu_parent_blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_feed';
-  $strongarm->value = 'main-menu:0';
-  $export['menu_parent_feed'] = $strongarm;
+  $export['menu_parent_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -257,22 +180,22 @@ function fh_content_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_blog';
+  $strongarm->name = 'node_options_event';
   $strongarm->value = array(
     0 => 'status',
     1 => 'promote',
     2 => 'revision',
   );
-  $export['node_options_blog'] = $strongarm;
+  $export['node_options_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_feed';
+  $strongarm->name = 'node_options_page';
   $strongarm->value = array(
     0 => 'status',
   );
-  $export['node_options_feed'] = $strongarm;
+  $export['node_options_page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -286,16 +209,9 @@ function fh_content_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_blog';
+  $strongarm->name = 'node_preview_event';
   $strongarm->value = '1';
-  $export['node_preview_blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_feed';
-  $strongarm->value = '1';
-  $export['node_preview_feed'] = $strongarm;
+  $export['node_preview_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -307,16 +223,16 @@ function fh_content_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_blog';
-  $strongarm->value = 1;
-  $export['node_submitted_blog'] = $strongarm;
+  $strongarm->name = 'node_submitted_event';
+  $strongarm->value = 0;
+  $export['node_submitted_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_feed';
-  $strongarm->value = 1;
-  $export['node_submitted_feed'] = $strongarm;
+  $strongarm->name = 'node_submitted_page';
+  $strongarm->value = FALSE;
+  $export['node_submitted_page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

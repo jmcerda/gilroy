@@ -9,6 +9,7 @@ dependencies[] = feeds_news
 dependencies[] = fh_taxonomy
 dependencies[] = image
 dependencies[] = link
+dependencies[] = media
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
