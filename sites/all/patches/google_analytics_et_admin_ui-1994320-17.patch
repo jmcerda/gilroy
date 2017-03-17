@@ -1,0 +1,1102 @@
+diff --git a/google_analytics_et.api.php b/google_analytics_et.api.php
+index cf3da53..c227728 100644
+--- a/google_analytics_et.api.php
++++ b/google_analytics_et.api.php
+@@ -10,8 +10,9 @@
+  * Returns an array with all nessesary information to track an event with
+  * google analytics.
+  * http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
+- * Each member of the array should be an associative array with the following,
+- * keys:
++ * Each member of the array should be an object with the following properties:
++ *   name :
++ *     - (String) - A unique machine readable name.
+  *   event :
+  *     - (String) - A javascript event. ie: mousedown | mousemove | mouseover
+  *       Note: to track clicks it is best to use the [mousedown] event and not
+@@ -40,13 +41,14 @@
+  *   options :
+  *     - (Array) - Options Array holds values for extra options that deal with
+  *       how the event tracking occurs.
+- *       Available options: "track one event"
+- *       Usage: options = array("track on event" => TRUE);
++ *       Available options: "trackOnce"
++ *       Usage: options = array("trackOnce" => TRUE);
+  *
+  * @return array
+  *   A multidimentional array in the format:
+  *   array(
+- *     array(
++ *     'machine_name' => (object) array(
++ *       'name' => String('machine_name, a unique machine readable name'),
+  *       'event' => string('mousedown | mousemove | mouseover | etc'),
+  *       'selector' => String('#main-menu li a, or other valid css selector'),
+  *       'category' => String(!text, !href, !currentPage, or custom string),
+@@ -54,54 +56,76 @@
+  *       'label' => String(!text, !href, !currentPage, or custom string),
+  *       'value' => Number(Weight of event),
+  *       'noninteraction' => Bool(TRUE | FALSE),
++ *       'options' => Array('Associative array of options'),
+  *     ),
+  *   );
+  */
+ function hook_google_analytics_et_google_analytics_et_api() {
+-  $selectors = array(
+-    array(
+-      'event' => 'mousedown',
+-      'selector' => '#main-menu li a',
+-      'category' => 'main navigation',
+-      'action' => 'click',
+-      'label' => '!text',
+-      'value' => 0,
+-      'noninteraction' => TRUE,
+-      'options' => array(),
+-    ),
+-    array(
+-      'event' => 'mousedown',
+-      'selector' => 'a#logo',
+-      'category' => 'Home Link',
+-      'action' => 'click',
+-      'label' => 'Logo',
+-      'value' => 0,
+-      'noninteraction' => TRUE,
+-      'options' => array(
+-        'track only once' => TRUE
+-        ),
+-    ),
+-    array(
+-      'event' => 'mousedown',
+-      'selector' => 'div#site-name a[rel="home"]',
+-      'category' => 'Home Link',
+-      'action' => 'click',
+-      'label' => 'Site Name',
+-      'value' => 0,
+-      'noninteraction' => TRUE,
+-      'options' => array(),
+-    ),
+-    array(
+-      'event' => 'mouseover',
+-      'selector' => 'div',
+-      'category' => 'test',
+-      'action' => 'click',
+-      'label' => '!test',
+-      'value' => 0,
+-      'noninteraction' => TRUE,
+-      'options' => array(),
+-    ),
++  $selectors = array();
++
++  $selector = new stdClass();
++  $selector->disabled = FALSE; /* Edit this to true to make a default ga_et_selector disabled initially */
++  $selector->api_version = 1;
++  $selector->name = 'main_menu_mousedown';
++  $selector->event = 'mousedown';
++  $selector->selector = '#main-menu li a';
++  $selector->category = 'main navigation';
++  $selector->action = 'click';
++  $selector->label = '!text';
++  $selector->value = 0;
++  $selector->noninteraction = TRUE;
++  $selector->options = array(
++    'trackOnce' => 0,
++  );
++  $selectors['main_menu_mousedown'] = $selector;
++
++  $selector = new stdClass();
++  $selector->disabled = FALSE; /* Edit this to true to make a default ga_et_selector disabled initially */
++  $selector->api_version = 1;
++  $selector->name = 'logo_mousedown';
++  $selector->event = 'mousedown';
++  $selector->selector = 'a#logo';
++  $selector->category = 'Home Link';
++  $selector->action = 'click';
++  $selector->label = 'Logo';
++  $selector->value = 0;
++  $selector->noninteraction = TRUE;
++  $selector->options = array(
++    'trackOnce' => 1,
++  );
++  $selectors['logo_mousedown'] = $selector;
++
++  $selector = new stdClass();
++  $selector->disabled = FALSE; /* Edit this to true to make a default ga_et_selector disabled initially */
++  $selector->api_version = 1;
++  $selector->name = 'site_name_mousedown';
++  $selector->event = 'mousedown';
++  $selector->selector = 'div#site-name a[rel="home"]';
++  $selector->category = 'Home Link';
++  $selector->action = 'click';
++  $selector->label = 'Site Name';
++  $selector->value = 0;
++  $selector->noninteraction = TRUE;
++  $selector->options = array(
++    'trackOnce' => 0,
++  );
++  $selectors['site_name_mousedown'] = $selector;
++
++  $selector = new stdClass();
++  $selector->disabled = FALSE; /* Edit this to true to make a default ga_et_selector disabled initially */
++  $selector->api_version = 1;
++  $selector->name = 'div_mouseover';
++  $selector->event = 'mouseover';
++  $selector->selector = 'div';
++  $selector->category = 'test';
++  $selector->action = 'click';
++  $selector->label = '!test';
++  $selector->value = 0;
++  $selector->noninteraction = TRUE;
++  $selector->options = array(
++    'trackOnce' => 0,
+   );
++  $selectors['div_mouseover'] = $selector;
+ 
+   return $selectors;
+ }
+diff --git a/google_analytics_et.module b/google_analytics_et.module
+index a93ef98..8251444 100644
+--- a/google_analytics_et.module
++++ b/google_analytics_et.module
+@@ -15,7 +15,6 @@ function google_analytics_et_page_alter(&$page) {
+   global $user;
+ 
+   $id = variable_get('googleanalytics_account', '');
+-  $cache_on = variable_get('google_analytics_et_cache_on', FALSE);
+ 
+   // Get page status code for visibility filtering.
+   $status = drupal_get_http_header('Status');
+@@ -25,32 +24,7 @@ function google_analytics_et_page_alter(&$page) {
+   );
+ 
+   $settings = module_invoke_all('google_analytics_et_settings_info');
+-
+-  // Get all selectors defined by google_analytics_et_api hook.
+-  $selectors = &drupal_static(__FUNCTION__);
+-  if(!isset($selectors)) {
+-    if($cache = cache_get('google_analytics_et_selectors_cache')) {
+-      $selectors = $cache->data;
+-    }
+-    else {
+-      $selectors = module_invoke_all('google_analytics_et_api');
+-
+-      // If the override selectors toggle is TRUE then only load the selectors
+-      // from the variable table.
+-      $override_hooked_selectors = variable_get('google_analytics_et_selectors_override', FALSE);
+-      if ($override_hooked_selectors) {
+-        $selectors = variable_get('google_analytics_et_selectors', '');
+-      }
+-
+-      // Sanitize event tracking input to limit the threat of xss.
+-      $selectors = _google_analytics_et_sanitize_event_trackers($selectors);
+-
+-      if($cache_on) {
+-        cache_set('google_analytics_et_selectors_cache', $selectors, 'cache');
+-      }
+-    }
+-  }
+-
++  $selectors = google_analytics_et_get_selectors();
+   // Token replacements. @TODO this should be in an alter hook
+   if (!empty($selectors)) {
+     foreach ($selectors as $out_key => $selector) {
+@@ -60,7 +34,7 @@ function google_analytics_et_page_alter(&$page) {
+             case 'label':
+             case 'category':
+             case 'action':
+-              $selectors[$out_key][$key] = token_replace($value);
++              $selectors[$out_key]->{$key} = token_replace($value);
+               break;
+           }
+         }
+@@ -69,7 +43,7 @@ function google_analytics_et_page_alter(&$page) {
+   }
+   $js = array(
+     'googleAnalyticsETSettings' => array(
+-      'selectors' => $selectors,
++      'selectors' => array_values($selectors),
+       'settings' => $settings,
+     ),
+   );
+@@ -82,42 +56,55 @@ function google_analytics_et_page_alter(&$page) {
+ }
+ 
+ /**
+- * Add a single selector to the list of selectors.
++ * Loads all defined selectors.
+  */
+-function google_analytics_et_add_event_tracker($selector_array) {
+-  // Get whole list of event trackers.
+-  $event_trackers = google_analytics_et_get_event_trackers();
+-
+-  // Append this event tracker to the end of the list.
+-  $event_trackers[] = $selector_array;
++function google_analytics_et_get_selectors($database_only = FALSE) {
++  ctools_include('export');
++  $selectors = ctools_export_crud_load_all('ga_et_selectors');
++
++  // If the override selectors toggle is TRUE then only load the selectors
++  // from the variable table.
++  $database_only = $database_only || variable_get('google_analytics_et_selectors_override', FALSE);
++  foreach ($selectors as $key => $selector) {
++    if ($database_only && (!isset($selector->export_type) || !($selector->export_type & EXPORT_IN_DATABASE))) {
++      unset($selectors[$key]);
++    }
++    if (isset($selector->disabled) && $selector->disabled) {
++      unset($selectors[$key]);
++    }
++  }
+ 
+-  // Save list of event trackers.
+-  variable_set('google_analytics_et_selectors', $event_trackers);
++  // Sanitize event tracking input to limit the threat of xss.
++  $selectors = _google_analytics_et_sanitize_event_trackers($selectors);
++  return $selectors;
++}
+ 
+-  // Clear cache so the changes will be rendered.
+-  cache_clear_all('google_analytics_et', 'cache', TRUE);
++/**
++ * Add a single selector to the list of selectors.
++ */
++function google_analytics_et_add_event_tracker($selector_array) {
++  $new = ctools_export_crud_new('ga_et_selectors');
++  foreach (array_keys($selector_array) as $prop) {
++    $new->{$prop} = $selector_array[$prop];
++  }
++  if (!isset($new->name) || empty($new->name)) {
++    $new->name = preg_replace('/[^a-z0-9_]+/', '_', $new->selector);
++  }
++  ctools_export_crud_save('ga_et_selectors', $new);
+ }
+ 
+ /**
+  * Remove a single selector from the list of events being tracked.
+  */
+-function google_analytics_et_remove_event_tracker($selector) {
+-  // Get whole list of event trackers.
+-  $event_trackers = google_analytics_et_get_event_trackers();
+-  $new_event_trackers = array();
+-
+-  // Go through all events and copy all that do not match into the new array.
+-  if (is_array($event_trackers)) {
+-    foreach ($event_trackers as $key => $value) {
+-      if ($event_trackers[$key]['selector'] != $selector) {
+-        $new_event_trackers[] = $event_trackers[$key];
+-      }
++function google_analytics_et_remove_event_tracker($selector_string) {
++  ctools_include('export');
++  $selectors = ctools_export_load_object('ga_et_selectors', 'conditions', array('selector'));
+ 
++  foreach ($selectors as $selector) {
++    if ($selector->selector != $selector_string) {
++      ctools_export_crud_delete('ga_et_selectors', $selector);
+     }
+   }
+-
+-  // Save list of event trackers.
+-  variable_set('google_analytics_et_selectors', $new_event_trackers);
+ }
+ 
+ /**
+@@ -159,12 +146,16 @@ function _google_analytics_et_override_event_tracking_validate($status) {
+  */
+ function _google_analytics_et_sanitize_event_trackers($selectors) {
+   $sanitized_selectors = array();
+-
+   if (is_array($selectors)) {
+     foreach ($selectors as $key => $selector) {
+       if($key != 'debug') {
+-        foreach ($selector as $s) {
+-          $s = filter_xss($s);
++        foreach ($selector as $prop => $s) {
++          if ($prop == 'options') {
++             $selectors[$key]->{$prop} = array_map('filter_xss', $s);
++          }
++          else {
++            $selectors[$key]->{$prop} = filter_xss($s);
++          }
+         }
+       }
+       $sanitized_selectors[$key] = $selector;
+@@ -186,11 +177,8 @@ function google_analytics_et_get_event_trackering_override_status() {
+  * Get the event trackers.
+  */
+ function google_analytics_et_get_event_trackers() {
+-  $et = array();
+-
+-  $et = variable_get('google_analytics_et_selectors', $et);
+-
+-  return $et;
++  // Backwards compatibility.
++  return google_analytics_et_get_selectors(TRUE);
+ }
+ 
+ /**
+@@ -202,6 +190,45 @@ function google_analytics_et_get_event_trackers() {
+  * @ingroup google_analytics_et_api_hooks
+  */
+ function google_analytics_et_api() {
+-  // Loads the user created selectors from the variable table.
+-  return variable_get('google_analytics_et_selectors', array());
++  // Backwards compatibility.
++  return google_analytics_et_get_selectors(TRUE);
++}
++
++/**
++ * Implements hook_google_analytics_et_api_alter().
++ */
++function google_analytics_et_google_analytics_et_api_alter(&$selectors) {
++  // Backwards compatibility: Invoke the hook again, ctools might have
++  // overridden some selectors because in previous versions, the selectors
++  // didn't need to be keyed by name.
++
++  // Unset numeric keys, they are useless.
++  foreach ($selectors as $key => $selector) {
++    if (is_numeric($key)) {
++      unset($selectors[$key]);
++    }
++  }
++
++  $modules = module_implements('google_analytics_et_api');
++  foreach ($modules as $module) {
++    $function = $module . '_google_analytics_et_api';
++    if (function_exists($function)) {
++      foreach ((array) $function() as $name => $default_selector) {
++        $default_selector = (object) $default_selector;
++        // Record the module that provides this exportable.
++        $default_selector->export_module = $module;
++        if (is_numeric($name)) {
++          $default_selector->name = isset($default_selector->name) ? $default_selector->name : preg_replace('/[^a-z0-9_]+/', '_', $default_selector->selector);
++        }
++        else if (!isset($default_selector->name) || empty($default_selector->name)) {
++          $default_selector->name = $name;
++        }
++        // Make sure we don't override data from the database (which overrides
++        // the defaults) with the defaults again.
++        if (!isset($selectors[$default_selector->name])) {
++          $selectors[$default_selector->name] = $default_selector;
++        }
++      }
++    }
++  }
+ }
+diff --git a/google_analytics_et_example/google_analytics_et_example.info b/google_analytics_et_example/google_analytics_et_example.info
+index 34873af..ebfadc7 100644
+--- a/google_analytics_et_example/google_analytics_et_example.info
++++ b/google_analytics_et_example/google_analytics_et_example.info
+@@ -1,5 +1,5 @@
+ name = Google Analytics Event Tracking Example
+-description = "An extremely simple example to demonstraight how to integrate into the Google Analytics Event Tranking Module's API'."
++description = "An extremely simple example to demonstrate how to integrate into the Google Analytics Event Tracking Module's API'."
+ core = 7.x
+ package = Statistics
+ dependencies[] = googleanalytics
+diff --git a/google_analytics_et_example/google_analytics_et_example.module b/google_analytics_et_example/google_analytics_et_example.module
+index dc80cb7..6f0cb37 100644
+--- a/google_analytics_et_example/google_analytics_et_example.module
++++ b/google_analytics_et_example/google_analytics_et_example.module
+@@ -13,9 +13,9 @@
+ function google_analytics_et_example_google_analytics_et_settings_info() {
+   $settings = array();
+ 
+-  $settigns['debug'] = TRUE;
++  $settings['debug'] = TRUE;
+ 
+-  return $settigns;
++  return $settings;
+ }
+ 
+ /**
+@@ -25,14 +25,6 @@ function google_analytics_et_example_google_analytics_et_api() {
+   return _google_analytics_et_example_set_selectors_array();
+ }
+ 
+-function google_analytics_et_example_settings_info() {
+-  $settings = array();
+-
+-  $settings['debug'] = TRUE;
+-
+-  return $settings;
+-}
+-
+ /**
+  * Internal function returns the example selectors array.
+  */
+@@ -57,6 +49,9 @@ function _google_analytics_et_example_set_selectors_array() {
+       'label' => '!test',
+       'value' => 0,
+       'noninteraction' => TRUE,
++      'options' => array(
++        'trackOnce' => TRUE
++      ),
+     ),
+     array(
+       'event' => 'mousedown',
+diff --git a/google_analytics_et_ui/google_analytics_et_ui.admin.inc b/google_analytics_et_ui/google_analytics_et_ui.admin.inc
+deleted file mode 100644
+index 1b07f5a..0000000
+--- a/google_analytics_et_ui/google_analytics_et_ui.admin.inc
++++ /dev/null
+@@ -1,208 +0,0 @@
+-<?php
+-/**
+- * @file
+- * Provides the administration page for Google Analytics Event Tracker UI.
+- */
+-
+-function _google_analytics_et_ui_selector_form($selector = array(), $new = FALSE) {
+-  $events = array(
+-    'mousedown', 'submit', 'blur', 'change', 'click', 'dblclick', 'focus',
+-    'focusin', 'focusout', 'hover', 'keydown', 'keypress', 'keyup',
+-    'mouseenter', 'mouseleave', 'mouseout', 'mouseover', 'mouseup', 'select'
+-  );
+-  $events = drupal_map_assoc($events);
+-
+-  $form = array(
+-    'selector' => array(
+-      '#type' => 'textfield',
+-      '#size' => 40,
+-      '#maxlength' => 128,
+-      '#default_value' => empty($selector['selector']) ? NULL : $selector['selector'],
+-    ),
+-    'options' => array(
+-      '#tree' => TRUE,
+-      'enabled' => array(
+-        '#type' => 'checkbox',
+-        '#default_value' => empty($selector['options']['enabled']) ? NULL : $selector['options']['enabled'],
+-      ),
+-      'event' => array(
+-        '#type' => 'select',
+-        '#options' => $events,
+-        '#default_value' => empty($selector['options']['event']) ? NULL : $selector['options']['event'],
+-      ),
+-      'category' => array(
+-        '#type' => 'textfield',
+-        '#default_value' => empty($selector['options']['category']) ? NULL : $selector['options']['category'],
+-        '#size' => 20,
+-        '#maxlength' => 128,
+-      ),
+-      'action' => array(
+-        '#type' => 'textfield',
+-        '#default_value' => empty($selector['options']['action']) ? NULL : $selector['options']['action'],
+-        '#size' => 20,
+-        '#maxlength' => 128,
+-      ),
+-      'label' => array(
+-        '#type' => 'textfield',
+-        '#default_value' => empty($selector['options']['label']) ? NULL : $selector['options']['label'],
+-        '#size' => 30,
+-        '#maxlength' => 128,
+-      ),
+-      'value' => array(
+-        '#type' => 'textfield',
+-        '#default_value' => empty($selector['options']['value']) ? NULL : $selector['options']['value'],
+-        '#size' => 10,
+-        '#maxlength' => 128,
+-      ),
+-      'noninteraction' => array(
+-        '#type' => 'checkbox',
+-        '#default_value' => empty($selector['options']['noninteraction']) ? 0 : $selector['options']['noninteraction'],
+-      ),
+-    ),
+-  );
+-
+-  return $form;
+-}
+-
+-/**
+- * Administration settings page
+- */
+-function google_analytics_et_ui_admin($form, &$form_state)  {
+-  $selectors = variable_get('google_analytics_et_ui_selectors', array());
+-
+-  $form_state['cache'] = TRUE;
+-  $form['#tree'] = TRUE;
+-
+-  $form['google_analytics_et_ui_selectors'] = array(
+-    '#type' => 'fieldset',
+-    '#title' => t('Google Analytics Event Tracking selectors'),
+-    // Set up the wrapper so that AJAX will be able to replace the fieldset.
+-    '#prefix' => '<div id="gaetui-selectors-fieldset-wrapper">',
+-    '#suffix' => '</div>',
+-  );
+-
+-  if (empty($form_state['selector_count'])) {
+-    $form_state['selector_count'] = 1;
+-  }
+-
+-  // Container for just the selectors.
+-  $form['google_analytics_et_ui_selectors']['selector'] = array(
+-    '#prefix' => '<div id="gaetui-selectors">',
+-    '#suffix' => '</div>',
+-    '#theme' => 'google_analytics_et_ui_selectors',
+-  );
+-
+-  $delta = 0;
+-  if (!empty($selectors)) {
+-    $delta = count($selectors);
+-    // Add existing selectors
+-    foreach ($selectors as $key => $selector) {
+-      $form['google_analytics_et_ui_selectors']['selector'][] = _google_analytics_et_ui_selector_form($selector);
+-    }
+-  }
+-  // Add initial or additional selectors
+-  for ($i = 1 ; $i < $form_state['selector_count']; $i++) {
+-    $form['google_analytics_et_ui_selectors']['selector'][] = _google_analytics_et_ui_selector_form(array(), TRUE);
+-  }
+-
+-  $form['google_analytics_et_ui_selectors']['add_selector'] = array(
+-    '#type' => 'submit',
+-    '#value' => t('Add selector'),
+-    '#description' => t('Click here to add selector.'),
+-    '#weight' => 1,
+-    '#submit' => array('google_analytics_et_ui_add_submit'),
+-    '#ajax' => array(
+-      'callback' => 'google_analytics_et_ui_selector_js_callback',
+-      'wrapper' => 'gaetui-selectors-fieldset-wrapper',
+-      'progress' => 'none'
+-    ),
+-    '#prefix' => '<div class="clearfix">',
+-    '#suffix' => '</div>',
+-  );
+-
+-  if ($form_state['selector_count'] > 1) {
+-    $form['google_analytics_et_ui_selectors']['remove_selector'] = array(
+-      '#type' => 'submit',
+-      '#value' => t('Remove one selector'),
+-      '#weight' => 2,
+-      '#submit' => array('google_analytics_et_ui_remove_submit'),
+-      '#ajax' => array(
+-        'callback' => 'google_analytics_et_ui_selector_js_callback',
+-        'wrapper' => 'gaetui-selectors-fieldset-wrapper',
+-        'progress' => 'none'
+-      ),
+-    );
+-  }
+-
+-  $form = system_settings_form($form);
+-  // We don't want to call system_settings_form_submit(), so change #submit.
+-  array_pop($form['#submit']);
+-  $form['#submit'][] = 'google_analytics_et_ui_admin_submit';
+-
+-  $form['google_analytics_et_ui_help'] = array(
+-    '#markup' => '
+-      <p>
+-        See <a href="http://api.jquery.com/category/selectors/">jQuery Selectors</a> for more information on the input for the "selector" field.
+-      </p>
+-      <p>
+-        See <a href="http://api.jquery.com/category/events/">jQuery Events</a> for more information on the input for the "event" field.
+-      </p>
+-      <p>
+-        There are several tokens that can be used as a string replacement with <strong>category, action, and label</strong>.
+-      </p>
+-      <dl>
+-        <dt>!text</dt>
+-        <dd>This is what would be returned from the jQuery .text() method.</dd>
+-        <dt>!href</dt>
+-        <dd>The value of the href attribute (handy with anchor tags).</dd>
+-        <dt>!currentPage</dt>
+-        <dd>The URL of the current page (this is taken with the code window.location.href</dd>
+-      </dl>
+-      <p>
+-        There is one more bit that is handy when configuring the module.<br />
+-        Passing <code>!test</code> will send an  alert to the page when the event is triggered and not send the event to Google Analytics.
+-      </p>
+-      <p>
+-        Event trackers <strong>could be cached</strong> depending on your Drupal settings!
+-      </p>
+-    ',
+-  );
+-
+-  return $form;
+-}
+-
+-function google_analytics_et_ui_add_submit($form, &$form_state) {
+-  $form_state['selector_count']++;
+-  $form_state['rebuild'] = TRUE;
+-}
+-
+-function google_analytics_et_ui_remove_submit($form, &$form_state) {
+-  if ($form_state['selector_count'] > 1) {
+-    $form_state['selector_count']--;
+-  }
+-  $form_state['rebuild'] = TRUE;
+-}
+-
+-function google_analytics_et_ui_selector_js_callback($form, $form_state) {
+-  return $form['google_analytics_et_ui_selectors'];
+-}
+-
+-/**
+- * Submit callback for Event tracker administrative settings
+- *
+- * Filters out empty form elements.
+- */
+-function google_analytics_et_ui_admin_submit($form, &$form_state) {
+-  $selectors = $form_state['values']['google_analytics_et_ui_selectors']['selector'];
+-
+-  foreach ($selectors as $key => $item) {
+-    if (empty($item['selector'])) {
+-      unset($selectors[$key]);
+-    }
+-  }
+-
+-  cache_clear_all('google_analytics_et', 'cache', TRUE);
+-
+-  variable_set('google_analytics_et_ui_selectors', $selectors);
+-  drupal_set_message(t('The configuration options have been saved.'));
+-}
+diff --git a/google_analytics_et_ui/google_analytics_et_ui.info b/google_analytics_et_ui/google_analytics_et_ui.info
+index b8b20fe..dc1a624 100644
+--- a/google_analytics_et_ui/google_analytics_et_ui.info
++++ b/google_analytics_et_ui/google_analytics_et_ui.info
+@@ -4,4 +4,5 @@ core = 7.x
+ package = Statistics
+ dependencies[] = googleanalytics
+ dependencies[] = google_analytics_et
++dependencies[] = ctools
+ configure = admin/config/system/et
+diff --git a/google_analytics_et_ui/google_analytics_et_ui.install b/google_analytics_et_ui/google_analytics_et_ui.install
+new file mode 100644
+index 0000000..58b20fc
+--- /dev/null
++++ b/google_analytics_et_ui/google_analytics_et_ui.install
+@@ -0,0 +1,102 @@
++<?php
++/**
++ * @file
++ * Google Analytics ET install and update hooks.
++ */
++
++/**
++ * Implements hook_schema().
++ */
++function google_analytics_et_ui_schema() {
++  $schema = array();
++
++  $schema['ga_et_selectors'] = array(
++    'description' => t('Table storing Google Analytics ET selectors.'),
++    'export' => array(
++      'key' => 'name',
++      'key name' => 'Name',
++      'admin_title' => 'selector',
++      'primary key' => 'sid',
++      'identifier' => 'ga_et_selector',
++      'default hook' => 'google_analytics_et_api',
++      'api' => array(
++        'owner' => 'google_analytics_et_ui',
++        'api' => 'google_analytics_et_api',
++        'minimum_version' => 1,
++        'current_version' => 1,
++      ),
++    ),
++    'fields' => array(
++      'sid' => array(
++        'type' => 'serial',
++        'unsigned' => TRUE,
++        'not null' => TRUE,
++        'description' => 'Primary ID field for the table. Not used for anything except internal lookups.',
++        'no export' => TRUE, // Do not export database-only keys.
++      ),
++      'name' => array(
++        'type' => 'varchar',
++        'length' => '255',
++        'description' => 'Unique ID for selectors. Used to identify them programmatically.',
++        'not null' => TRUE,
++      ),
++      'event' => array(
++        'type' => 'varchar',
++        'length' => '255',
++        'description' => 'The jQuery event that triggers the event.',
++        'not null' => TRUE,
++      ),
++      'selector' => array(
++        'type' => 'varchar',
++        'length' => '255',
++        'description' => 'A CSS Selector that the event is bound to.',
++        'not null' => TRUE,
++      ),
++      'category' => array(
++        'type' => 'varchar',
++        'length' => '255',
++        'description' => "Typically the object that was interacted with (e.g. 'Video').",
++        'not null' => TRUE,
++      ),
++      'action' => array(
++        'type' => 'varchar',
++        'length' => '255',
++        'description' => "The type of interaction (e.g. 'play').",
++        'not null' => TRUE,
++      ),
++      'label' => array(
++        'type' => 'varchar',
++        'length' => '255',
++        'description' => "Useful for categorizing events (e.g. 'Fall Campaign').",
++        'not null' => FALSE,
++        'default' => NULL,
++      ),
++      'value' => array(
++        'type' => 'int',
++        'size' => 'medium',
++        'description' => "Useful for categorizing events (e.g. 'Fall Campaign').",
++        'not null' => FALSE,
++        'default' => NULL,
++      ),
++      'noninteraction' => array(
++        'type' => 'int',
++        'size' => 'tiny',
++        'description' => 'Should this event be counted towards the sites overall bounce rate.',
++        'not null' => TRUE,
++      ),
++      'options' => array(
++        'type' => 'blob',
++        'not null' => FALSE,
++        'size' => 'big',
++        'serialize' => TRUE,
++        'description' => 'A serialized array of name value pairs. This holds extra options for the event. Currently the only extra option is trackOnce. Which makes that event only fire one time after the load of the site.',
++      ),
++    ),
++    'primary key' => array('sid'),
++    'unique keys' => array(
++      'name' => array('name'),
++    ),
++  );
++  
++  return $schema;
++}
+diff --git a/google_analytics_et_ui/google_analytics_et_ui.module b/google_analytics_et_ui/google_analytics_et_ui.module
+index 6534256..c171929 100644
+--- a/google_analytics_et_ui/google_analytics_et_ui.module
++++ b/google_analytics_et_ui/google_analytics_et_ui.module
+@@ -18,100 +18,11 @@ function google_analytics_et_ui_permission() {
+ }
+ 
+ /**
+- * Implementation of hook_menu().
++ * Implementation of hook_ctools_plugin_directory().
+  */
+-function google_analytics_et_ui_menu() {
+-  return array(
+-    'admin/config/system/et' => array(
+-      'title' => 'Event Tracking',
+-      'description' => 'Configure Google Analytics Event trackers',
+-      'access arguments' => array('administer google analytics et'),
+-      'page callback' => 'drupal_get_form',
+-      'page arguments' => array('google_analytics_et_ui_admin'),
+-      'file' => 'google_analytics_et_ui.admin.inc',
+-    ),
+-  );
+-}
+-
+-/**
+- * Implements hook_theme().
+- */
+-function google_analytics_et_ui_theme() {
+-  $theme_hooks = array(
+-    'google_analytics_et_ui_selectors' => array(
+-      'render element' => 'form',
+-    ),
+-  );
+-
+-  return $theme_hooks;
+-}
+-
+-/**
+- * Returns HTML for an admin selectors form.
+- *
+- * @param $variables
+- *   An associative array containing:
+- *   - form: A render element representing the form.
+- *
+- * @ingroup themeable
+- */
+-function theme_google_analytics_et_ui_selectors($variables) {
+-  $form = $variables['form'];
+-  $headers = array(t('Enabled'), t('Selector'), t('Event'), t('Category'), t('Action'), t('Label'), t('Value'), t('Non interaction'));
+-  $rows = array();
+-
+-  foreach (element_children($form) as $key) {
+-    // Build the table row.
+-    $row = array(
+-      'no_striping' => TRUE,
+-      'data' => array(
+-        drupal_render($form[$key]['options']['enabled']),
+-        drupal_render($form[$key]['selector']),
+-        drupal_render($form[$key]['options']['event']),
+-        drupal_render($form[$key]['options']['category']),
+-        drupal_render($form[$key]['options']['action']),
+-        drupal_render($form[$key]['options']['label']),
+-        drupal_render($form[$key]['options']['value']),
+-        drupal_render($form[$key]['options']['noninteraction']),
+-      ),
+-    );
+-
+-    // Add any additional classes set on the row.
+-    if (!empty($form[$key]['#attributes']['class'])) {
+-      $row['class'] = array_merge($row['class'], $form[$key]['#attributes']['class']);
+-    }
+-
+-    $rows[] = $row;
+-  }
+-
+-  $output = theme('table', array('header' => $headers, 'rows' => $rows, 'attributes' => array('id' => 'google_analytics_et_ui-selector-table')));
+-  $output .= drupal_render_children($form);
+-
+-  return $output;
+-}
+-
+-/**
+- * Implements hook_google_analytics_et_api().
+- */
+-function google_analytics_et_ui_google_analytics_et_api() {
+-  $selectors = variable_get('google_analytics_et_ui_selectors', array());
+-
+-  foreach ($selectors as &$selector) {
+-    if ($selector['options']['enabled']) {
+-      $new_selector = array(
+-        'event' => $selector['options']['event'],
+-        'selector' => $selector['selector'],
+-        'category' => $selector['options']['category'],
+-        'action' => $selector['options']['action'],
+-        'label' => $selector['options']['label'],
+-        'noninteraction' => $selector['options']['noninteraction'],
+-      );
+-      if (!empty($selector['options']['value'])) {
+-       $new_selector['value'] =  $selector['options']['value'];
+-      }
+-      $selector = $new_selector;
+-    }
++function google_analytics_et_ui_ctools_plugin_directory($module, $type) {
++  // Load the export_ui plugin.
++  if ($type =='export_ui') {
++    return 'plugins/export_ui';
+   }
+-
+-  return $selectors;
+ }
+diff --git a/google_analytics_et_ui/plugins/export_ui/google_analytics_et_ctools_export_ui.inc b/google_analytics_et_ui/plugins/export_ui/google_analytics_et_ctools_export_ui.inc
+new file mode 100644
+index 0000000..e1b40d6
+--- /dev/null
++++ b/google_analytics_et_ui/plugins/export_ui/google_analytics_et_ctools_export_ui.inc
+@@ -0,0 +1,105 @@
++<?php
++
++/**
++ * Define this Export UI plugin.
++ */
++$plugin = array(
++  'schema' => 'ga_et_selectors',
++  'access' => 'administer google analytics et',
++  // Define the menu item.
++  'menu' => array(
++    'menu prefix' => 'admin/config/system',
++    'menu item' => 'et',
++    'menu title' => 'Google Analytics Event Tracking',
++    'menu description' => 'Configure Google Analytics Event trackers.',
++  ),
++  // Define user interface texts.
++  'title singular' => t('selector'),
++  'title plural' => t('selectors'),
++  'title singular proper' => t('Google Analytics event tracking selector'),
++  'title plural proper' => t('Google Analytics event tracking selectors'),
++  // Define the names of the functions that provide the add/edit forms.
++  'form' => array(
++    'settings' => 'google_analytics_et_ui_admin_form',
++  // 'submit' and 'validate' are also valid callbacks.
++  ),
++);
++
++/**
++ * Define the preset add/edit form.
++ */
++function google_analytics_et_ui_admin_form(&$form, &$form_state) {
++  $selector = $form_state['item'];
++  ctools_include('export');
++
++  $events = drupal_map_assoc(array(
++    'mousedown', 'submit', 'blur', 'change', 'click', 'dblclick', 'focus',
++    'focusin', 'focusout', 'hover', 'keydown', 'keypress', 'keyup',
++    'mouseenter', 'mouseleave', 'mouseout', 'mouseover', 'mouseup', 'select'
++  ));
++
++  $form['info']['selector']['#title'] = t('Selector');
++  $form['info']['selector']['#description'] = t('The CSS selector the event is bound to.');
++  $form['info']['selector']['#required'] = TRUE;
++
++  $form['event'] = array(
++    '#title' => t('Event'),
++    '#description' => t('The jQuery event that triggers the event.'),
++    '#type' => 'select',
++    '#options' => $events,
++    '#default_value' => isset($selector->event) ? $selector->event : NULL,
++    '#required' => TRUE,
++  );
++
++  $form['category'] = array(
++    '#title' => t('Category'),
++    '#description' => t("Typically the object that was interacted with (e.g. 'Video')."),
++    '#type' => 'textfield',
++    '#default_value' => isset($selector->category) ? $selector->category : NULL,
++    '#required' => TRUE,
++  );
++
++  $form['action'] = array(
++    '#title' => t('Action'),
++    '#description' => t("The type of interaction (e.g. 'play')."),
++    '#type' => 'textfield',
++    '#default_value' => isset($selector->action) ? $selector->action : NULL,
++    '#required' => TRUE,
++  );
++
++  $form['label'] = array(
++    '#title' => t('Label'),
++    '#description' => t("Useful for categorizing events (e.g. 'Fall Campaign')."),
++    '#type' => 'textfield',
++    '#default_value' => isset($selector->label) ? $selector->label : NULL,
++  );
++
++  $form['value'] = array(
++    '#title' => t('Value'),
++    '#description' => t("Useful for categorizing events (e.g. 'Fall Campaign')."),
++    '#element_validate' => array('element_validate_integer'),
++    '#type' => 'textfield',
++    '#default_value' => isset($selector->value) ? $selector->value : NULL,
++  );
++
++  $form['noninteraction'] = array(
++    '#title' => t('Noninteraction'),
++    '#description' => t('Should this event be counted towards the sites overall bounce rate.'),
++    '#type' => 'checkbox',
++    '#default_value' => isset($selector->noninteraction) ? $selector->noninteraction : NULL,
++  );
++
++  $form['options'] = array(
++    '#type' => 'container',
++    '#tree' => TRUE,
++  );
++
++  $form['options']['trackOnce'] = array(
++    '#title' => t('Track only once'),
++    '#description' => t('Make this event only fire one time after the load of the site.'),
++    '#type' => 'checkbox',
++    '#default_value' => isset($selector->options['trackOnce']) ? $selector->options['trackOnce'] : FALSE,
++  );
++
++  return $form;
++}
+diff --git a/js/google_analytics_et.js b/js/google_analytics_et.js
+index 99df6b7..a62136f 100644
+--- a/js/google_analytics_et.js
++++ b/js/google_analytics_et.js
+@@ -1,40 +1,36 @@
+ Drupal.behaviors.googleAnalyticsET = {
+   attach : function (context) {
+-    // make sure that the google analytics event tracking object exists
++    // make sure that the google analytics event tracking object or the universal analytics tracking function exists
+     // if not then exit and don't track
+-    if(typeof _gaq == "undefined"){
++    if(typeof _gaq == "undefined" && typeof ga == "undefined"){
+       return;
+     }
+ 
+     var settings = Drupal.settings.googleAnalyticsETSettings;
++
+     delete settings.selectors.debug;
+-    var defaultOptions = {
+-      label: '',
+-      value: 0,
+-      noninteraction: false
+-    };
+-    var s = new Array();
+     for(var i = 0; i < settings.selectors.length; i++) {
+-      s[i] = settings.selectors[i].selector;
+-/*
+-      console.log(i);
+-      console.log(settings.selectors[i].selector)
+-*/
++      bindGAEvent(settings.selectors[i]);
+     }
+-
+-    jQuery.each(s,
+-      function(i, val) {
+-        jQuery(settings.selectors[i].selector).once('GoogleAnalyticsET').bind(settings.selectors[i].event,
+-          function(event) {
+-            settings.selectors[i] = jQuery.extend(defaultOptions, settings.selectors[i]);
+-            trackEvent(jQuery(this), settings.selectors[i].category, settings.selectors[i].action, settings.selectors[i].label, settings.selectors[i].value, settings.selectors[i].noninteraction)
+-          }
+-        );
+-      }
+-
+-    );
+   }
++}
+ 
++/**
++ * Bind the event to the DOM element based on the settings.
++ */
++function bindGAEvent(selectorSettings) {
++  var defaultOptions = {
++    label: '',
++    value: 0,
++    noninteraction: false,
++    options: []
++  };
++  jQuery(selectorSettings.selector).once('GoogleAnalyticsET' + '-' + selectorSettings.name, function () {
++    jQuery(this).bind(selectorSettings.event, function(event) {
++      selectorSettings = jQuery.extend(defaultOptions, selectorSettings);
++      trackEvent(jQuery(this), selectorSettings.name, selectorSettings.options, selectorSettings.category, selectorSettings.action, selectorSettings.label, selectorSettings.value, selectorSettings.noninteraction)
++    });
++  });
+ }
+ 
+ /**
+@@ -59,21 +55,47 @@ Drupal.behaviors.googleAnalyticsET = {
+  *   A boolean that when set to true, indicates that the event hit will not
+  *   be used in bounce-rate calculation.
+  */
+-function trackEvent($obj, category, action, opt_label, opt_value, opt_noninteraction) {
++function trackEvent($obj, name, options, category, action, opt_label, opt_value, opt_noninteraction) {
+   var href = $obj.attr('href') == undefined ? false : String($obj.attr('href'));
++  if (typeof this.options == 'undefined') {
++    this.options = {};
++  }
++  this.options[name] = options;
+ 
+   category = category == '!text' ? String($obj.text()) : (category == '!href' ? href : (category == '!currentPage' ? String(window.location.href) : String(category)));
+   action = action == '!text' ? String($obj.text()) : (action == '!href' ? href : (action == '!currentPage' ? String(window.location.href) : String(action)));
+   opt_label = opt_label == '!text' ? String($obj.text()) : (opt_label == '!href' ? href : (opt_label == '!currentPage' ? String(window.location.href) : String(opt_label)));
+ 
++  // Google complains if category or action are not set so we fail gracefully.
+   if (!category || !action) {
++    console.log("Google Analytics Event Tracking: category and action must be set.")
+     return;
+   }
+ 
++  // Only track once if the trackOnce option is set.
++  if (this.options[name].trackOnce == true) {
++    if (typeof this.options[name].times == 'undefined') {
++      this.options[name].times = 1;
++    }
++    else {
++      return;
++    }
++  }
++
+   if (opt_label == '!test' || Drupal.settings.googleAnalyticsETSettings.settings.debug) {
+     debugEvent($obj, category, action, opt_label, opt_value, opt_noninteraction);
+   }
+-  else {
++  else if ( typeof ga == 'function' ) {
++    ga('send', {
++      'hitType': 'event',
++      'eventCategory': String(category),
++      'eventAction': String(action),
++      'eventLabel': String(opt_label),
++      'eventValue': Number(opt_value),
++      'nonInteraction': Boolean(opt_noninteraction)
++    });
++  }
++  else if ( typeof _gaq != 'undefined') {
+     _gaq.push(['_trackEvent', String(category), String(action), String(opt_label), Number(opt_value), Boolean(opt_noninteraction)]);
+   }
+ }
