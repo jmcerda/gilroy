@@ -17,14 +17,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '00320f67-77c1-4744-b2fe-01955926df24',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'sponsor',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -32,6 +24,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'sponsor',
+          'format' => NULL,
         ),
       ),
     ),
@@ -65,14 +65,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '026d7803-bcd1-45ed-a751-2e086bec850c',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Garlic City Fun Run & Sock Hop 2014',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -80,6 +72,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Garlic City Fun Run & Sock Hop 2014',
+          'format' => NULL,
         ),
       ),
     ),
@@ -91,14 +91,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '03d85465-e3a4-47a4-b8c9-64e60a12f93a',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Uesugi Farms',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -106,6 +98,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Uesugi Farms',
+          'format' => NULL,
         ),
       ),
     ),
@@ -117,14 +117,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '05774c6e-4edc-42fb-a546-6616fd230740',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Susan Patereau',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -132,6 +124,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Susan Patereau',
+          'format' => NULL,
         ),
       ),
     ),
@@ -154,14 +154,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '0988eb56-67a8-47f7-8b07-46ea54cf468b',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Chamber of Commerce',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -169,6 +161,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Chamber of Commerce',
+          'format' => NULL,
         ),
       ),
     ),
@@ -180,14 +180,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '0a2c89ac-0fa2-4ae1-b5f4-14fcaa606a34',
     'vocabulary_machine_name' => 'industry',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Political',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -195,6 +187,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'full_html',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Political',
+          'format' => NULL,
         ),
       ),
     ),
@@ -231,14 +231,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '0c2eeb47-68a4-4498-aee4-75e1a7198c00',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Gilroy',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -246,6 +238,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Gilroy',
+          'format' => NULL,
         ),
       ),
     ),
@@ -301,14 +301,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '10ce26c8-b641-45f4-91b3-bcc34f6cca3c',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Thanksgiving',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -316,6 +308,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Thanksgiving',
+          'format' => NULL,
         ),
       ),
     ),
@@ -338,14 +338,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '133332da-0444-4a8f-81cf-41e81a949f4f',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Downtown Christmas Parade',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -353,6 +345,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Downtown Christmas Parade',
+          'format' => NULL,
         ),
       ),
     ),
@@ -375,14 +375,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '1a3fe138-5623-43d6-ad34-94806cfc9b53',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Breakfast Club',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -390,6 +382,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Breakfast Club',
+          'format' => NULL,
         ),
       ),
     ),
@@ -401,14 +401,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '1a68d633-514c-42f3-9f54-3f5f34bf58c4',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Weekly Update',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -416,6 +408,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Weekly Update',
+          'format' => NULL,
         ),
       ),
     ),
@@ -449,14 +449,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '1da7aade-ee27-4131-9a07-b1e1e40d48c6',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Budweiser Beer',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -464,6 +456,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Budweiser Beer',
+          'format' => NULL,
         ),
       ),
     ),
@@ -475,14 +475,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '21f34668-6cd6-4e63-9c3a-0e709bf36d18',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Pulido\'s Pro Fitness',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -490,6 +482,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Pulido\'s Pro Fitness',
+          'format' => NULL,
         ),
       ),
     ),
@@ -545,14 +545,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '258910c3-19f6-4b85-a9e3-cac0f7af277b',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Power Lunch',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -560,6 +552,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Power Lunch',
+          'format' => NULL,
         ),
       ),
     ),
@@ -663,14 +663,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '2ec2833b-9540-48e2-8909-6f878ee8224b',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'email',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -678,6 +670,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'email',
+          'format' => NULL,
         ),
       ),
     ),
@@ -689,14 +689,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '308d8f24-b44b-49b2-86ac-70acba9bc67b',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Wednesday',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -704,6 +696,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Wednesday',
+          'format' => NULL,
         ),
       ),
     ),
@@ -715,14 +715,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '30ea2a87-de43-4b25-9429-2cbef4d7dc36',
     'vocabulary_machine_name' => 'industry',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Agriculture',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -730,6 +722,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'full_html',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Agriculture',
+          'format' => NULL,
         ),
       ),
     ),
@@ -777,14 +777,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '3af4434d-cc05-45c8-8169-e23a2ce17d52',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Pinterest',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -792,6 +784,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Pinterest',
+          'format' => NULL,
         ),
       ),
     ),
@@ -814,14 +814,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '3ca029e3-eaef-4db8-b9fa-a48b9e78f5c0',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'U. S. Army',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -829,6 +821,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'U. S. Army',
+          'format' => NULL,
         ),
       ),
     ),
@@ -851,14 +851,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '3d81a0ae-48bc-4589-9b3e-136aa0e6302d',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Birthday',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -866,6 +858,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Birthday',
+          'format' => NULL,
         ),
       ),
     ),
@@ -888,14 +888,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '43a52318-72db-4fa7-a0a3-1f27946f63ab',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'McFlurry',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -903,6 +895,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'McFlurry',
+          'format' => NULL,
         ),
       ),
     ),
@@ -914,14 +914,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '44b49c1f-aef7-44f6-a17f-0fc4497c98d3',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Ribbon Cuttings',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -929,6 +921,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Ribbon Cuttings',
+          'format' => NULL,
         ),
       ),
     ),
@@ -940,14 +940,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '45984886-5396-461b-80f7-74115c5f5317',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'My Chamber App',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -955,6 +947,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'My Chamber App',
+          'format' => NULL,
         ),
       ),
     ),
@@ -966,14 +966,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '45a503da-4757-462e-84ed-883592b226fb',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Nob Hill Foods',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -981,6 +973,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Nob Hill Foods',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1003,14 +1003,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '47c8815e-b6b7-4082-b887-819b79de2938',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Rebekah Children\'s Services',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1018,6 +1010,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Rebekah Children\'s Services',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1029,14 +1029,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '48c0b878-bcc5-4c75-a252-e2a5cf9a4c6f',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'South Bay Regional Mixer',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1044,6 +1036,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'South Bay Regional Mixer',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1151,14 +1151,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '54ca30fb-345f-437c-922d-f019f60d8e97',
     'vocabulary_machine_name' => 'industry',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Business',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1166,6 +1158,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'full_html',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Business',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1180,14 +1180,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '55a1f406-8272-4d8b-a025-623c541953a8',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Gilroy Center for the Arts',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1195,6 +1187,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Gilroy Center for the Arts',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1217,14 +1217,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '58c186f8-706d-4093-afc6-cbdb31b24062',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'National Ice Cream Week',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1232,6 +1224,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'National Ice Cream Week',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1265,14 +1265,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '5c167b20-1fb7-4cb8-b001-44395884b9a8',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Chamber Breakfast',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1280,6 +1272,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Chamber Breakfast',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1302,14 +1302,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '5e703acc-b156-41d0-9120-fdb373d67e4c',
     'vocabulary_machine_name' => 'industry',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Military',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1317,6 +1309,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'full_html',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Military',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1342,14 +1342,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '61d7dc37-fb59-4028-b6f1-95b3769310cf',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Pinnacle Bank',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1357,6 +1349,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Pinnacle Bank',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1390,14 +1390,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '639d4d7f-3bc9-4717-a379-a2344f1e72ea',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Susan Murphey Patereau',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1405,6 +1397,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Susan Murphey Patereau',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1416,14 +1416,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '64722ad8-91b2-4751-9c42-45347dbae34a',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Ribbon Cutting',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1431,6 +1423,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Ribbon Cutting',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1442,14 +1442,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '654037d8-515e-481b-aac4-72c9900ef586',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'After Hours Mixer',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1457,6 +1449,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'After Hours Mixer',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1494,14 +1494,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '66b60482-86cf-4677-991d-ea052bad9605',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Volunteers',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1509,6 +1501,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Volunteers',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1557,14 +1557,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '6a813bae-2170-4366-80cd-1f666a4f64ac',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Sue Thurman',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1572,6 +1564,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Sue Thurman',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1583,14 +1583,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '6b5a6619-0e39-4e65-869c-a98f4d8af827',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Gilroy Chamber of Commerce',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1598,6 +1590,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Gilroy Chamber of Commerce',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1631,14 +1631,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '6f29a4f7-7ed3-46ec-bc81-15b883acc634',
     'vocabulary_machine_name' => 'industry',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Education',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1646,6 +1638,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'full_html',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Education',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1682,14 +1682,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '727cd138-658f-4840-806b-23a0798499d3',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Compassion Center',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1697,6 +1689,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Compassion Center',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1708,14 +1708,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '72c78099-6799-4807-84eb-ae056c6f56ec',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'lunch',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1723,6 +1715,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'lunch',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1734,14 +1734,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '737b07a0-a700-4a07-afb1-171f53eead33',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Relay for Life',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1749,6 +1741,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Relay for Life',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1760,14 +1760,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '741f2a60-2932-467c-8b66-023a0c1a3eec',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'networking',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1775,6 +1767,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'networking',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1819,6 +1819,7 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '75ba78ad-d0ad-41aa-840e-b5754fe3c1aa',
     'vocabulary_machine_name' => 'tags',
+    'description_field' => array(),
     'name_field' => array(
       'und' => array(
         0 => array(
@@ -1827,7 +1828,6 @@ function fh_taxonomy_uuid_features_default_terms() {
         ),
       ),
     ),
-    'description_field' => array(),
   );
   $terms[] = array(
     'name' => 'Chiropractic Services',
@@ -1847,14 +1847,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '7788bf47-645c-4eab-9671-36a5527be356',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Yoghart',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1862,6 +1854,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Yoghart',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1950,14 +1950,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '83f671f5-1747-4158-931e-3e607540f9c2',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Mark Turner',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1965,6 +1957,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Mark Turner',
+          'format' => NULL,
         ),
       ),
     ),
@@ -1976,14 +1976,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '853992de-7489-4113-a7ea-ddc2e3a184df',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Patti\'s Perfect Pandry',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -1991,6 +1983,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Patti\'s Perfect Pandry',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2035,14 +2035,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '900b1a3b-896b-4e18-8d69-ff2d7232a70b',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Update',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2050,6 +2042,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Update',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2083,14 +2083,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '93f077b6-a247-4a24-9f29-484eaf99a3d6',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Uesugi Pumpkin Park',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2098,6 +2090,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Uesugi Pumpkin Park',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2142,14 +2142,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '97bdc3cc-b276-40b5-a121-f82878155938',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Hangout-on-Air',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2157,6 +2149,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Hangout-on-Air',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2168,14 +2168,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '982cf837-49aa-4340-a7fe-b88a5d9764a7',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Social Media Forum',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2183,6 +2175,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Social Media Forum',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2205,14 +2205,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => '9a2fdaf0-8222-47b2-85de-c85e1423afef',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Kevin Heath',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2220,6 +2212,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Kevin Heath',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2349,14 +2349,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'a292ecd5-18c0-4278-bfc7-d7a888c70d50',
     'vocabulary_machine_name' => 'industry',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Professional',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2364,6 +2356,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'full_html',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Professional',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2395,7 +2395,6 @@ function fh_taxonomy_uuid_features_default_terms() {
           'value' => '',
           'summary' => NULL,
           'format' => 'rich_text',
-          'safe_summary' => '',
         ),
       ),
     ),
@@ -2429,14 +2428,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'a7f6e073-8f4b-4c4e-8dcf-11ac03215077',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'video',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2444,6 +2435,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'video',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2466,14 +2465,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'a9231619-0e2f-4c49-8bce-a85a6d4e32b4',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'mob squad',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2481,6 +2472,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'mob squad',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2503,14 +2502,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'ab5f48d4-f232-4953-8726-96f6a97b6340',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Ambassadors',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2518,6 +2509,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Ambassadors',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2562,14 +2561,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'af5968bb-a790-4328-9042-d18e624f22e1',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Online Registration',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2577,6 +2568,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Online Registration',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2661,14 +2660,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'bd047ffb-2be7-42c8-8723-5c62b4fb367c',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Gluten Free',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2676,6 +2667,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Gluten Free',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2731,14 +2730,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'c17902ee-ea1e-4ac9-8ad0-f69063f3bdd0',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'National Dessert Day',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2746,6 +2737,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'National Dessert Day',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2779,14 +2778,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'c427d48e-4e37-452b-a4b6-f089101e3ab4',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Lunch Mob',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2794,6 +2785,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Lunch Mob',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2805,14 +2804,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'c61fe7f8-ebdb-4c42-963b-fe9d69f7b2c5',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'video email',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2820,6 +2811,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'video email',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2831,14 +2830,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'c6a3b02c-c6d2-4db0-889a-a065f177889d',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Pulido\'s Fitness',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2846,6 +2837,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Pulido\'s Fitness',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2879,14 +2878,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'cb5334da-c9c6-4adb-a7ec-fea3853e9908',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'HOA',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2894,6 +2885,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'HOA',
+          'format' => NULL,
         ),
       ),
     ),
@@ -2975,14 +2974,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'd3501ac4-13ec-4bf6-9e13-d2d467caca5a',
     'vocabulary_machine_name' => 'industry',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Public Service',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -2990,6 +2981,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'full_html',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Public Service',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3015,14 +3014,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'd72951d7-d6bc-4948-860f-0f8375f3cbea',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'One to Another Thrift Store',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3030,6 +3021,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'One to Another Thrift Store',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3041,14 +3040,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'd86aae5f-2689-46cc-a65c-464ed7a9f668',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'The Compassion Center',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3056,6 +3047,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'The Compassion Center',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3067,14 +3066,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'd8f6b36b-dcdf-4a21-97d6-c7f0ea8933ba',
     'vocabulary_machine_name' => 'industry',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Cultural',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3082,6 +3073,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'full_html',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Cultural',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3096,14 +3095,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'd9c6d046-6298-488c-9ba0-8a8b9a3b9e2b',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Valentine\'s Day',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3111,6 +3102,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Valentine\'s Day',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3133,14 +3132,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'def06a6f-e47b-40ae-acbc-becd39e62924',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Bonfante Collision Center',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3148,6 +3139,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Bonfante Collision Center',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3159,14 +3158,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'e1f3ac34-9b9f-4351-a464-28d07df3a0f7',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Happy Thanksgiving',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3174,6 +3165,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Happy Thanksgiving',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3207,14 +3206,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'e595789c-e6a9-4dd0-aded-aa4ec9c5bdfa',
     'vocabulary_machine_name' => 'industry',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Community Service',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3222,6 +3213,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'full_html',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Community Service',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3236,14 +3235,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'e7b3e49e-7ef3-44fc-b85c-c6b250ac1866',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Ambassador Committee',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3251,6 +3242,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Ambassador Committee',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3262,14 +3261,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'e90c120c-3637-4818-8b01-26de55b2f4ec',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Pumpkin People Contest',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3277,6 +3268,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Pumpkin People Contest',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3299,14 +3298,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'ea2890a3-94cb-451a-935e-ac56d1d5922c',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Pumpkin People',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3314,6 +3305,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Pumpkin People',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3336,14 +3335,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'eb6e6bbc-b7af-4e15-8caa-cae28fe1831e',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Wreaths Across America',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3351,6 +3342,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Wreaths Across America',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3406,6 +3405,7 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'f15aad73-5cd6-4170-b0ee-a5ccea7fb2ac',
     'vocabulary_machine_name' => 'tags',
+    'description_field' => array(),
     'name_field' => array(
       'und' => array(
         0 => array(
@@ -3414,7 +3414,6 @@ function fh_taxonomy_uuid_features_default_terms() {
         ),
       ),
     ),
-    'description_field' => array(),
   );
   $terms[] = array(
     'name' => 'California',
@@ -3423,14 +3422,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'f3b821d3-be85-48c0-8d99-0a64497f6ac3',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'California',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3438,6 +3429,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'California',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3478,14 +3477,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'f65cddc3-60df-42c0-84d4-d0037f73a536',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Downtown Brew Crawl',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3493,6 +3484,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Downtown Brew Crawl',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3515,14 +3514,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'f6efcdd9-fa05-413a-9af1-7554e3a5466e',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Informed Choices',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3530,6 +3521,14 @@ function fh_taxonomy_uuid_features_default_terms() {
           'summary' => NULL,
           'format' => 'plain_text',
           'safe_summary' => '',
+        ),
+      ),
+    ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Informed Choices',
+          'format' => NULL,
         ),
       ),
     ),
@@ -3596,14 +3595,6 @@ function fh_taxonomy_uuid_features_default_terms() {
     'weight' => 0,
     'uuid' => 'fb41fe37-8793-447d-bae0-b8ba4307b02b',
     'vocabulary_machine_name' => 'tags',
-    'name_field' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'Gilroy Garlic Festival',
-          'format' => NULL,
-        ),
-      ),
-    ),
     'description_field' => array(
       'und' => array(
         0 => array(
@@ -3614,9 +3605,17 @@ function fh_taxonomy_uuid_features_default_terms() {
         ),
       ),
     ),
+    'name_field' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'Gilroy Garlic Festival',
+          'format' => NULL,
+        ),
+      ),
+    ),
   );
   $terms[] = array(
-    'name' => 'Membership Application',
+    'name' => 'Application',
     'description' => '',
     'format' => 'full_html',
     'weight' => 0,
@@ -3638,7 +3637,7 @@ function fh_taxonomy_uuid_features_default_terms() {
     ),
   );
   $terms[] = array(
-    'name' => 'Hall of Fame Luncheon',
+    'name' => 'Luncheon',
     'description' => '',
     'format' => 'full_html',
     'weight' => 0,
@@ -3657,7 +3656,7 @@ function fh_taxonomy_uuid_features_default_terms() {
     'name_field' => array(
       'und' => array(
         0 => array(
-          'value' => 'Hall of Fame Luncheon',
+          'value' => 'Luncheon',
           'format' => NULL,
         ),
       ),
