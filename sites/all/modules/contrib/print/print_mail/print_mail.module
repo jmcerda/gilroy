@@ -25,7 +25,7 @@ function print_mail_print_link() {
     'description' => t('Send this page by email.'),
     'path' => 'printmail',
     'class' => 'print-mail',
-    'icon' => 'mail_icon.png',
+    'icon' => 'mail_icon.svg',
     'module' => 'print_mail',
   );
 }
