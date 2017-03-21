@@ -13,6 +13,12 @@
                     print $linked_logo;
                 } ?>
             </div>
+            <div id="gsearch">
+                <?php
+                $block = module_invoke('search', 'block_view');
+                print render($block['content']);
+                ?>
+            </div>
             <div id="gmenu">
                 <?php
                 $menu = menu_navigation_links('main-menu');
@@ -20,6 +26,12 @@
                 ?>
             </div>
             <?php print render($page['header']); ?>
+            <div class="gmessages">
+                <?php if (!empty($messages)) {
+                    print $messages;
+                } ?>
+            </div>
+            <div id="gmenu">
             <div id="hero">
                 <div class="hero">
                     <div class="hero-inner">
