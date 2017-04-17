@@ -1,5 +1,4 @@
 <div role="document" class="page">
-  <?php if (!empty($page['header'])): ?>
     <div id="umenu">
         <?php
         $menu = menu_navigation_links('user-menu');
@@ -27,7 +26,6 @@
             </div>
             <?php print render($page['header']); ?>
         </header>
-  <?php endif; ?>
 
   <?php if (!empty($page['featured'])): ?>
     <section id="featured">
