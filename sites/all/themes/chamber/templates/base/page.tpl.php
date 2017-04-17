@@ -1,10 +1,32 @@
 <div role="document" class="page">
   <?php if (!empty($page['header'])): ?>
-    <header id="site-header">
-      <div class="outer-wrapper">
-        <?php print render($page['header']); ?>
-      </div>
-    </header>
+    <div id="umenu">
+        <?php
+        $menu = menu_navigation_links('user-menu');
+        print theme('links__user_menu', array('links' => $menu));
+        ?>
+    </div>
+    <main id="panel">
+        <header role="banner">
+            <div class="gilroy_brand">
+                <?php if (!empty($linked_logo)) {
+                    print $linked_logo;
+                } ?>
+            </div>
+            <div id="gsearch">
+                <?php
+                $block = module_invoke('search', 'block_view');
+                print render($block['content']);
+                ?>
+            </div>
+            <div id="gmenu">
+                <?php
+                $menu = menu_navigation_links('main-menu');
+                print theme('links__main_menu', array('links' => $menu));
+                ?>
+            </div>
+            <?php print render($page['header']); ?>
+        </header>
   <?php endif; ?>
 
   <?php if (!empty($page['featured'])): ?>

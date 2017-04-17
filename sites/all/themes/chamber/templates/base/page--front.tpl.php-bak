@@ -31,7 +31,6 @@
                     print $messages;
                 } ?>
             </div>
-            <div id="gmenu">
             <div id="hero">
                 <div class="hero">
                     <div class="hero-inner">
