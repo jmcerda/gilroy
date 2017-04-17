@@ -66,13 +66,50 @@
     <?php endif; ?>
   </main>
 
-  <?php if (!empty($page['footer_top'])): ?>
     <footer id="site-footer" role="contentinfo">
-      <?php if (!empty($page['footer_top'])): ?>
         <section class="footer-top">
-          <?php print render($page['footer_top']); ?>
+            <div class="flex-boxes">
+                <div class="flex-box">
+                    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png" alt="">
+                    <h1 class="flex-title">Block Example 1</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum molestiae fugiat tenetur fugit atque dignissimos, fugiat natus vitae.</p>
+                </div>
+                <div class="flex-box">
+                    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
+                    <h1 class="flex-title">Block Example 2</h1>
+                    <p>Lorem adipisicing elit. Voluptas consectetur tempora quis nam, officia tenetur blanditiis in illo dolor?</p>
+                </div>
+                <div class="flex-box">
+                    <div itemscope itemtype="http://schema.org/LocalBusiness">
+                        <h2><span itemprop="name">The Gilroy Chamber of Commerce</span></h2>
+                        <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
+                        <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
+                        <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
+                    </div>
+                </div>
+                <div class="flex-box">
+                    <?php if (!empty($linked_logo)) {
+                        print $linked_logo;
+                    } ?>
+                </div>
+            </div>
         </section>
-      <?php endif; ?>
+
+        <section class="footer-bottom">
+            <div class="copyright">
+                <p>
+                    &copy; <?php print date('Y') . ' ' . $linked_site_name . ' ' . t('All rights reserved.'); ?>
+                </p>
+            </div>
+
+            <div class="utility-menu">
+                <ul>
+                    <li><a href="/">Privacy Policy</a></li>
+                    <li><a href="/">Terms of Service</a></li>
+                </ul>
+            </div>
+        </section>
     </footer>
-  <?php endif; ?>
+    <a href="#" class="scrollToTop">Scroll To Top</a>
+
 </div>
