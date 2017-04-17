@@ -92,8 +92,8 @@
                 <div class="flex-box">
                     <div id="fumenu">
                         <?php
-                        $menu = menu_navigation_links('main-menu');
-                        print theme('links__main_menu', array('links' => $menu));
+                        $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
+                        print drupal_render($main_menu_tree);
                         ?>
                     </div>
                 </div>
