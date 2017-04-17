@@ -95,7 +95,7 @@
                             //print render($main_menu_expanded);
                         $menu = "main-menu"; // your menu name
                         $level = 2; // menu level to print
-                        $attributes = array('class' => array('links', 'site-menu'));
+                        $attributes = array('class' => array('links', 'main-menu'));
                         print theme('links', array('links' => menu_navigation_links($menu, $level-1), 'attributes' => $attributes));
                         ?>
                     </div>
