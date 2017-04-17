@@ -90,14 +90,12 @@
         <section class="footer-top">
             <div class="flex-boxes">
                 <div class="flex-box">
-                    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png" alt="">
-                    <h1 class="flex-title">Block Example 1</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum molestiae fugiat tenetur fugit atque dignissimos, fugiat natus vitae.</p>
-                </div>
-                <div class="flex-box">
-                    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
-                    <h1 class="flex-title">Block Example 2</h1>
-                    <p>Lorem adipisicing elit. Voluptas consectetur tempora quis nam, officia tenetur blanditiis in illo dolor?</p>
+                    <div id="fumenu">
+                        <?php
+                        $menu = menu_navigation_links('user-menu');
+                        print theme('links__user_menu', array('links' => $menu));
+                        ?>
+                    </div>
                 </div>
                 <div class="flex-box">
                     <div itemscope itemtype="http://schema.org/LocalBusiness">
