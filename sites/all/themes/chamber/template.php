@@ -10,9 +10,11 @@ function chamber_preprocess_html(&$variables) {
  * Implements template_preprocess_page.
  */
 function chamber_preprocess_page(&$variables) {
-    // Load search form
-//    $search_form = drupal_get_form('search_block_form');
-//    $vars['search'] = drupal_render($search_form);
+    // Get the entire main menu tree
+    $main_menu_tree = menu_tree_all_data('main-menu');
+
+    // Add the rendered output to the $main_menu_expanded variable
+    $variables['main_menu_expanded'] = menu_tree_output($main_menu_tree);
 }
 
 /**
