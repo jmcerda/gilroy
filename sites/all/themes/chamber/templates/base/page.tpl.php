@@ -88,30 +88,30 @@
 
     <footer id="site-footer" role="contentinfo">
         <section class="footer-top">
-            <div class="flex-boxes">
-                <div class="flex-box">
+<!--            <div class="flex-boxes">-->
+<!--                <div class="flex-box">-->
                     <div id="fumenu">
                         <?php
                             print render($main_menu_expanded);
                         ?>
                     </div>
-                </div>
-                <div class="flex-box">
-                    <div itemscope itemtype="http://schema.org/LocalBusiness">
+<!--                </div>-->
+<!--                <div class="flex-box">-->
+                    <div class="foot_contact" itemscope itemtype="http://schema.org/LocalBusiness">
                         <h2><span itemprop="name">The Gilroy Chamber of Commerce</span></h2>
                         <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
                         <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
                         <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
                     </div>
-                    <div>
+                    <div class="foot_logo">
                         <?php
                             if (!empty($linked_logo)) {
                                 print $linked_logo;
                             }
                         ?>
                     </div>
-                </div>
-            </div>
+<!--                </div>-->
+<!--            </div>-->
         </section>
 
         <section class="footer-bottom">
