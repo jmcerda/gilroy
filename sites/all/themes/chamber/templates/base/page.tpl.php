@@ -92,8 +92,8 @@
                 <div class="flex-box">
                     <div id="fumenu">
                         <?php
-                        $menu = menu_navigation_links('user-menu');
-                        print theme('links__user_menu', array('links' => $menu));
+                        $menu = menu_navigation_links('main-menu');
+                        print theme('links__main_menu', array('links' => $menu));
                         ?>
                     </div>
                 </div>
