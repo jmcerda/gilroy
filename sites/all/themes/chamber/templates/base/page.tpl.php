@@ -103,11 +103,13 @@
                         <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
                         <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
                     </div>
-                </div>
-                <div class="flex-box">
-                    <?php if (!empty($linked_logo)) {
-                        print $linked_logo;
-                    } ?>
+                    <div>
+                        <?php
+                            if (!empty($linked_logo)) {
+                                print $linked_logo;
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
         </section>
