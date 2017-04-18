@@ -12,16 +12,16 @@
                     print $linked_logo;
                 } ?>
             </div>
-            <div id="gsearch">
-                <?php
-                $block = module_invoke('search', 'block_view');
-                print render($block['content']);
-                ?>
-            </div>
             <div id="gmenu">
                 <?php
                 $menu = menu_navigation_links('main-menu');
                 print theme('links__main_menu', array('links' => $menu));
+                ?>
+            </div>
+            <div id="gsearch">
+                <?php
+                $block = module_invoke('search', 'block_view');
+                print render($block['content']);
                 ?>
             </div>
             <?php print render($page['header']); ?>
