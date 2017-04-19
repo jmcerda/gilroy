@@ -1,0 +1,112 @@
+<?php
+// $Id: block_icons.install,v 1.2 2010/12/10 10:05:59 bwpanda Exp $
+
+/**
+ * @file
+ * Install, update and uninstall functions for the block_icons module.
+ */
+
+/**
+ * Implementation of hook_schema().
+ */
+function block_icons_schema() {
+  $schema['block_icons'] = array(
+    'description' => 'Stores icon paths for blocks.',
+    'fields' => array(
+      'module' => array(
+        'description' => 'The module each block belongs to.',
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+      ),
+      'delta' => array(
+        'description' => 'The unique ID for each module\'s blocks.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+      ),
+      'path' => array(
+        'description' => 'The path to each block\'s icon file.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+      ),
+      'preset' => array(
+        'description' => 'The Imagecache preset used to display each block\'s icon.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+	   'location' => array(
+        'description' => 'The location of each block\'s icon.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => FALSE,
+      ),
+      'position' => array(
+        'description' => 'The position of each block\'s icon.',
+        'type' => 'varchar',
+        'length' => 5,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('module', 'delta'),
+  );
+
+  return $schema;
+  }
+
+/**
+ * Implementation of hook_install().
+
+function block_icons_install() {
+//  drupal_install_schema('block_icons');
+}
+
+/**
+ * Implementation of hook_update_N().
+ */
+function block_icons_update_7100() {
+
+  $ret = array();
+  $path_exp = array();
+  $path = "public://block_icons";
+  $result = db_query('SELECT path,delta FROM {block_icons}');
+  foreach($result as $record)
+	{
+	  $path_imp = $record->path;
+	  $delta = $record->delta;
+	  $path_exp = explode('block_icons',$path_imp);
+	  $return = $path.$path_exp[1];
+	  $ret = db_query("UPDATE {block_icons} SET path ='".$return."' WHERE path ='".$path_imp."' AND delta='".$delta."'");
+	}
+  return $ret;
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+ function block_icons_delete_recursive($path) {
+  if (is_dir($path)) {
+    $dir = dir($path);
+    while (($entry = $dir->read()) !== FALSE) {
+      if ($entry == '.' || $entry == '..') {
+        continue;
+      }
+      $entry_path = $path . '/' . $entry;
+      block_icons_delete_recursive($entry_path);
+    }
+    $dir->close();
+    return rmdir($path);
+  }
+
+  if (is_file($path)) {
+    return unlink($path);
+  }
+}
+function block_icons_uninstall() {
+  // Delete block_icons folder and contents
+ $directory = file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath().'/block_icons';
+ block_icons_delete_recursive($directory);
+
+}

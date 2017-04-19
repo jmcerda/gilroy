@@ -1,0 +1,465 @@
+<?php
+/**
+ * @file
+ * Adds the ability to assign an image to each block. A block's image is
+ * displayed as an icon next to its title.
+ */
+
+/**
+ * Implementation of hook_theme().
+ */
+
+function block_icons_theme() {
+  return array(
+    'block_icons' => array(
+      'variables' => array('block_icon'=>array()),
+    ),
+  );
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function block_icons_form_alter(&$form, &$form_state, $form_id) {
+  // Block configuration forms
+  if ($form_id == 'block_admin_configure' || $form_id == 'block_add_block_form') {
+    // Setup default values
+    $path = '';
+    $preset = 'thumbnail';
+    $location = 'title';
+    $position = 'left';
+
+    // Get existing values (if any)
+    if (isset($form['delta']['#value'])) {
+      $module = $form['module']['#value'];
+      $delta = $form['delta']['#value'];
+      $icon_details = get_block_icon($module, $delta);
+	  
+      if (!empty($icon_details)) {
+        $path = $icon_details->path;
+
+        $preset = $icon_details->preset;
+        $position = $icon_details->position;
+        // Set location to 'custom' for those who have upgraded from 6.x-1.0
+        if (!empty($icon_details->location)) {
+          $location = $icon_details->location;
+        }
+        else {
+          $location = 'custom';
+        }
+      }
+	}
+
+
+
+    // Add block icon form elements
+
+    $form['block_settings']['block_icon'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Block icon'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+    );
+	
+    //For Icon Preview Within the form
+	$previewimage=array();
+	$previewimage['style_name']=$preset;
+	$previewimage['path']=$path;
+	$previewimage['width']='100%';
+		$previewimage['height']='100%';
+   $form['block_settings']['block_icon']['block_icon_preview'] = array(	
+     '#markup' => theme_image_style($previewimage),
+	 
+   );
+    $form['block_settings']['block_icon']['block_icon_path'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Path to existing icon'),
+      '#description' => t('The path to the icon file relative to the site\'s base path. Must be a JPEG, PNG or GIF image.'),
+      '#default_value' => $path,
+      '#required' => FALSE,
+    );
+    $form['block_settings']['block_icon']['block_icon_upload'] = array(
+      '#type' => 'file',
+      '#title' => t('Upload a new icon'),
+      '#description' => t('Upload a new icon from your computer. Must be a JPEG, PNG or GIF image. Overrides above path.'),
+    );
+ 
+      $options = _block_icons_get_presets();
+	  $form['block_settings']['block_icon']['block_icon_preset'] = array(
+        '#type' => 'select',
+        '#title' => t('Image Styles'),
+        '#description' => t('Styles to use for this icon.'),
+        '#options' => $options,
+		'#default_value'=>$preset,
+      );
+    
+    $form['block_settings']['block_icon']['block_icon_location'] = array(
+      '#type' => 'radios',
+      '#title' => t('Icon location'),
+      '#description' => t("Where the icon will be displayed in the block. If you select 'custom', you will need to call the 'block_icon' theme function from your theme's block.tpl.php file; see README.txt for details."),
+      '#default_value' => $location,
+      '#options' => array('title' => t('Title'), 'content' => t('Content'), 'custom' => t('Custom')),
+    );
+    $form['block_settings']['block_icon']['block_icon_position'] = array(
+      '#type' => 'radios',
+      '#title' => t('Icon position'),
+      '#default_value' => $position,
+      '#options' => array('left' => t('Left'), 'right' => t('Right')),
+    );
+
+    // Add custom validate and submit functions
+  $form['#validate'][] = '_block_icons_configure_validate';
+    $form['#submit'][] = '_block_icons_configure_submit';
+  }
+
+  // Block deletion form
+  if ($form_id == 'block_box_delete') {
+    // Remove entry from database when block is deleted
+    $form['#submit'][] = '_block_icons_delete_submit';
+  }
+}
+
+
+
+
+/**
+ * Validate function for block configuration form.
+ */
+function _block_icons_configure_validate($form, &$form_state) {
+  // Validate path
+  if (!empty($form_state['values']['block_icon_path'])) {
+    // Remove any preceding slashes
+    $icon = ltrim($form_state['values']['block_icon_path'], '/');
+
+
+     // Make sure file is an image and of the correct type
+	$info = image_get_info($icon);
+    if (empty($info) || empty($info['extension'])) {
+    form_set_error('block_icon_path', t('Please make sure the icon path points to a valid image file. Only JPEG, PNG and GIF images are allowed.'));
+    }
+
+    // Save changes to path (i.e. no preceding slashes)
+    $form_state['values']['block_icon_path'] = $icon;
+  }
+
+  // Validate file upload
+  $upload = file_save_upload('block_icon_upload', array('file_validate_is_image' => array()));
+  if (!empty($upload)) {
+    $form_state['values']['block_icon_upload'] = $upload;
+  }
+
+  // Validate position
+  if (empty($form_state['values']['block_icon_position'])) {
+    form_set_error('block_icon_position', t('Please select a position for the block icon.'));
+  }
+}
+
+
+/**
+ * Submit function for block configuration form.
+ */
+function _block_icons_configure_submit($form, &$form_state) {
+	
+  // Get values
+  $module = $form_state['values']['module'];
+  $delta = $form_state['values']['delta'];
+  $path = $form_state['values']['block_icon_path'];
+  $upload = $form_state['values']['block_icon_upload'];
+  $preset = $form_state['values']['block_icon_preset'];
+  $location = $form_state['values']['block_icon_location'];
+  $position = $form_state['values']['block_icon_position'];
+
+  // If delta is empty, get it from boxes table (user-created blocks only)
+  if (!isset($delta)) {
+    $sql = "SELECT bid FROM {block_custom} WHERE info = :info";
+    $result = db_query($sql, array(':info'=>$form_state['values']['info']));
+	foreach($result as $record){
+    $delta = $record->bid;
+	}
+  }
+
+  // Copy uploaded file from temp directory
+  if (!empty($upload)) {
+    // Create block_icons directory if it doesn't already exist
+	  $destination = 'public://block_icons';
+    if (file_prepare_directory($destination,FILE_CREATE_DIRECTORY)) {
+      // Copy uploaded file to block_icons directory
+      $copied = file_unmanaged_copy($upload->uri, $destination);
+      if ($copied) {
+        $path = $copied;
+		}
+    }
+  }
+
+  // Make necessary changes to database
+  if (empty($path)) {
+    // If path is empty, delete existing record
+    $sql = "DELETE FROM {block_icons} WHERE module = :module AND delta = :delta";
+    db_query($sql, array(':module'=>$module,':delta'=>$delta));
+  }
+  else {
+    // Check for existing path
+    $sql = "SELECT path FROM {block_icons} WHERE module = :module AND delta = :delta";
+    $result =db_query($sql,array(':module'=>$module,':delta'=>$delta))->fetchField();
+
+    $record = new stdClass();
+    $record->module = $module;
+    $record->delta = $delta;
+    $record->path = $path;
+    $record->preset = $preset;
+    $record->location = $location;
+    $record->position = $position;
+
+    if (empty($result)) {
+	      // Add new record
+      drupal_write_record('block_icons', $record);
+    }
+    else {
+      // Update existing record
+	 drupal_write_record('block_icons', $record, array('module', 'delta'));
+    }
+  }
+
+}
+
+
+/**
+ * Submit function for block deletion form.
+ */
+function _block_icons_delete_submit($form, &$form_state) {
+  
+}
+
+/**
+ * Get icon details for the specified block.
+ */
+function get_block_icon($module, $delta = '0') {
+	
+	  $sql = "SELECT path, preset, location, position FROM {block_icons} WHERE module = :module AND delta = :delta";
+  $result =db_query($sql, array(':module'=>$module,':delta'=>$delta));
+ $record = $result->fetchObject();  
+ return $record;
+}
+
+/**
+ * Get a list of Imagecache presets.
+ */
+function _block_icons_get_presets() {
+
+$options=image_style_options();
+return $options;
+}
+ 
+/**
+ * Implementation of hook_imagecache_default_presets().
+ */
+function block_icons_image_default_styles(){
+$styles = array();
+if(!empty($preset)){
+$styles[$preset] = array(
+    'effects' => array(
+      array(
+        'name' => 'image_scale', 
+        'data' => array(
+          'width' => $width,
+          'height' => $height,
+          'upscale' => 0,
+        ), 
+        'weight' => 0,
+      ),
+    ),
+  );
+}
+  $styles['Icon16'] = array(
+    'effects' => array(
+      array(
+        'name' => 'image_scale', 
+        'data' => array(
+          'width' => 16,
+          'height' => 16,
+          'upscale' => 1,
+        ), 
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  $styles['Icon32'] = array(
+    'effects' => array(
+      array(
+        'name' => 'image_scale', 
+        'data' => array(
+          'width' => 32,
+          'height' => 32,
+          'upscale' => 1,
+        ), 
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  $styles['Icon48'] = array(
+    'effects' => array(
+      array(
+        'name' => 'image_scale', 
+        'data' => array(
+          'width' => 48,
+          'height' => 48,
+          'upscale' => 1,
+        ), 
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  $styles['Icon64'] = array(
+    'effects' => array(
+      array(
+        'name' => 'image_scale', 
+        'data' => array(
+          'width' => 64,
+          'height' => 64,
+          'upscale' => 0,
+        ), 
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  return $styles;
+
+}
+
+/**
+ * Override template_preprocess_block().
+ */
+function block_icons_preprocess_block(&$variables) {
+  // Get values
+
+
+$module = $variables['block']->module;
+$delta = $variables['block']->delta;
+$icon_details = get_block_icon($module, $delta);
+	if(!empty($icon_details)){
+	$path = $icon_details->path;
+	$preset = $icon_details->preset;
+	$location = $icon_details->location;
+	$position = $icon_details->position;
+	}
+$var=1;
+$options = _block_icons_get_presets();		
+  if (!empty($path)) {
+    $directory_path = file_stream_wrapper_get_instance_by_uri("public://")->getDirectoryPath();
+	    // Get full path for icon
+    if (!empty($preset)) {
+		foreach($options as $key)
+			{
+				if($preset == $key)
+				{
+				  $var = 0;	  
+				}
+			}
+		if($var != 0)
+		{
+			$style= array();
+		// Check if tables existes or not
+			if(db_table_exists('imagecache_preset') and db_table_exists('imagecache_action')){
+				$result = db_query("SELECT imagecache_action.action, imagecache_action.data FROM imagecache_action INNER JOIN imagecache_preset ON imagecache_action.presetid=imagecache_preset.presetid AND imagecache_preset.presetname = '".$preset."'");
+				$ret = $result->fetchObject();
+				if(!empty($ret))
+				{
+
+					
+						$action_array = array();
+						$data = unserialize($ret->data);
+						$width = $data['width'];
+						$height = $data['height'];
+						$action = $ret->action;
+						$action_array = explode('_' , $action);
+						$action_array[0] = 'image'; 
+						$action = implode('_' , $action_array);
+				}
+				else
+				{
+					$image_path = $directory_path.'/imagecache/'.$preset.'/block_icons/'.basename($path);
+					list($width, $height) = getimagesize($image_path);
+					$action = "image_scale";
+				}
+				$style = Array ( "effects" => Array ( 0 =>  Array ( "label" => "Scale" , "help" => "Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated." ,"effect callback" => $action."_effect" ,"dimensions callback" => $action."_dimensions" ,"form callback" => $action."_form" ,"summary theme" => $action."_summary" ,"module" => "image" ,"name" => $action ,"data" => Array ( "width" => $width ,"height" => $height, "upscale" => 1 ) ,"weight" => 0 ) ), "name" => $preset ,"module" => "block_icons", "storage" => 4 );
+				$style_value = image_default_style_save($style);
+			}
+		}
+		$path = image_style_url($preset, $path);
+    }
+    else {
+    $path = $directory_path."/block_icons/".basename($path);
+     // $path = url(NULL, array('absolute' => TRUE)) . $path;
+    }
+
+    // Setup array of icon variables
+    $block_icon = image_get_info(_block_icons_get_relative_path($path));
+    $block_icon['path'] = $path;
+    $block_icon['preset'] = $preset;
+    $block_icon['location'] = $location;
+    $block_icon['position'] = $position;
+    $block_icon['block_class'] = 'has-block-icon block-icon-'. $location .' block-icon-'. $position;
+    $block_icon['module'] = $module;
+    $block_icon['delta'] = $delta;
+    $block_icon['block_html_id'] = $variables['block_html_id'];
+    // Add icon variables to block so themers can use them
+    $variables['block_icon'] = $block_icon;
+
+    // Inject block icon theme function into the desired location
+    switch ($block_icon['location']) {
+      case 'title':
+        $variables['block']->subject = theme('block_icons', $variables['block_icon']) . $variables['block']->subject;
+      break;
+      case 'content':
+        $variables['content'] = theme('block_icons', $variables['block_icon']) . $variables['content'];
+      break;
+    }
+  }
+}
+
+/**
+ * Theme function for block_icon.
+ */
+function theme_block_icons($block_icon) {
+	if(!empty($block_icon)){
+	
+  // Get margins based on icon's position
+  if ($block_icon['position'] == 'left') {
+    $margin = '0 5px 0 0';
+  }
+  else {
+    $margin = '0 0 0 5px';
+  }
+list($width, $height) = getimagesize($block_icon['path']);
+  // Setup default CSS for displaying icon next to block title
+  $css ='#'. $block_icon['block_html_id'] .' .block-icon {
+      background: transparent url("'. $block_icon['path'] .'") center center no-repeat;
+      float: '. $block_icon['position'] .';
+      height: '.$height.'px;
+      margin: '. $margin .';
+      width: '.$width.'px;
+    }
+  ';
+
+drupal_add_css($css, array('group' => CSS_THEME, 'type' => 'inline'));
+ 
+  $output = '<div class="block-icon"></div>';
+  return $output;
+  
+	}
+}
+
+
+
+/**
+ * Get relative path for use with image_get_info().
+ */
+function _block_icons_get_relative_path($path) {
+	 $root = url(NULL, array('absolute' => TRUE));
+  return str_replace($root, '', $path);
+  
+}
