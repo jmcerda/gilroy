@@ -25,6 +25,7 @@
                     ?>
                 </div>
                 <?php print render($page['header']); ?>
+                <?php print views_embed_view('front_page_hero_slider', 'block', $node->nid); ?>
             </div>
         </header>
 
