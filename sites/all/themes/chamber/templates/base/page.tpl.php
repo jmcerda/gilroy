@@ -5,7 +5,6 @@
         print theme('links__user_menu', array('links' => $menu));
         ?>
     </div>
-    <main id="panel">
         <header role="banner">
             <div class="gilroy_brand">
                 <?php if (!empty($linked_logo)) {
@@ -51,7 +50,7 @@
     </section>
   <?php endif; ?>
 
-  <main role="main" class="outer-wrapper">
+  <main id="panel" role="main" class="outer-wrapper">
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside id="sidebar-first" role="complementary" class="sidebar">
         <?php print render($page['sidebar_first']); ?>
