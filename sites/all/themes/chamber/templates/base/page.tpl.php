@@ -6,7 +6,7 @@
         ?>
     </div>
         <header role="banner">
-            <div class="default-neat-grid">
+            <div class="outer-wrapper">
                 <div class="gilroy_brand">
                     <?php if (!empty($linked_logo)) {
                         print $linked_logo;
