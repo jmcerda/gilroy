@@ -35,6 +35,7 @@ scripts[] = bower_components/slideout.js/dist/slideout.min.js
 scripts[] = js/jquery-flipster/dist/jquery.flipster.min.js
 scripts[] = js/slicknav/jquery.slicknav.js
 scripts[] = js/scripts.js
+scripts[] = js/custom.js
 
 
 ; This section lists the regions defined in the page.tpl.php. The name in
