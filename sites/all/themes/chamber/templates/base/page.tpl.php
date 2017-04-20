@@ -98,7 +98,7 @@
                     </div>
 <!--                </div>-->
 <!--                <div class="flex-box">-->
-                    <div>
+                    <div id="footer-contact">
                         <div class="foot_contact" itemscope itemtype="http://schema.org/LocalBusiness">
                             <h2><span itemprop="name">The Gilroy Chamber of Commerce</span></h2>
                             <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>

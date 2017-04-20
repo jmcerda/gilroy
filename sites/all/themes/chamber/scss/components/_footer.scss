@@ -46,7 +46,12 @@
       height: 3em;
     }
   }
-
+  #fumenu {
+    @include span-columns(7);
+  }
+  #footer-contact {
+    @include span-columns(5);
+  }
   .footer-bottom {
     p {
       color: $footer-disclaimer-color;
@@ -57,8 +62,9 @@
   }
 
   .copyright {
-    @include span-columns(4);
+    @include span-columns(12);
     padding-left: 1em;
+    margin: auto;
   }
 
   .utility-menu {
