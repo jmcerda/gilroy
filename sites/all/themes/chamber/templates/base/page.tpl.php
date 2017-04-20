@@ -5,27 +5,26 @@
         print theme('links__user_menu', array('links' => $menu));
         ?>
     </div>
-    <main id="panel">
-        <header role="banner">
-            <div class="gilroy_brand">
-                <?php if (!empty($linked_logo)) {
-                    print $linked_logo;
-                } ?>
-            </div>
-            <div id="gmenu">
-                <?php
-                $menu = menu_navigation_links('main-menu');
-                print theme('links__main_menu', array('links' => $menu));
-                ?>
-            </div>
-            <div id="gsearch">
-                <?php
-                $block = module_invoke('search', 'block_view');
-                print render($block['content']);
-                ?>
-            </div>
-            <?php print render($page['header']); ?>
-        </header>
+    <header role="banner">
+        <div class="gilroy_brand">
+            <?php if (!empty($linked_logo)) {
+                print $linked_logo;
+            } ?>
+        </div>
+        <div id="gmenu">
+            <?php
+            $menu = menu_navigation_links('main-menu');
+            print theme('links__main_menu', array('links' => $menu));
+            ?>
+        </div>
+        <div id="gsearch">
+            <?php
+            $block = module_invoke('search', 'block_view');
+            print render($block['content']);
+            ?>
+        </div>
+        <?php print render($page['header']); ?>
+    </header>
 
   <?php if (!empty($page['featured'])): ?>
     <section id="featured">
