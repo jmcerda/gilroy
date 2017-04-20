@@ -1,6 +1,7 @@
 @import "../../../neato/bower_components/neat/app/assets/stylesheets/neat-helpers";
 
 header {
+  height: 260px;
   background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #9F9170 100%); /* ff3.6+ */
   background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ffffff), color-stop(100%, #9F9170)); /* safari4+,chrome */
   background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #9F9170 100%); /* safari5.1+,chrome10+ */
