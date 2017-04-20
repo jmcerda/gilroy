@@ -263,10 +263,10 @@ function user_register_notify_admin_settings_form() {
       'user_register_notify_admin_delete' => t('Admin (account deleted)'),
       // Core - User module
       'user_register_admin_created' => t('Welcome (new user created by administrator)'),
-      'user_register_no_approval_required' => t('Welcome (awaiting approval)'),
+      'user_register_no_approval_required' => t('Welcome (no approval required)'),
       // If a user registered requiring admin approval, notify the admin, too.
       'user_register_pending_approval_admin' => t('Admin (user awaiting approval)'),
-      'user_register_pending_approval' => t('Welcome (no approval required)'),
+      'user_register_pending_approval' => t('Welcome (awaiting approval)'),
       'user_status_activated' => t('Account activation'),
       'user_status_blocked' => t('Account blocked'),
       'user_cancel_confirm' => t('Account cancellation confirmation'),
