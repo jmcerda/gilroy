@@ -6,24 +6,26 @@
         ?>
     </div>
         <header role="banner">
-            <div class="gilroy_brand">
-                <?php if (!empty($linked_logo)) {
-                    print $linked_logo;
-                } ?>
+            <div class="default-neat-grid">
+                <div class="gilroy_brand">
+                    <?php if (!empty($linked_logo)) {
+                        print $linked_logo;
+                    } ?>
+                </div>
+                <div id="gmenu">
+                    <?php
+                    $menu = menu_navigation_links('main-menu');
+                    print theme('links__main_menu', array('links' => $menu));
+                    ?>
+                </div>
+                <div id="gsearch">
+                    <?php
+                    $block = module_invoke('search', 'block_view');
+                    print render($block['content']);
+                    ?>
+                </div>
+                <?php print render($page['header']); ?>
             </div>
-            <div id="gmenu">
-                <?php
-                $menu = menu_navigation_links('main-menu');
-                print theme('links__main_menu', array('links' => $menu));
-                ?>
-            </div>
-            <div id="gsearch">
-                <?php
-                $block = module_invoke('search', 'block_view');
-                print render($block['content']);
-                ?>
-            </div>
-            <?php print render($page['header']); ?>
         </header>
 
   <?php if (!empty($page['featured'])): ?>
