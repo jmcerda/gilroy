@@ -1,0 +1,12 @@
+name = flipster
+description = This adds the Flipster jQuery plugin (https://github.com/drien/jquery-flipster). Thats all it does see the githup page for info on using it.
+core = 7.x
+
+; Information added by Drupal.org packaging script on 2014-10-18
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "flipster"
+datestamp = "1413658731"
+
+stylesheets[all][] = assets/flipster/dist/jquery.flipster.min.css
+scripts[] = assets/flipster/dist/jquery.flipster.min.js
