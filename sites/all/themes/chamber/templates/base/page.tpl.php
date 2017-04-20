@@ -25,9 +25,11 @@
                     ?>
                 </div>
                 <?php print render($page['header']); ?>
-                <?php print views_embed_view('front_page_hero_slider', 'block', $node->nid); ?>
             </div>
         </header>
+    <section id="fp-hero">
+        <?php print views_embed_view('front_page_hero_slider', 'block', $node->nid); ?>
+    </section>
 
   <?php if (!empty($page['featured'])): ?>
     <section id="featured">
