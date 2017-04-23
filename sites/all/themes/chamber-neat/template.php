@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * The primary PHP file for this theme.
- */
 
 /**
  * Implements template_preprocess_html().

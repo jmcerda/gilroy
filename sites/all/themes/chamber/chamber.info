@@ -1,58 +1,239 @@
-name = Chamber
-description = Custom sub-theme based on the the Neato base theme.
-screenshot = images/screenshot.jpg
-
+name = 'Chamber'
+description = Uses the Bootstrap Framework Sass source files and must be compiled (not for beginners).
 core = 7.x
-engine = phptemplate
-base theme = neato
+base theme = bootstrap
 
-; This section controls the CSS files for your theme. There are 3 different
-; things you can do with a "stylesheets" line:
-; - Add a new stylesheet for your theme.
-; - Override a module's stylesheet. If the stylesheet you are adding uses the
-;   same filename as a stylesheet from a Drupal core or contrib module, your CSS
-;   file will be used instead of the module's file.
-; - Remove a module's stylesheet. If you specify the name of a Drupal core or
-;   contrib module's stylesheets, Drupal will remove that stylesheet if you do
-;   NOT include a file with that name with your theme.
-;
-; stylesheets[MEDIA][] = FILE
-;
-; The "FILE" is the name of the stylesheet to add/override/remove.
-; The "MEDIA" in the first set of brackets is a media type or a media query.
-; Typical CSS media types include "all", "screen", "print", and "handheld". A
-; typical media query is "screen and (max-width: 320px)".
-;
-; CSS2.1 media types: http://www.w3.org/TR/CSS21/media.html#media-types
-; CSS3 media queries: http://www.w3.org/TR/css3-mediaqueries/
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Regions
+;;;;;;;;;;;;;;;;;;;;;
+
+regions[navigation]     = 'Navigation'
+regions[header]         = 'Top Bar'
+regions[highlighted]    = 'Highlighted'
+regions[help]           = 'Help'
+regions[content]        = 'Content'
+regions[sidebar_first]  = 'Primary'
+regions[sidebar_second] = 'Secondary'
+regions[footer]         = 'Footer'
+regions[page_top]       = 'Page top'
+regions[page_bottom]    = 'Page bottom'
+
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Theme Settings
+;;;;;;;;;;;;;;;;;;;;;
+
+; Container
+; --------------
+settings[bootstrap_fluid_container] = 0
+
+; Buttons
+; --------------
+settings[bootstrap_button_size] = ''
+settings[bootstrap_button_colorize] = 1
+settings[bootstrap_button_iconize] = 1
+
+; Images
+; --------------
+settings[bootstrap_image_shape] = ''
+settings[bootstrap_image_responsive] = 1
+
+; Tables
+; --------------
+settings[bootstrap_table_bordered] = 0
+settings[bootstrap_table_condensed] = 0
+settings[bootstrap_table_hover] = 1
+settings[bootstrap_table_striped] = 1
+settings[bootstrap_table_responsive] = 1
+
+; Breadcrumbs
+; --------------
+settings[bootstrap_breadcrumb] = 1
+settings[bootstrap_breadcrumb_home] = 0
+settings[bootstrap_breadcrumb_title] = 1
+
+; Navbar
+; --------------
+settings[bootstrap_navbar_position] = ''
+settings[bootstrap_navbar_inverse] = 0
+
+; Pager
+; --------------
+settings[bootstrap_pager_first_and_last] = 1
+
+; Region Wells
+; --------------
+settings[bootstrap_region_well-navigation] = ''
+settings[bootstrap_region_well-header] = ''
+settings[bootstrap_region_well-highlighted] = ''
+settings[bootstrap_region_well-help] = ''
+settings[bootstrap_region_well-content] = ''
+settings[bootstrap_region_well-sidebar_first] = 'well'
+settings[bootstrap_region_well-sidebar_second] = ''
+settings[bootstrap_region_well-footer] = ''
+
+; Anchors
+; --------------
+settings[bootstrap_anchors_fix] = 0
+settings[bootstrap_anchors_smooth_scrolling] = 0
+
+; Forms
+; --------------
+settings[bootstrap_forms_required_has_error] = 0
+settings[bootstrap_forms_has_error_value_toggle] = 1
+settings[bootstrap_forms_smart_descriptions] = 1
+settings[bootstrap_forms_smart_descriptions_limit] = 250
+settings[bootstrap_forms_smart_descriptions_allowed_tags] = 'b, code, em, i, kbd, span, strong'
+
+; Popovers
+; --------------
+settings[bootstrap_popover_enabled] = 1
+settings[bootstrap_popover_animation] = 1
+settings[bootstrap_popover_html] = 0
+settings[bootstrap_popover_placement] = 'right'
+settings[bootstrap_popover_selector] = ''
+settings[bootstrap_popover_trigger]['hover'] = 0
+settings[bootstrap_popover_trigger]['focus'] = 0
+settings[bootstrap_popover_trigger]['click'] = 'click'
+settings[bootstrap_popover_trigger_autoclose] = 1
+settings[bootstrap_popover_title] = ''
+settings[bootstrap_popover_content] = ''
+settings[bootstrap_popover_delay] = 0
+settings[bootstrap_popover_container] = 'body'
+
+; Tooltips
+; --------------
+settings[bootstrap_tooltip_enabled] = 1
+settings[bootstrap_tooltip_animation] = 1
+settings[bootstrap_tooltip_html] = 0
+settings[bootstrap_tooltip_placement] = 'auto left'
+settings[bootstrap_tooltip_selector] = ''
+settings[bootstrap_tooltip_trigger]['hover'] = 'hover'
+settings[bootstrap_tooltip_trigger]['focus'] = 'focus'
+settings[bootstrap_tooltip_trigger]['click'] = 0
+settings[bootstrap_tooltip_delay] = 0
+settings[bootstrap_tooltip_container] = 'body'
+
+; Advanced
+; --------------
+settings[bootstrap_cdn_provider] = 'jsdelivr'
+settings[bootstrap_cdn_custom_css] = 'https://cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.css'
+settings[bootstrap_cdn_custom_css_min] = 'https://cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css'
+settings[bootstrap_cdn_custom_js] = 'https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.js'
+settings[bootstrap_cdn_custom_js_min] = 'https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js'
+settings[bootstrap_cdn_jsdelivr_version] = '3.3.7'
+settings[bootstrap_cdn_jsdelivr_theme] = 'bootstrap'
+
+; Global
+; --------------
+settings[toggle_name] = 1
+settings[toggle_search] = 1
+
+; jQuery Update
+; --------------
+settings[jquery_update_jquery_version] = 2.1
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Excludes
+;;;;;;;;;;;;;;;;;;;;;
+
+; JavaScript
+; --------------
+; exclude[js][] = 'modules/contextual/contextual.js'
+
+; CSS
+; --------------
+; Necessary module CSS.
+
+;exclude[css][] = 'modules/block/block.css'
+;exclude[css][] = 'modules/node/node.css'
+;exclude[css][] = 'modules/system/admin.css'
+;exclude[css][] = 'modules/system/system.css'
+;exclude[css][] = 'modules/system/system.admin.css'
+;exclude[css][] = 'modules/system/system.base.css'
+
+exclude[css][] = 'misc/vertical-tabs.css'
+exclude[css][] = 'modules/aggregator/aggregator.css'
+exclude[css][] = 'modules/book/book.css'
+exclude[css][] = 'modules/comment/comment.css'
+exclude[css][] = 'modules/dblog/dblog.css'
+exclude[css][] = 'modules/file/file.css'
+exclude[css][] = 'modules/filter/filter.css'
+exclude[css][] = 'modules/forum/forum.css'
+exclude[css][] = 'modules/help/help.css'
+exclude[css][] = 'modules/menu/menu.css'
+exclude[css][] = 'modules/openid/openid.css'
+exclude[css][] = 'modules/poll/poll.css'
+exclude[css][] = 'modules/search/search.css'
+exclude[css][] = 'modules/statistics/statistics.css'
+exclude[css][] = 'modules/syslog/syslog.css'
+exclude[css][] = 'modules/system/maintenance.css'
+exclude[css][] = 'modules/system/system.maintenance.css'
+exclude[css][] = 'modules/system/system.menus.css'
+exclude[css][] = 'modules/system/system.messages.css'
+exclude[css][] = 'modules/system/system.theme.css'
+exclude[css][] = 'modules/taxonomy/taxonomy.css'
+exclude[css][] = 'modules/tracker/tracker.css'
+exclude[css][] = 'modules/update/update.css'
+exclude[css][] = 'modules/user/user.css'
+
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Breakpoints
+;;;;;;;;;;;;;;;;;;;;;
+breakpoints[screen-xs-max] = (max-width: 767px)
+breakpoints[screen-sm-min] = (min-width: 768px)
+breakpoints[screen-sm-max] = (max-width: 991px)
+breakpoints[screen-md-min] = (min-width: 992px)
+breakpoints[screen-md-max] = (max-width: 1199px)
+breakpoints[screen-lg-min] = (min-width: 1200px)
+; Multipiers
+multipliers[screen-xs-max][] = 1.5x
+multipliers[screen-xs-max][] = 2x
+multipliers[screen-sm-min][] = 1.5x
+multipliers[screen-sm-min][] = 2x
+multipliers[screen-sm-max][] = 1.5x
+multipliers[screen-sm-max][] = 2x
+multipliers[screen-md-min][] = 1.5x
+multipliers[screen-md-min][] = 2x
+multipliers[screen-md-max][] = 1.5x
+multipliers[screen-md-max][] = 2x
+multipliers[screen-lg-min][] = 1.5x
+multipliers[screen-lg-min][] = 2x
+
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Stylesheets
+;;;;;;;;;;;;;;;;;;;;;
 
 stylesheets[all][] = js/jquery-flipster/dist/jquery.flipster.css
-; Load the chamber.css file:
-stylesheets[all][] = css/chamber.css
+stylesheets[all][] = css/style.css
 
-scripts[] = bower_components/matchHeight/dist/jquery.matchHeight-min.js
-scripts[] = bower_components/slideout.js/dist/slideout.min.js
-;scripts[] = js/jquery-flipster/dist/jquery.flipster.min.js
-scripts[] = js/slicknav/jquery.slicknav.js
-scripts[] = js/custom.js
-scripts[] = js/scripts.js
 
-; This section lists the regions defined in the page.tpl.php. The name in
-; brackets is the machine name of the region. The text after the equals sign is
-; a descriptive text used on the admin/structure/blocks page.
-;
-; In the page.tpl.php, the contents of the region are output with a
-; $page['MACHINE-NAME'] variable. For example, with this line in the .info
-; file:
-;   regions[header] = Header
-; You'll use this variable in page.tpl.php:
-;   <?php print render($page['header']); ?>
+;;;;;;;;;;;;;;;;;;;;;
+;; Scripts
+;;;;;;;;;;;;;;;;;;;;;
 
-; Regions are output in the page.tpl.php
-regions[header]              = Header
-regions[featured]            = Featured
-regions[sidebar_first]       = Left Sidebar
-regions[content]             = Content
-regions[sidebar_second]      = Right Sidebar
-regions[footer_top]          = Footer Top
-regions[footer_bottom]       = Footer Bottom
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js'
+scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js'
+
+scripts[] = 'bower_components/matchHeight/dist/jquery.matchHeight-min.js'
+scripts[] = 'bower_components/slideout.js/dist/slideout.min.js'
+scripts[] = 'js/jquery-flipster/dist/jquery.flipster.min.js'
+scripts[] = 'js/slicknav/jquery.slicknav.js'
+scripts[] = 'js/custom.js'
+scripts[] = 'js/scripts.js'
+
+; Disable the CDN provider so compiled source files can be used.
+settings[bootstrap_cdn] = ''
