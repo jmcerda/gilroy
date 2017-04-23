@@ -3,7 +3,8 @@
 
 # Applications & Tools
 .idea
-
+bower_components/decouple
+bower_components/emitter-es6
 config.codekit
 node_modules
 npm-debug.log
