@@ -140,7 +140,7 @@
   <section class="footer-bottom">
       <div class="copyright">
           <p>
-              &copy; <?php print date('Y') . ' ' . t( 'The Gilroy Chamber of Commerce) . ' ' . t('All rights reserved.'); ?>
+              &copy; <?php print date('Y') . ' ' . t( 'The Gilroy Chamber of Commerce') . ' ' . t('All rights reserved.'); ?>
           </p>
       </div>
 
