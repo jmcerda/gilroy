@@ -7,10 +7,12 @@
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="<?php print $container_class; ?>">
     <div class="navbar-header">
+        <div class="col-sm-2 col-xs-12">
       <?php if ($logo): ?>
-        <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-        </a>
+            <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+              <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+            </a>
+        </div>
       <?php endif; ?>
 
       <?php if (!empty($site_name)): ?>
@@ -115,22 +117,22 @@
 <footer class="footer <?php print $container_class; ?>">
 <?php print render($page['footer']); ?>
   <section class="footer-top">
-      <div id="fumenu">
+      <div id="fumenu" class="col-sm-7 col-xs-12">
           <?php
           print render($main_menu_expanded);
           ?>
       </div>
       <div id="footer-contact">
-          <div class="foot_contact" itemscope itemtype="http://schema.org/LocalBusiness">
+          <div class="foot_contact col-sm-3 col-xs-12" itemscope itemtype="http://schema.org/LocalBusiness">
               <h2><span itemprop="name">The Gilroy Chamber of Commerce</span></h2>
               <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
               <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
               <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
           </div>
-          <div class="foot_logo">
+          <div class="foot_logo col-sm-2 col-xs-12">
               <?php
-              if (!empty($logo)) {
-                  print $logo;
+              if (!empty($linked_logo)) {
+                  print $linked_logo;
               }
               ?>
           </div>
