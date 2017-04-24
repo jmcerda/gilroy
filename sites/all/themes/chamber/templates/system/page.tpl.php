@@ -201,3 +201,17 @@
         </div>
     </div>
 </footer>
+<div class="footer-bottom">
+    <div class="copyright">
+        <p>
+            &copy; <?php print date('Y') . ' ' . $linked_site_name . ' ' . t('All rights reserved.'); ?>
+        </p>
+    </div>
+
+    <div class="utility-menu">
+        <ul>
+            <li><a href="/">Privacy Policy</a></li>
+            <li><a href="/">Terms of Service</a></li>
+        </ul>
+    </div>
+</div>
