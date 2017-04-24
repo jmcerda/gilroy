@@ -105,12 +105,12 @@
                     print render($block['content']);
                     ?>
                 </div>
-                <div id="gmenu-secondary" class="pull-right">
+                <div class="gmenu-secondary" class="pull-right">
                     <?php if (!empty($secondary_nav)): ?>
                         <?php print render($secondary_nav); ?>
                     <?php endif; ?>
                 </div>
-                <div id="gmenu-primary" class="pull-right">
+                <div class="gmenu-primary" class="pull-right">
                   <?php if (!empty($primary_nav)): ?>
                     <?php print render($primary_nav); ?>
                   <?php endif; ?>
@@ -206,7 +206,7 @@
 <div class="footer-bottom">
     <div class="copyright">
         <p>
-            &copy; <?php print date('Y') . ' ' . '|' . ' ' . t('The Gilroy Chamber of Commerce.') . ' ' . '|' . ' ' . t('All rights reserved.'); ?>
+            &copy; <?php print date('Y') . ' ' . '|' . ' ' . t('The Gilroy Chamber of Commerce,') . ' ' . t('All rights reserved.'); ?>
         </p>
     </div>
 
