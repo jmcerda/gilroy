@@ -217,3 +217,4 @@
         </ul>
     </div>
 </div>
+<a href="#" class="scrollToTop">Scroll To Top</a>
