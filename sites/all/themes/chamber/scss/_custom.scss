@@ -24,6 +24,13 @@
   height: 125px;
   width: auto;
 }
+.gsearch {
+  .btn {
+    -webkit-border-radius:15px;
+    -moz-border-radius:15px;
+    border-radius:15px;
+  }
+}
 .gmenu-primary, .gmenu-secondary {
   text-transform: uppercase;
 }

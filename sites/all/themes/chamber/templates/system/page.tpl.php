@@ -99,7 +99,7 @@
         <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
           <div class="navbar-collapse collapse" id="navbar-collapse">
             <nav role="navigation">
-                <div id="gsearch"class="col-sm-3 pull-right">
+                <div class="gsearch"class="col-sm-3 pull-right">
                     <?php
                     $block = module_invoke('search', 'block_view');
                     print render($block['content']);
