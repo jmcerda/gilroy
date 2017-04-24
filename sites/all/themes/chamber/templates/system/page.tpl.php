@@ -165,8 +165,32 @@
   </div>
 </div>
 
-<?php if (!empty($page['footer'])): ?>
-  <footer class="footer <?php print $container_class; ?>">
-    <?php print render($page['footer']); ?>
-  </footer>
-<?php endif; ?>
+<footer class="footer <?php print $container_class; ?>">
+    <div class="col-xs-12">
+        <?php print render($page['footer']); ?>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+        <div id="fumenu">
+            <?php
+            print render($main_menu_expanded);
+            ?>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="foot_contact" itemscope itemtype="http://schema.org/LocalBusiness">
+            <h2><span itemprop="name">The Gilroy Chamber of Commerce</span></h2>
+            <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
+            <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
+            <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
+        </div>
+    </div>
+    <div class="col-ms-2">
+        <div class="foot_logo">
+            <?php
+            if (!empty($linked_logo)) {
+                print $linked_logo;
+            }
+            ?>
+        </div>
+    </div>
+</footer>
