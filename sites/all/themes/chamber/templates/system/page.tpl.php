@@ -185,12 +185,10 @@
         </div>
     </div>
     <div class="col-sm-2">
-        <div class="foot_logo">
-            <?php if ($logo): ?>
-                <a class="logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-                </a>
-            <?php endif; ?>
-        </div>
+        <?php if ($logo): ?>
+            <a class="foot_logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+                <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+            </a>
+        <?php endif; ?>
     </div>
 </footer>
