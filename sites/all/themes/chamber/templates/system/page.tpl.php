@@ -107,9 +107,11 @@
             <?php if (!empty($secondary_nav)): ?>
                 <?php print render($secondary_nav); ?>
             <?php endif; ?>
-          <?php if (!empty($primary_nav)): ?>
-            <?php print render($primary_nav); ?>
-          <?php endif; ?>
+            <div id="gmenu" class="pull-right">
+              <?php if (!empty($primary_nav)): ?>
+                <?php print render($primary_nav); ?>
+              <?php endif; ?>
+            </div>
           <?php if (!empty($page['navigation'])): ?>
             <?php print render($page['navigation']); ?>
           <?php endif; ?>
