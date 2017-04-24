@@ -44,7 +44,7 @@
             });
 
             $('.chamber-flipster').flipster({
-                itemContainer: 'ul',
+                itemContainer: '.flipster-slide',
                 // [string|object]
                 // Selector for the container of the flippin' items.
 
