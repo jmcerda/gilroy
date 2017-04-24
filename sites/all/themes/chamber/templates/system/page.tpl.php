@@ -184,13 +184,13 @@
             <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
         </div>
     </div>
-    <div class="col-ms-2">
+    <div class="col-sm-2">
         <div class="foot_logo">
-            <?php
-            if (!empty($logo)) {
-                print $logo;
-            }
-            ?>
+            <?php if ($logo): ?>
+                <a class="logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+                </a>
+            <?php endif; ?>
         </div>
     </div>
 </footer>
