@@ -1,7 +1,19 @@
-.logo img {
-  height: 200px;
-  width: auto;
+.navbar-default {
+  border: 0;
+  background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #9F9170 100%); /* ff3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ffffff), color-stop(100%, #9F9170)); /* safari4+,chrome */
+  background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #9F9170 100%); /* safari5.1+,chrome10+ */
+  background: -o-radial-gradient(center, ellipse cover, #ffffff 0%, #9F9170 100%); /* opera 11.10+ */
+  background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%, #9F9170 100%); /* ie10+ */
+  background: radial-gradient(ellipse at center, #ffffff 0%, #9F9170 100%); /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#9F9170',GradientType=1 ); /* ie6-9 */
+  .logo img {
+    height: 200px;
+    width: auto;
+  }
 }
+
+
 
 footer {
   background: $brand-primary;
