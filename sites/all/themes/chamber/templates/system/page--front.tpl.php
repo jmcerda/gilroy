@@ -123,7 +123,9 @@
         <?php endif; ?>
       </div>
     </header>
-    <div class="container front-hero"><?php print views_embed_view('front_page_hero_slider', 'block'); ?></div>
+    <div class="container front-hero">
+        <?php print views_embed_view('front_page_hero_slider', 'block'); ?>
+    </div>
 </div>
 
 <div class="main-container <?php print $container_class; ?>">

@@ -92,3 +92,10 @@ footer {
     border-radius:50%;
   }
 }
+
+.view-featured-videos {
+  .player {
+    overflow: auto;
+    display: flex;
+  }
+}
