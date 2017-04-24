@@ -44,11 +44,11 @@
             });
 
             $('.chamber-flipster').flipster({
-                itemContainer: '.flipster-slide',
+                itemContainer: 'div',
                 // [string|object]
                 // Selector for the container of the flippin' items.
 
-                itemSelector: 'li',
+                itemSelector: '.flipster-slide',
                 // [string|object]
                 // Selector for children of `itemContainer` to flip
 
