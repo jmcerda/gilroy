@@ -181,14 +181,14 @@
         <div class="col-xs-12">
             <?php print render($page['footer']); ?>
         </div>
-        <div class="col-sm-6 col-xs-12">
+        <div class="equalHeight col-sm-6 col-xs-12">
             <div id="fumenu">
                 <?php
                 print render($main_menu_expanded);
                 ?>
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="equalHeight col-sm-3">
             <div class="foot_contact" itemscope itemtype="http://schema.org/LocalBusiness">
 <!--                <h5><span itemprop="name">The Gilroy Chamber of Commerce</span></h5>-->
                 <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
@@ -196,7 +196,7 @@
                 <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="equalHeight col-sm-2">
             <a class="foot_logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
                 <img src="sites/all/themes/chamber/images/logo_wh.png@2x.png" alt="<?php print t('Home'); ?>" />
             </a>

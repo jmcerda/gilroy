@@ -30,6 +30,10 @@
     -moz-border-radius:15px;
     border-radius:15px;
   }
+  .form-control {
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+  }
 }
 .gmenu-primary, .gmenu-secondary {
   text-transform: uppercase;
