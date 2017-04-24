@@ -123,7 +123,7 @@
         <?php endif; ?>
       </div>
     </header>
-    <div class="front-hero"><?php print views_embed_view('front_page_hero_slider', 'block'); ?></div>
+    <div class="front-hero chamber-flipster"><?php print views_embed_view('front_page_hero_slider', 'block'); ?></div>
 </div>
 
 <div class="main-container <?php print $container_class; ?>">
