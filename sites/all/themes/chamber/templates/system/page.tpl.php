@@ -74,7 +74,7 @@
  */
 ?>
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
-  <div>
+  <div class="<?php print $container_class; ?>">
     <div class="navbar-header">
       <?php if ($logo): ?>
         <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
@@ -166,29 +166,31 @@
 </div>
 
 <footer class="footer">
-    <div class="col-xs-12">
-        <?php print render($page['footer']); ?>
-    </div>
-    <div class="col-sm-6 col-xs-12">
-        <div id="fumenu">
-            <?php
-            print render($main_menu_expanded);
-            ?>
+    <div class="<?php print $container_class; ?>">
+        <div class="col-xs-12">
+            <?php print render($page['footer']); ?>
         </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="foot_contact" itemscope itemtype="http://schema.org/LocalBusiness">
-            <h2><span itemprop="name">The Gilroy Chamber of Commerce</span></h2>
-            <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
-            <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
-            <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
+        <div class="col-sm-6 col-xs-12">
+            <div id="fumenu">
+                <?php
+                print render($main_menu_expanded);
+                ?>
+            </div>
         </div>
-    </div>
-    <div class="col-sm-2">
-        <?php if ($logo): ?>
-            <a class="foot_logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-                <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-            </a>
-        <?php endif; ?>
+        <div class="col-sm-3">
+            <div class="foot_contact" itemscope itemtype="http://schema.org/LocalBusiness">
+                <h2><span itemprop="name">The Gilroy Chamber of Commerce</span></h2>
+                <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
+                <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
+                <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <?php if ($logo): ?>
+                <a class="foot_logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+                </a>
+            <?php endif; ?>
+        </div>
     </div>
 </footer>
