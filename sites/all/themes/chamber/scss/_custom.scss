@@ -42,33 +42,32 @@
 footer {
   background: $brand-primary;
   color: #fff;
-    h1, h2, h3, h4, h5, a {
-      color: #fff;
+  h1, h2, h3, h4, h5, a {
+    color: #fff;
+  }
+  .foot_logo {
+    color: #fff;
+    img {
+      max-width: 175px;
     }
-    .foot_logo {
-      color: #fff;
-      img {
-        max-width: 175px;
-      }
+  }
+  #fumenu li {
+    display: inline-block;
+  }
+  .contact-container {
+    position: relative;
+    .foot-contact {
+      position: absolute;
+      bottom: 0;
+      text-align: right;
+      right: 0;
+      padding-right: 2em;
     }
-    #fumenu li {
-      display: inline-block;
-    }
-    .contact-container {
-      position: relative;
-      .foot-contact {
-        position: absolute;
-        bottom: 0;
-        text-align: right;
-        right: 0;
-        padding-right: 2em;
-      }
-
-      .foot-logo-container {
-        padding-left: 2em;
-        border-left: 1px solid #fff;
-      }
-    }
+  }
+  .foot-logo-container {
+    border-left: 1px solid #fff;
+    padding-left: 2em;
+  }
 }
 
 .footer-bottom {
