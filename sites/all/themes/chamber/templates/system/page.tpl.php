@@ -206,7 +206,7 @@
 <div class="footer-bottom">
     <div class="copyright">
         <p>
-            &copy; <?php print date('Y') . ' ' . $linked_site_name . ' ' . t('All rights reserved.'); ?>
+            &copy; <?php print date('Y') . ' ' . t('The Gilroy Chamber of Commerce.') . ' ' . t('All rights reserved.'); ?>
         </p>
     </div>
 
