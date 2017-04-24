@@ -105,12 +105,12 @@
                     print render($block['content']);
                     ?>
                 </div>
-                <div id="gmenu" class="gmenu-secondary" class="pull-right">
+                <div id="gmenu" class="gmenu-secondary pull-right">
                     <?php if (!empty($secondary_nav)): ?>
                         <?php print render($secondary_nav); ?>
                     <?php endif; ?>
                 </div>
-                <div class="gmenu-primary" class="pull-right">
+                <div class="gmenu-primary pull-right">
                   <?php if (!empty($primary_nav)): ?>
                     <?php print render($primary_nav); ?>
                   <?php endif; ?>
