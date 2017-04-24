@@ -15,7 +15,7 @@
             $('.equalHeight').matchHeight();
 
             // SlickNav
-            $('.gmenu').slicknav({
+            $('#gmenu').slicknav({
                 label: 'LOGIN',
                 duration: 500,
                 easingOpen: "easeOutBounce", //available with jQuery UI

@@ -105,7 +105,7 @@
                     print render($block['content']);
                     ?>
                 </div>
-                <div class="gmenu-secondary" class="pull-right">
+                <div id="gmenu" class="gmenu-secondary" class="pull-right">
                     <?php if (!empty($secondary_nav)): ?>
                         <?php print render($secondary_nav); ?>
                     <?php endif; ?>
