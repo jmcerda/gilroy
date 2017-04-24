@@ -179,7 +179,7 @@
         </div>
         <div class="col-sm-3">
             <div class="foot_contact" itemscope itemtype="http://schema.org/LocalBusiness">
-                <h2><span itemprop="name">The Gilroy Chamber of Commerce</span></h2>
+                <h3><span itemprop="name">The Gilroy Chamber of Commerce</span></h3>
                 <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
                 <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
                 <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
