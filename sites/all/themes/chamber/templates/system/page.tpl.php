@@ -85,7 +85,7 @@
       <?php if (!empty($site_name)): ?>
         <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
       <?php endif; ?>
-        <div id="gsearch"class="col-sm-3">
+        <div id="gsearch"class="col-sm-3 pull-right">
             <?php
             $block = module_invoke('search', 'block_view');
             print render($block['content']);
