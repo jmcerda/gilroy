@@ -30,6 +30,9 @@ footer {
     }
     .foot_logo {
       color: #fff;
+      img {
+        max-width: 175px;
+      }
     }
   #fumenu li {
     display: inline-block;

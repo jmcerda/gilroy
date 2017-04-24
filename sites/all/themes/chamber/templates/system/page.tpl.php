@@ -73,9 +73,9 @@
  * @ingroup templates
  */
 ?>
-<header id="navbar" role="banner">
-  <div>
-    <div class="navbar-header">
+<header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
+    <div class="<?php print $container_class; ?>">
+        <div class="navbar-header">
       <?php if ($logo): ?>
         <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
           <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
