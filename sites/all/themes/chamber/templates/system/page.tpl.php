@@ -165,7 +165,7 @@
   </div>
 </div>
 
-<footer class="footer <?php print $container_class; ?>">
+<footer class="footer">
     <div class="col-xs-12">
         <?php print render($page['footer']); ?>
     </div>
