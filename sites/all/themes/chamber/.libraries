@@ -1,0 +1,281 @@
+{
+  "bootswatch": {
+    "3.0.0": [
+      "amelia",
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "flatly",
+      "journal",
+      "readable",
+      "simplex",
+      "slate",
+      "spacelab",
+      "united"
+    ],
+    "3.0.1": [
+      "amelia",
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "flatly",
+      "journal",
+      "readable",
+      "simplex",
+      "slate",
+      "spacelab",
+      "united"
+    ],
+    "3.0.2": [
+      "amelia",
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "flatly",
+      "journal",
+      "readable",
+      "simplex",
+      "slate",
+      "spacelab",
+      "united",
+      "yeti"
+    ],
+    "3.0.3": [
+      "amelia",
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "flatly",
+      "journal",
+      "readable",
+      "simplex",
+      "slate",
+      "spacelab",
+      "united",
+      "yeti"
+    ],
+    "3.1.0": [
+      "amelia",
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "flatly",
+      "journal",
+      "lumen",
+      "readable",
+      "simplex",
+      "slate",
+      "spacelab",
+      "superhero",
+      "united",
+      "yeti"
+    ],
+    "3.1.1": [
+      "amelia",
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "darkly",
+      "flatly",
+      "journal",
+      "lumen",
+      "readable",
+      "simplex",
+      "slate",
+      "spacelab",
+      "superhero",
+      "united",
+      "yeti"
+    ],
+    "3.2.0": [
+      "amelia",
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "darkly",
+      "flatly",
+      "journal",
+      "lumen",
+      "paper",
+      "readable",
+      "sandstone",
+      "simplex",
+      "slate",
+      "spacelab",
+      "superhero",
+      "united",
+      "yeti"
+    ],
+    "3.3.0": [
+      "amelia",
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "darkly",
+      "flatly",
+      "journal",
+      "lumen",
+      "paper",
+      "readable",
+      "sandstone",
+      "simplex",
+      "slate",
+      "spacelab",
+      "superhero",
+      "united",
+      "yeti"
+    ],
+    "3.3.1": [
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "darkly",
+      "flatly",
+      "journal",
+      "lumen",
+      "paper",
+      "readable",
+      "sandstone",
+      "simplex",
+      "slate",
+      "spacelab",
+      "superhero",
+      "united",
+      "yeti"
+    ],
+    "3.3.2": [
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "darkly",
+      "flatly",
+      "journal",
+      "lumen",
+      "paper",
+      "readable",
+      "sandstone",
+      "simplex",
+      "slate",
+      "spacelab",
+      "superhero",
+      "united",
+      "yeti"
+    ],
+    "3.3.4": [
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "darkly",
+      "flatly",
+      "journal",
+      "lumen",
+      "paper",
+      "readable",
+      "sandstone",
+      "simplex",
+      "slate",
+      "spacelab",
+      "superhero",
+      "united",
+      "yeti"
+    ],
+    "3.3.5": [
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "darkly",
+      "flatly",
+      "journal",
+      "lumen",
+      "paper",
+      "readable",
+      "sandstone",
+      "simplex",
+      "slate",
+      "spacelab",
+      "superhero",
+      "united",
+      "yeti"
+    ],
+    "3.3.6": [
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "darkly",
+      "flatly",
+      "journal",
+      "lumen",
+      "paper",
+      "readable",
+      "sandstone",
+      "simplex",
+      "slate",
+      "spacelab",
+      "superhero",
+      "united",
+      "yeti"
+    ],
+    "3.3.7": [
+      "cerulean",
+      "cosmo",
+      "cyborg",
+      "darkly",
+      "flatly",
+      "journal",
+      "lumen",
+      "paper",
+      "readable",
+      "sandstone",
+      "simplex",
+      "slate",
+      "spacelab",
+      "superhero",
+      "united",
+      "yeti"
+    ]
+  },
+  "bootstrap": {
+    "3.0.0": [
+      "bootstrap"
+    ],
+    "3.0.1": [
+      "bootstrap"
+    ],
+    "3.0.2": [
+      "bootstrap"
+    ],
+    "3.0.3": [
+      "bootstrap"
+    ],
+    "3.1.0": [
+      "bootstrap"
+    ],
+    "3.1.1": [
+      "bootstrap"
+    ],
+    "3.2.0": [
+      "bootstrap"
+    ],
+    "3.3.0": [
+      "bootstrap"
+    ],
+    "3.3.1": [
+      "bootstrap"
+    ],
+    "3.3.2": [
+      "bootstrap"
+    ],
+    "3.3.4": [
+      "bootstrap"
+    ],
+    "3.3.5": [
+      "bootstrap"
+    ],
+    "3.3.6": [
+      "bootstrap"
+    ],
+    "3.3.7": [
+      "bootstrap"
+    ]
+  }
+}

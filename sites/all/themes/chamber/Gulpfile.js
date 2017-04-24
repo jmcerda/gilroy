@@ -28,7 +28,7 @@ loadConfig();
  * This task generates CSS from all SCSS files and compresses them down.
  */
 gulp.task('sass', function () {
-  return gulp.src('./scss/**/*.scss')
+  return gulp.src('./scss/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({
       noCache: true,
@@ -129,10 +129,10 @@ gulp.task('watch', function() {
   // });
 
   // watch scss for changes and clear drupal theme cache on change
-  gulp.watch(['scss/**/*.scss'], ['sass', 'drush:cc']);
+  gulp.watch(['scss/*.scss'], ['sass']);
 
   // watch js for changes and clear drupal theme cache on change
-  gulp.watch(['js-src/**/*.js'], ['compress', 'drush:cc']);
+  //gulp.watch(['js-src/**/*.js'], ['compress', 'drush:cc']);
 
   // If user has not specified an override, assume tpl changes don't need to reload
   // if (config.tpl.rebuildOnChange) {
