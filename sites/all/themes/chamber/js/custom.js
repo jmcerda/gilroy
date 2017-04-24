@@ -12,7 +12,12 @@
             });
 
             // Equal heights
-            $('.equalHeight').matchHeight();
+            $('.equalHeight').matchHeight({
+                byRow: true,
+                property: 'height',
+                target: null,
+                remove: false
+            });
 
             // SlickNav
             $('#gmenu').slicknav({
