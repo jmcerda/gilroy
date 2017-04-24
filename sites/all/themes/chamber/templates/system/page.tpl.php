@@ -193,11 +193,9 @@
             </div>
         </div>
         <div class="col-sm-2">
-            <?php if ($logo): ?>
-                <a class="foot_logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-                </a>
-            <?php endif; ?>
+            <a class="foot_logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+                <img src="sites/all/themes/chamber/images/logo_wh.png@2x.png" alt="<?php print t('Home'); ?>" />
+            </a>
         </div>
     </div>
 </footer>
