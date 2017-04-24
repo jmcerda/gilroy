@@ -217,4 +217,4 @@
         </ul>
     </div>
 </div>
-<a href="#" class="scrollToTop pull-right">Scroll To Top</a>
+<div><a href="#" class="scrollToTop">Scroll To Top</a></div>
