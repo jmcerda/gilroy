@@ -24,7 +24,9 @@
   height: 125px;
   width: auto;
 }
-
+.gmenu-primary, .gmenu-secondary {
+  text-transform: uppercase;
+}
 
 footer {
   background: $brand-primary;

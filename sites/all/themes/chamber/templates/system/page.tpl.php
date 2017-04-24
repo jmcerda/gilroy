@@ -105,10 +105,12 @@
                     print render($block['content']);
                     ?>
                 </div>
-                <?php if (!empty($secondary_nav)): ?>
-                    <?php print render($secondary_nav); ?>
-                <?php endif; ?>
-                <div id="gmenu" class="pull-right">
+                <div id="gmenu-secondary" class="pull-right">
+                    <?php if (!empty($secondary_nav)): ?>
+                        <?php print render($secondary_nav); ?>
+                    <?php endif; ?>
+                </div>
+                <div id="gmenu-primary" class="pull-right">
                   <?php if (!empty($primary_nav)): ?>
                     <?php print render($primary_nav); ?>
                   <?php endif; ?>
@@ -188,7 +190,7 @@
         </div>
         <div class="col-sm-3">
             <div class="foot_contact" itemscope itemtype="http://schema.org/LocalBusiness">
-                <h3><span itemprop="name">The Gilroy Chamber of Commerce</span></h3>
+<!--                <h5><span itemprop="name">The Gilroy Chamber of Commerce</span></h5>-->
                 <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
                 <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
                 <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
