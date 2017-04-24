@@ -188,13 +188,13 @@
                 ?>
             </div>
         </div>
-        <div class="equalHeight col-sm-3">
-            <div class="foot_contact" itemscope itemtype="http://schema.org/LocalBusiness">
+        <div class="contact-container equalHeight col-sm-3">
+            <span class="foot-contact" itemscope itemtype="http://schema.org/LocalBusiness">
 <!--                <h5><span itemprop="name">The Gilroy Chamber of Commerce</span></h5>-->
                 <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
                 <span itemprop="telephone"><a href="tel:+14088426437">T: 408.842.6437</a></span><br>
                 <span itemprop="telephone"><a href="tel:+14088426010">F: 408.842.6010</a></span>
-            </div>
+            </span>
         </div>
         <div class="equalHeight col-sm-2">
             <a class="foot_logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
