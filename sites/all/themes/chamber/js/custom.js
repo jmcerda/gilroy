@@ -4,12 +4,12 @@
         attach: function (context, settings) {
 
             // Mobile slideout  menu
-            var slideout = new Slideout({
-                'panel': document.getElementById('panel'),
-                'menu': document.getElementById('umenu'),
-                'padding': 256,
-                'tolerance': 70
-            });
+            // var slideout = new Slideout({
+            //     'panel': document.getElementById('panel'),
+            //     'menu': document.getElementById('umenu'),
+            //     'padding': 256,
+            //     'tolerance': 70
+            // });
 
             // Equal heights
             $('.equalHeight').matchHeight({
@@ -20,12 +20,12 @@
             });
 
             // SlickNav
-            $('#gmenu').slicknav({
-                label: 'LOGIN',
-                duration: 500,
-                easingOpen: "easeOutBounce", //available with jQuery UI
-                // prependTo:'#demo2'
-            });
+            // $('#gmenu').slicknav({
+            //     label: 'LOGIN',
+            //     duration: 500,
+            //     easingOpen: "easeOutBounce", //available with jQuery UI
+            //     // prependTo:'#demo2'
+            // });
 
             //Scroll to top
             //Check to see if the window is top if not then display button

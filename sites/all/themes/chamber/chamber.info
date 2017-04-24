@@ -46,10 +46,10 @@ scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js
 scripts[] = 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js'
 
 scripts[] = 'bower_components/matchHeight/dist/jquery.matchHeight-min.js'
-scripts[] = 'bower_components/slideout.js/dist/slideout.min.js'
+;scripts[] = 'bower_components/slideout.js/dist/slideout.min.js'
 ;scripts[] = 'js/jquery-flipster/dist/jquery.flipster.min.js'
-scripts[] = 'js/slicknav/jquery.slicknav.js'
-scripts[] = 'js/scripts.js'
+;scripts[] = 'js/slicknav/jquery.slicknav.js'
+;scripts[] = 'js/scripts.js'
 scripts[] = 'js/custom.js'
 
 ; Disable the CDN provider so compiled source files can be used.
