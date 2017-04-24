@@ -1,5 +1,4 @@
 #gilroy-head-wrap {
-  height: 200px;
   background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #cfc190 100%); /* ff3.6+ */
   background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ffffff), color-stop(100%, #CFC190)); /* safari4+,chrome */
   background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #CFC190 100%); /* safari5.1+,chrome10+ */
@@ -15,7 +14,7 @@
 }
 .navbar.container, .navbar.container-fluid {
   margin-top: 0;
-  padding-top: 1.5em;
+  padding: 1.5em 0;
 }
 .navbar-default {
   border: 0;
@@ -41,5 +40,17 @@ footer {
     }
   #fumenu li {
     display: inline-block;
+  }
+}
+
+.copyright {
+  text-align: center;
+}
+
+.utility-menu {
+  text-align: center;
+  li {
+    display: inline;
+    list-style: none;
   }
 }
