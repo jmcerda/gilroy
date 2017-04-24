@@ -85,12 +85,6 @@
       <?php if (!empty($site_name)): ?>
         <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
       <?php endif; ?>
-        <div id="gsearch"class="col-sm-3 pull-right">
-            <?php
-            $block = module_invoke('search', 'block_view');
-            print render($block['content']);
-            ?>
-        </div>
       <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
           <span class="sr-only"><?php print t('Toggle navigation'); ?></span>
@@ -104,11 +98,17 @@
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
       <div class="navbar-collapse collapse" id="navbar-collapse">
         <nav role="navigation">
+            <div id="gsearch"class="col-sm-3 pull-right">
+                <?php
+                $block = module_invoke('search', 'block_view');
+                print render($block['content']);
+                ?>
+            </div>
+            <?php if (!empty($secondary_nav)): ?>
+                <?php print render($secondary_nav); ?>
+            <?php endif; ?>
           <?php if (!empty($primary_nav)): ?>
             <?php print render($primary_nav); ?>
-          <?php endif; ?>
-          <?php if (!empty($secondary_nav)): ?>
-            <?php print render($secondary_nav); ?>
           <?php endif; ?>
           <?php if (!empty($page['navigation'])): ?>
             <?php print render($page['navigation']); ?>
