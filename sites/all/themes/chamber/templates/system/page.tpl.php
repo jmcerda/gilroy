@@ -187,8 +187,8 @@
     <div class="col-ms-2">
         <div class="foot_logo">
             <?php
-            if (!empty($linked_logo)) {
-                print $linked_logo;
+            if (!empty($logo)) {
+                print $logo;
             }
             ?>
         </div>
