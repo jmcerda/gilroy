@@ -38,10 +38,16 @@
 .gmenu-primary {
   clear: right;
   text-transform: uppercase;
+  li.active-trail {
+    background-color: transparent;
+  }
 }
 
 .gmenu-secondary {
   text-transform: uppercase;
+  li.active-trail {
+    background-color: transparent;
+  }
 }
 
 footer {
