@@ -125,7 +125,7 @@
     </header>
     <div class="page-hero">
 
-            <?php $hero_featured_image = field_view_field('fieldable_panels_pane', 'page_hero', 'field_image', 'default', 'UND');
+            <?php $hero_featured_image = field_view_field('fieldable-panels-pane', 'page_hero', 'field_image', array('label'=>'hidden'));
             print render($hero_featured_image);?>
 
     </div>
