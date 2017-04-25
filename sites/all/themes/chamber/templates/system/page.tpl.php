@@ -123,12 +123,7 @@
         <?php endif; ?>
       </div>
     </header>
-    <div class="page-hero">
-
-            <?php $hero_featured_image = field_view_field('fieldable-panels-pane', 'page_hero', 'field_image');
-            print render($hero_featured_image);?>
-
-    </div>
+    <div class="page-hero"></div>
 </div>
 
 <div class="main-container <?php print $container_class; ?>">
