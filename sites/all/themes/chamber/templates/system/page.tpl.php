@@ -125,7 +125,7 @@
     </header>
     <div class="page-hero">
 
-            <?php $hero_featured_image = field_view_field('fieldable-panels-pane', 'page_hero', 'field_image', 'full';
+            <?php $hero_featured_image = field_view_field('fieldable-panels-pane', 'page_hero', 'field_image', 'full' );
             print render($hero_featured_image);?>
 
     </div>
