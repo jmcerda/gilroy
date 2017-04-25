@@ -124,10 +124,10 @@
       </div>
     </header>
     <div class="page-hero">
-        <?php if (!empty($page['field_image'])): ?>
+
             <?php $hero_featured_image = field_view_field('fieldable_panels_pane', 'page_hero', 'field_image', array('label'=>'hidden'));
             print render($hero_featured_image);?>
-        <?php endif; ?>
+
     </div>
 </div>
 
