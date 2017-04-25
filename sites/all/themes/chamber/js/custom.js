@@ -10,7 +10,8 @@
             //     'padding': 256,
             //     'tolerance': 70
             // });
-            $("#panels-ipe-paneid-10").unwrap();
+
+            $('#panels-ipe-paneid-10').contents().unwrap();
 
             // Equal heights
             $('.equalHeight').matchHeight({
