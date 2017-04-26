@@ -23,10 +23,3 @@ function geocoder_uninstall() {
   variable_del('geocoder_cache_empty_results');
   variable_del('geocoder_cache_ttl');
 }
-
-/**
- * Create geocoder's caching table.
- */
-function geocoder_update_7101() {
-  drupal_install_schema('geocoder');
-}
