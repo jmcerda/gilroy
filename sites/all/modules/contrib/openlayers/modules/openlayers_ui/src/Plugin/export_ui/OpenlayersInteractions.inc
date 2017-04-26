@@ -168,9 +168,7 @@ function openlayers_interaction_form_options_submit($form, &$form_state) {
 
   if (($interaction = \Drupal\openlayers\Openlayers::load('Interaction', $form_state['item'])) == TRUE) {
     if (!empty($form_state['item']->attachToMap) && ($map = \Drupal\openlayers\Openlayers::load('map', $form_state['item']->attachToMap)) == TRUE) {
-      $interactions = $map->getOption('interactions', array());
-      $interactions[] = $interaction->getMachineName();
-      $map->setOption('interactions', $interactions);
+      $map->getCollection()->append($interaction);
       \Drupal\openlayers\Openlayers::save($map);
       unset($form_state['item']->attachToMap);
     }

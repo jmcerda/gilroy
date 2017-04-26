@@ -68,14 +68,14 @@ class OLMap extends Map {
 
     $form['options']['view']['center'] = array(
       '#tree' => TRUE,
-      'lon' => array(
-        '#type' => 'textfield',
-        '#title' => t('Longitude (X axis)'),
-        '#default_value' => $this->getOption(array('view', 'center', 'lon'), 0),
-      ),
       'lat' => array(
         '#type' => 'textfield',
-        '#title' => t('Latitude (Y axis)'),
+        '#title' => t('Latitude'),
+        '#default_value' => $this->getOption(array('view', 'center', 'lat'), 0),
+      ),
+      'lon' => array(
+        '#type' => 'textfield',
+        '#title' => t('Longitude'),
         '#default_value' => $this->getOption(array('view', 'center', 'lat'), 0),
       ),
     );

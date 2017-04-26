@@ -5,10 +5,11 @@
  */
 
 namespace Drupal\openlayers_geofield\Plugin\Component\GeofieldWidget;
-
+use Drupal\openlayers\Component\Annotation\OpenlayersPlugin;
 use Drupal\openlayers\Openlayers;
 use Drupal\openlayers\Plugin\Source\Vector\Vector;
 use Drupal\openlayers\Types\Component;
+use Drupal\openlayers\Types\LayerInterface;
 use Drupal\openlayers\Types\ObjectInterface;
 use geoPHP;
 
@@ -27,7 +28,7 @@ class GeofieldWidget extends Component {
     $form['options']['dataType'] = array(
       '#type' => 'checkboxes',
       '#title' => t('Data type'),
-      '#description' => t('If multiple, a control to select the type to use is displayed when drawing.'),
+      '#description' => t('If more than one type is choosen a control to select the type to use is displayed when drawing.'),
       '#multiple' => TRUE,
       '#options' => array(
         'GeoJSON' => 'GeoJSON',
@@ -125,7 +126,6 @@ class GeofieldWidget extends Component {
    *
    * @return array
    *   An array containing the Geometry and the features.
-   *
    * @throws \exception
    */
   private function initialDataToGeomFeatures() {
@@ -275,5 +275,4 @@ class GeofieldWidget extends Component {
       $build['parameters'][$this->getPluginId()] = $component;
     }
   }
-
 }

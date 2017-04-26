@@ -165,10 +165,8 @@ function openlayers_map_form_layers($form, &$form_state) {
   foreach ($map->getOption('layers', array()) as $weight => $layer) {
     /** @var Drupal\openlayers\Types\LayerInterface $layer */
     $layer = \Drupal\openlayers\Openlayers::load('layer', $layer);
-    if (isset($all_layers[$layer->getMachineName()])) {
-      $all_layers[$layer->getMachineName()]->setWeight($weight);
-      $all_layers[$layer->getMachineName()]->enabled = 1;
-    }
+    $all_layers[$layer->getMachineName()]->setWeight($weight);
+    $all_layers[$layer->getMachineName()]->enabled = 1;
   }
 
   uasort($all_layers, function(\Drupal\openlayers\Types\LayerInterface $a, \Drupal\openlayers\Types\LayerInterface $b) {
@@ -197,58 +195,10 @@ function openlayers_map_form_layers($form, &$form_state) {
   $i = 0;
   /** @var \Drupal\openlayers\Types\Layer $layer */
   foreach ($all_layers as $machine_name => $layer) {
-    $operations = array();
-
-    $operations[] =
-      l(t('Edit layer'), 'admin/structure/openlayers/layers/list/' . $layer->getMachineName() . '/edit/options',
-        array(
-          'query' => array(
-            'destination' => current_path(),
-          ),
-        )
-      );
-
-    if ($source = $layer->getSource()) {
-      $operations[] =
-        l(t('Edit source'), 'admin/structure/openlayers/sources/list/' . $source->getMachineName() . '/edit/options',
-          array(
-            'query' => array(
-              'destination' => current_path(),
-            ),
-          )
-        );
-      $source = (array) $source->getExport();
-      $source_properties = array(
-        t('@name (<em>@machine_name</em>)', array('@name' => $source['name'], '@machine_name' => $source['machine_name'])),
-        t('Factory service: <em>@factory_service</em>', array('@factory_service' => $source['factory_service'])),
-      );
-    }
-    else {
-      $source = array();
-      $source_properties = array(
-        t('Undefined'),
-      );
-    }
-
-    $source += array(
-      'name' => t('Undefined'),
-      'machine_name' => t('Undefined'),
-      'factory_service' => t('Undefined'),
-    );
-
-    $operations = implode('<br/>', $operations);
-
-    $layer_properties = array(
-      t('@name (<em>@machine_name</em>)', array('@name' => $layer->getName(), '@machine_name' => $layer->getMachineName())),
-      t('Factory service: <em>@factory_service</em>', array('@factory_service' => $layer->getFactoryService())),
-    );
-
     $data[$machine_name] = array(
-      'layer_properties' => implode('<br/>', $layer_properties),
-      'source_properties' => implode('<br/>', $source_properties),
+      'name' => $layer->getName(),
       'machine_name' => $layer->getMachineName(),
       'factory_service' => $layer->getFactoryService(),
-      'operations' => $operations,
       'weight' => $i++,
       'enabled' => isset($layer->enabled) ? $layer->enabled : 0,
       'default' => 1,
@@ -300,9 +250,16 @@ function openlayers_map_form_layers($form, &$form_state) {
             '#parents' => array('layers', $id, 'style'),
           ),
         ),
-        $entry['layer_properties'],
-        $entry['source_properties'],
-        $entry['operations'],
+        check_plain($entry['name']),
+        check_plain($entry['machine_name']),
+        check_plain($entry['factory_service']),
+        l(t('Edit'), 'admin/structure/openlayers/layers/list/' . $entry['machine_name'] . '/edit/options',
+          array(
+            'query' => array(
+              'destination' => current_path(),
+            ),
+          )
+        ),
       ),
       'class' => array('draggable'),
     );
@@ -325,9 +282,10 @@ function openlayers_map_form_layers($form, &$form_state) {
       // We need two empty columns for the weigth field and the cross.
       array('data' => NULL, 'colspan' => 2),
       array('data' => t('Enabled'), 'colspan' => 2),
-      array('data' => t('Layer style'), 'colspan' => 1),
-      t('Layer properties'),
-      t('Source properties'),
+      array('data' => t('Style'), 'colspan' => 1),
+      t('Name'),
+      t('Machine name'),
+      t('Factory service'),
       t('Operations'),
     ),
     '#rows' => $rows,
@@ -685,8 +643,7 @@ function openlayers_map_form_components($form, &$form_state) {
             '#attributes' => array(
               'class' => array('entry-order-weight'),
             ),
-          ),
-        ),
+          )),
         array(
           'data' => array(
             '#type' => 'checkbox',
@@ -694,8 +651,7 @@ function openlayers_map_form_components($form, &$form_state) {
             '#title_display' => 'invisible',
             '#default_value' => $entry['enabled'],
             '#parents' => array('components', $id, 'enabled'),
-          ),
-        ),
+          )),
         check_plain($entry['name']),
         check_plain($entry['machine_name']),
         check_plain($entry['description']),
@@ -774,8 +730,6 @@ function openlayers_map_form_preview($form, &$form_state) {
 
   $alternative_template = 'openlayers--' . str_replace('_', '-', $map->getMachineName()) . '.tpl.php';
 
-  $value = file_get_contents(drupal_get_path('module', 'openlayers') . '/theme/openlayers.tpl.php');
-
   $form['information']['theme'] = array(
     '#weight' => 20,
     '#type' => 'fieldset',
@@ -785,9 +739,8 @@ function openlayers_map_form_preview($form, &$form_state) {
     'template_content' => array(
       '#title' => 'Openlayers map template',
       '#type' => 'textarea',
-      '#default_value' => $value,
-      '#value' => $value,
-      '#description' => t("The default Openlayers template is <strong>openlayers.tpl.php</strong> for all the maps. You may override it by creating a file with the same name in your theme template's directory. You can also name it <em>openlayers--[map_machine_name].tpl.php</em> if you want to alter the display of this particular map only. For example: <strong>@template</strong>.", array('@template' => $alternative_template)),
+      '#default_value' => file_get_contents(drupal_get_path('module', 'openlayers') . '/theme/openlayers.tpl.php'),
+      '#description' => t('The default Openlayers template is <strong>openlayers.tpl.php</strong> for all the maps. You may override it by creating a file with the same name in your theme template\'s directory. You can also name it <em>openlayers--[map_machine_name].tpl.php</em> if you want to alter the display of this particular map only. For example: <strong>@template</strong>.', array('@template' => $alternative_template)),
     ),
   );
 

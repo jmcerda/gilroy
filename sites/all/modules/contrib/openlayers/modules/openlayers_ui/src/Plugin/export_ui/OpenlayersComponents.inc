@@ -168,9 +168,7 @@ function openlayers_component_form_options_submit($form, &$form_state) {
 
   if (($component = \Drupal\openlayers\Openlayers::load('Component', $form_state['item'])) == TRUE) {
     if (!empty($form_state['item']->attachToMap) && ($map = \Drupal\openlayers\Openlayers::load('map', $form_state['item']->attachToMap)) == TRUE) {
-      $components = $map->getOption('layers', array());
-      $components[] = $component->getMachineName();
-      $map->setOption('components', $components);
+      $map->getCollection()->append($component);
       \Drupal\openlayers\Openlayers::save($map);
       unset($form_state['item']->attachToMap);
     }

@@ -6,9 +6,9 @@ package = "Openlayers"
 dependencies[] = openlayers
 dependencies[] = quicktabs
 
-; Information added by Drupal.org packaging script on 2017-01-31
-version = "7.x-3.1+82-dev"
+; Information added by Drupal.org packaging script on 2016-01-03
+version = "7.x-3.1"
 core = "7.x"
 project = "openlayers"
-datestamp = "1485861187"
+datestamp = "1451782149"
 

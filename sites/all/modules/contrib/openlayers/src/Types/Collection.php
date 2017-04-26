@@ -7,6 +7,10 @@
 namespace Drupal\openlayers\Types;
 
 use Drupal\Component\Plugin\PluginBase;
+use Drupal\openlayers\Component\Annotation\OpenlayersPlugin;
+use Drupal\openlayers\Openlayers;
+use Drupal\openlayers\Types\Object;
+
 
 /**
  * Class Collection.

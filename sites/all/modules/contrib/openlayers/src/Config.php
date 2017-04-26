@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * Class Config.
+ * Class openlayers_config.
  */
 
 namespace Drupal\openlayers;
 
 /**
- * Class Config.
+ * Class openlayers_config.
  */
 class Config {
 
@@ -26,6 +26,7 @@ class Config {
       'openlayers.js_css.weight' => 20,
       'openlayers.js_css.media' => 'screen',
       'openlayers.edit_view_map' => 'openlayers_map_view_edit_form',
+      'openlayers.default_ui_map' => 'openlayers_map_ui_default',
       'openlayers.variant' => 'local:3.11.2',
       'openlayers.debug' => 0,
     );
@@ -48,7 +49,7 @@ class Config {
    *   The configuration value.
    */
   static public function get($parents, $default_value = NULL) {
-    $options = \Drupal::service('variable')->get('openlayers_config', array());
+    $options = \Drupal::service('variable')->get('openlayers_config');
 
     if (is_string($parents)) {
       $parents = explode('.', $parents);
@@ -57,7 +58,7 @@ class Config {
     if (is_array($parents)) {
       $notfound = FALSE;
       foreach ($parents as $parent) {
-        if (array_key_exists($parent, $options)) {
+        if (isset($options[$parent])) {
           $options = $options[$parent];
         }
         else {
@@ -70,8 +71,7 @@ class Config {
       }
     }
 
-    $value = Config::defaults(implode('.', $parents));
-    if (isset($value)) {
+    if ($value = Config::defaults(implode('.', $parents))) {
       return $value;
     }
 
