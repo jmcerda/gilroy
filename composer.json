@@ -1,0 +1,48 @@
+{
+    "require": {
+        "php": ">=5.3.10",
+        "willdurand/geocoder": "^3.3",
+        "phayes/geophp": "^1.2",
+        "thinkshout/mailchimp-api-php": ">=1.0.6"
+    },
+    "config": {
+        "autoloader-suffix": "ComposerManager",
+        "vendor-dir": "sites/all/vendor"
+    },
+    "prefer-stable": true,
+    "autoload": {
+        "psr-0": {
+            "Drupal\\Component\\": [
+                "sites/all/modules/contrib/service_container/lib"
+            ],
+            "Drupal\\Core\\": [
+                "sites/all/modules/contrib/service_container/lib"
+            ],
+            "ServiceContainer": [
+                "sites/all/modules/contrib/service_container/lib"
+            ],
+            "Drupal": [
+                "sites/all/modules/contrib/service_container/lib"
+            ],
+            "Symfony\\Component\\DependencyInjection": [
+                "sites/all/modules/contrib/service_container/lib"
+            ],
+            "Psr": [
+                "sites/all/modules/contrib/service_container/lib"
+            ]
+        },
+        "psr-4": {
+            "Drupal\\service_container\\": [
+                "sites/all/modules/contrib/service_container/src"
+            ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Drupal\\service_container\\Tests\\": [
+                "sites/all/modules/contrib/service_container/tests/src"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
