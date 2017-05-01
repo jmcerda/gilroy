@@ -45,7 +45,7 @@
             $('.coverflow').coverflow({
                 // duration: 'slow',
                 density: 5,
-                index: 3,
+                // index: 3,
             });
             // $('.chamber-flipster').flipster({
             //     itemContainer: 'div',
