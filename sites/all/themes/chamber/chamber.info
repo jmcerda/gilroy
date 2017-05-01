@@ -53,7 +53,7 @@ scripts[] = 'bower_components/matchHeight/dist/jquery.matchHeight-min.js'
 ;scripts[] = 'js/scripts.js'
 
 ; CoverflowJS
-scripts[] = 'js/coverflow/dist/coverflow.js
+scripts[] = 'js/coverflow/dist/coverflow.js'
 stylesheets[all][] = js/coverflow/dist/coverflow.css
 
 
