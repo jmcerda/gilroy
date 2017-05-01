@@ -44,7 +44,7 @@
             });
 
             $('.coverflowjs').coverflow({
-                active: 2,
+                active: 5,
                 select: function(event, ui){
                     console.log('here');
                 }
