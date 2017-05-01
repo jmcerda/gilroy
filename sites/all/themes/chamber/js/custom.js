@@ -42,7 +42,7 @@
                 $('html, body').animate({scrollTop : 0},800);
                 return false;
             });
-            $('.coverflow_inc').coverflow();
+            $('.coverflow-inc').coverflow();
             // $('.chamber-flipster').flipster({
             //     itemContainer: 'div',
             //     // [string|object]
