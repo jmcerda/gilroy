@@ -43,7 +43,7 @@
                 return false;
             });
             $('.coverflow').coverflow({
-                duration: 'slow',
+                // duration: 'slow',
                 density: 5,
                 // index: 3,
             });
