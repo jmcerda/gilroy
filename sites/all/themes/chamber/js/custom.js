@@ -43,8 +43,8 @@
                 return false;
             });
             $('.coverflow').coverflow({
-                duration: 'slow',
-                density: 5,
+                // duration: 'slow',
+                // density: 5,
                 // index: 3,
             });
             // $('.chamber-flipster').flipster({
