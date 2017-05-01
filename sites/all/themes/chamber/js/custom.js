@@ -42,11 +42,37 @@
                 $('html, body').animate({scrollTop : 0},800);
                 return false;
             });
-            $('.coverflow').coverflow({
+
+            $('.coverflowjs').coverflow({
+                active: 2,
+                select: function(event, ui){
+                    console.log('here');
+                }
+            });
+
+            $('.coverflowjs .cover').click(function() {
+                if( ! $(this).hasClass('ui-state-active')){
+                    return;
+                }
+
+                $('.coverflowjs').coverflow('next');
+
+
+            });
+
+
+
+
+
+
+
+
+
+            // $('.coverflow').coverflow({
                 // duration: 'slow',
                 // density: 5,
                 // index: 5,
-            });
+            // });
             // $('.chamber-flipster').flipster({
             //     itemContainer: 'div',
             //     // [string|object]
