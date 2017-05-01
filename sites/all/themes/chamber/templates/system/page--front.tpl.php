@@ -123,7 +123,7 @@
         <?php endif; ?>
       </div>
     </header>
-    <div id="coverflow" class="container front-hero">
+    <div class="container front-hero">
         <?php print views_embed_view('front_page_hero_slider', 'block'); ?>
     </div>
 </div>
