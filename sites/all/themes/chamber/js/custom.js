@@ -50,7 +50,7 @@
                 }
             });
 
-            $('.coverflowjs .cover').click(function() {
+            $('.coverflowjs img').click(function() {
                 if( ! $(this).hasClass('ui-state-active')){
                     return;
                 }
