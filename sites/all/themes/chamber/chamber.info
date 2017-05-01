@@ -26,7 +26,6 @@ regions[page_bottom]    = 'Page bottom'
 ;;;;;;;;;;;;;;;;;;;;;
 
 ;stylesheets[all][] = js/jquery-flipster/dist/jquery.flipster.css
-;stylesheets[all][] = js/coverflow/dist/coverflow.css
 stylesheets[all][] = css/style.css
 
 
@@ -52,10 +51,19 @@ scripts[] = 'bower_components/matchHeight/dist/jquery.matchHeight-min.js'
 ;scripts[] = 'js/jquery-flipster/dist/jquery.flipster.min.js'
 ;scripts[] = 'js/slicknav/jquery.slicknav.js'
 ;scripts[] = 'js/scripts.js'
-scripts[] = 'bower_components/coverflow/jquery.interpolate.min.js'
-scripts[] = 'bower_components/coverflow/jquery.touchSwipe.min.js'
-scripts[] = 'bower_components/coverflow/reflection.js'
-scripts[] = 'bower_components/coverflow/jquery.coverflow.js'
+
+; CoverflowJS
+scripts[] = 'js/coverflow/dist/coverflow.js
+stylesheets[all][] = js/coverflow/dist/coverflow.css
+
+
+; Coverflow
+;scripts[] = 'bower_components/coverflow/jquery.interpolate.min.js'
+;scripts[] = 'bower_components/coverflow/jquery.touchSwipe.min.js'
+;scripts[] = 'bower_components/coverflow/reflection.js'
+;scripts[] = 'bower_components/coverflow/jquery.coverflow.js'
+
+; Custom
 scripts[] = 'js/custom.js'
 
 ; Disable the CDN provider so compiled source files can be used.
