@@ -37,11 +37,12 @@ $circlesize: 100px;
     background: $brand-primary;
     color: #fff;
     position: relative;
-    border-top-left-radius: 90%;
-    border-top-right-radius: 90%;
     width: 100%;
     height: auto;
     padding-top: 20%;
+    border-radius: 50% / 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     a {
       color: #fff;
       &hover {
