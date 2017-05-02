@@ -7,9 +7,9 @@
 $plugin = array(
   'title' => t('Three Columns Stacked'),
   'category' => t('Chamber'),
-  'icon' => 'bootstrap_threecol_stacked.png',
-  'theme' => 'bootstrap_threecol_stacked',
-  'admin css' => '../panels-bootstrap-layouts-admin.css',
+  'icon' => 'chamber_threecol_stacked.png',
+  'theme' => 'chamber_threecol_stacked',
+  'admin css' => '../../../modules/contrib/panels_bootstrap_layouts/plugins/layouts/panels-bootstrap-layouts-admin.css',
   'regions' => array(
     'top' => t('Top'),
     'left' => t('Left side'),
