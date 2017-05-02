@@ -116,7 +116,7 @@ footer {
 }
 
 
-#do-business div {
+#do-business div[class^="col-"], #do-business div[class*=" col-"] {
   margin: auto;
   float: none;
 }
