@@ -6,7 +6,7 @@
 // Plugin definition
 $plugin = array(
   'title' => t('Three Columns Stacked'),
-  'category' => t('Bootstrap'),
+  'category' => t('Chamber'),
   'icon' => 'bootstrap_threecol_stacked.png',
   'theme' => 'bootstrap_threecol_stacked',
   'admin css' => '../panels-bootstrap-layouts-admin.css',
