@@ -210,18 +210,19 @@
           </div>
       </div>
   </div>
-    <div id="fp-benefits-slider">
-        <?php print views_embed_view('sliders', 'benefits'); ?>
+</div>
+
+<div id="fp-benefits-slider">
+    <?php print views_embed_view('sliders', 'benefits'); ?>
+</div>
+<div id="partners-nav">
+    <div class="container">
+        PARTNERS
     </div>
-    <div id="partners-nav">
-        <div class="container">
-            PARTNERS
-        </div>
-    </div>
-    <div id="fp-ads-slider">
-        <div class="container">
-            <?php print views_embed_view('sliders', 'ads'); ?>
-        </div>
+</div>
+<div id="fp-ads-slider">
+    <div class="container">
+        <?php print views_embed_view('sliders', 'ads'); ?>
     </div>
 </div>
 
