@@ -7,7 +7,7 @@
 $plugin = array(
   'title' => t('Three Columns Stacked'),
   'category' => t('Chamber'),
-  'icon' => 'chamber_threecol_stacked.png',
+  'icon' => 'chamber_onecol_stacked.png',
   'theme' => 'chamber_threecol_stacked',
   'admin css' => '../../../modules/contrib/panels_bootstrap_layouts/plugins/layouts/panels-bootstrap-layouts-admin.css',
   'regions' => array(
