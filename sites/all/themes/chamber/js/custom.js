@@ -53,7 +53,7 @@
                 style: 'carousel',
                 spacing: -0.5,
                 nav: true,
-                buttons: true,
+                buttons: true
                 // itemContainer: 'div',
                 // // [string|object]
                 // // Selector for the container of the flippin' items.
