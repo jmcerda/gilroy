@@ -8,7 +8,8 @@
  */
 ?>
 
-  <span class="block-icons"><img src="sites/all/themes/chamber/images/calendar.svg" </span><h3>UPCOMING EVENTS</h3>
+    <span class="block-icons col-sm-2 col-xs-12"><img src="sites/all/themes/chamber/images/calendar.svg" </span>
+    <span class="col-sm-10 col-xs-12"><h3>UPCOMING EVENTS</h3></span>
 
 <?php foreach ($rows as $id => $row): ?>
   <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
