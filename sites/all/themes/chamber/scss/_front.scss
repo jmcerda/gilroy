@@ -68,5 +68,11 @@ $circlesize: 100px;
     margin: 1em auto;
     display: inline;
   }
+  .featured-videos-video {
+    .player {
+      width: 100%;
+      height:auto;
+    }
+  }
 }
 
