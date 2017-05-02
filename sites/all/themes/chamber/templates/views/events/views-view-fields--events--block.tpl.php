@@ -34,8 +34,8 @@
   </div>
   <div class="upcoming-events-block-right">
     <div class="upcoming-events-title">
-        <?php print (!empty($fields['title_field'])) ?
-            $fields['title_field']->content : ''; ?>
+        <?php print (!empty($fields['title'])) ?
+            $fields['title']->content : ''; ?>
     </div>
     <div class="upcoming-events-time">
         <?php print (!empty($fields['field_date_1'])) ?
