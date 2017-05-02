@@ -6,10 +6,10 @@
  */
 // Plugin definition.
 $plugin = array(
-  'title' => t('Single column'),
+  'title' => t('Single column stacked'),
   'category' => t('Columns: 1'),
-  'icon' => 'onecol.png',
-  'theme' => 'panels_onecol',
-  'css' => 'onecol.css',
+  'icon' => 'chamber_onecol.png',
+  'theme' => 'chamber_onecol',
+  'css' => 'chamber_onecol.css',
   'regions' => array('middle' => t('Middle column')),
 );
