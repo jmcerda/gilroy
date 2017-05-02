@@ -5,7 +5,7 @@
     </div>
   <?php endif ?>
 
-  <?php if ($content['left'] || $content['middle'] || $content['right']): ?>
+  <?php if ($content['middle']): ?>
     <div class="row"> <!-- @TODO: Add extra classes -->
       <?php print $content['middle']; ?>
     </div>
