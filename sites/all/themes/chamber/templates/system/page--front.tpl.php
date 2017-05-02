@@ -165,6 +165,7 @@
     </section>
       <div id="fp-business">
           <div class="col-sm-7 col-xs-12">
+              <img src="sites/all/themes/chamber/images/ShakingHands.svg">
               <h3 class="rtecenter">LETS DO BUSINESS TOGETHER</h3>
 
               <p class="rtecenter">The Gilroy Chamber of Commerce is dedicated to supporting our members success and promoting a thriving business environment in the community of Gilroy, California.</p>
