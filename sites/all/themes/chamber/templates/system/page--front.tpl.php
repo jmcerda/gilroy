@@ -162,7 +162,7 @@
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
       <?php print render($page['content']); ?>
-        <div id="fp-mid-section">
+        <div id="fp-mid-section" class="container">
             <div class="col-sm-9 col-xs-12 utilities">
                 <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
                     <a href="directory">
