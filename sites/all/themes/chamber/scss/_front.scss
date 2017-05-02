@@ -5,5 +5,12 @@
   .utilities {
     margin:auto;
     text-align: center;
+    .utility-item {
+      background: $brand-warning;
+      -webkit-border-radius:50%;
+      -moz-border-radius:50%;
+      border-radius:50%;
+      padding:1em;
+    }
   }
 }
