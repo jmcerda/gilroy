@@ -139,6 +139,30 @@
   </header> <!-- /#page-header -->
 
   <div class="row">
+      <div id="fp-mid-section">
+          <div class="container">
+              <div class="col-sm-9 col-xs-12 utilities">
+                  <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
+                      <a href="directory">
+                          <img src="sites/all/themes/chamber/images/magnifying_glass_wh@2x.png">
+                          SEARCH BUSINESS DIRECTORY
+                      </a>
+                  </div>
+                  <div class="col-sm-3 col-xs-12 utility-item membership-link equalHeight">
+                      <a href="about/membership">
+                          <img src="sites/all/themes/chamber/images/member_wh@2x.png">
+                          BECOME A MEMBER
+                      </a>
+                  </div>
+                  <div class="col-sm-3 col-xs-12 utility-item gallery-link equalHeight">
+                      <a href="events/gallery">
+                          <img src="sites/all/themes/chamber/images/camera_wh@2x.png">
+                          VIEW PHOTO GALLERY
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
 
     <section<?php print $content_column_class; ?>>
       <?php if (!empty($page['highlighted'])): ?>
