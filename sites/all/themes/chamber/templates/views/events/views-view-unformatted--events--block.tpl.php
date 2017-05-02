@@ -15,8 +15,10 @@
         <h3>UPCOMING EVENTS</h3>
     </span>
 </div>
+<div class="col-xs-12 fp-event-content">
 <?php foreach ($rows as $id => $row): ?>
   <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
     <?php print $row; ?>
   </div>
 <?php endforeach; ?>
+</div>
