@@ -162,6 +162,18 @@
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
       <?php print render($page['content']); ?>
+        <div id="fp-business">
+            <div class="col-sm-7 col-xs-12">
+                <h3 class="rtecenter">LETS DO BUSINESS TOGETHER</h3>
+
+                <p class="rtecenter">The Gilroy Chamber of Commerce is dedicated to supporting our members success and promoting a thriving business environment in the community of Gilroy, California.</p>
+
+                <p class="rtecenter">Become a member today to build your business network, enjoy exclusive member benefits , and be a part of this vibrant community with a spice for life!</p>
+            </div>
+        </div>
+        <div id="fp-benefits-slider">
+            <?php print views_embed_view('sliders', 'benefits'); ?>
+        </div>
         <div id="fp-mid-section" class="container">
             <div class="col-xs-12">
                 <div class="col-sm-9 col-xs-12 utilities">
@@ -187,16 +199,18 @@
             </div>
         </div>
         <div class="container">
-            <div class="col-sm-6 col-xs-12">
+            <div id="fp-events" class="col-sm-6 col-xs-12">
                 <?php print views_embed_view('events', 'block'); ?>
 
             </div>
-            <div class="col-sm-6 col-xs-12">
+            <div id="fp-video" class="col-sm-6 col-xs-12">
                 <?php print views_embed_view('featured_videos', 'block'); ?>
             </div>
         </div>
     </section>
-
+      <div id="fp-ads-slider">
+          <?php print views_embed_view('sliders', 'ads'); ?>
+      </div>
   </div>
 </div>
 
