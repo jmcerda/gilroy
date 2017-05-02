@@ -202,7 +202,7 @@
   </div>
 </div>
 <div id="fp-events-video">
-    <div class="container">
+    <div class="events-container container">
         <div class="fp-events">
             <div class="col-sm-6 col-xs-12">
                 <?php print views_embed_view('events', 'block'); ?>
