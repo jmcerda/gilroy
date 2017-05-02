@@ -38,9 +38,7 @@ $circlesize: 100px;
     color: #fff;
     border-top-left-radius: $circlesize * 2;
     border-top-right-radius: $circlesize * 2;
-    .events-container {
-      margin-top: 3em;
-    }
+    padding-top: 4em;
     a {
       color: #fff;
       &hover {
