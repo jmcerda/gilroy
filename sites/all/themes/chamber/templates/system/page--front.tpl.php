@@ -199,19 +199,22 @@
               </div>
           </div>
       </div>
-      <div id="fp-events">
-          <div class="container">
-              <div class="col-sm-6 col-xs-12">
-                  <?php print views_embed_view('events', 'block'); ?>
-              </div>
-              <div id="fp-video" class="col-sm-6 col-xs-12">
-                  <?php print views_embed_view('featured_videos', 'block'); ?>
-              </div>
-          </div>
-      </div>
   </div>
 </div>
-
+<div id="fp-events-video">
+    <div class="container">
+        <div class="fp-events">
+            <div class="col-sm-6 col-xs-12">
+                <?php print views_embed_view('events', 'block'); ?>
+            </div>
+        </div>
+        <div class="fp-video">
+            <div class="col-sm-6 col-xs-12">
+                <?php print views_embed_view('featured_videos', 'block'); ?>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="fp-benefits-slider">
     <?php print views_embed_view('sliders', 'benefits'); ?>
 </div>
