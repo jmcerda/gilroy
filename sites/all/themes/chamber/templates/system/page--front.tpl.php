@@ -167,19 +167,19 @@
                 <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
                     <a href="directory">
                         <img src="sites/all/themes/chamber/images/magnifying_glass_wh@2x.png">
-                        SEARCH BUSINESS DIRECTORY
+                        <span>SEARCH BUSINESS DIRECTORY</span>
                     </a>
                 </div>
                 <div class="col-sm-3 col-xs-12 utility-item membership-link equalHeight">
                     <a href="about/membership">
                         <img src="sites/all/themes/chamber/images/member_wh@2x.png">
-                        BECOME A MEMBER
+                        <span>BECOME A MEMBER</span>
                     </a>
                 </div>
                 <div class="col-sm-3 col-xs-12 utility-item gallery-link equalHeight">
                     <a href="events/gallery">
                         <img src="sites/all/themes/chamber/images/camera_wh@2x.png">
-                        VIEW PHOTO GALLERY
+                        <span>VIEW PHOTO GALLERY</span>
                     </a>
                 </div>
             </div>
