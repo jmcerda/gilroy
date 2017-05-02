@@ -1,3 +1,5 @@
+$circlesize: 100px;
+
 .front {
   #gilroy-head-wrap {
     height: 550px;
@@ -34,6 +36,8 @@
   #fp-events-video {
     background: $brand-primary;
     color: #fff;
+    border-top-left-radius: $circlesize * 2;
+    border-top-right-radius: $circlesize * 2;
     .events-container {
       margin-top: 3em;
     }
