@@ -40,9 +40,9 @@ $circlesize: 100px;
     width: 100%;
     height: auto;
     padding-top: 20%;
-    border-radius: 50% / 100%;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    //border-radius: 50% / 100%;
+    border-top-left-radius: 100%35px;
+    border-top-right-radius: 100%35px;
     a {
       color: #fff;
       &hover {
