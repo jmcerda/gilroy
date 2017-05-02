@@ -162,54 +162,64 @@
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
       <?php print render($page['content']); ?>
-        <div id="fp-business">
-            <div class="col-sm-7 col-xs-12">
-                <h3 class="rtecenter">LETS DO BUSINESS TOGETHER</h3>
-
-                <p class="rtecenter">The Gilroy Chamber of Commerce is dedicated to supporting our members success and promoting a thriving business environment in the community of Gilroy, California.</p>
-
-                <p class="rtecenter">Become a member today to build your business network, enjoy exclusive member benefits , and be a part of this vibrant community with a spice for life!</p>
-            </div>
-        </div>
-        <div id="fp-benefits-slider">
-            <?php print views_embed_view('sliders', 'benefits'); ?>
-        </div>
-        <div id="fp-mid-section" class="container">
-            <div class="col-xs-12">
-                <div class="col-sm-9 col-xs-12 utilities">
-                    <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
-                        <a href="directory">
-                            <img src="sites/all/themes/chamber/images/magnifying_glass_wh.svg">
-                            <span>SEARCH BUSINESS DIRECTORY</span>
-                        </a>
-                    </div>
-                    <div class="col-sm-3 col-xs-12 utility-item membership-link equalHeight">
-                        <a href="about/membership">
-                            <img src="sites/all/themes/chamber/images/member_wh.svg">
-                            <span>BECOME A MEMBER</span>
-                        </a>
-                    </div>
-                    <div class="col-sm-3 col-xs-12 utility-item gallery-link equalHeight">
-                        <a href="events/gallery">
-                            <img src="sites/all/themes/chamber/images/camera_wh.svg">
-                            <span>VIEW PHOTO GALLERY</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div id="fp-events" class="col-sm-6 col-xs-12">
-                <?php print views_embed_view('events', 'block'); ?>
-
-            </div>
-            <div id="fp-video" class="col-sm-6 col-xs-12">
-                <?php print views_embed_view('featured_videos', 'block'); ?>
-            </div>
-        </div>
     </section>
+      <div id="fp-business">
+          <div class="col-sm-7 col-xs-12">
+              <h3 class="rtecenter">LETS DO BUSINESS TOGETHER</h3>
+
+              <p class="rtecenter">The Gilroy Chamber of Commerce is dedicated to supporting our members success and promoting a thriving business environment in the community of Gilroy, California.</p>
+
+              <p class="rtecenter">Become a member today to build your business network, enjoy exclusive member benefits , and be a part of this vibrant community with a spice for life!</p>
+          </div>
+      </div>
+      <div id="fp-mid-section">
+          <div class="container">
+              <div class="col-xs-12">
+                  <div class="col-sm-9 col-xs-12 utilities">
+                      <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
+                          <a href="directory">
+                              <img src="sites/all/themes/chamber/images/magnifying_glass_wh.svg">
+                              <span>SEARCH BUSINESS DIRECTORY</span>
+                          </a>
+                      </div>
+                      <div class="col-sm-3 col-xs-12 utility-item membership-link equalHeight">
+                          <a href="about/membership">
+                              <img src="sites/all/themes/chamber/images/member_wh.svg">
+                              <span>BECOME A MEMBER</span>
+                          </a>
+                      </div>
+                      <div class="col-sm-3 col-xs-12 utility-item gallery-link equalHeight">
+                          <a href="events/gallery">
+                              <img src="sites/all/themes/chamber/images/camera_wh.svg">
+                              <span>VIEW PHOTO GALLERY</span>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div id="fp-events">
+          <div class="container">
+              <div class="col-sm-6 col-xs-12">
+                  <?php print views_embed_view('events', 'block'); ?>
+              </div>
+              <div id="fp-video" class="col-sm-6 col-xs-12">
+                  <?php print views_embed_view('featured_videos', 'block'); ?>
+              </div>
+          </div>
+      </div>
+      <div id="fp-benefits-slider">
+          <?php print views_embed_view('sliders', 'benefits'); ?>
+      </div>
+      <div id="partners-nav">
+          <div class="container">
+              PARTNERS
+          </div>
+      </div>
       <div id="fp-ads-slider">
-          <?php print views_embed_view('sliders', 'ads'); ?>
+          <div class="container">
+            <?php print views_embed_view('sliders', 'ads'); ?>
+          </div>
       </div>
   </div>
 </div>
