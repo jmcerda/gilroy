@@ -222,7 +222,7 @@
     </div>
 </div>
 <div id="fp-benefits-slider">
-    <?php print views_embed_view('sliders', 'benefits'); ?>
+    <?pit hp print views_embed_view('sliders', 'benefits'); ?>
 </div>
 <div id="partners-nav">
     <div class="container">
