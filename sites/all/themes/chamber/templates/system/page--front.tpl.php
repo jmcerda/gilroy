@@ -227,7 +227,12 @@
 <div id="partners-nav">
     <div class="container">
         <div class="row">
-        PARTNERS
+            <div id="divWheelnav" data-wheelnav data-wheelnav-slicepath="WheelSlice" data-wheelnav-colors="#D80351,#F5D908,#00A3EE,#929292">
+                <div data-wheelnav-navitemicon="smile">smile</div>
+                <div data-wheelnav-navitemicon="star">star</div>
+                <div data-wheelnav-navitemicon="fork">fork</div>
+                <div data-wheelnav-navitemicon="$">donate</div>
+            </div>
         </div>
     </div>
 </div>

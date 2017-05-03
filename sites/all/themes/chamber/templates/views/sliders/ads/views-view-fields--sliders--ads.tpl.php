@@ -24,13 +24,23 @@
  * @ingroup views_templates
  */
 ?>
-<?php foreach ($fields as $id => $field): ?>
-  <?php if (!empty($field->separator)): ?>
-    <?php print $field->separator; ?>
-  <?php endif; ?>
+<div class="ad-slider-block">
+  <div class="ad-slider-block-left col-sm-6 col-xs-12">
+    <div class="ad-slider-image">
+        <?php print (!empty($fields['field_image'])) ?
+            $fields['field_image']->content : '';
+        ?>
+    </div>
+  </div>
+  <div class="ad-slider-block-right col-sm-6 col-xs-12">
+    <div class="ad-slider-logo">
+        <?php print (!empty($fields['field_logo'])) ?
+            $fields['field_logo']->content : ''; ?>
+    </div>
+    <div class="ad-slider-description">
+        <?php print (!empty($fields['description_field'])) ?
+            $fields['description_field']->content : ''; ?>
+    </div>
+  </div>
+</div>
 
-  <?php print $field->wrapper_prefix; ?>
-    <?php print $field->label_html; ?>
-    <?php print $field->content; ?>
-  <?php print $field->wrapper_suffix; ?>
-<?php endforeach; ?>

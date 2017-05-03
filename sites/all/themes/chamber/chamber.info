@@ -62,6 +62,9 @@ scripts[] = 'js/jquery-flipster/dist/jquery.flipster.min.js'
 ;scripts[] = 'bower_components/coverflow/reflection.js'
 ;scripts[] = 'bower_components/coverflow/jquery.coverflow.js'
 
+
+; Wheelnav
+scripts[] = 'bower_components/wheelnav/js/dist/wheelnav.min.js'
 ; Custom
 scripts[] = 'js/custom.js'
 
