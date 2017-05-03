@@ -25,7 +25,7 @@
  */
 ?>
 
-<div class="row fp-background-cover">
+<div id="benefits-slider" class="row fp-background-cover">
     <?php print (!empty($fields['field_image'])) ?
         $fields['field_image']->content : '';
     ?>
