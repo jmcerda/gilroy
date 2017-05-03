@@ -79,6 +79,14 @@ $circlesize: 100px;
     .slide-image {
       position: fixed;
     }
+    .carousel-indicators {
+      li {
+        background: $brand-secondary;
+      }
+      li.active {
+        background: $brand-warning;
+      }
+    }
   }
   #fp-ads-slider {
     height: 700px;
