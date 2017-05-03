@@ -39,7 +39,7 @@
     <?php print (!empty($fields['field_image'])) ?
         $fields['field_image']->content : '';
     ?>
-    <div class="benefits-info">
+    <span class="benefits-info">
       <h3>
         <?php print (!empty($fields['title'])) ?
             $fields['title']->content : '';
@@ -49,5 +49,5 @@
             $fields['field_feed_item_description']->content : '';
         ?>
 
-    </div>
+    </span>
 </div>
