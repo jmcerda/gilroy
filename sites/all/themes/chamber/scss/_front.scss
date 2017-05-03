@@ -76,6 +76,9 @@ $circlesize: 100px;
   }
   #benefits-slider {
     height: 400px;
+    .slide-image {
+      position: fixed;
+    }
   }
   #fp-ads-slider {
     height: 700px;
@@ -99,7 +102,7 @@ $circlesize: 100px;
     -moz-border-radius:50%;
     border-radius:50%;
     background: #fff;
-    opacity: 0.5;
+    opacity: 0.75;
     margin: 4em auto;
     padding: 4em;
     text-align: center;
