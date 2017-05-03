@@ -35,7 +35,7 @@
   <?php print $field->wrapper_suffix; ?>
 <?php endforeach; ?>
 
-<div class="fp-background-cover">
+<div class="row fp-background-cover">
     <?php print (!empty($fields['field_image'])) ?
         $fields['field_image']->content : '';
     ?>
