@@ -81,10 +81,10 @@ $circlesize: 100px;
     }
     .carousel-indicators {
       li {
-        background: $brand-secondary;
+        background-color: $brand-secondary;
       }
       li.active {
-        background: $brand-warning;
+        background-color: $brand-warning;
       }
     }
   }
