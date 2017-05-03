@@ -203,12 +203,12 @@
 </div>
 <div id="fp-events-video">
     <div class="events-container container">
-        <div class="fp-events">
+        <div class="fp-events equalHeight">
             <div class="col-sm-6 col-xs-12">
                 <?php print views_embed_view('events', 'block'); ?>
             </div>
         </div>
-        <div class="fp-video">
+        <div class="fp-video equalHeight">
             <div class="col-sm-6 col-xs-12">
                 <?php print views_embed_view('featured_videos', 'block'); ?>
             </div>

@@ -29,8 +29,8 @@
         <?php print (!empty($fields['field_video_embed'])) ?
             $fields['field_video_embed']->content : ''; ?>
     </div>
-    <div class="featured-videos-description">
-        <?php print (!empty($fields['field_video_embed_description'])) ?
-            $fields['field_video_embed_description']->content : ''; ?>
-    </div>
+<!--    <div class="featured-videos-description">-->
+<!--        --><?php //print (!empty($fields['field_video_embed_description'])) ?
+//            $fields['field_video_embed_description']->content : ''; ?>
+<!--    </div>-->
 </div>
