@@ -166,33 +166,39 @@
       <div class="section-one">
           <div id="fp-business">
               <div class="container block-container">
-                  <img src="sites/all/themes/chamber/images/ShakingHands.svg">
-                  <h3 class="rtecenter">LETS DO BUSINESS TOGETHER</h3>
+                  <div class="row">
+                      <img src="sites/all/themes/chamber/images/ShakingHands.svg">
+                      <h3 class="rtecenter">LETS DO BUSINESS TOGETHER</h3>
 
-                  <p class="rtecenter">The Gilroy Chamber of Commerce is dedicated to supporting our members success and promoting a thriving business environment in the community of Gilroy, California.</p>
+                      <p class="rtecenter">The Gilroy Chamber of Commerce is dedicated to supporting our members success and promoting a thriving business environment in the community of Gilroy, California.</p>
 
-                  <p class="rtecenter">Become a member today to build your business network, enjoy exclusive member benefits , and be a part of this vibrant community with a spice for life!</p>
+                      <p class="rtecenter">Become a member today to build your business network, enjoy exclusive member benefits , and be a part of this vibrant community with a spice for life!</p>
+                  </div>
               </div>
           </div>
           <div id="fp-mid-nav">
               <div class="utilities">
-                  <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
-                      <a href="directory">
-                          <img src="sites/all/themes/chamber/images/magnifying_glass_wh.svg">
-                          <span>SEARCH BUSINESS DIRECTORY</span>
-                      </a>
-                  </div>
-                  <div class="col-sm-3 col-xs-12 utility-item membership-link equalHeight">
-                      <a href="about/membership">
-                          <img src="sites/all/themes/chamber/images/member_wh.svg">
-                          <span>BECOME A MEMBER</span>
-                      </a>
-                  </div>
-                  <div class="col-sm-3 col-xs-12 utility-item gallery-link equalHeight">
-                      <a href="events/gallery">
-                          <img src="sites/all/themes/chamber/images/camera_wh.svg">
-                          <span>VIEW PHOTO GALLERY</span>
-                      </a>
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
+                              <a href="directory">
+                                  <img src="sites/all/themes/chamber/images/magnifying_glass_wh.svg">
+                                  <span>SEARCH BUSINESS DIRECTORY</span>
+                              </a>
+                          </div>
+                          <div class="col-sm-3 col-xs-12 utility-item membership-link equalHeight">
+                              <a href="about/membership">
+                                  <img src="sites/all/themes/chamber/images/member_wh.svg">
+                                  <span>BECOME A MEMBER</span>
+                              </a>
+                          </div>
+                          <div class="col-sm-3 col-xs-12 utility-item gallery-link equalHeight">
+                              <a href="events/gallery">
+                                  <img src="sites/all/themes/chamber/images/camera_wh.svg">
+                                  <span>VIEW PHOTO GALLERY</span>
+                              </a>
+                          </div>
+                      </div>
                   </div>
               </div>
           </div>
@@ -201,14 +207,16 @@
 </div>
 <div id="fp-events-video">
     <div class="events-container container">
-        <div class="fp-events equalHeight">
-            <div class="col-sm-6 col-xs-12">
-                <?php print views_embed_view('events', 'block'); ?>
+        <div class="row">
+            <div class="fp-events equalHeight">
+                <div class="col-sm-6 col-xs-12">
+                    <?php print views_embed_view('events', 'block'); ?>
+                </div>
             </div>
-        </div>
-        <div class="fp-video equalHeight">
-            <div class="col-sm-6 col-xs-12">
-                <?php print views_embed_view('featured_videos', 'block'); ?>
+            <div class="fp-video equalHeight">
+                <div class="col-sm-6 col-xs-12">
+                    <?php print views_embed_view('featured_videos', 'block'); ?>
+                </div>
             </div>
         </div>
     </div>
@@ -218,12 +226,16 @@
 </div>
 <div id="partners-nav">
     <div class="container">
+        <div class="row">
         PARTNERS
+        </div>
     </div>
 </div>
 <div id="fp-ads-slider">
     <div class="container">
-        <?php print views_embed_view('sliders', 'ads'); ?>
+        <div class="row">
+            <?php print views_embed_view('sliders', 'ads'); ?>
+        </div>
     </div>
 </div>
 
