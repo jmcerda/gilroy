@@ -163,37 +163,39 @@
       <?php endif; ?>
       <?php print render($page['content']); ?>
     </section>
-      <div id="fp-business">
-          <div class="col-sm-7 col-xs-12">
-              <img src="sites/all/themes/chamber/images/ShakingHands.svg">
-              <h3 class="rtecenter">LETS DO BUSINESS TOGETHER</h3>
+      <div class="section-one">
+          <div id="fp-business">
+              <div class="col-sm-7 col-xs-12">
+                  <img src="sites/all/themes/chamber/images/ShakingHands.svg">
+                  <h3 class="rtecenter">LETS DO BUSINESS TOGETHER</h3>
 
-              <p class="rtecenter">The Gilroy Chamber of Commerce is dedicated to supporting our members success and promoting a thriving business environment in the community of Gilroy, California.</p>
+                  <p class="rtecenter">The Gilroy Chamber of Commerce is dedicated to supporting our members success and promoting a thriving business environment in the community of Gilroy, California.</p>
 
-              <p class="rtecenter">Become a member today to build your business network, enjoy exclusive member benefits , and be a part of this vibrant community with a spice for life!</p>
+                  <p class="rtecenter">Become a member today to build your business network, enjoy exclusive member benefits , and be a part of this vibrant community with a spice for life!</p>
+              </div>
           </div>
-      </div>
-      <div id="fp-mid-section">
-          <div class="container">
-              <div class="col-xs-12">
-                  <div class="col-sm-9 col-xs-12 utilities">
-                      <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
-                          <a href="directory">
-                              <img src="sites/all/themes/chamber/images/magnifying_glass_wh.svg">
-                              <span>SEARCH BUSINESS DIRECTORY</span>
-                          </a>
-                      </div>
-                      <div class="col-sm-3 col-xs-12 utility-item membership-link equalHeight">
-                          <a href="about/membership">
-                              <img src="sites/all/themes/chamber/images/member_wh.svg">
-                              <span>BECOME A MEMBER</span>
-                          </a>
-                      </div>
-                      <div class="col-sm-3 col-xs-12 utility-item gallery-link equalHeight">
-                          <a href="events/gallery">
-                              <img src="sites/all/themes/chamber/images/camera_wh.svg">
-                              <span>VIEW PHOTO GALLERY</span>
-                          </a>
+          <div id="fp-mid-section">
+              <div class="container">
+                  <div class="col-xs-12">
+                      <div class="col-sm-9 col-xs-12 utilities">
+                          <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
+                              <a href="directory">
+                                  <img src="sites/all/themes/chamber/images/magnifying_glass_wh.svg">
+                                  <span>SEARCH BUSINESS DIRECTORY</span>
+                              </a>
+                          </div>
+                          <div class="col-sm-3 col-xs-12 utility-item membership-link equalHeight">
+                              <a href="about/membership">
+                                  <img src="sites/all/themes/chamber/images/member_wh.svg">
+                                  <span>BECOME A MEMBER</span>
+                              </a>
+                          </div>
+                          <div class="col-sm-3 col-xs-12 utility-item gallery-link equalHeight">
+                              <a href="events/gallery">
+                                  <img src="sites/all/themes/chamber/images/camera_wh.svg">
+                                  <span>VIEW PHOTO GALLERY</span>
+                              </a>
+                          </div>
                       </div>
                   </div>
               </div>
