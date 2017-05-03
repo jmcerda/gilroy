@@ -25,7 +25,7 @@
  */
 ?>
 
-<div id="benefits-slider" class="row fp-background-cover" <?php if $fields['field_image']: ?> style="background-image: url('<?php print $fields['field_image']; ?>');">
+<div id="benefits-slider" class="row fp-background-cover" <?php if (!empty($fields['field_image'])): ?> style="background-image: url('<?php print $fields['field_image']; ?>');">
     <span class="benefits-info">
       <h3>
         <?php print (!empty($fields['title'])) ?
