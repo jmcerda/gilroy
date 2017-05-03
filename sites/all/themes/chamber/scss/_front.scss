@@ -83,12 +83,9 @@ $circlesize: 100px;
       li {
         background-color: #005a80;
       }
-      .active {
-        background-color: #ff9c0c;
-      }
     }
     .carousel-indicators .active {
-      background-color: $brand-warning;
+      background-color: $brand-warning !important;
     }
   }
   #fp-ads-slider {
