@@ -87,6 +87,9 @@ $circlesize: 100px;
         background-color: #ff9c0c;
       }
     }
+    .carousel-indicators .active {
+      background-color: $brand-warning;
+    }
   }
   #fp-ads-slider {
     height: 700px;
