@@ -176,19 +176,19 @@
           </div>
           <div id="fp-mid-nav">
               <div class="utilities">
-                  <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
+                  <div class="utility-item directory-link equalHeight">
                       <a href="directory">
                           <img src="sites/all/themes/chamber/images/magnifying_glass_wh.svg">
                           <span>SEARCH BUSINESS DIRECTORY</span>
                       </a>
                   </div>
-                  <div class="col-sm-3 col-xs-12 utility-item membership-link equalHeight">
+                  <div class="utility-item membership-link equalHeight">
                       <a href="about/membership">
                           <img src="sites/all/themes/chamber/images/member_wh.svg">
                           <span>BECOME A MEMBER</span>
                       </a>
                   </div>
-                  <div class="col-sm-3 col-xs-12 utility-item gallery-link equalHeight">
+                  <div class="utility-item gallery-link equalHeight">
                       <a href="events/gallery">
                           <img src="sites/all/themes/chamber/images/camera_wh.svg">
                           <span>VIEW PHOTO GALLERY</span>
