@@ -29,6 +29,10 @@ $circlesize: 100px;
   }
   #fp-business {
     margin: 0 auto;
+    .block-container {
+      text-align: center;
+      margin-top: 5em;
+    }
     img {
       height: 50px;
     }
