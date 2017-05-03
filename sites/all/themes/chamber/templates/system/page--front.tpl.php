@@ -174,9 +174,9 @@
                   <p class="rtecenter">Become a member today to build your business network, enjoy exclusive member benefits , and be a part of this vibrant community with a spice for life!</p>
               </div>
           </div>
-          <div id="fp-mid-section">
+          <div id="fp-mid-nav">
               <div class="container">
-                  <div class="col-xs-12">
+                  <div class="row">
                       <div class="col-sm-9 col-xs-12 utilities">
                           <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
                               <a href="directory">
