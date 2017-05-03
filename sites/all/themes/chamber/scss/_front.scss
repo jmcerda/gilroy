@@ -28,10 +28,13 @@ $circlesize: 100px;
     }
   }
   #fp-business {
-    text-align: center;
+    margin: 0 auto;
     img {
       height: 50px;
     }
+  }
+  #fp-mid-nav {
+    margin: 0 auto;
   }
   #fp-events-video {
     background: $brand-primary;

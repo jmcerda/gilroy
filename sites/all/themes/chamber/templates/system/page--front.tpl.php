@@ -165,7 +165,7 @@
     </section>
       <div class="section-one">
           <div id="fp-business">
-              <div class="col-sm-7 col-xs-12">
+              <div class="container">
                   <img src="sites/all/themes/chamber/images/ShakingHands.svg">
                   <h3 class="rtecenter">LETS DO BUSINESS TOGETHER</h3>
 
