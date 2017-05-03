@@ -92,5 +92,14 @@ $circlesize: 100px;
       height:auto;
     }
   }
+  .benefits-info {
+    width: 450px;
+    height: 450px;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius:50%;
+    background: #fff;
+    opacity: 0.5;
+  }
 }
 
