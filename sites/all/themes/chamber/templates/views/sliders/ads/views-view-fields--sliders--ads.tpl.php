@@ -25,14 +25,14 @@
  */
 ?>
 <div class="ad-slider-block">
-  <div class="row"
+  <div class="row">
       <div class="ad-slider-block-left col-sm-6 col-xs-12">
         <div class="ad-slider-image">
             <?php print (!empty($fields['field_image'])) ?
                 $fields['field_image']->content : '';
             ?>
         </div>
-      </div>gti
+      </div>
       <div class="ad-slider-block-right col-sm-6 col-xs-12">
         <div class="ad-slider-logo">
             <?php print (!empty($fields['field_logo'])) ?
