@@ -29,7 +29,7 @@
     <?php print (!empty($fields['field_image'])) ?
         $fields['field_image']->content : '';
     ?>
-    <div class="benefits-info">
+    <div class="container benefits-info">
         <h3>
         <?php print (!empty($fields['title_field'])) ?
             $fields['title_field']->content : ''; ?>
