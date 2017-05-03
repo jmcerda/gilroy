@@ -36,5 +36,7 @@
         </h3>
         <?php print (!empty($fields['field_feed_item_description'])) ?
             $fields['field_feed_item_description']->content : ''; ?>
+        <?php print (!empty($fields['field_button_link'])) ?
+            $fields['field_button_link']->content : ''; ?>
     </div>
 </div>

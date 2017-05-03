@@ -93,13 +93,16 @@ $circlesize: 100px;
     }
   }
   .benefits-info {
-    width: 450px;
-    height: 450px;
+    width: 325px;
+    height: 325px;
     -webkit-border-radius:50%;
     -moz-border-radius:50%;
     border-radius:50%;
     background: #fff;
     opacity: 0.5;
+    margin: 4em auto;
+    padding: 4em;
+    text-align: center;
     h2 {
       text-transform: uppercase;
       color: $brand-primary;
