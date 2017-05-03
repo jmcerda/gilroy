@@ -30,8 +30,8 @@
         $fields['field_image']->content : '';
     ?>
     <span class="benefits-info">
-        <?php print (!empty($fields['title_field'])) ?
-            $fields['title_field']->content : '';
+        <?php print (!empty($fields['title'])) ?
+            $fields['title']->content : '';
         ?>
         <?php print (!empty($fields['field_feed_item_description'])) ?
             $fields['field_feed_item_description']->content : '';
