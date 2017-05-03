@@ -25,7 +25,7 @@
  */
 ?>
 
-<div id="benefits-slider" class="row fp-background-cover" style="background-image: url('<?php print (!empty($fields['field_image'])) ? $fields['field_image']->content : ''; ?>');">
+<div id="benefits-slider" class="row fp-background-cover" style="background-image: url('<?php print (!empty($fields['field_image'])); ?>');">
     <span class="benefits-info">
       <h3>
         <?php print (!empty($fields['title'])) ?
