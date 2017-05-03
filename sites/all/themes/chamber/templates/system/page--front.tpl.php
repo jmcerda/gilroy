@@ -177,7 +177,7 @@
           <div id="fp-mid-nav">
               <div class="container">
                   <div class="row">
-                      <div class="col-sm-9 col-xs-12 utilities">
+                      <div class="utilities">
                           <div class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
                               <a href="directory">
                                   <img src="sites/all/themes/chamber/images/magnifying_glass_wh.svg">
