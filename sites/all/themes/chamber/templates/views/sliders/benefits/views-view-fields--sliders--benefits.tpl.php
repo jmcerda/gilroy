@@ -29,12 +29,12 @@
     <?php print (!empty($fields['field_image'])) ?
         $fields['field_image']->content : '';
     ?>
-    <span class="benefits-info">
+    <div class="benefits-info">
         <h3>
         <?php print (!empty($fields['title_field'])) ?
             $fields['title_field']->content : ''; ?>
         </h3>
         <?php print (!empty($fields['field_feed_item_description'])) ?
             $fields['field_feed_item_description']->content : ''; ?>
-    </span>
+    </div>
 </div>
