@@ -31,7 +31,7 @@
     ?>
     <span class="benefits-info">
         <?php print (!empty($fields['title_field'])) ?
-            $fields['title_filed']->content : '';
+            $fields['title_field']->content : '';
         ?>
         <?php print (!empty($fields['field_feed_item_description'])) ?
             $fields['field_feed_item_description']->content : '';
