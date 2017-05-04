@@ -26,11 +26,9 @@
 ?>
 
 <div id="benefits-slider" class="row fp-background-cover">
-    <span class="slide-image">
-        <?php print (!empty($fields['field_image'])) ?
-            $fields['field_image']->content : '';
-        ?>
-    </span>
+    <?php print (!empty($fields['field_image'])) ?
+        $fields['field_image']->content : '';
+    ?>
     <div class="container benefits-info">
         <h3>
         <?php print (!empty($fields['title_field'])) ?
