@@ -26,11 +26,11 @@
 ?>
 
 <div id="benefits-slider" class="row fp-background-cover">
-    <div>
+    <span class="slide-image">
         <?php print (!empty($fields['field_image'])) ?
             $fields['field_image']->content : '';
         ?>
-    </div>
+    </span>
     <div class="container benefits-info">
         <h3>
         <?php print (!empty($fields['title_field'])) ?
