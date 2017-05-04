@@ -79,6 +79,9 @@ $circlesize: 100px;
     .slide-image {
       position: fixed;
       min-width: 100%;
+      .img-responsive {
+        min-width: 100%;
+      }
     }
     .carousel-indicators {
       li {
