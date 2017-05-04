@@ -123,5 +123,15 @@ $circlesize: 100px;
     height: 800px;
     background: url('../images/gil_bkgd.png');
   }
+  .ad-slider-image {
+    @media (min-width: 768px) {
+      float: right;
+    }
+  }
+  .ad-slider-logo {
+    img {
+      margin: 0 auto;
+    }
+  }
 }
 
