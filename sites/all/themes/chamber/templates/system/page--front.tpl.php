@@ -234,8 +234,6 @@
                 <div data-wheelnav-navitemimg="../images/GilroyEconomicDevelopmentCorp.png" data-wheelnav-navitemtext="Gilroy Economic Development Corporation Resources to help you open, expand or relocate your business"><a href="www.google.com"></a></div>
             </div>
         </div>
-<!--        <div id="divWheelnav"></div>-->
-        </div>
     </div>
 </div>
 <div id="fp-ads-slider">
