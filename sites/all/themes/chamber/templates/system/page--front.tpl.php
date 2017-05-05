@@ -229,13 +229,16 @@
         <div class="row">
             <div class="col-xs-12">
                 <div id="divWheel" data-wheelnav data-wheelnav-colors="#005a80">
-                    <div data-wheelnav-navitemimg="../images/GilroyDowntownBusinessAssoc.svg" data-wheelnav-navitemtext="Downtown Gilroy Business Association. A vibrant and historic downtown community">
+                    <div data-wheelnav-navitemimg="../images/GilroyDowntownBusinessAssoc.svg" data-wheelnav-navitemtext="Downtown Gilroy Business Association
+                    A vibrant and historic downtown community">
                         <a href="www.google.com"></a>
                     </div>
-                    <div data-wheelnav-navitemimg="../images/CityofGilroy.svg" data-wheelnav-navitemtext="City of Gilroy. Business licenses, bid opportunities, city services, and more">
+                    <div data-wheelnav-navitemimg="../images/CityofGilroy.svg" data-wheelnav-navitemtext="City of Gilroy
+                    Business licenses, bid opportunities, city services, and more">
                         <a href="www.google.com"></a>
                     </div>
-                    <div data-wheelnav-navitemimg="../images/VisitGilroy.svg" data-wheelnav-navitemtext="Visit Gilroy. Everything you need to plan a getaway to Gilroy">
+                    <div data-wheelnav-navitemimg="../images/VisitGilroy.svg" data-wheelnav-navitemtext="Visit Gilroy
+                    Everything you need to plan a getaway to Gilroy">
                         <a href="www.google.com"></a>
                     </div>
                     <div data-wheelnav-navitemimg="../images/GilroyEconomicDevelopmentCorp.png" data-wheelnav-navitemtext="Gilroy Economic Development Corporation Resources to help you open, expand or relocate your business">
