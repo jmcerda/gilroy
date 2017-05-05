@@ -126,6 +126,8 @@
                 // Callback function when items are switched
                 // Arguments received: [currentItem, previousItem]
             });
+            // Wheelnav
+            var wheel = new wheelnav("divWheel");
 
         }
     };

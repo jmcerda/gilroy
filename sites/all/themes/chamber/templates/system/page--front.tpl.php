@@ -227,11 +227,18 @@
 <div id="partners-nav">
     <div class="container">
         <div class="row">
-            <div id="divWheelnav" data-wheelnav data-wheelnav-slicepath="WheelSlice" data-wheelnav-colors="#D80351,#F5D908,#00A3EE,#929292">
-                <div data-wheelnav-navitemicon="smile">smile</div>
-                <div data-wheelnav-navitemicon="star">star</div>
-                <div data-wheelnav-navitemicon="fork">fork</div>
-                <div data-wheelnav-navitemicon="$">donate</div>
+            <div id="divWheel" data-wheelnav data-wheelnav-titlewidth="50" data-wheelnav-titleheight="50">
+                <div data-wheelnav-navitemicon="smile"></div>
+                <div data-wheelnav-navitemtext="1" onmouseup="alert('Place your logic here.');"></div>
+                <div data-wheelnav-navitemtext="2"><a href="#navitem"></a></div>
+                <div data-wheelnav-navitemimg="../wheelnav_favicon.png"></div>
+            </div>
+            <div id="divWheel" data-wheelnav
+                 data-wheelnav-wheelradius="100"
+                 data-wheelnav-navangle="90"
+                 data-wheelnav-slicepath="DonutSlice"
+                 data-wheelnav-colors="#E34C26,#F06529"
+                 data-wheelnav-rotateoff>
             </div>
         </div>
     </div>
