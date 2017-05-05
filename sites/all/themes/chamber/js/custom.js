@@ -134,6 +134,9 @@
             // Wheelnav
             var wheel = new wheelnav("#divWheel");
             var myWheelnav = new wheelnav("divWheelnav");
+            myWheelnav.slicePathFunction = slicePath().WheelSlice;
+            myWheelnav.colors = colorpalette.parrot;
+            myWheelnav.createWheel([icon.smile, icon.star, icon.fork, icon.$]);
 
         }
     };

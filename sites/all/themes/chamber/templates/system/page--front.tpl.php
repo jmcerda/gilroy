@@ -234,11 +234,7 @@
                 <div data-wheelnav-navitemimg="../images/GilroyEconomicDevelopmentCorp.png" data-wheelnav-navitemtext="Gilroy Economic Development Corporation Resources to help you open, expand or relocate your business"><a href="www.google.com"></a></div>
             </div>
         </div>
-        <div id="divWheelnav" data-wheelnav data-wheelnav-slicepath="WheelSlice" data-wheelnav-colors="#D80351,#F5D908,#00A3EE,#929292">
-            <div data-wheelnav-navitemicon="smile">smile</div>
-            <div data-wheelnav-navitemicon="star">star</div>
-            <div data-wheelnav-navitemicon="fork">fork</div>
-            <div data-wheelnav-navitemicon="$">donate</div>
+        <div id="divWheelnav"></div>
         </div>
     </div>
 </div>
