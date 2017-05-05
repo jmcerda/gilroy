@@ -64,7 +64,10 @@ scripts[] = 'js/jquery-flipster/dist/jquery.flipster.min.js'
 
 
 ; Wheelnav
+scripts[] = 'bower_components/wheelnav/js/dist/raphael.min.js'
+scripts[] = 'bower_components/wheelnav/js/dist/raphael.icons.min.js'
 scripts[] = 'bower_components/wheelnav/js/dist/wheelnav.min.js'
+
 ; Custom
 scripts[] = 'js/custom.js'
 

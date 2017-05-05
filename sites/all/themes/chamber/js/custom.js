@@ -126,6 +126,14 @@
                 // Callback function when items are switched
                 // Arguments received: [currentItem, previousItem]
             });
+
+            // Wheelnav
+            var wheel = new wheelnav("#divWheel");
+            var myWheelnav = new wheelnav("divWheelnav");
+            myWheelnav.slicePathFunction = slicePath().WheelSlice;
+            myWheelnav.colors = colorpalette.parrot;
+            myWheelnav.createWheel([icon.smile, icon.star, icon.fork, icon.$]);
+
             // Ad slider wheel
             $(".ad-wheel").flipster({
                 style: 'wheel',
@@ -134,10 +142,3 @@
         }
     };
 })(jQuery);
-
-// Wheelnav
-var wheel = new wheelnav("#divWheel");
-var myWheelnav = new wheelnav("divWheelnav");
-myWheelnav.slicePathFunction = slicePath().WheelSlice;
-myWheelnav.colors = colorpalette.parrot;
-myWheelnav.createWheel([icon.smile, icon.star, icon.fork, icon.$]);
