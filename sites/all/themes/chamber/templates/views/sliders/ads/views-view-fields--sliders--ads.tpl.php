@@ -34,14 +34,16 @@
         </div>
       </div>
       <div class="ad-slider-block-right col-sm-6 col-xs-12">
-        <div class="ad-slider-logo">
-            <?php print (!empty($fields['field_logo'])) ?
-                $fields['field_logo']->content : ''; ?>
-        </div>
-        <div class="ad-slider-description">
-            <?php print (!empty($fields['description_field'])) ?
-                $fields['description_field']->content : ''; ?>
-        </div>
+          <div class="ad-slider-info">
+            <div class="ad-slider-logo">
+                <?php print (!empty($fields['field_logo'])) ?
+                    $fields['field_logo']->content : ''; ?>
+            </div>
+            <div class="ad-slider-description">
+                <?php print (!empty($fields['description_field'])) ?
+                    $fields['description_field']->content : ''; ?>
+            </div>
+          </div>
       </div>
   </div>
 </div>
