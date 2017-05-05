@@ -46,10 +46,10 @@
     height: auto;
     padding: 15% 0 5%;
     //border-radius: 50% / 100%;
-    ::before {
+    &:before {
       border-radius: 0 40% 50% 0;
     }
-    ::after {
+    &:after {
       border-radius: 40% 0 0 50%;
     }
     a {
