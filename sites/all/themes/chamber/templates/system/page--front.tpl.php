@@ -233,13 +233,13 @@
                 <div data-wheelnav-navitemtext="2"><a href="#navitem"></a></div>
                 <div data-wheelnav-navitemimg="../wheelnav_favicon.png"></div>
             </div>
-            <div id="divWheel" data-wheelnav
-                 data-wheelnav-wheelradius="100"
-                 data-wheelnav-navangle="90"
-                 data-wheelnav-slicepath="DonutSlice"
-                 data-wheelnav-colors="#E34C26,#F06529"
-                 data-wheelnav-rotateoff>
-            </div>
+<!--            <div id="divWheel" data-wheelnav-->
+<!--                 data-wheelnav-wheelradius="100"-->
+<!--                 data-wheelnav-navangle="90"-->
+<!--                 data-wheelnav-slicepath="DonutSlice"-->
+<!--                 data-wheelnav-colors="#E34C26,#F06529"-->
+<!--                 data-wheelnav-rotateoff>-->
+<!--            </div>-->
         </div>
     </div>
 </div>
