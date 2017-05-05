@@ -133,6 +133,7 @@
             });
             // Wheelnav
             var wheel = new wheelnav("#divWheel");
+            var myWheelnav = new wheelnav("divWheelnav");
 
         }
     };
