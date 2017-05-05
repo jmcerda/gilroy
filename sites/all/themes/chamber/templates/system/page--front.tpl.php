@@ -228,7 +228,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <div id="divWheel" data-wheelnav data-wheelnav-colors="#005a80" data-wheelnav-slicepath="DonutSlice">
+                <div id="divWheel" data-wheelnav data-wheelnav-colors="#005a80" data-wheelnav-wheelradius="100" data-wheelnav-navangle="90" data-wheelnav-slicepath="DonutSlice">
                     <div data-wheelnav-navitemimg="../images/GilroyDowntownBusinessAssoc.svg" data-wheelnav-navitemtext="Downtown Gilroy Business Association
                     A vibrant and historic downtown community"></div>
                     <div data-wheelnav-navitemimg="/sites/all/themes/chamber/images/CityofGilroy.svg" data-wheelnav-navitemtext="City of Gilroy
