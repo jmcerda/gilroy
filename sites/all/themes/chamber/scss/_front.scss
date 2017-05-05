@@ -94,6 +94,7 @@ $circlesize: 100px;
   }
   #fp-ads-slider {
     height: 700px;
+    background: #c4bdb3;
   }
   .block-icons img {
     height: 42px;
@@ -140,6 +141,9 @@ $circlesize: 100px;
     img {
       margin: 0 auto;
     }
+  }
+  .ad-slider-info {
+    float: left;
   }
 }
 
