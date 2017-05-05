@@ -78,7 +78,7 @@
                 // [true|false]
                 // If true, autoplay advancement will pause when Flipster is hovered
 
-                style: 'carousel',
+                style: 'flat',
                 // [coverflow|carousel|flat|...]
                 // Adds a class (e.g. flipster--coverflow) to the flipster element to switch between display styles
                 // Create your own theme in CSS and use this setting to have Flipster add the custom class
@@ -125,6 +125,11 @@
                 // [function]
                 // Callback function when items are switched
                 // Arguments received: [currentItem, previousItem]
+            });
+            // Ad slider wheel
+            $(".ad-wheel").flipster({
+                style: 'wheel',
+                spacing: 0
             });
             // Wheelnav
             var wheel = new wheelnav("#divWheel");
