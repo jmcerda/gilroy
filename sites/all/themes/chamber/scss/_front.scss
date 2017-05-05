@@ -128,11 +128,13 @@ $circlesize: 100px;
     background: url('../images/gil_bkgd.png');
   }
   .ad-slider-image {
+    border-top-left-radius: 100%;
     @media (min-width: 768px) {
       float: right;
     }
   }
   .ad-slider-logo {
+    border-top-right-radius:100%;
     img {
       margin: 0 auto;
     }
