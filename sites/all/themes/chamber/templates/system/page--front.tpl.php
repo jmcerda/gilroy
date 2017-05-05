@@ -230,14 +230,14 @@
             <div class="col-xs-12">
                 <div id="divWheel" data-wheelnav data-wheelnav-colors="#005a80">
                     <div data-wheelnav-navitemimg="../images/GilroyDowntownBusinessAssoc.svg" data-wheelnav-navitemtext="Downtown Gilroy Business Association
-                    A vibrant and historic downtown community"></div>
+                    A vibrant and historic downtown community">TEST</div>
                     <div data-wheelnav-navitemimg="/sites/all/themes/chamber/images/CityofGilroy.svg" data-wheelnav-navitemtext="City of Gilroy
-                    Business licenses, bid opportunities, city services, and more"></div>
+                    Business licenses, bid opportunities, city services, and more">TEST</div>
                     <div data-wheelnav-navitemimg="../../images/VisitGilroy.svg" data-wheelnav-navitemtext="Visit Gilroy
-                    Everything you need to plan a getaway to Gilroy"></div>
+                    Everything you need to plan a getaway to Gilroy">TEST</div>
                     <div data-wheelnav-navitemimg="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.png" data-wheelnav-navitemtext="Gilroy Economic Development
                     Corporation Resources to help you open,
-                    expand or relocate your business"></div>
+                    expand or relocate your business">TEST</div>
                 </div>
             </div>
         </div>
