@@ -225,17 +225,11 @@
     <?php print views_embed_view('sliders', 'benefits'); ?>
 </div>
 <div id="partners-nav">
-    <div class="container">
-        <div class="row">
-            <div id="divWheel" data-wheelnav>
-                <div data-wheelnav-navitemimg="../images/GilroyDowntownBusinessAssoc.svg" data-wheelnav-navitemtext="Downtown Gilroy Business Association. A vibrant and historic downtown community"><a href="www.google.com"></a></div>
-                <div data-wheelnav-navitemimg="../images/CityofGilroy.svg" data-wheelnav-navitemtext="City of Gilroy. Business licenses, bid opportunities, city services, and more"><a href="www.google.com"></a></div>
-                <div data-wheelnav-navitemimg="../images/VisitGilroy.svg" data-wheelnav-navitemtext="Visit Gilroy. Everything you need to plan a getaway to Gilroy"><a href="www.google.com"></a></div>
-                <div data-wheelnav-navitemimg="../images/GilroyEconomicDevelopmentCorp.png" data-wheelnav-navitemtext="Gilroy Economic Development Corporation Resources to help you open, expand or relocate your business"><a href="www.google.com"></a></div>
-            </div>
-        </div>
-<!--        <div id="divWheelnav"></div>-->
-        </div>
+    <div id="divWheel" data-wheelnav>
+        <div data-wheelnav-navitemimg="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg" data-wheelnav-navitemtext="Downtown Gilroy Business Association. A vibrant and historic downtown community"><a href="www.google.com"></a></div>
+        <div data-wheelnav-navitemimg="../images/CityofGilroy.svg" data-wheelnav-navitemtext="City of Gilroy. Business licenses, bid opportunities, city services, and more"><a href="www.google.com"></a></div>
+        <div data-wheelnav-navitemimg="../images/VisitGilroy.svg" data-wheelnav-navitemtext="Visit Gilroy. Everything you need to plan a getaway to Gilroy"><a href="www.google.com"></a></div>
+        <div data-wheelnav-navitemimg="../images/GilroyEconomicDevelopmentCorp.png" data-wheelnav-navitemtext="Gilroy Economic Development Corporation Resources to help you open, expand or relocate your business"><a href="www.google.com"></a></div>
     </div>
 </div>
 <div id="fp-ads-slider">
