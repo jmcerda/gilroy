@@ -227,19 +227,13 @@
 <div id="partners-nav">
     <div class="container">
         <div class="row">
-            <div id="divWheel" data-wheelnav data-wheelnav-titlewidth="50" data-wheelnav-titleheight="50">
-                <div data-wheelnav-navitemicon="smile"></div>
+            <div id="divWheel" data-wheelnav data-wheelnav-titlewidth="50" data-wheelnav-titleheight="50" data-wheelnav-wheelradius="100" data-wheelnav-navangle="90" data-wheelnav-colors="#005a80" data-wheelnav-rotateoff>
+                <div data-wheelnav-navitemimg="../images/GilroyDowntownBusinessAssoc.svg" data-wheelnav-navitemtext="Downtown Gilroy Business Association
+A vibrant and historic downtown community"><a href="www.google.com"></a></div>
                 <div data-wheelnav-navitemtext="1" onmouseup="alert('Place your logic here.');"></div>
-                <div data-wheelnav-navitemtext="2"><a href="#navitem"></a></div>
-                <div data-wheelnav-navitemimg="../wheelnav_favicon.png"></div>
+                <div data-wheelnav-navitemtext="2"><a href="www.google.com"></a></div>
+                <div data-wheelnav-navitemimg="../images/GilroyDowntownBusinessAssoc.svg"></div>
             </div>
-<!--            <div id="divWheel" data-wheelnav-->
-<!--                 data-wheelnav-wheelradius="100"-->
-<!--                 data-wheelnav-navangle="90"-->
-<!--                 data-wheelnav-slicepath="DonutSlice"-->
-<!--                 data-wheelnav-colors="#E34C26,#F06529"-->
-<!--                 data-wheelnav-rotateoff>-->
-<!--            </div>-->
         </div>
     </div>
 </div>
