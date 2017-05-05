@@ -127,7 +127,7 @@
                 // Arguments received: [currentItem, previousItem]
             });
             // Wheelnav
-            var wheel = new wheelnav("divWheel");
+            var wheel = new wheelnav("#divWheel");
 
         }
     };
