@@ -128,7 +128,7 @@
             });
 
             // Wheelnav
-            var wheel = new wheelnav("#divWheel");
+            var wheel = new wheelnav("divWheel");
             // var myWheelnav = new wheelnav("divWheelnav");
             // myWheelnav.slicePathFunction = slicePath().WheelSlice;
             // myWheelnav.colors = colorpalette.parrot;
