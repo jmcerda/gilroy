@@ -235,7 +235,9 @@
                     Business licenses, bid opportunities, city services, and more"></div>
                     <div data-wheelnav-navitemimg="../../images/VisitGilroy.svg" data-wheelnav-navitemtext="Visit Gilroy
                     Everything you need to plan a getaway to Gilroy"></div>
-                    <div data-wheelnav-navitemimg="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.png" data-wheelnav-navitemtext="Gilroy Economic Development Corporation Resources to help you open, expand or relocate your business"></div>
+                    <div data-wheelnav-navitemimg="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.png" data-wheelnav-navitemtext="Gilroy Economic Development
+                    Corporation Resources to help you open,
+                    expand or relocate your business"></div>
                 </div>
             </div>
         </div>
