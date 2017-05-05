@@ -239,8 +239,10 @@ A vibrant and historic downtown community"><a href="www.google.com"></a></div>
 </div>
 <div id="fp-ads-slider">
     <div class="container">
-        <div class="row ad-wheel">
-            <?php print views_embed_view('sliders', 'ads'); ?>
+        <div class="row">
+            <div id="wheel">
+                <?php print views_embed_view('sliders', 'ads'); ?>
+            </div>
         </div>
     </div>
 </div>
