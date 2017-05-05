@@ -229,8 +229,10 @@
         <div class="row">
             <div class="col-xs-12">
                 <div id="divWheel" data-wheelnav data-wheelnav-colors="#005a80">
-                    <div data-wheelnav-navitemimg="../images/GilroyDowntownBusinessAssoc.svg" data-wheelnav-navitemtext="Downtown Gilroy Business Association
-                    A vibrant and historic downtown community"></div>
+                    <div>
+                        <img src="../../images/GilroyDowntownBusinessAssoc.svg">
+                        <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community</p>
+                    </div>
                     <div data-wheelnav-navitemimg="/sites/all/themes/chamber/images/CityofGilroy.svg" data-wheelnav-navitemtext="City of Gilroy
                     Business licenses, bid opportunities, city services, and more"></div>
                     <div data-wheelnav-navitemimg="../../images/VisitGilroy.svg" data-wheelnav-navitemtext="Visit Gilroy
