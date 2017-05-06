@@ -136,53 +136,9 @@
   #partners-nav {
     height: 800px;
     background: url('../images/gil_bkgd.png');
-    svg {
-      width: 750px;
-      overflow: visible;
+    img {
+      height: 72px;
     }
-    *{
-      box-sizing:border-box;
-      transition:1.5s all;
-    }
-    #dial{
-      width:500px;
-      height:500px;
-      border-radius:100%;
-      border:1px solid black;
-      position:relative;
-    }
-    .content{
-      position:absolute;
-      width:200px;
-      height:200px;
-      top:150px;
-      left:150px;
-    }
-    .item{
-      position:absolute;
-      left:225px;
-      top:10px;
-      width:50px;
-      height:50px;
-      border:1px solid gray;
-      border-radius:100%;
-      text-align:center;
-      transform-origin:25px 235px;
-    }
-    .activeItem{
-      background-color:blue;
-    }
-
-    .icon{
-      width:50px;
-      height:50px;
-      cursor:pointer;
-      transform-origin:25px 25px;
-    }
-    #icon2{
-      transform:rotateZ(-50deg);
-    }
-
   }
   .ad-slider-image {
     @media (min-width: 768px) {
