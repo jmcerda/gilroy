@@ -139,6 +139,13 @@
     img {
       height: 72px;
     }
+    #fp-chamber-nav {
+      border-radius: 100%;
+      background: $brand-secondary;
+      height: 700px;
+      margin: 5em auto;
+      width: 700px;
+    }
   }
   .ad-slider-image {
     @media (min-width: 768px) {
