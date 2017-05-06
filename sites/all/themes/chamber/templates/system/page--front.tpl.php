@@ -227,7 +227,7 @@
 <div id="partners-nav">
     <div class="container">
         <div class="row">
-            <div>
+            <div id="fp-chamber-nav">
                 <div><img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg"><p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p></div>
                 <div>
                     <div><img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg"><p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p></div>
