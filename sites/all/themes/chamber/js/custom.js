@@ -129,6 +129,7 @@
 
             // Wheelnav
             var wheel = new wheelnav("divWheel");
+            var wheel.wheelRadius = 400;
             // var myWheelnav = new wheelnav("divWheelnav");
             // myWheelnav.slicePathFunction = slicePath().WheelSlice;
             // myWheelnav.colors = colorpalette.parrot;
