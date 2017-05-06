@@ -136,6 +136,10 @@
   #partners-nav {
     height: 800px;
     background: url('../images/gil_bkgd.png');
+    svg {
+      width: 750px;
+      overflow: visible;
+    }
   }
   .ad-slider-image {
     @media (min-width: 768px) {
