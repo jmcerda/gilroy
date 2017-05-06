@@ -227,40 +227,15 @@
 <div id="partners-nav">
     <div class="container">
         <div class="row">
-
-            <div id='dial'>
-                <button class='left' type='button'><</button>
-                <button class='right' type='button'>></button>
-                <div class='content'></div>
-                <div data-text='A vibrant and historic downtown community' data-css='red' class='item'>
-                    <div class='icon'>1</div>
+            <div>
+                <div><img src="../../images/GilroyEconomicDevelopmentCorp.svg"><p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p></div>
+                <div>
+                    <div><img src="../../images/GilroyDowntownBusinessAssoc.svg"><p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p></div>
+                    <div>OUR PARTNERS</div>
+                    <div><img src="../../images/CityofGilroy.svg"><p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p></div>
                 </div>
-                <div data-text='Business licenses, bid opportunities, city services, and more' data-css='blue' class='item'>
-                    <div class='icon'>2</div>
-                </div>
-                <div data-text='Everything you need to plan a getaway to Gilroy' data-css='pink' class='item'>
-                    <div class='icon'>3</div>
-                </div>
-                <div data-text='Corporation Resources to help you open, expand or relocate your business' data-css='gray' class='item'>
-                    <div class='icon'>4</div>
-                </div>
+                <div><img src="../../images/VisitGilroy.svg"><p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p></div>
             </div>
-
-<!--            <div class="col-xs-12">-->
-<!--                <div id="divWheel" data-wheelnav data-wheelnav-colors="#005a80">-->
-<!--                    <div data-wheelnav-navitemimg="../images/GilroyDowntownBusinessAssoc.svg" data-wheelnav-navitemtext="Downtown Gilroy Business Association-->
-<!--                    A vibrant and historic downtown community">TEST</div>-->
-<!--                    <div data-wheelnav-navitemimg="/sites/all/themes/chamber/images/CityofGilroy.svg" data-wheelnav-navitemtext="City of Gilroy-->
-<!--                    Business licenses, bid opportunities, city services, and more">TEST</div>-->
-<!--                    <div data-wheelnav-navitemimg="../../images/VisitGilroy.svg" data-wheelnav-navitemtext="Visit Gilroy-->
-<!--                    Everything you need to plan a getaway to Gilroy">TEST</div>-->
-<!--                    <div data-wheelnav-navitemimg="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.png" data-wheelnav-navitemtext="Gilroy Economic Development-->
-<!--                    Corporation Resources to help you open,-->
-<!--                    expand or relocate your business">TEST</div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-
         </div>
     </div>
 </div>
