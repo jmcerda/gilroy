@@ -227,6 +227,25 @@
 <div id="partners-nav">
     <div class="container">
         <div class="row">
+
+            <div id='dial'>
+                <button class='left' type='button'><</button>
+                <button class='right' type='button'>></button>
+                <div class='content'></div>
+                <div data-text='A vibrant and historic downtown community' data-css='red' class='item'>
+                    <div class='icon'>1</div>
+                </div>
+                <div data-text='Business licenses, bid opportunities, city services, and more' data-css='blue' class='item'>
+                    <div class='icon'>2</div>
+                </div>
+                <div data-text='Everything you need to plan a getaway to Gilroy' data-css='pink' class='item'>
+                    <div class='icon'>3</div>
+                </div>
+                <div data-text='Corporation Resources to help you open, expand or relocate your business' data-css='gray' class='item'>
+                    <div class='icon'>4</div>
+                </div>
+            </div>
+
             <div class="col-xs-12">
                 <div id="divWheel" data-wheelnav data-wheelnav-colors="#005a80">
                     <div data-wheelnav-navitemimg="../images/GilroyDowntownBusinessAssoc.svg" data-wheelnav-navitemtext="Downtown Gilroy Business Association
@@ -240,6 +259,8 @@
                     expand or relocate your business">TEST</div>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>
