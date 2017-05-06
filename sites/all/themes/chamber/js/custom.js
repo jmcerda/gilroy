@@ -140,67 +140,67 @@
                 style: 'wheel',
                 spacing: 0
             });
-
-            function dial(el){
-                var $dial = $(el);
-                var $items = $dial.find('.item');
-                var amount = $items.length;
-                var degStep = 360/amount;
-                var startAngle = 0;
-
-                this.rotateItems = function(){
-                    //find activeIndex from angle
-                    activeI = -startAngle/degStep%amount;
-                    if (activeI<0){activeI+=amount;}
-                    $items.removeClass('activeItem');
-                    $items.each(function(i){
-                        var d = i*degStep+startAngle;
-                        if (i==activeI){
-                            //active this item
-                            $(this).addClass('activeItem');
-                            //milion ways to add content/css, but one of the simplest would be to add things to the data attributes of the items
-                            $dial.find('.content').text($(this).data('text')).css({backgroundColor:$(this).data('css')});
-
-                        }
-                        $(this).css({transform:'rotateZ('+d+'deg)'})
-                            .find('.icon').css({transform:'rotateZ('+(-d)+'deg)'});
-                    });
-                };
-
-                this.rotateLeft = function(){
-                    startAngle -= degStep;
-                    this.rotateItems();
-                }
-
-                this.rotateRight = function(){
-                    startAngle += degStep;
-                    this.rotateItems();
-                }
-
-                this.jumpTo = function(a){
-                    startAngle = a;
-                    this.rotateItems();
-                }
-                this.init = function(){
-                    var that = this;
-                    this.rotateItems();
-                    $dial.find('.left').click(function(){
-                        that.rotateLeft();
-                    });
-                    $dial.find('.right').click(function(){
-                        that.rotateRight();
-                    });
-                    $items.each(function(i){
-                        var d = i*degStep;
-                        $(this).click(function(){
-                            that.jumpTo(-d);
-                        });
-                    });
-                    return this;
-                }
-
-            };
-            var d = new dial('#dial').init();
         }
     };
 })(jQuery);
+
+function dial(el){
+    var $dial = $(el);
+    var $items = $dial.find('.item');
+    var amount = $items.length;
+    var degStep = 360/amount;
+    var startAngle = 0;
+
+    this.rotateItems = function(){
+        //find activeIndex from angle
+        activeI = -startAngle/degStep%amount;
+        if (activeI<0){activeI+=amount;}
+        $items.removeClass('activeItem');
+        $items.each(function(i){
+            var d = i*degStep+startAngle;
+            if (i==activeI){
+                //active this item
+                $(this).addClass('activeItem');
+                //milion ways to add content/css, but one of the simplest would be to add things to the data attributes of the items
+                $dial.find('.content').text($(this).data('text')).css({backgroundColor:$(this).data('css')});
+
+            }
+            $(this).css({transform:'rotateZ('+d+'deg)'})
+                .find('.icon').css({transform:'rotateZ('+(-d)+'deg)'});
+        });
+    };
+
+    this.rotateLeft = function(){
+        startAngle -= degStep;
+        this.rotateItems();
+    }
+
+    this.rotateRight = function(){
+        startAngle += degStep;
+        this.rotateItems();
+    }
+
+    this.jumpTo = function(a){
+        startAngle = a;
+        this.rotateItems();
+    }
+    this.init = function(){
+        var that = this;
+        this.rotateItems();
+        $dial.find('.left').click(function(){
+            that.rotateLeft();
+        });
+        $dial.find('.right').click(function(){
+            that.rotateRight();
+        });
+        $items.each(function(i){
+            var d = i*degStep;
+            $(this).click(function(){
+                that.jumpTo(-d);
+            });
+        });
+        return this;
+    }
+
+};
+var d = new dial('#dial').init();
