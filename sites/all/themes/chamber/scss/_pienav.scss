@@ -70,7 +70,7 @@
     }
     .slice-contents:hover {
       background: $brand-warning;
-      p {
+      p, img {
         color: $brand-secondary;
       }
     }
