@@ -231,22 +231,30 @@
                 <div class="nav-title">
                     <h3>OUR PARTNERS</h3>
                 </div>
-                <ul>
-                    <li>
-                        <img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg">
-                        <p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p>
+                <ul class="pie">
+                    <li class="slice">
+                        <div class="slice-contents">
+                            <img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg">
+                            <p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p>
+                        </div>
                     </li>
-                    <li>
-                        <img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg">
-                        <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>
+                    <li class="slice">
+                        <div class="slice-contents">
+                            <img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg">
+                            <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>
+                        </div>
                     </li>
-                    <li>
-                        <img src="sites/all/themes/chamber/images/CityofGilroy.svg">
-                        <p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p>
+                    <li class="slice">
+                        <div class="slice-contents">
+                            <img src="sites/all/themes/chamber/images/CityofGilroy.svg">
+                            <p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p>
+                        </div>
                     </li>
-                    <li>
-                        <img src="sites/all/themes/chamber/images/VisitGilroy.svg">
-                        <p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p>
+                    <li class="slice">
+                        <div class="slice-contents">
+                            <img src="sites/all/themes/chamber/images/VisitGilroy.svg">
+                            <p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p>
+                        </div>
                     </li>
                 </ul>
             </div>

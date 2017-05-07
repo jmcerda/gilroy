@@ -133,27 +133,6 @@
       color: $brand-primary;
     }
   }
-  #partners-nav {
-    height: 800px;
-    background: url('../images/gil_bkgd.png');
-    img {
-      height: 72px;
-    }
-    #fp-chamber-nav {
-      border-radius: 100%;
-      background: $brand-secondary;
-      height: 700px;
-      margin: 5em auto;
-      width: 700px;
-      .nav-title {
-        background: #ff9c0c;
-        border-radius: 100%;
-        height: 200px;
-        width: 200px;
-        margin: 0 auto;
-      }
-    }
-  }
   .ad-slider-image {
     @media (min-width: 768px) {
       float: right;
