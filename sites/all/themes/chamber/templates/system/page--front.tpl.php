@@ -228,7 +228,9 @@
     <div class="container">
         <div class="row">
             <div id="fp-chamber-nav">
-                <h3>OUR PARTNERS</h3>
+                <span class="nav-title">
+                    <h3>OUR PARTNERS</h3>
+                </span>
                 <ul>
                     <li>
                         <img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg">
