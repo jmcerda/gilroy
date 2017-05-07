@@ -59,9 +59,15 @@
       color: $brand-warning;
       text-align: center;
       transition: background-color .5s;
-      p {
-        color: $brand-warning;
+      .slice-info {
+        transform: rotate(-40deg);
+        p {
+          color: $brand-warning;
+          width: 10em;
+          margin: 1em auto;
+        }
       }
+
     }
     .slice:first-child .slice-contents {
       transform: skewY(40deg) /* unskew slice contents */

@@ -234,7 +234,7 @@
                 <ul class="pie">
                     <li class="slice">
                         <div class="slice-contents">
-                            <div>
+                            <div class="slice-info">
                                 <a href="//www.google.com">
                                     <img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg">
                                     <p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p>
