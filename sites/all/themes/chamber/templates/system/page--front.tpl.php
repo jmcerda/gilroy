@@ -240,30 +240,30 @@
                             </a>
                         </div>
                     </li>
-                    <li class="slice">
-                        <div class="slice-contents">
-                            <a href="//www.google.com">
-                                <img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg">
-                                <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="slice">
-                        <div class="slice-contents">
-                            <a href="//www.google.com">
-                                <img src="sites/all/themes/chamber/images/CityofGilroy.svg">
-                                <p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="slice">
-                        <div class="slice-contents">
-                            <a href="//www.google.com">
-                                <img src="sites/all/themes/chamber/images/VisitGilroy.svg">
-                                <p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p>
-                            </a>
-                        </div>
-                    </li>
+<!--                    <li class="slice">-->
+<!--                        <div class="slice-contents">-->
+<!--                            <a href="//www.google.com">-->
+<!--                                <img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg">-->
+<!--                                <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="slice">-->
+<!--                        <div class="slice-contents">-->
+<!--                            <a href="//www.google.com">-->
+<!--                                <img src="sites/all/themes/chamber/images/CityofGilroy.svg">-->
+<!--                                <p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="slice">-->
+<!--                        <div class="slice-contents">-->
+<!--                            <a href="//www.google.com">-->
+<!--                                <img src="sites/all/themes/chamber/images/VisitGilroy.svg">-->
+<!--                                <p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </li>-->
                 </ul>
             </div>
         </div>
