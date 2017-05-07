@@ -242,14 +242,16 @@
                             </div>
                         </div>
                     </li>
-<!--                    <li class="slice">-->
-<!--                        <div class="slice-contents">-->
-<!--                            <a href="//www.google.com">-->
-<!--                                <img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg">-->
-<!--                                <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                    </li>-->
+                    <li class="slice">
+                        <div class="slice-contents">
+                            <div class="slice-info">
+                                <a href="//www.google.com">
+                                    <img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg">
+                                    <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
 <!--                    <li class="slice">-->
 <!--                        <div class="slice-contents">-->
 <!--                            <a href="//www.google.com">-->
