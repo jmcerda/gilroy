@@ -228,13 +228,25 @@
     <div class="container">
         <div class="row">
             <div id="fp-chamber-nav">
-                <div><img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg"><p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p></div>
-                <div>
-                    <div><img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg"><p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p></div>
-                    <div>OUR PARTNERS</div>
-                    <div><img src="sites/all/themes/chamber/images/CityofGilroy.svg"><p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p></div>
-                </div>
-                <div><img src="sites/all/themes/chamber/images/VisitGilroy.svg"><p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p></div>
+                <h3>OUR PARTNERS</h3>
+                <ul>
+                    <li>
+                        <img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg">
+                        <p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p>
+                    </li>
+                    <li>
+                        <img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg">
+                        <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>
+                    </li>
+                    <li>
+                        <img src="sites/all/themes/chamber/images/CityofGilroy.svg">
+                        <p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p>
+                    </li>
+                    <li>
+                        <img src="sites/all/themes/chamber/images/VisitGilroy.svg">
+                        <p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
