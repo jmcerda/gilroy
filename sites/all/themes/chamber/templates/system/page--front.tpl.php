@@ -232,7 +232,7 @@
                     <h3>OUR PARTNERS</h3>
                 </div>
                 <ul class="pie">
-                    <li class="slice">
+                    <li id="slice1" class="slice">
                         <div class="slice-contents">
                             <div class="slice-info">
                                 <a href="//www.google.com">
@@ -242,7 +242,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="slice">
+                    <li id="slice2" class="slice">
                         <div class="slice-contents">
                             <div class="slice-info">
                                 <a href="//www.google.com">
@@ -252,7 +252,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="slice">
+                    <li id="slice3" class="slice">
                         <div class="slice-contents">
                             <div class="slice-info">
                                 <a href="//www.google.com">
@@ -262,7 +262,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="slice">
+                    <li id="slice4" class="slice">
                         <div class="slice-contents">
                             <div class="slice-info">
                                 <a href="//www.google.com">
