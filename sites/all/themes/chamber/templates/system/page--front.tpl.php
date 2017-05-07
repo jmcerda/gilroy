@@ -234,10 +234,12 @@
                 <ul class="pie">
                     <li class="slice">
                         <div class="slice-contents">
-                            <a href="//www.google.com">
-                                <img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg">
-                                <p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p>
-                            </a>
+                            <div>
+                                <a href="//www.google.com">
+                                    <img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg">
+                                    <p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p>
+                                </a>
+                            </div>
                         </div>
                     </li>
 <!--                    <li class="slice">-->
