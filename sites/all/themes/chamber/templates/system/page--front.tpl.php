@@ -228,9 +228,9 @@
     <div class="container">
         <div class="row">
             <div id="fp-chamber-nav">
-                <div class="nav-title">
+                <span class="nav-title">
                     <h3>OUR PARTNERS</h3>
-                </div>
+                </span>
                 <ul class="pie">
                     <li id="slice1" class="slice">
                         <div class="slice-contents">
