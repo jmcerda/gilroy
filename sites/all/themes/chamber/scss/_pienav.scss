@@ -5,12 +5,6 @@
     height: 72px;
   }
   #fp-chamber-nav {
-    //border-radius: 100%;
-    //background: $brand-secondary;
-    //height: 700px;
-    //margin: 5em auto;
-    //width: 700px;
-    //overflow: hidden;
     .nav-title {
       background: #ff9c0c;
       border-radius: 100%;
@@ -103,19 +97,6 @@
           margin: 1em auto;
         }
       }
-      //.slice-info:first-child() {
-      //  transform: rotate(45deg);
-      //}
-      //.slice-info:nth-child(2) {
-      //  transform: rotate(-45deg);
-      //}
-      //.slice-info:nth-child(3) {
-      //  transform: rotate(225deg);
-      //}
-      //.slice-info:nth-child(4) {
-      //  transform: rotate(135deg);
-      //}
-
     }
     //.slice:first-child .slice-contents {
     //  transform: skewY(40deg) /* unskew slice contents */
@@ -129,23 +110,10 @@
       }
     }
 
-    //.slice {
-    //  position: absolute;
-    //  width:0;
-    //  height:0;
-    //  border-radius: 60px;
-    //  -moz-border-radius: 60px;
-    //  -webkit-border-radius: 60px;
-    //}
-    //
     #slice1 {
       .slice-info {
 
       }
-    //  border-right:60px solid $brand-secondary;
-    //  border-top:60px solid transparent;
-    //  border-left:60px solid transparent;
-    //  border-bottom:60px solid transparent;
     }
     //
     #slice2 {
@@ -156,12 +124,7 @@
         -o-transform: rotate(-90deg);
         transform: rotate(-90deg);
       }
-    //  border-right:60px solid transparent;
-    //  border-top:60px solid $brand-secondary;
-    //  border-left:60px solid transparent;
-    //  border-bottom:60px solid transparent;
     }
-    //
     #slice3 {
       .slice-info {
         -webkit-transform: rotate(180deg);
@@ -170,12 +133,7 @@
         -o-transform: rotate(180deg);
         transform: rotate(180deg);
       }
-    //  border-right:60px solid transparent;
-    //  border-top:60px solid transparent;
-    //  border-left:60px solid $brand-secondary;
-    //  border-bottom:60px solid transparent;
     }
-    //
     #slice4 {
       .slice-info {
         -webkit-transform: rotate(90deg);
@@ -184,10 +142,6 @@
         -o-transform: rotate(90deg);
         transform: rotate(90deg);
       }
-    //  border-right:60px solid transparent;
-    //  border-top:60px solid transparent;
-    //  border-left:60px solid transparent;
-    //  border-bottom:60px solid $brand-secondary;
     }
   }
 }
