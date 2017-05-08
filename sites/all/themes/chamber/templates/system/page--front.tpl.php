@@ -228,10 +228,10 @@
     <div class="container">
         <div class="row">
             <div id="fp-chamber-nav">
+                <span class="nav-title">
+                    <h3>OUR PARTNERS</h3>
+                </span>
                 <ul class="pie">
-                    <span class="nav-title">
-                        <h3>OUR PARTNERS</h3>
-                    </span>
                     <li id="slice1" class="slice">
                         <div class="slice-contents">
                             <div class="slice-info">
