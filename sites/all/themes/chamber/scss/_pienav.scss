@@ -41,7 +41,7 @@
       transform-origin: 0% 100%;
     }
     .slice:first-child {
-      transform: rotate(15deg) /* angle between vertical axis (12 o'clock)
+      transform: rotate(-45deg) /* angle between vertical axis (12 o'clock)
 							and start of the slice;
 							change it to see how the slice changes */
       skewY(-40deg); /* minus (90deg minus the central angle of the slice)
@@ -52,7 +52,7 @@
     }
 
     .slice:nth-child(2) {
-      transform: rotate(90deg) /* angle between vertical axis (12 o'clock)
+      transform: rotate(45deg) /* angle between vertical axis (12 o'clock)
 							and start of the slice;
 							change it to see how the slice changes */
       skewY(0deg); /* minus (90deg minus the central angle of the slice)
@@ -62,7 +62,7 @@
          90deg - 50deg = 40deg => skewY(-40deg) */
     }
     .slice:nth-child(3) {
-      transform: rotate(180deg) /* angle between vertical axis (12 o'clock)
+      transform: rotate(135deg) /* angle between vertical axis (12 o'clock)
 							and start of the slice;
 							change it to see how the slice changes */
       skewY(0deg); /* minus (90deg minus the central angle of the slice)
@@ -72,7 +72,7 @@
          90deg - 50deg = 40deg => skewY(-40deg) */
     }
     .slice:nth-child(4) {
-      transform: rotate(270deg) /* angle between vertical axis (12 o'clock)
+      transform: rotate(225deg) /* angle between vertical axis (12 o'clock)
 							and start of the slice;
 							change it to see how the slice changes */
       skewY(0deg); /* minus (90deg minus the central angle of the slice)
