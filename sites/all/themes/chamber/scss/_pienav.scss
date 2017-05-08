@@ -90,6 +90,12 @@
       color: $brand-warning;
       text-align: center;
       transition: background-color .5s;
+      padding-top: 2em;
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
       .slice-info {
         p {
           color: $brand-warning;
