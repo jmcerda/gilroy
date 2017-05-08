@@ -91,23 +91,23 @@
       text-align: center;
       transition: background-color .5s;
       .slice-info {
-        :first-child() {
-          transform: rotate(45deg);
-        }
-        :nth-child(2) {
-          transform: rotate(-45deg);
-        }
-        :nth-child(3) {
-          transform: rotate(225deg);
-        }
-        :nth-child(4) {
-          transform: rotate(135deg);
-        }
         p {
           color: $brand-warning;
           width: 10em;
           margin: 1em auto;
         }
+      }
+      .slice-info:first-child() {
+        transform: rotate(45deg);
+      }
+      .slice-info:nth-child(2) {
+        transform: rotate(-45deg);
+      }
+      .slice-info:nth-child(3) {
+        transform: rotate(225deg);
+      }
+      .slice-info:nth-child(4) {
+        transform: rotate(135deg);
       }
 
     }
