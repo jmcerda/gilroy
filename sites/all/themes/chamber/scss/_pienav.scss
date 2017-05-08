@@ -43,7 +43,7 @@
     .slice:first-child {
       transform: rotate(-45deg) /* angle between vertical axis (12 o'clock)
 							and start of the slice;
-							change it to see how the slice changes */
+							change it to see how the slice changes
       skewY(-40deg); /* minus (90deg minus the central angle of the slice)
 							see http://en.wikipedia.org/wiki/Central_angle
 							change it to see how the slice changes */
@@ -100,11 +100,11 @@
       }
 
     }
-    .slice:first-child .slice-contents {
-      transform: skewY(40deg) /* unskew slice contents */
-      rotate(25deg); /* rotate by half the central angle of the slice
-							which is 50deg in this case */
-    }
+    //.slice:first-child .slice-contents {
+    //  transform: skewY(40deg) /* unskew slice contents */
+    //  rotate(25deg); /* rotate by half the central angle of the slice
+		//					which is 50deg in this case */
+    //}
     .slice-contents:hover {
       background: $brand-warning;
       p, img {
