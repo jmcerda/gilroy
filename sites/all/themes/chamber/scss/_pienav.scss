@@ -138,32 +138,56 @@
     //  -webkit-border-radius: 60px;
     //}
     //
-    //#slice1 {
+    #slice1 {
+      .slide-info {
+
+      }
     //  border-right:60px solid $brand-secondary;
     //  border-top:60px solid transparent;
     //  border-left:60px solid transparent;
     //  border-bottom:60px solid transparent;
-    //}
+    }
     //
-    //#slice2 {
+    #slice2 {
+      .slide-info {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+      }
     //  border-right:60px solid transparent;
     //  border-top:60px solid $brand-secondary;
     //  border-left:60px solid transparent;
     //  border-bottom:60px solid transparent;
-    //}
+    }
     //
-    //#slice3 {
+    #slice3 {
+      .slide-info {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
     //  border-right:60px solid transparent;
     //  border-top:60px solid transparent;
     //  border-left:60px solid $brand-secondary;
     //  border-bottom:60px solid transparent;
-    //}
+    }
     //
-    //#slice4 {
+    #slice4 {
+      .slide-info {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
     //  border-right:60px solid transparent;
     //  border-top:60px solid transparent;
     //  border-left:60px solid transparent;
     //  border-bottom:60px solid $brand-secondary;
-    //}
+    }
   }
 }
