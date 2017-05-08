@@ -35,14 +35,8 @@
       transform-origin: 0% 100%;
     }
     .slice:first-child {
-      transform: rotate(-45deg) /* angle between vertical axis (12 o'clock)
-							and start of the slice;
-							change it to see how the slice changes
-      skewY(-40deg); /* minus (90deg minus the central angle of the slice)
-							see http://en.wikipedia.org/wiki/Central_angle
-							change it to see how the slice changes */
-      /* in this case, take the central angle of the slice to be 50deg
-         90deg - 50deg = 40deg => skewY(-40deg) */
+      transform: rotate(-45deg);
+      border: 0 0 1px 1px solid #fff;
     }
 
     .slice:nth-child(2) {
@@ -92,7 +86,7 @@
       transform: rotate(45deg);
       .slice-info {
         p {
-          color: $brand-warning;
+          color: #fff;
           width: 10em;
           margin: 1em auto;
         }
