@@ -870,3 +870,7 @@ a {
     margin-right: -.25em;
   }
 }
+
+.print_html, .print_mail, .print_pdf, .print_epub {
+  display: inline-block;
+}
