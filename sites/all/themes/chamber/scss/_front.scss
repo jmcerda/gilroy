@@ -5,6 +5,9 @@
   .utilities {
     margin:auto;
     text-align: center;
+    @media (min-width: 768px) {
+      width: 34%;
+    };
     .utility-item {
       background: $brand-warning;
       -webkit-border-radius:50%;
