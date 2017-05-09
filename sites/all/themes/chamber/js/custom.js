@@ -50,7 +50,7 @@
             //     index: 5,
             // });
             $('.chamber-flipster').flipster({
-                itemContainer: 'flipster_container',
+                itemContainer: 'flipster-container',
                 // [string|object]
                 // Selector for the container of the flippin' items.
 
