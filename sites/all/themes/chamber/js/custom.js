@@ -54,7 +54,7 @@
                 // [string|object]
                 // Selector for the container of the flippin' items.
 
-                // itemSelector: '.flipster-slide',
+                itemSelector: '.flipster-slide',
                 // [string|object]
                 // Selector for children of `itemContainer` to flip
 
