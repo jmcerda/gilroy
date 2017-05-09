@@ -43,22 +43,3 @@ function chamber_preprocess_node(&$variables) {
 //    $output = l($element['#title'], $element['#href'], $element['#localized_options']);
 //    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 //}
-
-function chamber_menu_link__menu_block__main_menu(array &$variables) {
-    $element = $variables['element'];
-    $sub_menu = '';
-    if ($element['#below']) {
-        $sub_menu = drupal_render($element['#below']);
-    }
-    // Add "has-children" class to links which have children
-    if ($element['#original_link']['has_children']) {
-        $element['#attributes']['class'][] = 'has-children';
-    }
-    // On primary navigation menu, class 'active' is not set on active menu item.
-    // @see https://drupal.org/node/1896674
-    if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
-        $element['#attributes']['class'][] = 'active';
-    }
-    $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
-}
