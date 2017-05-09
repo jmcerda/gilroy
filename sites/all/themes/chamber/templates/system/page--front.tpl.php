@@ -181,8 +181,8 @@
 </div>
 <div id="fp-mid-nav">
     <div class="utilities">
-<!--        <div class="container">-->
-<!--            <div class="row">-->
+        <div class="container">
+            <div class="row">
                 <span class="col-sm-3 col-xs-12 utility-item directory-link equalHeight">
                     <a href="directory">
                         <img src="sites/all/themes/chamber/images/magnifying_glass_wh.svg">
@@ -201,8 +201,8 @@
                         <span>VIEW PHOTO GALLERY</span>
                     </a>
                 </span>
-<!--            </div>-->
-<!--        </div>-->
+            </div>
+        </div>
     </div>
 </div>
 <div id="fp-events-video">
