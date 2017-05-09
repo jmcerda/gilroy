@@ -45,7 +45,9 @@
     }
   }
   #fp-mid-nav {
-    margin: 0 auto;
+    position: relative;
+    margin: 6em auto -6em;
+    z-index: 9;
   }
   #fp-events-video {
     background: $brand-primary;
