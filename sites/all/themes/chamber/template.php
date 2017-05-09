@@ -34,12 +34,12 @@ function chamber_preprocess_node(&$variables) {
  * attempts to make every menu with children into a dropdown menu. Remove this
  * function if you want drop down links.
  */
-function chamber_menu_link(array $variables) {
-    $element = $variables['element'];
-    $sub_menu = '';
-    if ($element['#fumenu']) {
-        $sub_menu = drupal_render($element['#fumenu']);
-    }
-    $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
-}
+//function chamber_menu_link(array $variables) {
+//    $element = $variables['element'];
+//    $sub_menu = '';
+//    if ($element['#fumenu']) {
+//        $sub_menu = drupal_render($element['#fumenu']);
+//    }
+//    $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+//    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+//}
