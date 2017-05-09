@@ -57,17 +57,27 @@
     height: auto;
     padding: 15% 0 5%;
     //border-radius: 50% / 100%;
-    &::before {
-      border-radius: 0 40% 50% 0;
-    }
-    &::after {
-      border-radius: 40% 0 0 50%;
-    }
+    //&::before {
+    //  border-radius: 0 40% 50% 0;
+    //}
+    //&::after {
+    //  border-radius: 40% 0 0 50%;
+    //}
     a {
       color: #fff;
       &hover {
         color: #fff;
       }
+    }
+    #fp-events-video:after {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: #000;
+      border-radius: 100%;
+      content: "";
+      top: 0;
+      left: 0;
     }
     .upcoming-events-block-left, .upcoming-events-block-right {
       display: inline-block;
