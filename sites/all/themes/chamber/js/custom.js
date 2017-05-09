@@ -50,7 +50,7 @@
             //     index: 5,
             // });
             $('.chamber-flipster').flipster({
-                itemContainer: 'div',
+                itemContainer: 'flipster__container',
                 // [string|object]
                 // Selector for the container of the flippin' items.
 
@@ -108,7 +108,7 @@
                 // If not false, Flipster will build an unordered list of the items
                 // Values true or 'before' will insert the navigation before the items, 'after' will append the navigation after the items
 
-                buttons: false,
+                buttons: true,
                 // [true|false|'custom']
                 // If true, Flipster will insert Previous / Next buttons with SVG arrows
                 // If 'custom', Flipster will not insert the arrows and will instead use the values of `buttonPrev` and `buttonNext`
