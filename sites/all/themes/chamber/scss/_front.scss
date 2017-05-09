@@ -78,6 +78,7 @@
       content: "";
       top: 0;
       left: 0;
+      z-index:999;
     }
     .upcoming-events-block-left, .upcoming-events-block-right {
       display: inline-block;
