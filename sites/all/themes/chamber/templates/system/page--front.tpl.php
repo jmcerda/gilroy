@@ -228,7 +228,7 @@
     <div class="container">
         <div class="row">
             <div id="fp-chamber-nav">
-                <span class="nav-title">
+                <span class="nav-title col-xs-12 col-xs-offset-6">
                     <h3>OUR PARTNERS</h3>
                 </span>
                 <ul class="pie">
