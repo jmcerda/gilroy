@@ -280,7 +280,7 @@
 <div id="fp-ads-slider">
     <div class="container">
         <div class="row">
-            <div id="wheel">
+            <div id="wheel" class="ad-wheel">
                 <?php print views_embed_view('sliders', 'ads'); ?>
             </div>
         </div>
