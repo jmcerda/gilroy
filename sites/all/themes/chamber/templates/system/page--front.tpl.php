@@ -237,7 +237,7 @@
                     <li id="slice1" class="slice">
                         <div class="slice-contents">
                             <div class="slice-info">
-<!--                                <a href="//www.google.com">-->
+                                <a href="//www.gilroyedc.org">
                                     <img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg">
                                     <p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p>
                                 </a>
@@ -247,7 +247,7 @@
                     <li id="slice2" class="slice">
                         <div class="slice-contents">
                             <div class="slice-info">
-<!--                                <a href="//www.google.com">-->
+                                <a href="//www.downtowngilroy.com">
                                     <img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg">
                                     <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>
                                 </a>
@@ -257,7 +257,7 @@
                     <li id="slice3" class="slice">
                         <div class="slice-contents">
                             <div class="slice-info">
-<!--                                <a href="//www.google.com">-->
+                                <a href="//www.cityorgilroy.org">
                                     <img src="sites/all/themes/chamber/images/CityofGilroy.svg">
                                     <p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p>
                                 </a>
@@ -267,7 +267,7 @@
                     <li id="slice4" class="slice">
                         <div class="slice-contents">
                             <div class="slice-info">
-<!--                                <a href="//www.google.com">-->
+                                <a href="//www.gilroywelcomecenter.org">
                                     <img src="sites/all/themes/chamber/images/VisitGilroy.svg">
                                     <p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p>
                                 </a>
