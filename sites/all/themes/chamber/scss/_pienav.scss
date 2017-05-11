@@ -103,7 +103,7 @@
         color: $brand-secondary;
         text-decoration: none;
       }
-      svg path {
+      svg * {
         fill: $brand-secondary;
       }
     }
