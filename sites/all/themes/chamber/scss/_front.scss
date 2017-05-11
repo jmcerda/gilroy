@@ -27,8 +27,8 @@
         margin: 1em auto;
         path {
           fill: #fff;
-          * {
-            fill: #fff !important;
+          circle {
+            fill: #fff;
           }
         }
       }
