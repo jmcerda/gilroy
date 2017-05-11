@@ -101,6 +101,9 @@
         color: $brand-secondary;
         text-decoration: none;
       }
+      svg path {
+        fill: #fff;
+      }
     }
 
     #slice1 {
