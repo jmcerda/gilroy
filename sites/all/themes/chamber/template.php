@@ -47,6 +47,6 @@ function chamber_preprocess_node(&$variables) {
 /**
  * Overrides theme_menu_link().
  */
-function chamber_menu_link__menu_block($variables) {
-    return theme_menu_link($variables);
-}
+//function chamber_menu_link__menu_block($variables) {
+//    return theme_menu_link($variables);
+//}
