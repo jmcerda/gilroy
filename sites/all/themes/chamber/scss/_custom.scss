@@ -23,7 +23,9 @@
 .logo svg {
   height: 125px;
   width: auto;
-  fill: $brand-primary;
+  path {
+    fill: $brand-primary;
+  }
 }
 .gsearch {
   .btn {
