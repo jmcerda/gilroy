@@ -138,7 +138,7 @@
             // Ad slider wheel
             $('.chamber-ad-slider').flipster({
                 style: 'wheel',
-                spacing: 1,
+                spacing: 0,
                 itemContainer: '.view-content',
                 itemSelector: '.ad-slider-slide',
                 start: 1,
