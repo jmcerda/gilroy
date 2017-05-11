@@ -145,11 +145,11 @@
                 // ['center'|number]
                 // Zero based index of the starting item, or use 'center' to start in the middle
 
-                fadeIn: 400,
+                // fadeIn: 400,
                 // [milliseconds]
                 // Speed of the fade in animation after items have been setup
 
-                loop: true,
+                // loop: true,
 
                 // autoplay: 5000,
                 // [false|milliseconds]
