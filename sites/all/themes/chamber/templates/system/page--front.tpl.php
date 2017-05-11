@@ -295,7 +295,7 @@
             <div class="col-xs-12">
                 <?php print render($page['footer']); ?>
             </div>
-            <div class="equalHeight col-sm-6 col-xs-12">
+            <div class="equalHeight col-sm-8 col-xs-12">
                 <div id="fumenu">
                     <?php
                     //print render($main_menu_expanded);
@@ -303,7 +303,7 @@
                     ?>
                 </div>
             </div>
-            <div class="contact-container equalHeight col-sm-3">
+            <div class="contact-container equalHeight col-sm-2">
                 <span class="foot-contact" itemscope itemtype="http://schema.org/LocalBusiness">
     <!--                <h5><span itemprop="name">The Gilroy Chamber of Commerce</span></h5>-->
                     <span itemprop="address">7471 Monterey Street<br />Gilroy, CA 95020</span><br>
