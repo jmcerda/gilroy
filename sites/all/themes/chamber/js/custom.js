@@ -151,31 +151,31 @@
 
                 loop: true,
 
-                autoplay: 5000,
+                // autoplay: 5000,
                 // [false|milliseconds]
                 // If a positive number, Flipster will automatically advance to next item after that number of milliseconds
 
-                pauseOnHover: true,
+                // pauseOnHover: true,
                 // [true|false]
                 // If true, autoplay advancement will pause when Flipster is hovered
 
-                click: true,
+                // click: true,
                 // [true|false]
                 // Clicking an item switches to that item
 
-                keyboard: true,
+                // keyboard: true,
                 // [true|false]
                 // Enable left/right arrow navigation
 
-                scrollwheel: true,
+                // scrollwheel: true,
                 // [true|false]
                 // Enable mousewheel/trackpad navigation; up/left = previous, down/right = next
 
-                touch: true,
+                // touch: true,
                 // [true|false]
                 // Enable swipe navigation for touch devices
 
-                nav: false,
+                // nav: false,
                 // [true|false|'before'|'after']
                 // If not false, Flipster will build an unordered list of the items
                 // Values true or 'before' will insert the navigation before the items, 'after' will append the navigation after the items
@@ -193,7 +193,7 @@
                 // [text|html]
                 // Changes the text for the Next button
 
-                onItemSwitch: false
+                // onItemSwitch: false
                 // [function]
                 // Callback function when items are switched
                 // Arguments received: [currentItem, previousItem]
