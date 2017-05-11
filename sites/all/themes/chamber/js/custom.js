@@ -136,9 +136,16 @@
             // myWheelnav.createWheel([icon.smile, icon.star, icon.fork, icon.$]);
 
             // Ad slider wheel
-            $('.ad-slider-slide').flipster({
+            $('.chamber-ad-slider').flipster({
                 style: 'wheel',
-                spacing: 0
+                spacing: 0,
+                itemContainer: '.view-content',
+                // [string|object]
+                // Selector for the container of the flippin' items.
+
+                itemSelector: '.ad-slider-slide',
+                // [string|object]
+                // Selector for children of `itemContainer` to flip
             });
 
             // SVG img replace
