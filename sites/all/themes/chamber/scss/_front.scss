@@ -25,11 +25,8 @@
         height: 42px;
         width: 100%;
         margin: 1em auto;
-        path {
+        path, circle {
           fill: #fff;
-          .cls-1 {
-            fill: #fff;
-          }
         }
       }
     }
