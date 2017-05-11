@@ -136,7 +136,7 @@
             // myWheelnav.createWheel([icon.smile, icon.star, icon.fork, icon.$]);
 
             // Ad slider wheel
-            $('.ad-wheel').flipster({
+            $('.ad-slider-block').flipster({
                 style: 'wheel',
                 spacing: 0
             });
