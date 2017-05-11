@@ -96,13 +96,15 @@
     //}
     .slice-contents:hover {
       background: $brand-warning;
-      text-decoration: none;
+      a {
+        text-decoration: none;
+      }
       p {
         color: $brand-secondary;
         text-decoration: none;
       }
       svg path {
-        fill: #fff;
+        fill: $brand-secondary;
       }
     }
 
