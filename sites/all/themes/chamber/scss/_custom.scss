@@ -67,8 +67,8 @@ footer {
       display: inline-block;
       vertical-align: top;
     }
-    > li:nth-child(3), >li:nth-child(4) {
-      display: inline;
+    > li:nth-child(2) {
+      display: none;
     }
   }
   .contact-container {
