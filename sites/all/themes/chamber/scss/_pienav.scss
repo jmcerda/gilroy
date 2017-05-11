@@ -97,8 +97,9 @@
     .slice-contents:hover {
       background: $brand-warning;
       text-decoration: none;
-      p, img {
-        color: #000;
+      p {
+        color: $brand-secondary;
+        text-decoration: none;
       }
     }
 
