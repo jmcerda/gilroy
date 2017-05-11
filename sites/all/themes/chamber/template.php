@@ -43,3 +43,10 @@ function chamber_preprocess_node(&$variables) {
 //    $output = l($element['#title'], $element['#href'], $element['#localized_options']);
 //    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 //}
+
+/**
+ * Overrides theme_menu_link().
+ */
+function chamber_menu_link__menu_block($variables) {
+    return theme_menu_link($variables);
+}
