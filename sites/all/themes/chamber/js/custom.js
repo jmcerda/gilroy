@@ -180,16 +180,16 @@
                 // If not false, Flipster will build an unordered list of the items
                 // Values true or 'before' will insert the navigation before the items, 'after' will append the navigation after the items
 
-                buttons: true,
+                // buttons: true,
                 // [true|false|'custom']
                 // If true, Flipster will insert Previous / Next buttons with SVG arrows
                 // If 'custom', Flipster will not insert the arrows and will instead use the values of `buttonPrev` and `buttonNext`
 
-                buttonPrev: 'Previous',
+                // buttonPrev: 'Previous',
                 // [text|html]
                 // Changes the text for the Previous button
 
-                buttonNext: 'Next',
+                // buttonNext: 'Next',
                 // [text|html]
                 // Changes the text for the Next button
 
