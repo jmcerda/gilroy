@@ -298,7 +298,8 @@
             <div class="equalHeight col-sm-6 col-xs-12">
                 <div id="fumenu">
                     <?php
-                    print render($main_menu_expanded);
+                    //print render($main_menu_expanded);
+                    $block = module_invoke('menu_block', 'block_view', '1'); print render($block['content']);
                     ?>
                 </div>
             </div>
