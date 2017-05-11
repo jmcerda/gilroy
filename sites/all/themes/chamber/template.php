@@ -30,23 +30,10 @@ function chamber_preprocess_node(&$variables) {
 /**
  * Overrides bootstrap_menu_link().
  *
- * Resets theme_menu_link() to the default that ships with Drupal. Bootstrap
+ * Resets _menu_link() to the default that ships with Drupal. Bootstrap
  * attempts to make every menu with children into a dropdown menu. Remove this
  * function if you want drop down links.
  */
-//function chamber_menu_link(array $variables) {
-//    $element = $variables['element'];
-//    $sub_menu = '';
-//    if ($element['#fumenu']) {
-//        $sub_menu = drupal_render($element['#fumenu']);
-//    }
-//    $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-//    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
-//}
-
-/**
- * Overrides theme_menu_link().
- */
-//function chamber_menu_link__menu_block($variables) {
-//    return theme_menu_link($variables);
-//}
+function chamber_menu_link__menu_block($variables) {
+    return theme_menu_link($variables);
+}

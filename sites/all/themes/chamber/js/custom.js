@@ -141,7 +141,7 @@
                 spacing: 0
             });
 
-            // SVG img
+            // SVG img replace
             $('img[src$=".svg"]').each(function() {
                 var $img = jQuery(this);
                 var imgURL = $img.attr('src');
