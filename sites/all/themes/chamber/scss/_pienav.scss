@@ -96,9 +96,9 @@
     //}
     .slice-contents:hover {
       background: $brand-warning;
+      text-decoration: none;
       p, img {
         color: $brand-secondary;
-        text-decoration: none;
       }
     }
 
