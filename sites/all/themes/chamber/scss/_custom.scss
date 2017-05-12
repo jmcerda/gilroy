@@ -52,6 +52,10 @@
 
 .gmenu-secondary {
   text-transform: uppercase;
+  li {
+    font-size:22px;
+    color: $menu-color;
+  }
   li .active-trail {
     background-color: transparent;
   }
