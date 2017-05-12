@@ -41,6 +41,10 @@
 .gmenu-primary {
   clear: right;
   text-transform: uppercase;
+  li {
+    font-size:18px;
+    color: $menu-color;
+  }
   li.active-trail {
     background-color: transparent;
   }
