@@ -16,8 +16,8 @@
         color: $menu-color;
         &:hover,
         &:focus {
-          color: $navbar-default-link-hover-color;
-          background-color: transparent;
+          color: $menu-color;
+          background-color: transparent !important;
         }
       }
       > .active > a {
