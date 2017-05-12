@@ -52,8 +52,10 @@
   <?php endif; ?>
 
   <?php if ($rows): ?>
-    <div class="view-content">
-      <?php print $rows; ?>
+    <div class="square toggle-down ad-wheel" onclick="toggle()">
+        <div class="view-content">
+          <?php print $rows; ?>
+        </div>
     </div>
   <?php elseif ($empty): ?>
     <div class="view-empty">
