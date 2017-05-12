@@ -53,7 +53,7 @@ scripts[] = 'js/jquery-flipster/dist/jquery.flipster.min.js'
 
 ; Custom
 scripts[] = 'js/custom.js'
-scripts[] = 'js/adslider.js'
+;scripts[] = 'js/adslider.js'
 
 ; Disable the CDN provider so compiled source files can be used.
 settings[bootstrap_cdn] = ''
