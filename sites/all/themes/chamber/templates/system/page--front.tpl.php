@@ -283,7 +283,9 @@
     <div class="container">
         <div class="row">
             <div id="wheel">
-                <?php print views_embed_view('sliders', 'ads'); ?>
+                <div class="square toggle-down ad-wheel" onclick="toggle()">
+                    <?php print views_embed_view('sliders', 'ads'); ?>
+                </div>
             </div>
         </div>
     </div>
