@@ -4,8 +4,8 @@
     &,
     &:hover,
     &:focus {
-      background-color: transparent;
-      color: $brand-warning;
+      background-color: transparent !important;
+      color: $brand-warning !important;
     }
   }
 
@@ -16,7 +16,7 @@
         color: $menu-color;
         &:hover,
         &:focus {
-          color: $menu-color;
+          color: $menu-color !important;
           background-color: transparent !important;
         }
       }
