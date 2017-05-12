@@ -43,8 +43,10 @@
 .gmenu-primary {
   clear: right;
   text-transform: uppercase;
-  ul {
+  ul.dropdown-menu {
     text-align: center;
+    background-color: $menu-color;
+
   }
   li {
     font-size:18px;
