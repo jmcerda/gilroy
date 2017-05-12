@@ -38,28 +38,6 @@
     border-top-left-radius: 15px;
   }
 }
-.gmenu-primary {
-  clear: right;
-  text-transform: uppercase;
-  li {
-    font-size:18px;
-    color: $menu-color;
-  }
-  li.active-trail {
-    background-color: transparent;
-  }
-}
-
-.gmenu-secondary {
-  text-transform: uppercase;
-  li {
-    font-size:16px;
-    color: $menu-color;
-  }
-  li .active-trail {
-    background-color: transparent;
-  }
-}
 
 footer {
   background: $brand-primary;
