@@ -13,27 +13,27 @@
     // Dropdowns get custom display when collapsed
     .open .dropdown-menu {
       > li > a {
-        color: $navbar-default-link-color;
+        color: $menu-color;
         &:hover,
         &:focus {
           color: $navbar-default-link-hover-color;
-          background-color: $navbar-default-link-hover-bg;
+          background-color: transparent;
         }
       }
       > .active > a {
         &,
         &:hover,
         &:focus {
-          color: $navbar-default-link-active-color;
-          background-color: $navbar-default-link-active-bg;
+          color: $menu-color;
+          background-color: transparent;
         }
       }
       > .disabled > a {
         &,
         &:hover,
         &:focus {
-          color: $navbar-default-link-disabled-color;
-          background-color: $navbar-default-link-disabled-bg;
+          color: $menu-color;
+          background-color: transparent;
         }
       }
     }
