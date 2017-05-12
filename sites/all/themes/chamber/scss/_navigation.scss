@@ -46,8 +46,10 @@
   ul.dropdown-menu {
     text-align: center;
     background-color: $menu-color;
-    color: #fff;
     text-transform: none;
+    a {
+      color: #fff;
+    }
   }
   li {
     font-size:18px;
