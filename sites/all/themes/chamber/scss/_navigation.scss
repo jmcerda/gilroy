@@ -13,7 +13,7 @@
     // Dropdowns get custom display when collapsed
     .open .dropdown-menu {
       > li > a {
-        color: $menu-color;
+        color: $menu-color !important;
         &:hover,
         &:focus {
           color: $menu-color !important;
@@ -24,16 +24,16 @@
         &,
         &:hover,
         &:focus {
-          color: $menu-color;
-          background-color: transparent;
+          color: $menu-color !important;
+          background-color: transparent !important;
         }
       }
       > .disabled > a {
         &,
         &:hover,
         &:focus {
-          color: $menu-color;
-          background-color: transparent;
+          color: $menu-color !important;
+          background-color: transparent !important;
         }
       }
     }
