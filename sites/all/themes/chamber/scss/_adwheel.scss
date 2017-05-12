@@ -1,0 +1,26 @@
+.front {
+  #wheel {
+    .chamber-ad-slider {
+      .square {
+        //width: 100px;
+        //height: 100px;
+        //background-color: #ff0000;
+        transition: all 0.75s 0.25s;
+      }
+
+      .toggle-down {
+        transform: rotate(0deg);
+      }
+
+
+      .toggle-up {
+        transform: rotate(180deg);
+      }
+      .view-content {
+        .views-row-2 {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}
