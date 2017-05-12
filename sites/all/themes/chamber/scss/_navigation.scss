@@ -43,6 +43,9 @@
 .gmenu-primary {
   clear: right;
   text-transform: uppercase;
+  ul {
+    text-align: center;
+  }
   li {
     font-size:18px;
     color: $menu-color;
