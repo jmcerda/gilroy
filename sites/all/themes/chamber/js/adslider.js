@@ -7,10 +7,10 @@ var downClass = 'toggle-down';
 function toggle() {
     var square = document.querySelector('.square');
 
-    if (~square.className.indexOf(upClass)) {
-        square.className = square.className.replace(upClass, upClass);
+    if (~square.className.indexOf(downClass)) {
+        square.className = square.className.replace(downClass, upClass);
     } else {
-        square.className = square.className.replace(downClass, downClass);
+        square.className = square.className.replace(upClass, downClass);
     }
 
 }
