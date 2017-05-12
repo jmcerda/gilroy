@@ -4,10 +4,10 @@
   li {
     font-size:18px;
     color: $menu-color;
-    .open>a, .open>a:focus, .open>a:hover, .open>a:focus {
-      background-color: transparent;
-      color: $brand-warning;
-    }
+  }
+  li.open > a, li.open > a:focus, li.open > a:hover, li.open > a:focus {
+    background-color: transparent;
+    color: $brand-warning;
   }
   li.active-trail {
     background-color: transparent;
