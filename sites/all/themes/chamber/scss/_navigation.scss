@@ -60,6 +60,8 @@
       border-bottom-color: $menu-color;
       border-width: 10px;
       margin-left: -10px;
+      transition: height 3s;
+      transition-delay: .5s;
     }
     a {
       color: #fff;
