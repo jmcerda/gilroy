@@ -43,6 +43,9 @@
 .gmenu-primary {
   clear: right;
   text-transform: uppercase;
+  .caret {
+    display: none;
+  }
   ul.dropdown-menu {
     background-color: $menu-color;
     min-width: 200px;
