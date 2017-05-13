@@ -45,17 +45,16 @@
   text-transform: uppercase;
   ul.dropdown-menu {
     background-color: $menu-color;
-    li {
-      font-size:18px;
-      color: $menu-color;
-      a {
-        color: #fff;
-        text-align: center;
-        text-transform: none;
-      }
+    a {
+      color: #fff;
+      text-align: center;
+      text-transform: none;
     }
   }
-
+  li {
+    font-size: 18px;
+    color: $menu-color;
+  }
   li.active-trail {
     background-color: transparent;
   }
