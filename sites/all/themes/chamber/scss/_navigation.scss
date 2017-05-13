@@ -43,28 +43,25 @@
 .gmenu-primary {
   clear: right;
   text-transform: uppercase;
-  .arrow_box {
-    position: relative;
-    background: $menu-color;
-  }
-  .arrow_box:after {
-    bottom: 100%;
-    left: 50%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-color: rgba(77, 70, 62, 0);
-    border-bottom-color: $menu-color;
-    border-width: 10px;
-    margin-left: -10px;
-  }
   ul.dropdown-menu {
     background-color: $menu-color;
     left: -25%;
     min-width: 200px;
+    position: relative;
+    &:after {
+      bottom: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(77, 70, 62, 0);
+      border-bottom-color: $menu-color;
+      border-width: 10px;
+      margin-left: -10px;
+    }
     a {
       color: #fff;
       text-align: center;
