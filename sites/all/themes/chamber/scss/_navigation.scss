@@ -54,8 +54,8 @@
       white-space:normal;
       &:hover,
       &:focus {
-        background-color: transparent !important;
-        color: $brand-warning !important;
+        background-color: $brand-warning;
+        color: $menu-color;
       }
     }
   }
