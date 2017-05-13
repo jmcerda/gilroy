@@ -53,15 +53,18 @@ footer {
       padding-left: 2em;
     }
   }
-  #fumenu .menu-name-main-menu {
-    text-transform: uppercase;
-    > ul {
-      > li {
-        display: inline-block;
-        vertical-align: top;
-      }
-      > li:nth-child(2) {
-        display: none;
+  #fumenu {
+    white-space: nowrap;
+    .menu-name-main-menu {
+      text-transform: uppercase;
+      > ul {
+        > li {
+          display: inline-block;
+          vertical-align: top;
+        }
+        > li:nth-child(2) {
+          display: none;
+        }
       }
     }
   }
