@@ -45,11 +45,19 @@
   text-transform: uppercase;
   ul.dropdown-menu {
     background-color: $menu-color;
+    left: -25%;
+    min-width: 200px;
     a {
       color: #fff;
       text-align: center;
       text-transform: none;
       white-space:normal;
+      &,
+      &:hover,
+      &:focus {
+        background-color: transparent !important;
+        color: $brand-warning !important;
+      }
     }
   }
   li {
