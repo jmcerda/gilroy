@@ -52,8 +52,8 @@ function bootstrap_menu_link(array $variables) {
 
       // Set dropdown trigger element to # to prevent inadvertant page loading
       // when a submenu link is clicked.
-      // $options['attributes']['data-target'] = '#';
-      // $options['attributes']['class'][] = 'dropdown-toggle';
+//      $options['attributes']['data-target'] = '#';
+      $options['attributes']['class'][] = 'dropdown-toggle';
       $options['attributes']['data-toggle'] = 'dropdown';
     }
   }
