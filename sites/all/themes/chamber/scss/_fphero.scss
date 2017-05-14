@@ -2,6 +2,9 @@
   .front-hero {
     @media (min-width: 768px) {
       img {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
       }
     }
   }
@@ -52,11 +55,6 @@
     }
   }
 
-  .card .fpfront {
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-  }
   .card .fpback {
     background: $brand-secondary;
     -webkit-transform: rotateY( 180deg );
