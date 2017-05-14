@@ -2,9 +2,6 @@
   .front-hero {
     @media (min-width: 768px) {
       img {
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
       }
     }
   }
@@ -21,6 +18,9 @@
     -moz-perspective: 800px;
     -o-perspective: 800px;
     perspective: 800px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
   }
   .card {
     width: 100%;
