@@ -11,9 +11,8 @@
             //
             $(".flipster-slide").click(function(){
                 if ($(this).hasClass('flipster__item--current')) {
-                    $('.flipster__item--current .card').addClass('flipped');
+                    $('.card').parent().addClass('flipped');
                 }
-                else $('.card').removeClass('flipped');
             });
 
 
