@@ -9,14 +9,14 @@
             //     $(this).addClass("flipped");
             // });
             //
-            // $(".flipster-slide").click(function(){
-            //     if ($(this).hasClass('flipster__item--current')) {
-            //         $('.card').parent().addClass('flipped');
-            //     }
-            // });
-            $(".card").click(function() {
-                $(".flipster__item--current").closest(".card").addClass("flipped");
+            $(".flipster-slide").click(function(){
+                if ($(this).hasClass('flipster__item--current')) {
+                    $('.card').closest().addClass('flipped');
+                }
             });
+            // $(".card").click(function() {
+            //     $(".flipster__item--current").closest(".card").addClass("flipped");
+            // });
         }
     };
 }(jQuery));
