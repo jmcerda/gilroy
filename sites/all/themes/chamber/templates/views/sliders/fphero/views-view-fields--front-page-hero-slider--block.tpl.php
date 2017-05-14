@@ -33,14 +33,20 @@
         ?>
     </div>
     <div class="fpback">
-      <h3>
-          <?php print (!empty($fields['title_field'])) ?
-              $fields['title_field']->content : ''; ?>
-      </h3>
-        <?php print (!empty($fields['field_feed_item_description'])) ?
-            $fields['field_feed_item_description']->content : ''; ?>
-        <?php print (!empty($fields['field_button_link'])) ?
-            $fields['field_button_link']->content : ''; ?>
+      <div class="fpback-content">
+          <span class="fpback-title">
+              <?php print (!empty($fields['title_field'])) ?
+                  $fields['title_field']->content : ''; ?>
+          </span>
+          <span class="fpback-body">
+              <?php print (!empty($fields['field_feed_item_description'])) ?
+                  $fields['field_feed_item_description']->content : ''; ?>
+          </span>
+          <span class="fpback-link">
+              <?php print (!empty($fields['field_button_link'])) ?
+                  $fields['field_button_link']->content : ''; ?>
+          </span>
+      </div>
     </div>
   </div>
 </div>
