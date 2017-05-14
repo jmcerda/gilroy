@@ -5,8 +5,6 @@
     Drupal.behaviors.fpheroModule = {
         attach: function (context, settings) {
             // Front page slider flip function
-            $(".flipster__item--past").removeClass("flipped");
-            $(".flipster__item--future").removeClass("flipped");
             $(".card").click(function() {
                 $(this).addClass("flipped");
             });
@@ -19,6 +17,12 @@
             // $(".card").click(function() {
             //     $(".flipster__item--current").closest(".card").addClass("flipped");
             // });
+            $(if( $(".flipster-slide").hasClass(‘flipster__item--past’) ) {
+                $(".card").closest().removeClass(‘flipped’);
+            });
+            $(if( $(".flipster-slide").hasClass(‘flipster__item--future’) ) {
+                $(".card").closest().removeClass(‘flipped’);
+            });
         }
     };
 }(jQuery));
