@@ -5,8 +5,13 @@
     Drupal.behaviors.fpheroModule = {
         attach: function (context, settings) {
             // Front page slider flip function
-            $(".card").click(function() {  //use a class, since your ID gets mangled
-                $(this).addClass("flipped");      //add the class to the clicked element
+            $(".card").click(function() {
+                // $(this).addClass("flipped");
+                if ( $(this).hasClass('flipped') ) {
+                    $(this).removeClass('flipped');
+                } else {
+                    $(this).addClass('current');
+                }
             });
         }
     };

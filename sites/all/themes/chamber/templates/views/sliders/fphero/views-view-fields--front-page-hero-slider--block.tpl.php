@@ -26,7 +26,7 @@
 ?>
 
 <div class="fpslide-container">
-  <div class="card" onclick="flip()">
+  <div class="card">
     <div class="fpfront">
         <?php print (!empty($fields['field_image'])) ?
             $fields['field_image']->content : '';
