@@ -27,12 +27,12 @@
 
 <div class="fpslide-container">
   <div class="card" onclick="flip()">
-    <div class="front">
+    <div class="fpfront">
         <?php print (!empty($fields['field_image'])) ?
             $fields['field_image']->content : '';
         ?>
     </div>
-    <div class="back">
+    <div class="fpback">
       <h3>
           <?php print (!empty($fields['title_field'])) ?
               $fields['title_field']->content : ''; ?>

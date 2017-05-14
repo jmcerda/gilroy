@@ -18,9 +18,6 @@
     -moz-perspective: 800px;
     -o-perspective: 800px;
     perspective: 800px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
   }
   .card {
     width: 100%;
@@ -55,15 +52,20 @@
     }
   }
 
-  //.card .front {
-  //  background: red;
-  //}
-  .card .back {
+  .card .fpfront {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+  }
+  .card .fpback {
     background: $brand-secondary;
     -webkit-transform: rotateY( 180deg );
     -moz-transform: rotateY( 180deg );
     -o-transform: rotateY( 180deg );
     transform: rotateY( 180deg );
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
   }
   .card.flipped {
     -webkit-transform: rotateY( 180deg );

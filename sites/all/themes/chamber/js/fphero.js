@@ -3,8 +3,7 @@
  */
 (function ($) {
     Drupal.behaviors.fpheroModule = {
-        attach: function flip(context, settings) {
-            // Front page slider flip function
+        attach: function flip() {
             $('.card').toggleClass('flipped');
         }
     };
