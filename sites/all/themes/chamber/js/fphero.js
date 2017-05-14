@@ -9,11 +9,12 @@
             //     $(this).addClass("flipped");
             // });
             //
-            $(".flipster-slide").click(function(){
-                if ($(this).hasClass('flipster__item--current')) {
-                    $('.card').parent().addClass('flipped');
-                }
-            });
+            // $(".flipster-slide").click(function(){
+            //     if ($(this).hasClass('flipster__item--current')) {
+            //         $('.card').parent().addClass('flipped');
+            //     }
+            // });
+            $('.flipster__item--current:first').closest('.card').addClass('flipped');
 
 
         }
