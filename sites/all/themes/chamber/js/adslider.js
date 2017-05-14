@@ -14,8 +14,3 @@ function toggle() {
     }
 
 }
-
-// Front page slider flip function
-function flip() {
-    $('.card').toggleClass('flipped');
-}
