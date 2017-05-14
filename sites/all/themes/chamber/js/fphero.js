@@ -10,7 +10,7 @@
             // });
 
             $(".card").click(function(){
-                if ($(this).hasClass('flipster__item--current')) {
+                if ($('.views-row').hasClass('flipster__item--current')) {
                     $(this).parent().addClass('flipped');
                 }
             });
