@@ -34,18 +34,18 @@
     </div>
     <div class="fpback">
       <div class="fpback-content">
-          <span class="fpback-title">
+          <div class="fpback-title">
               <?php print (!empty($fields['title_field'])) ?
                   $fields['title_field']->content : ''; ?>
-          </span>
-          <span class="fpback-body">
+          </div>
+          <div class="fpback-body">
               <?php print (!empty($fields['field_feed_item_description'])) ?
                   $fields['field_feed_item_description']->content : ''; ?>
-          </span>
-          <span class="fpback-link">
+          </div>
+          <div class="fpback-link">
               <?php print (!empty($fields['field_button_link'])) ?
                   $fields['field_button_link']->content : ''; ?>
-          </span>
+          </div>
       </div>
     </div>
   </div>
