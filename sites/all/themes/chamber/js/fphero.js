@@ -9,9 +9,8 @@
                 // $(this).addClass("flipped");
                 if ( $(this).hasClass('flipped') ) {
                     $(this).removeClass('flipped');
-                } else {
-                    $(this).addClass('current');
                 }
+                $(this).addClass('current');
             });
         }
     };
