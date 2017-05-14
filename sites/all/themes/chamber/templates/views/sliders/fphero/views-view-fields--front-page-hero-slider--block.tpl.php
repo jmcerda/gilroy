@@ -24,13 +24,23 @@
  * @ingroup views_templates
  */
 ?>
-<?php foreach ($fields as $id => $field): ?>
-  <?php if (!empty($field->separator)): ?>
-    <?php print $field->separator; ?>
-  <?php endif; ?>
 
-  <?php print $field->wrapper_prefix; ?>
-    <?php print $field->label_html; ?>
-    <?php print $field->content; ?>
-  <?php print $field->wrapper_suffix; ?>
-<?php endforeach; ?>
+<div class="fpslide-container">
+  <div class="card" onclick="flip()">
+    <div class="front">
+        <?php print (!empty($fields['field_image'])) ?
+            $fields['field_image']->content : '';
+        ?>
+    </div>
+    <div class="back">
+      <h3>
+          <?php print (!empty($fields['title_field'])) ?
+              $fields['title_field']->content : ''; ?>
+      </h3>
+        <?php print (!empty($fields['field_feed_item_description'])) ?
+            $fields['field_feed_item_description']->content : ''; ?>
+        <?php print (!empty($fields['field_button_link'])) ?
+            $fields['field_button_link']->content : ''; ?>
+    </div>
+  </div>
+</div>
