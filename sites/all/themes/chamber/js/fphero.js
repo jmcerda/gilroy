@@ -7,6 +7,7 @@
             // Front page slider flip function
             $(".card").click(function() {
                 $(this).addClass("flipped");
+                $(".flipster__item--past").removeClass("flipped");
             });
             //
             // $(".card").click(function(){
