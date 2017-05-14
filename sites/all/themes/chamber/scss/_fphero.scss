@@ -1,0 +1,15 @@
+.front {
+  .front-hero {
+    @media (min-width: 768px) {
+      img {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .flipster {
+    overflow-x: visible;
+  }
+}

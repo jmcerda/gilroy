@@ -221,6 +221,11 @@
             $('.dropdown').on('hide.bs.dropdown', function() {
                 $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
             });
+
+            // Front page slider flip function
+            function flip() {
+                $('.card').toggleClass('flipped');
+            }
         }
     };
 })(jQuery);
