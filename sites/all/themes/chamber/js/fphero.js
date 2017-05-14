@@ -5,9 +5,10 @@
     Drupal.behaviors.fpheroModule = {
         attach: function (context, settings) {
             // Front page slider flip function
+            $(".flipster__item--past").removeClass("flipped");
+            $(".flipster__item--future").removeClass("flipped");
             $(".card").click(function() {
                 $(this).addClass("flipped");
-                $(".flipster__item--past").removeClass("flipped");
             });
             //
             // $(".card").click(function(){
