@@ -15,7 +15,7 @@
             //     }
             // });
             $(".card").click(function() {
-                $('.flipster__item--current').closest('.card:first').addClass('flipped');
+                $('.flipster__item--current').closest('.card').addClass('flipped');
             });
         }
     };
