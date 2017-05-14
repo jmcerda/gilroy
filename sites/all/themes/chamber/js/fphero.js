@@ -3,7 +3,7 @@
  */
 (function flip($) {
     Drupal.behaviors.exampleModule = {
-        attach: function (context, settings) {
+        attach: function flip() {
             // Code to be run on page load, and
             // on ajax load added here
             $('.card').toggleClass('flipped');
