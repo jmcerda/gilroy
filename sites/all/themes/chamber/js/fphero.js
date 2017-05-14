@@ -5,11 +5,9 @@
     Drupal.behaviors.fpheroModule = {
         attach: function (context, settings) {
             // Front page slider flip function
-            $(".card").click(function() {
+            $(".card").click(function (e) {
+                e.stopPropagation();
                 $(this).addClass("flipped");
-            });
-            $(".card").blur( function(){
-                $(this).removeClass("flipped");
             });
         }
     };
