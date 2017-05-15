@@ -1,15 +1,16 @@
 .page-resources-nomination-forms {
-  .page-title {
-    border-bottom:none;
-    text-align: center;
-    &:before {
-      content: "";
-      display: block;
-      background: url("../images/envelope.svg") no-repeat;
-      width: 64px;
-      height: 64px;
-      float: left;
-      margin: 0 6px 0 0;
-    }
+}
+
+.page-title {
+  border-bottom:none;
+  text-align: center;
+  &:before {
+    content: "";
+    display: block;
+    background: url("../images/envelope.svg") no-repeat;
+    width: 64px;
+    height: 64px;
+    float: left;
+    margin: 0 6px 0 0;
   }
 }
