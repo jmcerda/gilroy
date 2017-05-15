@@ -37,9 +37,11 @@
               ?>
           </span>
           <span class="bean-inline">
-              <?php
-                echo drupal_render($content["title_field"]);
-              ?>
+              <h1>
+                  <?php
+                    echo drupal_render($content["title_field"]);
+                  ?>
+              </h1>
           </span>
       </div>
       <span class="col-xs-12">
