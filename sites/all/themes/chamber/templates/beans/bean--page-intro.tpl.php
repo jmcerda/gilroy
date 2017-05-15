@@ -34,19 +34,10 @@
         echo drupal_render($content["field_block_icon"]);
       ?>
       <?php
-      echo drupal_render($content["field_title"]);
+        echo drupal_render($content["field_title"]);
       ?>
       <?php
-      echo drupal_render($content["description_field"]);
+        echo drupal_render($content["description_field"]);
       ?>
-<!--      --><?php //print (!empty($fields['field_block_icon'])) ?
-//          $fields['field_block_icon']->content : ''; ?>
-<!--      --><?php //print (!empty($fields['field_title'])) ?
-//          $fields['field_title']->content : ''; ?>
-<!--      --><?php //print (!empty($fields['description_field'])) ?
-//          $fields['description_field']->content : ''; ?>
-<!--    --><?php
-//      print render($content);
-//    ?>
   </div>
 </div>
