@@ -30,8 +30,11 @@
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
   <div class="content"<?php print $content_attributes; ?>>
-    <?php
-      print render($content);
-    ?>
+      <?php print (!empty($fields['field_block_icon'])) ?
+          $fields['field_block_icon']->content : ''; ?>
+      <?php print (!empty($fields['field_title'])) ?
+          $fields['field_title']->content : ''; ?>
+      <?php print (!empty($fields['description_field'])) ?
+          $fields['description_field']->content : ''; ?>
   </div>
 </div>
