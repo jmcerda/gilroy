@@ -30,7 +30,7 @@
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
   <div class="content"<?php print $content_attributes; ?>>
-      <div class="col-xs-12 col-sm-6">
+      <div class=" bean-title-line col-xs-12 col-sm-6">
           <div class="bean-inline">
               <?php
                 echo drupal_render($content["field_block_icon"]);

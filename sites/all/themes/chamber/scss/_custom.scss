@@ -121,9 +121,18 @@ footer {
 #fp-upcoming-events {
   color: #fff;
 }
-
+.bean-title-line {
+  text-align: center;
+  @media (min-width: 768px) {
+    width:66%;
+  }
+  margin-bottom: 2em;
+}
 .bean-inline {
   * {
     display: inline-block;
+  }
+  .field-name-field-block-icon {
+    vertical-align: middle;
   }
 }
