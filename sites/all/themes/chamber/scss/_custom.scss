@@ -131,10 +131,8 @@ footer {
   margin-bottom: 2em;
 }
 .bean-inline {
-  * {
-    display: inline-block;
-  }
-  .field-name-field-block-icon {
+  .field-name-field-block-icon, .field-name-title-field {
     vertical-align: middle;
+    display: inline;
   }
 }
