@@ -20,14 +20,6 @@ regions[footer]         = 'Footer'
 regions[page_top]       = 'Page top'
 regions[page_bottom]    = 'Page bottom'
 
-
-;;;;;;;;;;;;;;;;;;;;;
-;; Stylesheets
-;;;;;;;;;;;;;;;;;;;;;
-
-stylesheets[all][] = css/style.css
-stylesheets[all][] = js/jquery-flipster/dist/jquery.flipster.css
-
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Scripts
 ;;;;;;;;;;;;;;;;;;;;;
@@ -61,3 +53,10 @@ settings[bootstrap_cdn] = ''
 
 ; Panels layouts
 plugins[panels][layouts] = layouts
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Stylesheets
+;;;;;;;;;;;;;;;;;;;;;
+
+stylesheets[all][] = js/jquery-flipster/dist/jquery.flipster.css
+stylesheets[all][] = css/style.css
