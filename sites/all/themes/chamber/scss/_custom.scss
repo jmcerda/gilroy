@@ -121,11 +121,13 @@ footer {
 #fp-upcoming-events {
   color: #fff;
 }
-.bean-title-line {
-  text-align: center;
+.intro-bean {
   @media (min-width: 768px) {
     width:66%;
   }
+}
+.bean-title-line {
+  text-align: center;
   margin-bottom: 2em;
 }
 .bean-inline {
