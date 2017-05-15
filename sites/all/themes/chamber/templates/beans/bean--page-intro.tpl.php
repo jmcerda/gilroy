@@ -31,23 +31,21 @@
 
   <div class="content"<?php print $content_attributes; ?>>
       <div class="col-xs-12 col-sm-6">
-          <span class="bean-inline">
+          <div class="bean-inline">
               <?php
                 echo drupal_render($content["field_block_icon"]);
               ?>
-          </span>
-          <span class="bean-inline">
               <h1>
                   <?php
-                    echo drupal_render($content["title_field"]);
+                  echo drupal_render($content["title_field"]);
                   ?>
               </h1>
-          </span>
+          </div>
       </div>
-      <span class="col-xs-12">
+      <div class="col-xs-12">
           <?php
             echo drupal_render($content["description_field"]);
           ?>
-      </span>
+      </div>
   </div>
 </div>
