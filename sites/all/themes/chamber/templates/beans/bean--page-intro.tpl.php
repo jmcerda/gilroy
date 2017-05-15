@@ -30,17 +30,19 @@
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
   <div class="content"<?php print $content_attributes; ?>>
-      <span class="bean-inline col-xs-12 col-sm-6">
-          <?php
-            echo drupal_render($content["field_block_icon"]);
-          ?>
-      </span>
-      <span class="bean-inline">
-          <?php
-            echo drupal_render($content["title_field"]);
-          ?>
-      </span>
-      <span>
+      <div class="col-xs-12 col-sm-6">
+          <span class="bean-inline">
+              <?php
+                echo drupal_render($content["field_block_icon"]);
+              ?>
+          </span>
+          <span class="bean-inline">
+              <?php
+                echo drupal_render($content["title_field"]);
+              ?>
+          </span>
+      </div>
+      <span class="col-xs-12">
           <?php
             echo drupal_render($content["description_field"]);
           ?>
