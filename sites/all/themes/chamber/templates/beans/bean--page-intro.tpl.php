@@ -34,7 +34,7 @@
         echo drupal_render($content["field_block_icon"]);
       ?>
       <?php
-        echo drupal_render($content["title"]);
+        echo drupal_render($content["title_field"]);
       ?>
       <?php
         echo drupal_render($content["description_field"]);
