@@ -25,7 +25,7 @@
  */
 ?>
 <?php foreach ($fields as $id => $field): ?>
-  <div class="equalHeight">
+  <div class="nom-row equalHeight">
   <?php if (!empty($field->separator)): ?>
     <?php print $field->separator; ?>
   <?php endif; ?>
