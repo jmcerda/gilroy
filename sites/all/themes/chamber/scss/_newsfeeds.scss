@@ -22,4 +22,7 @@
     margin: 1em 0;
     display: list-item;
   }
+  .pagination>.active>span {
+    background-color: $brand-warning;
+  }
 }
