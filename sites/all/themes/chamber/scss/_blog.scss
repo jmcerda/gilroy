@@ -14,11 +14,15 @@
       margin: 1em 0;
     }
     .blog-img {
+      display: table-cell;
       img {
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
         border-radius: 50%;
       }
+    }
+    .blog-content {
+      display: table-cell;
     }
     .views-field-title {
       color: $brand-warning;
@@ -27,6 +31,7 @@
     }
     .blog-block {
       margin:1.5em 0;
+      display: table;
     }
   }
 }
