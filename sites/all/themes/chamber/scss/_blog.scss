@@ -10,16 +10,24 @@
       margin: 0 6px 0 0;
     }
   }
-  .views-field-field-image {
-    img {
-      -webkit-border-radius:50%;
-      -moz-border-radius:50%;
-      border-radius:50%;
+  .view-content {
+    .views-field {
+      margin: 2em 0;
     }
-  }
-  .views-field-title {
-    color: $brand-warning;
-    font-size:large;
-    text-transform:uppercase;
+    .views-field-field-image {
+      img {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+    }
+    .views-field-title {
+      color: $brand-warning;
+      font-size: large;
+      text-transform: uppercase;
+    }
+    .row .col {
+      margin:5em 0;
+    }
   }
 }
