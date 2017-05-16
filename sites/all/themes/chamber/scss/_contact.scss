@@ -1,15 +1,24 @@
 .page-contact {
-  .contact {
-    font-size: 18px;
-    div {
-      margin-bottom: 2em;
+  .block {
+    h2 {
+      margin-bottom: 3em;
+      border-bottom: 1px solid;
+      margin-bottom: 1em;
+      padding-bottom: 1.5em;
+      text-transform: uppercase;
     }
-  }
-  .contact-socials {
-    svg {
-      height: 36px;
-      width: auto;
-      margin:2em 1em 0 0;
+    .contact {
+      font-size: 18px;
+      div {
+        margin-bottom: 2em;
+      }
+    }
+    .contact-socials {
+      svg {
+        height: 36px;
+        width: auto;
+        margin:2em 1em 0 0;
+      }
     }
   }
 }
