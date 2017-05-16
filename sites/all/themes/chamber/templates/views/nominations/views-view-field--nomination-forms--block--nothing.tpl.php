@@ -23,7 +23,7 @@
  */
 ?>
 <button type="button" class="btn btn-warning">
-    <span class="glyphicon glyphicon-search" aria-hidden="true">
+    <span class="glyphicon glyphicon-user" aria-hidden="true">
         <?php print $output; ?>
     </span>
 </button>
