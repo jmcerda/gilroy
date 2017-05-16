@@ -142,4 +142,9 @@ footer {
   text-align: center;
   text-transform: uppercase;
   padding-bottom: 1em;
+  display: table;
+  margin: 0 auto;
+  &:before {
+    margin: 0 1em 0 0;
+  }
 }
