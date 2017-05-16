@@ -176,7 +176,7 @@
 
   </div>
 </div>
-<div id="map" style="width:100%;height:400px"></div>
+<div id="map"></div>
 <footer class="footer">
     <div class="<?php print $container_class; ?>">
         <div class="row">
