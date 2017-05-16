@@ -11,6 +11,8 @@
     //}
   }
   .panel-pane {
+    border-top: 1px solid #c3bcb2;
+    padding-top: 1em;
     h2 {
       color: $brand-warning;
       text-tranform: uppercase;
