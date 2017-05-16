@@ -24,22 +24,23 @@
  * @ingroup views_templates
  */
 ?>
-<div class="upcoming-events-block">
-  <div class="upcoming-events-block-left">
-    <div class="upcoming-events-date">
-        <?php print (!empty($fields['field_date'])) ?
-            $fields['field_date']->content : '';
+<div class="blog-block">
+    <div class="blog-block-left">
+        <?php print (!empty($fields['field_image'])) ?
+            $fields['field_image']->content : '';
         ?>
     </div>
-  </div>
-  <div class="upcoming-events-block-right">
-    <div class="upcoming-events-title">
+
+    <div class="blog-block-right">
         <?php print (!empty($fields['title'])) ?
             $fields['title']->content : ''; ?>
+        <?php print (!empty($fields['created'])) ?
+            $fields['created']->content : ''; ?>
+        <?php print (!empty($fields['screen_name'])) ?
+            $fields['screen_name']->content : ''; ?>
+        <?php print (!empty($fields['field_tags'])) ?
+            $fields['field_tags']->content : ''; ?>
+        <?php print (!empty($fields['body'])) ?
+            $fields['body']->content : ''; ?>
     </div>
-    <div class="upcoming-events-time">
-        <?php print (!empty($fields['field_date_1'])) ?
-            $fields['field_date_1']->content : ''; ?>
-    </div>
-  </div>
 </div>
