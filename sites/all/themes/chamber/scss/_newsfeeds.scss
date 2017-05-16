@@ -1,0 +1,23 @@
+.page-resources-news-feeds {
+  .page-header {
+    //&:before {
+    //  content: "";
+    //  display: block;
+    //  background: url("../images/envelope.svg") no-repeat;
+    //  width: 64px;
+    //  height: 64px;
+    //  float: left;
+    //  margin: 0 6px 0 0;
+    //}
+  }
+  .panel-pane {
+    h2 {
+      color: $brand-warning;
+      text-tranform: uppercase;
+    }
+  }
+  .views-row {
+    margin: 1em 0;
+    display: list-item;
+  }
+}
