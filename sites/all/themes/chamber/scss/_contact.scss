@@ -1,9 +1,15 @@
 .page-contact {
-
+  .contact {
+    font-size: 18px;
+    div {
+      margin-bottom: 2em;
+    }
+  }
   .contact-socials {
     svg {
-      height: 48px;
+      height: 36px;
       width: auto;
+      margin:2em 1em 0 0;
     }
   }
 }
