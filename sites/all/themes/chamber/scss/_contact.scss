@@ -12,6 +12,30 @@
       div {
         margin-bottom: 2em;
       }
+      #contact-street {
+        &:before {
+          content: "";
+          display: block;
+          background: url("../images/location.svg") no-repeat;
+          width: 24px;
+          height: 24px;
+          float: left;
+          margin: 0 6px 0 0;
+        }
+      }
+      #contact-tel, #contact-fax {
+        &:before {
+          content: "";
+          display: block;
+          background: url("../images/phone.svg") no-repeat;
+          width: 24px;
+          height: 24px;
+          float: left;
+          margin: 0 6px 0 0;
+        }
+      }
+
+
     }
     .contact-socials {
       svg {
