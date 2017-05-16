@@ -27,14 +27,16 @@
   }
   .views-field-nothing {
     margin-top: 2em;
-    display: table;
-    .btn-icon {
-      display: table-cell;
-      backgroun-color: #fff;
-      background: url("../images/member.svg") no-repeat;
-    }
-    .btn-info {
-      display: table-cell;
+    .btn {
+      display: table;
+      .btn-icon {
+        display: table-cell;
+        //backgroun-color: #fff;
+        background: url("../images/member.svg") no-repeat;
+      }
+      .btn-info {
+        display: table-cell;
+      }
     }
   }
 }
