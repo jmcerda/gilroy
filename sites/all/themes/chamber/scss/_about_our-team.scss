@@ -1,0 +1,12 @@
+.page-about-our-team {
+  .page-header {
+    &:before {
+      content: "";
+      display: block;
+      background: url("../images/member.svg") no-repeat;
+      width: 64px;
+      height: 64px;
+      float: left;
+    }
+  }
+}
