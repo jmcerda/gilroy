@@ -25,13 +25,13 @@
  */
 ?>
 <div class="blog-block">
-    <div class="blog-block-left">
+    <div class="blog-img">
         <?php print (!empty($fields['field_image'])) ?
             $fields['field_image']->content : '';
         ?>
     </div>
 
-    <div class="blog-block-right">
+    <div class="blog-content">
         <?php print (!empty($fields['title'])) ?
             $fields['title']->content : ''; ?>
         <?php print (!empty($fields['created'])) ?
