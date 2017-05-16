@@ -79,12 +79,12 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
-    <script src="https://use.typekit.net/byw6gnn.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
+    <script src="https://use.typekit.net/byw6gnn.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <?php print $scripts; ?>
 </head>
 <body<?php print $body_attributes; ?>>
   <div id="skip-link">
@@ -93,7 +93,5 @@
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>
-  <?php print $scripts; ?>
-<!--  --><?php //drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ', 'external');?>
 </body>
 </html>
