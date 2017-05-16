@@ -24,5 +24,6 @@
   }
   .pagination>.active>span {
     background-color: $brand-warning;
+    border-color: $brand-warning;
   }
 }
