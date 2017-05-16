@@ -1,4 +1,15 @@
 .page-contact {
+  .page-header {
+    &:before {
+      content: "";
+      display: block;
+      background: url("../images/envelope.svg") no-repeat;
+      width: 64px;
+      height: 64px;
+      float: left;
+      margin: 0 6px 0 0;
+    }
+  }
   .block {
     h2 {
       margin-bottom: 3em;
