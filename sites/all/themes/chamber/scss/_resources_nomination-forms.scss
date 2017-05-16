@@ -38,5 +38,13 @@
         //display: table-cell;
       }
     }
+    .nom-link {
+      a {
+        color: #fff;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
