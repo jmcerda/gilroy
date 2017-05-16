@@ -86,8 +86,14 @@
   }
   li.active-trail {
     background-color: transparent;
+    &:hover {
+      background-color: transparent;
+    }
     a.active-trail {
       background-color: transparent;
+      &:hover {
+        background-color: transparent;
+      }
     }
   }
 }
