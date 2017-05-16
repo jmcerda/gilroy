@@ -32,15 +32,25 @@
     </div>
 
     <div class="blog-content">
-        <?php print (!empty($fields['title'])) ?
-            $fields['title']->content : ''; ?>
+        <div class="views-field-title">
+            <?php print (!empty($fields['title'])) ?
+                $fields['title']->content : ''; ?>
+        </div>
+        <div class="views-field-created">
         <?php print (!empty($fields['created'])) ?
             $fields['created']->content : ''; ?>
-        <?php print (!empty($fields['screen_name'])) ?
-            $fields['screen_name']->content : ''; ?>
-        <?php print (!empty($fields['field_tags'])) ?
-            $fields['field_tags']->content : ''; ?>
-        <?php print (!empty($fields['body'])) ?
-            $fields['body']->content : ''; ?>
+        </div>
+        <div class="views-field-screen-name">
+            <?php print (!empty($fields['screen_name'])) ?
+                $fields['screen_name']->content : ''; ?>
+        </div>
+        <div class="views-field-tags">
+            <?php print (!empty($fields['field_tags'])) ?
+                $fields['field_tags']->content : ''; ?>
+        </div>
+        <div class="views-field-body">
+            <?php print (!empty($fields['body'])) ?
+                $fields['body']->content : ''; ?>
+        </div>
     </div>
 </div>
