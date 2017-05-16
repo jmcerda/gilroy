@@ -93,6 +93,6 @@
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ_Bx3nXv-g1TeOzJSToSXZIKR2l7BIBI"></script>
 </body>
 </html>
