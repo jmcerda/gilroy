@@ -16,7 +16,7 @@ $(function () {
 
         var location = new google.maps.LatLng(37.0077292, -121.5718018);
 
-        var mapCanvas = document.getElementById('gilroymap');
+        var mapCanvas = document.getElementById('map');
         var mapOptions = {
             center: location,
             zoom: 16,
