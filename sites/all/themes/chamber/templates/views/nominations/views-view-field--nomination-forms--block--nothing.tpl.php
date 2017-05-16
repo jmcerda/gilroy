@@ -23,7 +23,6 @@
  */
 ?>
 <button type="button" class="btn btn-warning">
-    <span class="glyphicon glyphicon-user" aria-hidden="true">
-        <?php print $output; ?>
-    </span>
+    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+    <span class="nom-link"><?php print $output; ?></span>
 </button>
