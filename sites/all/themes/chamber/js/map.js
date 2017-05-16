@@ -43,12 +43,13 @@
                     marker.addListener('click', function () {
                         infowindow.open(map, marker);
                     });
+
                     var onMapMouseleaveHandler = function (event) {
                         var that = $(this);
 
                         that.on('click', onMapClickHandler);
                         that.off('mouseleave', onMapMouseleaveHandler);
-                        that.find('iframe').css("pointer-events", "none");
+                        that.find('#map').css("pointer-events", "none");
                     }
 
                     var onMapClickHandler = function (event) {
@@ -58,15 +59,18 @@
                         that.off('click', onMapClickHandler);
 
                         // Enable scrolling zoom
-                        that.find('iframe').css("pointer-events", "auto");
+                        that.find('#map').css("pointer-events", "auto");
 
                         // Handle the mouse leave event
                         that.on('mouseleave', onMapMouseleaveHandler);
                     }
 
-                    // Enable map zooming with mouse scroll when the user clicks the map
+// Enable map zooming with mouse scroll when the user clicks the map
                     $('.maps.embed-container').on('click', onMapClickHandler);
+
+
                 }
+
                 google.maps.event.addDomListener(window, 'load', initMap);
             });
 
