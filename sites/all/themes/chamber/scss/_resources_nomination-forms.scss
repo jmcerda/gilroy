@@ -25,4 +25,16 @@
     text-transform: uppercase;
     text-align: center;
   }
+  .views-field-nothing {
+    margin-top: 2em;
+    &:before {
+      content: "";
+      display: block;
+      backgroun-color: #fff;
+      background: url("../images/member.svg") no-repeat;
+      width: 32px;
+      height: 32px;
+      float: left;
+    }
+  }
 }

@@ -22,4 +22,4 @@
  * the view is modified.
  */
 ?>
-<button type="button" class="btn btn-warning"><?php print $output; ?></button>
+<button type="button" class="btn btn-warning"><span class="btn-icon"></span><span class="btn-info"><?php print $output; ?></span></button>
