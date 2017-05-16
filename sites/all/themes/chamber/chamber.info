@@ -47,6 +47,7 @@ scripts[] = 'js/jquery-flipster/dist/jquery.flipster.min.js'
 scripts[] = 'js/custom.js'
 scripts[] = 'js/adslider.js'
 scripts[] = 'js/fphero.js'
+scripts[] = 'js/map.js'
 
 ; Disable the CDN provider so compiled source files can be used.
 settings[bootstrap_cdn] = ''
