@@ -9,4 +9,13 @@
       float: left;
     }
   }
+  .views-field-title {
+    color: $brand-warning;
+    font-size: large;
+    text-transform: uppercase;
+    margin-bottom: .5em;
+  }
+  .views-field-body {
+    margin-top: 1em;
+  }
 }
