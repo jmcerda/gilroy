@@ -16,7 +16,7 @@
                     }
                     var map = new google.maps.Map(mapCanvas, mapOptions);
 
-                    var markerImage = 'sites/all/themes/chamber/images/location@2x.png';
+                    var markerImage = 'sites/all/themes/chamber/images/location@3x.png';
 
                     var marker = new google.maps.Marker({
                         position: location,
