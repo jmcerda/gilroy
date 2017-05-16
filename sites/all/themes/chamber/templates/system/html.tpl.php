@@ -94,6 +94,6 @@
   <?php print $page; ?>
   <?php print $page_bottom; ?>
   <?php print $scripts; ?>
-  <?php drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ', 'external');?>
+<!--  --><?php //drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ', 'external');?>
 </body>
 </html>
