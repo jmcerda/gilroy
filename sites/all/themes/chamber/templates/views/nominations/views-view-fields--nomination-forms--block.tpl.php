@@ -24,8 +24,8 @@
  * @ingroup views_templates
  */
 ?>
+<div class="nom-row equalHeight">
 <?php foreach ($fields as $id => $field): ?>
-  <div class="nom-row equalHeight">
   <?php if (!empty($field->separator)): ?>
     <?php print $field->separator; ?>
   <?php endif; ?>
@@ -34,5 +34,5 @@
     <?php print $field->label_html; ?>
     <?php print $field->content; ?>
   <?php print $field->wrapper_suffix; ?>
-    </div>
 <?php endforeach; ?>
+</div>
