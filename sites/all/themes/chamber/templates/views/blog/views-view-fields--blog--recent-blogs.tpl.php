@@ -24,7 +24,7 @@
  * @ingroup views_templates
  */
 ?>
-<div class="blog-block">
+<div class="blog-block equalHeight">
     <div class="blog-img">
         <?php print (!empty($fields['field_image'])) ?
             $fields['field_image']->content : '';
