@@ -27,14 +27,14 @@
   }
   .views-field-nothing {
     margin-top: 2em;
-    &:before {
-      content: "";
-      display: block;
+    display: table;
+    .btn-icon {
+      display: table-cell;
       backgroun-color: #fff;
       background: url("../images/member.svg") no-repeat;
-      width: 32px;
-      height: 32px;
-      float: left;
+    }
+    .btn-info {
+      display: table-cell;
     }
   }
 }
