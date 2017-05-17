@@ -13,8 +13,8 @@
     .view-content {
       .views-row {
         .views-field-field-image {
-          //height: 200px;
-          //width:800px;
+          padding: 1em;
+          border: 1px solid #c3bcb2;
           img {
             //-webkit-transition: all 1s ease;
             //-moz-transition: all 1s ease;
@@ -24,7 +24,7 @@
             //&:hover {
               //width: 900px;
               //height: 225px;
-            }
+            //}
           }
         }
       }
