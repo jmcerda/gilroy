@@ -75,7 +75,7 @@ function views_infinite_scroll_drush_autopager_download() {
   }
   drush_op('chdir', $path);
   // Download the plugin.
-  if (drush_shell_exec('wget http://jquery-autopager.googlecode.com/files/jquery.autopager-1.0.0.js')) {
+  if (drush_shell_exec('wget http://autopager.googlecode.com/files/jquery.autopager-1.0.0.js')) {
     drush_log(dt('jquery.autopager-1.0.0.js has been downloaded to @path', array('@path' => $path)), 'success');
   }
   else {
