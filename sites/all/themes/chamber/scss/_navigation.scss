@@ -113,3 +113,20 @@
     }
   }
 }
+
+.footer {
+  .nav {
+    li {
+      a {
+        &:hover {
+          background-color: transparent;
+          text-decoration: underline;
+          color: #fff;
+        }
+        //&:focus {
+        //
+        //}
+      }
+    }
+  }
+}
