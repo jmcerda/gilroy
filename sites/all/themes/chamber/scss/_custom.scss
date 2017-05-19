@@ -39,68 +39,6 @@
   }
 }
 
-footer {
-  background: $brand-primary;
-  color: #fff;
-  h1, h2, h3, h4, h5, a {
-    color: #fff;
-  }
-  .foot_logo {
-    color: #fff;
-    img {
-      max-width: 175px;
-      border-left: 1px solid #fff;
-      padding-left: 2em;
-    }
-  }
-  #fumenu {
-    white-space: nowrap;
-    .menu-name-main-menu {
-      text-transform: uppercase;
-      > ul {
-        > li {
-          display: inline-block;
-          vertical-align: top;
-        }
-        > li:nth-child(2) {
-          display: none;
-        }
-      }
-    }
-  }
-  .contact-container {
-    position: relative;
-    padding-top: 1em;
-    .foot-contact {
-      position: absolute;
-      top: 55px;
-      text-align: right;
-      right: 5px;
-      //padding-right: 2em;
-    }
-  }
-  .foot-logo-container {
-    //border-left: 1px solid #fff;
-    padding-left: 2em;
-    padding-top: 1em;
-  }
-}
-
-.footer-bottom {
-  padding:1em;
-}
-.copyright {
-  text-align: center;
-}
-
-.utility-menu {
-  text-align: center;
-  li {
-    display: inline;
-    list-style: none;
-  }
-}
-
 .view-featured-videos {
   .player {
     overflow: auto;
