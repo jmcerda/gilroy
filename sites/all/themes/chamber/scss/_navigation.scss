@@ -135,35 +135,32 @@
     }
     .facebook-menu-item {
       &:before {
-        margin: 0 0 2em 1em;
         content: "";
         display: block;
         background: url("../images/facebook.svg") no-repeat;
         width: 32px;
         height: 32px;
-        float: left;
+        //float: left;
       }
     }
     .twitter-menu-item {
       &:before {
-        margin: 0 0 2em 1em;
         content: "";
         display: block;
         background: url("../images/twitter.svg") no-repeat;
         width: 32px;
         height: 32px;
-        float: left;
+        //float: left;
       }
     }
     .rss-menu-item {
       &:before {
-        margin: 0 0 2em 1em;
         content: "";
         display: block;
         background: url("../images/rss.svg") no-repeat;
         width: 32px;
         height: 32px;
-        float: left;
+        //float: left;
       }
     }
   }
