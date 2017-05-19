@@ -157,7 +157,8 @@
       &:before {
         content: "";
         display: block;
-        background: url("../images/rss.svg") no-repeat #ffffff;
+        background: url("../images/rss.svg") no-repeat;
+        background-color: #fff;
         width: 32px;
         height: 32px;
         //float: left;
