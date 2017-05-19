@@ -3,15 +3,15 @@
     &:before {
       content: "";
       display: block;
-      background: url("../images/member.svg") no-repeat;
+      background: url('../images/member.svg') no-repeat;
       width: 64px;
       height: 64px;
       float: left;
     }
   }
   h2.pane-title {
-    text-transform: uppercase;
     text-align: center;
+    text-transform: uppercase;
   }
   .view-header {
     @media (min-width:768px) {
@@ -24,9 +24,9 @@
     text-align: center;
     .views-field-picture {
       img {
-        -webkit-border-radius:50%;
-        -moz-border-radius:50%;
-        border-radius:50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
         margin: 1em auto;
       }
     }

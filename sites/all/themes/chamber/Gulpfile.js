@@ -13,16 +13,16 @@ var fs = require("fs");
 /**
  * If config.js exists, load that config for overriding certain values below.
  */
-function loadConfig() {
-  if (fs.existsSync(__dirname + "/./config.js")) {
-    config = {};
-    config = require("./config");
-  }
-
-  return config;
-}
-
-loadConfig();
+// function loadConfig() {
+//   if (fs.existsSync(__dirname + "/./config.js")) {
+//     config = {};
+//     config = require("./config");
+//   }
+//
+//   return config;
+// }
+//
+// loadConfig();
 
 /**
  * This task generates CSS from all SCSS files and compresses them down.

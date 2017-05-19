@@ -1,5 +1,9 @@
 .navbar-nav {
   // Remove background color from open dropdown
+  > li >a {
+    color: $menu-color;
+  }
+
   > .open > a {
     &,
     &:hover,
