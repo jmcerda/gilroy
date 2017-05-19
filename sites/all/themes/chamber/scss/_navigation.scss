@@ -128,5 +128,35 @@
         //}
       }
     }
+    .facebook-menu-item {
+      &:before {
+        content: "";
+        display: block;
+        background: url("../images/facebook.svg") no-repeat;
+        width: 48px;
+        height: 48px;
+        float: left;
+      }
+    }
+    .twitter-menu-item {
+      &:before {
+        content: "";
+        display: block;
+        background: url("../images/twitter.svg") no-repeat;
+        width: 48px;
+        height: 48px;
+        float: left;
+      }
+    }
+    .rss-menu-item {
+      &:before {
+        content: "";
+        display: block;
+        background: url("../images/rss.svg") no-repeat;
+        width: 48px;
+        height: 48px;
+        float: left;
+      }
+    }
   }
 }
