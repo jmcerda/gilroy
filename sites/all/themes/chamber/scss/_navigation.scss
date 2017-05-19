@@ -128,9 +128,13 @@
         //}
       }
     }
+    .contact-links {
+      li {
+        font-size: 0;
+        margin: 0 0 2em 1em;
+      }
+    }
     .facebook-menu-item {
-      font-size: 0;
-      margin: 0 0 2em 1em;
       &:before {
         content: "";
         display: block;
@@ -141,8 +145,6 @@
       }
     }
     .twitter-menu-item {
-      font-size: 0;
-      margin: 0 0 2em 1em;
       &:before {
         content: "";
         display: block;
@@ -153,8 +155,6 @@
       }
     }
     .rss-menu-item {
-      font-size: 0;
-      margin: 0 0 2em 1em;
       &:before {
         content: "";
         display: block;
