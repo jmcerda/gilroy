@@ -118,14 +118,11 @@
   .nav {
     li {
       a {
-        &:hover {
+        &:hover, &:focus {
           background-color: transparent;
           text-decoration: underline;
           color: #fff;
         }
-        //&:focus {
-        //
-        //}
       }
     }
     .contact-links {
@@ -144,7 +141,6 @@
         width: 32px;
         height: 32px;
         //float: left;
-        padding-left:28px;
       }
     }
     .twitter-menu-item {
@@ -155,18 +151,16 @@
         width: 32px;
         height: 32px;
         //float: left;
-        padding-left:28px;
       }
     }
     .rss-menu-item {
       &:before {
         content: "";
         display: block;
-        background: url("../images/rss.svg") no-repeat;
+        background: url("../images/rss.svg") no-repeat #ffffff;
         width: 32px;
         height: 32px;
         //float: left;
-        padding-left:28px;
       }
     }
   }
