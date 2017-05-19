@@ -201,7 +201,7 @@
             </div>
             <div class="foot-logo-container equalHeight col-sm-3">
                 <a class="foot_logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-                    <img src="/sites/all/themes/chamber/images/logo_wh.png@2x.png" alt="<?php print t('Home'); ?>" />
+                    <img src="/sites/all/themes/chamber/logo.svg" alt="<?php print t('Home'); ?>" />
                 </a>
             </div>
         </div>
