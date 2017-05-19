@@ -129,7 +129,7 @@
       }
     }
     .facebook-menu-item {
-      color: transparent;
+      font-size: 0;
       &:before {
         content: "";
         display: block;
@@ -151,7 +151,7 @@
       }
     }
     .rss-menu-item {
-      color: transparent;
+      font-size: 0;
       &:before {
         content: "";
         display: block;
