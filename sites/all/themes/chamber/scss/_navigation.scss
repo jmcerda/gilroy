@@ -131,13 +131,11 @@
     .contact-links {
       li {
         font-size: 0;
-        a {
-          margin: 0 0 2em 1em;
-        }
       }
     }
     .facebook-menu-item {
       &:before {
+        margin: 0 0 2em 1em;
         content: "";
         display: block;
         background: url("../images/facebook.svg") no-repeat;
@@ -148,6 +146,7 @@
     }
     .twitter-menu-item {
       &:before {
+        margin: 0 0 2em 1em;
         content: "";
         display: block;
         background: url("../images/twitter.svg") no-repeat;
@@ -158,6 +157,7 @@
     }
     .rss-menu-item {
       &:before {
+        margin: 0 0 2em 1em;
         content: "";
         display: block;
         background: url("../images/rss.svg") no-repeat;
