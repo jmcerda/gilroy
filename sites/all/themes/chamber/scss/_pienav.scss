@@ -81,6 +81,9 @@
       -ms-transform: rotate(45deg);
       -o-transform: rotate(45deg);
       transform: rotate(45deg);
+      svg * {
+        fill: $brand-warning;
+      }
       .slice-info {
         p {
           color: #fff;
