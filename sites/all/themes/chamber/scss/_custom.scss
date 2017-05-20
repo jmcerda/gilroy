@@ -23,9 +23,9 @@
 .logo svg {
   height: 125px;
   width: auto;
-  //path {
-  //  fill: $brand-primary;
-  //}
+  path &:nth-child(2) {
+    fill: $menu-color;
+  }
 }
 .gsearch {
   .btn {
