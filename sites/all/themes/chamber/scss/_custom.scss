@@ -20,12 +20,12 @@
   border: 0;
   background-color: transparent;
 }
-.logo img {
+.logo svg {
   height: 125px;
   width: auto;
-  path {
-    fill: $brand-primary;
-  }
+  //path {
+  //  fill: $brand-primary;
+  //}
 }
 .gsearch {
   .btn {

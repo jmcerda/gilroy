@@ -1,7 +1,7 @@
 #partners-nav {
   //height: 800px;
   background: url('../images/gil_bkgd.png');
-  img {
+  svg {
     height: 72px;
   }
   #fp-chamber-nav {
@@ -115,7 +115,7 @@
         color: $brand-secondary;
         text-decoration: none;
       }
-      img * {
+      svg * {
         fill: $brand-secondary;
       }
     }
