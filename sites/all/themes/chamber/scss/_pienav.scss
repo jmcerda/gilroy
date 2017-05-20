@@ -81,8 +81,6 @@
       -ms-transform: rotate(45deg);
       -o-transform: rotate(45deg);
       transform: rotate(45deg);
-      svg * {
-        fill: $brand-warning;
       }
       .slice-info {
         p {
@@ -90,6 +88,8 @@
           width: 10em;
           margin: 1em auto;
         }
+        svg * {
+          fill: $brand-warning;
         //#piedev {
         //  background-image: url(../images/GilroyEconomicDevelopmentCorp.svg);
         //}
