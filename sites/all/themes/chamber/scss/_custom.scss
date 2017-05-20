@@ -23,8 +23,11 @@
 .logo svg {
   height: 125px;
   width: auto;
-  path:first-child {
+  .cls-1 {
     fill: $menu-color;
+  }
+  .cls-2 {
+    fill: $brand-primary;
   }
 }
 .gsearch {
