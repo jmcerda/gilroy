@@ -238,7 +238,7 @@
                         <div class="slice-contents">
                             <div class="slice-info">
                                 <a href="//www.gilroyedc.org">
-                                    <div id="piedev"><img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg"></div>
+                                    <div id="piedev"></div>
                                     <p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p>
                                 </a>
                             </div>
@@ -248,7 +248,7 @@
                         <div class="slice-contents">
                             <div class="slice-info">
                                 <a href="//www.downtowngilroy.com">
-                                    <div id="piebiz"><img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg"></div>
+                                    <div id="piebiz"></div>
                                     <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>
                                 </a>
                             </div>
@@ -258,7 +258,7 @@
                         <div class="slice-contents">
                             <div class="slice-info">
                                 <a href="//www.cityorgilroy.org">
-                                    <div id="piecity"><img src="sites/all/themes/chamber/images/CityofGilroy.svg"></div>
+                                    <div id="piecity"></div>
                                     <p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p>
                                 </a>
                             </div>
@@ -268,7 +268,7 @@
                         <div class="slice-contents">
                             <div class="slice-info">
                                 <a href="//www.gilroywelcomecenter.org">
-                                    <div id="pievisit"><img src="sites/all/themes/chamber/images/VisitGilroy.svg"></div>
+                                    <div id="pievisit"></div>
                                     <p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p>
                                 </a>
                             </div>
