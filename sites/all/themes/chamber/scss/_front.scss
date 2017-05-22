@@ -24,17 +24,19 @@
       }
       a {
         color: #fff;
-        &:hover {
-          text-decoration: none;
-          color: $brand-warning;
-        }
         svg {
           height: 42px;
           width: 100%;
           margin: 1em auto;
           path, circle {
             fill: #fff;
-            &:hover {
+          }
+        }
+        &:hover {
+          text-decoration: none;
+          color: $brand-warning;
+          svg {
+            path, circle {
               fill: $brand-warning;
             }
           }
@@ -84,7 +86,7 @@
       border-top-right-radius: 50%;
       content: '';
       top: 0;
-      left: 10%;
+      left: -10%;
       z-index: -9999;
     }
     .fp-events-video {
