@@ -9,16 +9,16 @@
     //  width: 34%;
     //};
     .utility-item {
+      background: $brand-warning;
+      -webkit-border-radius:50%;
+      -moz-border-radius:50%;
+      border-radius:50%;
+      padding:1em;
+      margin: 1em;
+      width: 150px;
+      height: 150px;
       a {
         color: #fff;
-        background: $brand-warning;
-        -webkit-border-radius:50%;
-        -moz-border-radius:50%;
-        border-radius:50%;
-        padding:1em;
-        margin: 1em;
-        width: 150px;
-        height: 150px;
         svg {
           height: 42px;
           width: 100%;
