@@ -47,7 +47,9 @@
     }
     svg {
       height: 72px;
-      fill: $brand-warning;
+      .cls-1 {
+        fill: $brand-warning;
+      }
     }
   }
   #fp-mid-nav {
