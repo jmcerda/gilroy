@@ -68,9 +68,12 @@
     -moz-border-radius: 50%;
     border-radius: 50%;
     .fpback-content {
-      margin: 4em 5em;
+      margin: 4em;
+      padding: 1em;
+      .fpback-link {
+        margin-top: 1em;
+      }
     }
-  ;
   }
   .card.flipped {
     -webkit-transform: rotateY( 180deg );
