@@ -65,44 +65,46 @@
     width: 100%;
     height: auto;
     padding: 15% 0 5%;
-    &:after {
-      box-shadow: 0 0 0 80px $brand-primary;
-      border-radius: 100%;
-      position: absolute;
-      height: 150px;  /* You can change height to increase or decrease concave radius */
-      content: '';
-      right: -20%;
-      left: -20%;
-      top: 100%;
-      bottom: 100%;
-      top: auto;
-      overflow: hidden;
-    }
-    a {
-      color: #fff;
-      &hover {
+    .events-container {
+      &:after {
+        box-shadow: 0 0 0 80px $brand-primary;
+        border-radius: 100%;
+        position: absolute;
+        height: 150px;  /* You can change height to increase or decrease concave radius */
+        content: '';
+        right: -20%;
+        left: -20%;
+        top: 100%;
+        bottom: 100%;
+        top: auto;
+        overflow: hidden;
+      }
+      a {
+        color: #fff;
+        &hover {
+          color: #fff;
+        }
+      }
+      .upcoming-events-block-left, .upcoming-events-block-right {
+        display: inline-block;
+      }
+      .upcoming-events-block-left {
+        background: #fff;
+        color: $brand-primary;
+        -webkit-border-radius:100%;
+        -moz-border-radius:100%;
+        border-radius:100%;
+        text-transform: uppercase;
+        height: 75px;
+        width: 75px;
+        padding: .75em;
+        margin: .75em;
+        font-size: large;
+        text-align: center;
+      }
+      h3 {
         color: #fff;
       }
-    }
-    .upcoming-events-block-left, .upcoming-events-block-right {
-      display: inline-block;
-    }
-    .upcoming-events-block-left {
-      background: #fff;
-      color: $brand-primary;
-      -webkit-border-radius:100%;
-      -moz-border-radius:100%;
-      border-radius:100%;
-      text-transform: uppercase;
-      height: 75px;
-      width: 75px;
-      padding: .75em;
-      margin: .75em;
-      font-size: large;
-      text-align: center;
-    }
-    h3 {
-      color: #fff;
     }
   }
   #fp-benefits-slider {
