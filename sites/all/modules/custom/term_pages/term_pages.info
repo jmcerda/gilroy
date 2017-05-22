@@ -1,0 +1,8 @@
+name = Term pages
+description = Display different taxonomy term pages depending on entity type.
+version = 7.x-1.0
+core = "7.x"
+files[] = term_pages.module
+dependencies[] = taxonomy
+
+
