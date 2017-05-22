@@ -59,7 +59,7 @@
     z-index: 9;
   }
   #fp-events-video {
-    background: $brand-primary;
+    //background: $brand-primary;
     color: #fff;
     position: relative;
     width: 100%;
@@ -67,7 +67,9 @@
     padding: 15% 0 5%;
     overflow: hidden;
     .events-container {
-      &:after {
+      position: relative;
+      background: $brand-primary;
+      &:before, &:after {
         box-shadow: 0 0 0 80px $brand-primary;
         border-radius: 100%;
         position: absolute;
@@ -76,6 +78,8 @@
         right: -20%;
         left: -20%;
         top: 100%;
+      }
+      &:before {
         bottom: 100%;
         top: auto;
       }
