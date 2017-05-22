@@ -9,6 +9,8 @@
     //  width: 34%;
     //};
     .utility-item {
+      width: 150px;
+      height: 150px;
       a {
         color: #fff;
         background: $brand-warning;
@@ -17,8 +19,6 @@
         border-radius:50%;
         padding:1em;
         margin: 1em;
-        width: 150px;
-        height: 150px;
         svg {
           height: 42px;
           width: 100%;
