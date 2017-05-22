@@ -207,17 +207,19 @@
         </div>
     </div>
 </div>
-<div id="fp-events-video">
-    <div class="events-container container">
-        <div class="row">
-            <div class="fp-events equalHeight">
-                <div class="col-sm-6 col-xs-12">
-                    <?php print views_embed_view('events', 'block'); ?>
+<div id="fp-events">
+    <div class="fp-events-video">
+        <div class="events-container container">
+            <div class="row">
+                <div class="fp-events equalHeight">
+                    <div class="col-sm-6 col-xs-12">
+                        <?php print views_embed_view('events', 'block'); ?>
+                    </div>
                 </div>
-            </div>
-            <div class="fp-video equalHeight">
-                <div class="col-sm-6 col-xs-12">
-                    <?php print views_embed_view('featured_videos', 'block'); ?>
+                <div class="fp-video equalHeight">
+                    <div class="col-sm-6 col-xs-12">
+                        <?php print views_embed_view('featured_videos', 'block'); ?>
+                    </div>
                 </div>
             </div>
         </div>

@@ -58,11 +58,9 @@
     margin: 6em auto -6em;
     z-index: 9;
   }
-  #fp-events-video {
-    //background: $brand-primary;
-    color: #fff;
-    height: auto;
+  #fp-events {
     overflow: hidden;
+    height: auto;
     width: 100%;
     position: relative;
     min-height: 200px;
@@ -78,31 +76,35 @@
       top: 0;
       left: -10%;
     }
-    a {
+    .fp-events-video {
+      background: $brand-primary;
       color: #fff;
-      &hover {
+      a {
+        color: #fff;
+        &hover {
+          color: #fff;
+        }
+      }
+      .upcoming-events-block-left, .upcoming-events-block-right {
+        display: inline-block;
+      }
+      .upcoming-events-block-left {
+        background: #fff;
+        color: $brand-primary;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        text-transform: uppercase;
+        height: 75px;
+        width: 75px;
+        padding: .75em;
+        margin: .75em;
+        font-size: large;
+        text-align: center;
+      }
+      h3 {
         color: #fff;
       }
-    }
-    .upcoming-events-block-left, .upcoming-events-block-right {
-      display: inline-block;
-    }
-    .upcoming-events-block-left {
-      background: #fff;
-      color: $brand-primary;
-      -webkit-border-radius:100%;
-      -moz-border-radius:100%;
-      border-radius:100%;
-      text-transform: uppercase;
-      height: 75px;
-      width: 75px;
-      padding: .75em;
-      margin: .75em;
-      font-size: large;
-      text-align: center;
-    }
-    h3 {
-      color: #fff;
     }
   }
   #fp-benefits-slider {
