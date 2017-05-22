@@ -64,21 +64,19 @@
     height: auto;
     overflow: hidden;
     width: 100%;
-    .events-container {
-      position: relative;
-      min-height: 200px;
-      padding: 15% 0 5%;
-      &:after {
-        position: absolute;
-        width: 120%;
-        height: 500px;
-        background: $brand-primary;
-        border-top-left-radius: 50%;
-        border-top-right-radius: 50%;
-        content: '';
-        top: 0;
-        left: -10%;
-      }
+    position: relative;
+    min-height: 200px;
+    padding: 15% 0 5%;
+    &:after {
+      position: absolute;
+      width: 120%;
+      height: 500px;
+      background: $brand-primary;
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+      content: '';
+      top: 0;
+      left: -10%;
     }
     a {
       color: #fff;
