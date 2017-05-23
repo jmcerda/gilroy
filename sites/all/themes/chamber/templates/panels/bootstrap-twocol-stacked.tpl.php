@@ -6,10 +6,10 @@
   <?php endif ?>
   <?php if ($content['left'] || $content['right']): ?>
       <div class="row">
-          <div class="col-sm-6" role="complementary">
+          <div class="col-sm-6">
             <?php print $content['left']; ?>
           </div>
-          <div class="col-sm-6" role="complementary">
+          <div class="col-sm-6">
             <?php print $content['right']; ?>
           </div>
       </div>
