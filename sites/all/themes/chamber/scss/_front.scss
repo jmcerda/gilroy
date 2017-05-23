@@ -27,7 +27,7 @@
         svg {
           height: 42px;
           width: 100%;
-          margin: 1em auto;
+          margin: 1em auto .25em;
           path, circle {
             fill: #fff;
           }
@@ -42,9 +42,6 @@
           }
         }
       }
-    }
-    .membership-link {
-      margin: 2em 5em;
     }
   }
   #fp-business {

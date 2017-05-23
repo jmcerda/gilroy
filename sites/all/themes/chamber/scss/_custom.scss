@@ -110,6 +110,23 @@
   }
 }
 
-//#page-bottom {
-//  background:
-//}
+#page-bottom {
+  overflow: hidden;
+  height: auto;
+  width: 100%;
+  position: relative;
+  min-height: 200px;
+  padding-top: 10%;
+  &:after {
+    position: absolute;
+    width: 200%;
+    min-height: 200em;
+    background: $progress-bg;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    content: '';
+    top: 0;
+    left: -50%;
+    z-index: -9999;
+  }
+}
