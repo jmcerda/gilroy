@@ -358,7 +358,7 @@ function views_ui_default_load($name) {
 }
 
 /**
- * Theme preprocess for views-view.tpl.php.
+ * Theme preprocess for views-view--sliders--benefits.tpl.php.
  */
 function views_ui_preprocess_views_view(&$vars) {
   $view = $vars['view'];

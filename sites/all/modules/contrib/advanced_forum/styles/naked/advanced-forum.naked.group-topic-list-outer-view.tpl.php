@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * views-view.tpl.php
+ * views-view--sliders--benefits.tpl.php
  * Main view template
  *
  * Variables available:

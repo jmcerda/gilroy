@@ -98,7 +98,7 @@ function template_preprocess_views_view(&$vars) {
   // attached to an array (not an object) in order to process them. For our
   // purposes, it doesn't matter what we attach them to, since once they are
   // processed by contextual_preprocess() they will appear in the $title_suffix
-  // variable (which we will then render in views-view.tpl.php).
+  // variable (which we will then render in views-view--sliders--benefits.tpl.php).
   views_add_contextual_links($vars['view_array'], 'view', $view, $view->current_display);
 
   // Attachments are always updated with the outer view, never by themselves,
@@ -1119,7 +1119,7 @@ function theme_views_container($variables) {
  * or some combination thereof.
  *
  * For each view, there will be a minimum of two templates used. The first
- * is used for all views: views-view.tpl.php.
+ * is used for all views: views-view--sliders--benefits.tpl.php.
  *
  * The second template is determined by the style selected for the view. Note
  * that certain aspects of the view can also change which style is used; for
@@ -1139,7 +1139,7 @@ function theme_views_container($variables) {
  * - views-view--foobar--page.tpl.php
  * - views-view--page.tpl.php
  * - views-view--foobar.tpl.php
- * - views-view.tpl.php
+ * - views-view--sliders--benefits.tpl.php
  *
  * - views-view-unformatted--foobar--page.tpl.php
  * - views-view-unformatted--page.tpl.php
