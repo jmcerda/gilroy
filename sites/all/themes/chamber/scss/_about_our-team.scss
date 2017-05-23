@@ -24,10 +24,17 @@
     text-align: center;
     .views-field-picture {
       img {
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
         margin: 1em auto;
+      }
+    }
+    .staff {
+      .views-field-picture {
+        img {
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+        }
+
       }
     }
   }
