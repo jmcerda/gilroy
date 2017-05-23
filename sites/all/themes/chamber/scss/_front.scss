@@ -43,6 +43,9 @@
         }
       }
     }
+    .membership-link {
+      margin: 2em 5em;
+    }
   }
   #fp-business {
     margin: 0 auto;
@@ -67,7 +70,7 @@
   }
   #fp-mid-nav {
     position: relative;
-    margin: 6em auto -6em;
+    margin: 6em auto -8em;
     z-index: 9;
   }
   #fp-events {
@@ -80,7 +83,7 @@
     &:after {
       position: absolute;
       width: 200%;
-      min-height: 125em;
+      min-height: 200em;
       background: $brand-primary;
       border-top-left-radius: 50%;
       border-top-right-radius: 50%;
