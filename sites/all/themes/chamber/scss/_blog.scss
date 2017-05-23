@@ -37,6 +37,11 @@
           text-transform: uppercase;
           margin-bottom: .5em;
         }
+        .views-field-title {
+          a {
+            color: $brand-warning;
+          }
+        }
         .views-field-body {
           margin-top: 1em;
         }
