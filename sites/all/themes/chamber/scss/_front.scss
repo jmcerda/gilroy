@@ -89,6 +89,9 @@
       left: -50%;
       z-index: -9999;
     }
+    .fp-event-content {
+      padding-left: 2em;
+    }
     .fp-events-video {
       background: $brand-primary;
       color: #fff;
@@ -118,6 +121,11 @@
       }
       h3 {
         color: #fff;
+      }
+      .featured-videos-video {
+        iframe {
+          padding-left: 2em;
+        }
       }
     }
   }
