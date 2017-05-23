@@ -79,14 +79,14 @@
     padding-top: 10%;
     &:after {
       position: absolute;
-      width: 120%;
-      min-height: 400px;
+      width: 200%;
+      min-height: 125em;
       background: $brand-primary;
       border-top-left-radius: 50%;
       border-top-right-radius: 50%;
       content: '';
       top: 0;
-      left: -10%;
+      left: -50%;
       z-index: -9999;
     }
     .fp-events-video {
