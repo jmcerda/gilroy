@@ -133,3 +133,12 @@
     z-index: -9999;
   }
 }
+
+#user-login {
+  .twitter_signin {
+    padding: 0;
+    li {
+      list-style: none;
+    }
+  }
+}
