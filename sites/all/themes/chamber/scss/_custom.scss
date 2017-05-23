@@ -109,14 +109,17 @@
     }
   }
 }
-
+#page-bottom-target {
+  margin-top: 5em;
+  margin-bottom: -3em;
+}
 #page-bottom {
   overflow: hidden;
   height: auto;
   width: 100%;
   position: relative;
   min-height: 200px;
-  padding-top: 10%;
+  padding-top: 5%;
   &:after {
     position: absolute;
     width: 200%;
