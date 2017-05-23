@@ -176,9 +176,7 @@
 
   </div>
 </div>
-<div id="page-bottom">
-    <div class="container"></div>
-</div>
+<div id="page-bottom-target"></div>
 <footer class="footer">
     <div class="<?php print $container_class; ?>">
         <div class="row">

@@ -13,6 +13,8 @@
 
             // Page hero placements.
             $(".pane-bundle-page-hero").appendTo(".page-hero");
+            // Page bottom placements.
+            $("#page-bottom").appendTo("#page-bottom-target");
             // Equal heights
             $('.equalHeight').matchHeight({
                 byRow: true,
