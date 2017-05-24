@@ -229,8 +229,8 @@
     <?php print views_embed_view('sliders', 'benefits'); ?>
 </div>
 <div id="partners-nav" class="parallax">
-    <div class="parallax__layer parallax__layer--back"></div>
-    <div class="parallax__layer parallax__layer--base">
+    <div class="parallax__layer parallax__layer--base"></div>
+    <div class="parallax__layer parallax__layer--back">
         <div class="container">
             <div class="row">
                 <div id="fp-chamber-nav">
