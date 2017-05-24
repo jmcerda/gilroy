@@ -2,6 +2,8 @@
   //height: 800px;
   .parallax__layer--back {
     background: url('../images/gil_bkgd.png');
+    background-repeat:no-repeat;
+    background-size: cover;
   }
   svg {
     height: 72px;
