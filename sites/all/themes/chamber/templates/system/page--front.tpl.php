@@ -280,10 +280,10 @@
             </div>
         </div>
     </div>
-    <div class="parallax">
-        <div class="parallax__layer parallax__layer--back"></div>
-        <div class="parallax__layer parallax__layer--base"></div>
-    </div>
+<!--    <div class="parallax">-->
+<!--        <div class="parallax__layer parallax__layer--back"></div>-->
+<!--        <div class="parallax__layer parallax__layer--base"></div>-->
+<!--    </div>-->
 </div>
 <div id="fp-ads-slider">
     <div class="container">
