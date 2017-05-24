@@ -230,6 +230,8 @@
 </div>
 <div id="partners-nav">
     <div class="parallax">
+        <div class="parallax__layer parallax__layer--back"></div>
+        <div class="parallax__layer parallax__layer--base"></div>
         <div class="container">
             <div class="row">
                 <div id="fp-chamber-nav">
@@ -281,8 +283,6 @@
                 </div>
             </div>
         </div>
-        <div class="parallax__layer parallax__layer--back"></div>
-        <div class="parallax__layer parallax__layer--base"></div>
     </div>
 </div>
 <div id="fp-ads-slider">
