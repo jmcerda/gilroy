@@ -1,10 +1,8 @@
 #partners-nav {
+  background: url('../images/gil_bkgd.png');
+  background-repeat:no-repeat;
+  background-size: cover;
   //height: 800px;
-  .parallax__layer--base {
-    background: url('../images/gil_bkgd.png');
-    background-repeat:no-repeat;
-    background-size: cover;
-  }
   svg {
     height: 72px;
   }
