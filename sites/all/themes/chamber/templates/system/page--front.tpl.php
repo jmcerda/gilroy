@@ -232,55 +232,55 @@
     <div class="parallax">
         <div class="parallax__layer parallax__layer--back"></div>
         <div class="parallax__layer parallax__layer--base"></div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div id="fp-chamber-nav">
+        <div class="container">
+            <div class="row">
+                <div id="fp-chamber-nav">
                 <span class="nav-title col-xs-12 col-xs-offset-5">
                     <h3>OUR PARTNERS</h3>
                 </span>
-                <ul class="pie">
-                    <li id="slice1" class="slice">
-                        <div class="slice-contents">
-                            <div class="slice-info">
-                                <a href="//www.gilroyedc.org">
-                                    <div id="piedev"><img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg"></div>
-                                    <p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p>
-                                </a>
+                    <ul class="pie">
+                        <li id="slice1" class="slice">
+                            <div class="slice-contents">
+                                <div class="slice-info">
+                                    <a href="//www.gilroyedc.org">
+                                        <div id="piedev"><img src="sites/all/themes/chamber/images/GilroyEconomicDevelopmentCorp.svg"></div>
+                                        <p>GILROY ECONOMIC DEVELOPMENT<br>Corporation Resources to help you open, expand or relocate your business.</p>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li id="slice2" class="slice">
-                        <div class="slice-contents">
-                            <div class="slice-info">
-                                <a href="//www.downtowngilroy.com">
-                                    <div id="piebiz"><img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg"></div>
-                                    <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>
-                                </a>
+                        </li>
+                        <li id="slice2" class="slice">
+                            <div class="slice-contents">
+                                <div class="slice-info">
+                                    <a href="//www.downtowngilroy.com">
+                                        <div id="piebiz"><img src="sites/all/themes/chamber/images/GilroyDowntownBusinessAssoc.svg"></div>
+                                        <p>DOWNTOWN GILROY BUSINESS ASSOCIATION<br>A vibrant and historic downtown community.</p>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li id="slice3" class="slice">
-                        <div class="slice-contents">
-                            <div class="slice-info">
-                                <a href="//www.cityorgilroy.org">
-                                    <div id="piecity"><img src="sites/all/themes/chamber/images/CityofGilroy.svg"></div>
-                                    <p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p>
-                                </a>
+                        </li>
+                        <li id="slice3" class="slice">
+                            <div class="slice-contents">
+                                <div class="slice-info">
+                                    <a href="//www.cityorgilroy.org">
+                                        <div id="piecity"><img src="sites/all/themes/chamber/images/CityofGilroy.svg"></div>
+                                        <p>CITY OF GILROY<br>Business licenses, bid opportunities, city services, and more.</p>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li id="slice4" class="slice">
-                        <div class="slice-contents">
-                            <div class="slice-info">
-                                <a href="//www.gilroywelcomecenter.org">
-                                    <div id="pievisit"><img src="sites/all/themes/chamber/images/VisitGilroy.svg"></div>
-                                    <p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p>
-                                </a>
+                        </li>
+                        <li id="slice4" class="slice">
+                            <div class="slice-contents">
+                                <div class="slice-info">
+                                    <a href="//www.gilroywelcomecenter.org">
+                                        <div id="pievisit"><img src="sites/all/themes/chamber/images/VisitGilroy.svg"></div>
+                                        <p>VISIT GILROY<br>Everything you need to plan a getaway to Gilroy.</p>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
