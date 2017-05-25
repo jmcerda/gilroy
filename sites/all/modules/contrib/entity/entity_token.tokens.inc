@@ -82,7 +82,7 @@ function _entity_token_map_to_token_type($property_info) {
 function entity_token_token_info_alter(&$info) {
   $entity_info = entity_get_info();
   $token_types = entity_token_types_chained();
-
+    dpm(get_defined_vars());
   // Loop over all chain-able token types, as those may contain further tokens,
   // e.g. entity types or 'site'.
   foreach ($token_types as $token_type => $type) {
@@ -115,7 +115,6 @@ function entity_token_token_info_alter(&$info) {
       }
     }
   }
-    dpm(get_defined_vars());
   // Make sure all chain-able token types we support are registered.
   foreach ($token_types as $token_type => $type) {
 
