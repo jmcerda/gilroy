@@ -115,6 +115,7 @@ function entity_token_token_info_alter(&$info) {
       }
     }
   }
+  dpm(get_defined_vars());
   // Make sure all chain-able token types we support are registered.
   foreach ($token_types as $token_type => $type) {
 
