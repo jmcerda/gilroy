@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Install file for Registration Entityreference.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function registration_entityreference_install() {
+  // @fixme generic solution: can be made simpler
+  // http://drupal.the-aim.be/drupal-7-module-hookschemaalter-modifing-table
+  $schema = array();
+  registration_entityreference_schema_alter($schema);
+
+  foreach ($schema as $table => $tablespecs) {
+    if (isset($tablespecs['fields'])) {
+      foreach ($tablespecs['fields'] as $name => $spec) {
+        db_add_field($table, $name, $spec);
+      }
+    }
+  };
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function registration_entityreference_uninstall() {
+  // Delete registrations containing entity references.
+  _registration_entityreference_delete_entity_reference_registrations();
+
+  // @fixme generic solution: can be made simpler
+  // http://drupal.the-aim.be/drupal-7-module-hookschemaalter-modifing-table
+  $schema = array();
+  registration_entityreference_schema_alter($schema);
+
+  foreach ($schema as $table => $tablespecs) {
+    if (isset($tablespecs['fields'])) {
+      foreach ($tablespecs['fields'] as $name => $spec) {
+        db_drop_field($table, $name, $spec);
+      }
+    }
+  };
+}
+
+
+/**
+ * Implements hook_schema_alter().
+ */
+function registration_entityreference_schema_alter(&$schema) {
+  if (drupal_get_schema('registration')) {
+    $schema['registration']['fields']['target_entity_id'] = array(
+      'description' => 'The id of the target entity this registration is associated with.',
+      'type'        => 'int',
+      'not null'    => FALSE,
+      'default'     => NULL,
+    );
+
+    $schema['registration']['fields']['target_entity_type'] = array(
+      'description' => 'The entity type of the target entity.',
+      'type'        => 'varchar',
+      'length'      => 32,
+      'not null'    => FALSE,
+      'default'     => NULL,
+    );
+  }
+}
+
+/**
+ * Deletes entity referencing registrations.
+ */
+function _registration_entityreference_delete_entity_reference_registrations() {
+
+  // @todo counters?
+  db_delete('registration')
+    ->condition('target_entity_type', 'NULL', '!=')
+    ->condition('target_entity_id', 'NULL', '!=')
+    ->execute();
+}

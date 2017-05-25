@@ -1,0 +1,15 @@
+name = Registration Entity Reference
+description = Entity Referencing Registrations.
+package = Registration
+core = 7.x
+
+dependencies[] = entity
+dependencies[] = registration
+dependencies[] = views
+
+; entities
+files[] = lib/registration_entityreference.entity.inc
+files[] = lib/registration_entityreference.metadata.inc
+
+; views
+files[] = includes/views/registration_entityreference_handler_relationship_registration_target_entitytarget_entity.inc

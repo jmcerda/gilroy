@@ -1,0 +1,100 @@
+<?php
+
+module_load_include('inc', 'registration_entityreference', 'includes/registration_entityreference.forms');
+module_load_include('inc', 'registration_entityreference', 'includes/registration_entityreference.views');
+
+define('REGISTRATION_ENTITYREFERENCE_REGISTRANT_TYPE_ENTITY_REFERENCE', 'registration_registrant_type_entity_reference');
+
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function registration_entityreference_entity_info_alter(&$entity_info) {
+  if (drupal_get_schema('registration')) {
+    $entity_info['registration']['entity class'] = 'RegistrationEntityReference';
+    $entity_info['registration']['metadata controller class'] = 'RegistrationEntityReferenceMetadataController';
+  }
+}
+
+/**
+ * Implements hook_field_info_alter().
+ */
+function registration_entityreference_field_info_alter(&$info) {
+  if (isset($info['registration'])) {
+    $info['registration']['instance_settings']['default_registration_settings']['settings']['entity_reference'] = array(
+      'entity_reference_enable'      => FALSE,
+      'entity_reference_target_type' => NULL,
+    );
+  }
+}
+
+/**
+ * Callback to get $registration->target_entity.
+ */
+function registration_entityreference_property_target_entity_get(RegistrationEntityReference $registration, array $options, $property_name, $entity_type) {
+  if (isset($registration->target_entity_id) && is_numeric($registration->target_entity_id)) {
+    $target_entity_id = $registration->target_entity_id;
+
+    if (isset($registration->target_entity_type)) {
+      $target_entity_type = $registration->target_entity_type;
+
+      // @todo validate target_entity_type?
+      if ($entity = entity_load_single($target_entity_type, $target_entity_id)) {
+        return entity_metadata_wrapper($target_entity_type, $entity);
+      }
+    }
+  }
+
+  return NULL;
+}
+
+/**
+ * Callback to set $registration->target_entity that supports null value.
+ */
+function registration_entityreference_property_target_entity_set(RegistrationEntityReference $registration, $name, $value, $lang, $type, $info) {
+  if (is_object($value) && ($value instanceof EntityDrupalWrapper) && $value->value()) {
+
+    // @todo $value ellenőrzések
+
+    $registration->target_entity_type = $value->type();
+    $registration->target_entity_id = $value->getIdentifier();
+  }
+  else {
+    $registration->target_entity_type = NULL;
+    $registration->target_entity_id = NULL;
+  }
+}
+
+/**
+ * Callback to get $registration->mail property.
+ */
+function registration_entityreference_property_mail_get($entity, array $options, $name, $type) {
+  $wrapper = entity_metadata_wrapper('registration', $entity);
+
+  if ($wrapper->user->value()) {
+    return $wrapper->user->mail->value();
+  }
+  elseif (($target_entity = $wrapper->target_entity) && ($target_entity->value())) {
+
+    // @todo provide pluggable calculation
+
+    $property_info = entity_get_property_info($target_entity->type());
+    if (isset($property_info['properties']['mail'])) {
+      return $target_entity->mail->value();
+    }
+    elseif (isset($property_info['properties']['email'])) {
+      if (strlen($target_entity->email->value()) < 1) {
+        return t("Entity with empty email property.");
+      }
+      else {
+        return $target_entity->email->value();
+      }
+    }
+    else {
+      return 'UNSET MAIL VALUE FROM REFERENCED ENTITY';
+    }
+  }
+  else {
+    return $wrapper->anon_mail->value();
+  }
+}
