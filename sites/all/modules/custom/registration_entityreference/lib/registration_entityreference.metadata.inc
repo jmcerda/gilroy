@@ -16,7 +16,7 @@ class RegistrationEntityReferenceMetadataController
     // RegistrationMetadataController fills in most of the required properties.
     // We only need to override some of them and introduce properties related to
     // the referenced entities.
-    $info =& parent::entityPropertyInfo();
+    $info = parent::entityPropertyInfo();
     $properties =& $info[$this->type]['properties'];
 
     // The entity type of the target (referenced) entity.
