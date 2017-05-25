@@ -90,7 +90,7 @@ function entity_token_token_info_alter(&$info) {
     // there is no token of the property yet.
     foreach (entity_get_all_property_info($type) as $name => $property) {
       $name = str_replace('_', '-', $name);
-      $property += array('type' => 'text', 'description' => $property['label']);
+      $property = array('type' => 'text', 'description' => $property['label']);
       $property_token_type = _entity_token_map_to_token_type($property);
 
       if (!isset($info['tokens'][$token_type][$name]) && $property_token_type) {
