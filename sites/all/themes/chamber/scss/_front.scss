@@ -79,14 +79,14 @@
     padding-top: 10%;
     &:after {
       position: absolute;
-      width: 200%;
+      width: 300%;
       min-height: 200em;
       background: $brand-primary;
       border-top-left-radius: 50%;
       border-top-right-radius: 50%;
       content: '';
       top: 0;
-      left: -50%;
+      left: -100%;
       z-index: -9999;
     }
     .fp-event-content {
