@@ -113,7 +113,7 @@ function entity_token_token_info_alter(&$info) {
           array('@keys' => implode(', ', $help))
         );
       }
-      dsm();
+      dsm(get_defined_vars());
     }
   }
 
