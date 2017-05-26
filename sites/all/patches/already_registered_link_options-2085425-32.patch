@@ -1,0 +1,210 @@
+diff --git a/includes/registration.field.inc b/includes/registration.field.inc
+index a886df6..bbfa331 100644
+--- a/includes/registration.field.inc
++++ b/includes/registration.field.inc
+@@ -160,6 +160,10 @@ function registration_field_formatter_info() {
+       'field types' => array('registration'),
+       'settings' => array(
+         'label' => NULL,
++        'registered_option' => 'register_link',
++        'edit_label' => t('Edit registration'),
++        'delete_label' => t('Delete registration'),
++        'registered_text' => t('You have already registered for this event.'),
+         'i18n_string_key' => NULL,
+       ),
+     ),
+@@ -193,6 +197,61 @@ function registration_field_formatter_settings_form($field, $instance, $view_mod
+       '#description' => t("Optional label to use when displaying the registration title or link. Leave blank to use the parent event's label."),
+     );
+ 
++    $element['registered_option'] = array(
++      '#title' => t('Already registered option'),
++      '#type' => 'select',
++      '#options' => array(
++        'register_link' => t('Register link'),
++        'registered_text' => t('Registered text'),
++        'edit_link' => t('Edit link'),
++        'delete_link' => t('Delete link')
++       ),
++      '#default_value' => $settings['registered_option'],
++      '#description' => t("What to present to the user when they have already registered."),
++    );
++
++    $element['registered_text'] = array(
++      '#title' => t('Registered text'),
++      '#type' => 'textfield',
++      '#size' => 20,
++      '#default_value' => $settings['registered_text'],
++      '#required' => FALSE,
++      '#description' => t("Text to display when the user has already registered."),
++      '#states' => array(
++        'visible' => array(
++          'select[name="fields[' . $field['field_name'] . '][settings_edit_form][settings][registered_option]"], select[name="options[settings][registered_option]"]' => array('value' => 'registered_text'),
++        ),
++      ),
++    );
++
++    $element['edit_label'] = array(
++      '#title' => t('Edit Label'),
++      '#type' => 'textfield',
++      '#size' => 20,
++      '#default_value' => $settings['edit_label'],
++      '#required' => FALSE,
++      '#description' => t("Label to use when displaying the edit link."),
++      '#states' => array(
++        'visible' => array(
++          'select[name="fields[' . $field['field_name'] . '][settings_edit_form][settings][registered_option]"], select[name="options[settings][registered_option]"]' => array('value' => 'edit_link'),
++        ),
++      ),
++    );
++
++    $element['delete_label'] = array(
++      '#title' => t('Delete Label'),
++      '#type' => 'textfield',
++      '#size' => 20,
++      '#default_value' => $settings['delete_label'],
++      '#required' => FALSE,
++      '#description' => t("Label to use when displaying the delete link."),
++      '#states' => array(
++        'visible' => array(
++          'select[name="fields[' . $field['field_name'] . '][settings_edit_form][settings][registered_option]"], select[name="options[settings][registered_option]"]' => array('value' => 'delete_link'),
++        ),
++      ),
++    );
++
+     // Store a key so we can store/retrieve translated strings for this field
+     // formatter instance.
+     $element['i18n_string_key'] = array('#type' => 'value', '#value' => implode(':', array(
+@@ -267,18 +326,47 @@ function registration_field_formatter_view($entity_type, $entity, $field, $insta
+       case 'registration_link':
+         // Enable registration link if accessible.
+         if (registration_register_page_access($entity_type, $entity) && registration_status($entity_type, $entity_id)) {
++          // Set registration path
+           $uri = entity_uri($entity_type, $entity);
+-          $element[0] = array(
+-            '#markup' => theme('registration_link',
+-              array(
++          $path = $uri['path'] . '/register';
++
++          $user = $GLOBALS['user'];
++          // Check already registered setting
++          if (($settings['registered_option'] == 'registered_text') || ($settings['registered_option'] == 'delete_link') || ($settings['registered_option'] == 'edit_link')) {
++            // Check if user is already registered
++            if (isset($user->uid) &&
++              ($registration_id = registration_is_registered_id($entity_type, $entity_id, NULL, $user->uid, registration_get_states_options()))) {
++              if ($settings['registered_option'] == 'edit_link') {
++                $path = '/registration/' . $registration_id . '/edit';
++                $label = $settings['edit_label'];
++              }
++              if ($settings['registered_option'] == 'delete_link') {
++                $path = '/registration/' . $registration_id . '/delete';
++                $label = $settings['delete_label'];
++              }
++              if ($settings['registered_option'] == 'registered_text') {
++                $registered_text = $settings['registered_text'];
++              }
++            }
++          }
++          if (isset($registered_text)) {
++             $element[0] = array(
++              '#markup' => $registered_text . 'sdd',
++             );
++          }
++          else {
++            $element[0] = array(
++              '#markup' => theme('registration_link', array(
+                 'label' => $label,
+                 'path' => $uri['path'] . '/register',
+                 'registration type' => $reg_type,
+                 'entity_type' => $entity_type,
+                 'entity' => $entity,
+-              )
+-            ),
+-          );
++                'options' => array('query' => array('destination' => drupal_get_path_alias()))
++                )
++              ),
++            );
++          }
+         }
+         break;
+ 
+diff --git a/registration.module b/registration.module
+index 45e88e4..d6a5c2a 100644
+--- a/registration.module
++++ b/registration.module
+@@ -956,8 +956,9 @@ function theme_registration_link($variables) {
+   $output = '';
+   $registration_label = $variables['label'];
+   $registration_path = $variables['path'];
++  $options = isset($variables['options']) ? $variables['options'] : array();
+ 
+-  $output .= l($registration_label, $registration_path);
++  $output .= l($registration_label, $registration_path, $options);
+ 
+   return $output;
+ }
+@@ -1431,6 +1432,63 @@ function registration_is_registered(Registration $registration, $anon_mail = NUL
+ }
+ 
+ /**
++* Determine if a person has an active registration for a host entity.
++* modified from registration_is_registered(Registration $registration, $anon_mail = NULL, $uid = NULL, $states = array())
++*
++* A person may be Drupal user account, identified by user uid ($uid).
++* Or a non-user, identified by an email address ($anon_mail).
++*
++* One of $anon_mail or $uid is required.
++*
++* @param int $entity_type
++*   Parent entity type
++* @param int $entity_id
++*   Parent entity id
++* @param string $anon_mail
++*   (optional) An email address.
++* @param int $uid
++*   (optional) A user account uid.
++* @param array $states
++*   (optional) An array of states to test against. Defaults to active states.
++*
++* @return int
++*   Registration entity id
++*/
++function registration_is_registered_id($entity_type, $entity_id, $anon_mail = NULL, $uid = NULL, $states = array()) {
++  // must provide an UID or anon_mail
++  // @todo: better course of action here?
++  if (!$anon_mail && !$uid) {
++    return FALSE;
++  }
++  if (empty($states)) {
++    $states = registration_get_active_states();
++  }
++
++  $query = db_select('registration', 'r')
++    ->fields('r', array('registration_id'))
++    ->condition('entity_id', $entity_id)
++    ->condition('entity_type', $entity_type)
++    ->condition('state', $states, 'IN');
++  if ($anon_mail) {
++    // There's a user with this email, check to make sure they're not registered.
++    if ($user = user_load_by_mail($anon_mail)) {
++      $query->condition(db_or()->condition('anon_mail', $anon_mail)
++        ->condition('user_uid', $user->uid));
++    }
++    else {
++      $query->condition('anon_mail', $anon_mail);
++    }
++  }
++  elseif ($uid) {
++    $query->condition('user_uid', $uid);
++  }
++  $results = $query->execute();
++  $ids = $results->fetchField();
++  $id = ($ids=='' ? 0 : $ids);
++  return $id;
++}
++
++/**
+  * Determine people types user may register for an entity.
+  *
+  * This will take into account if a user already has a registration for a host
