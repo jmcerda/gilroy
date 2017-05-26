@@ -1,0 +1,107 @@
+<?php
+
+/**
+ * @file
+ * PHP Passbook module file.
+ */
+
+use Passbook\Pass\Field;
+use Passbook\Pass\Image;
+use Passbook\PassFactory;
+use Passbook\Pass\Barcode;
+use Passbook\Pass\Structure;
+use Passbook\Type\EventTicket;
+use Passbook\Type\Coupon;
+
+/**
+ * Implements hook_menu().
+ */
+function phppassbook_menu() {
+  $items = array();
+
+  $items['admin/config/development/php-passbook'] = array(
+    'title' => 'PHP Passbook Settings', 
+	'page callback' => 'drupal_get_form', 
+	'page arguments' => array('phppassbook_settings'), 
+	'access arguments' => array('administer modules')
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function phppassbook_permission() {
+  $perms = array();
+
+  $parms['administer modules'] = array(
+    'title' => t('Administer Modules'), 
+	'description' => t('Perform administration functions for PHP Passbook.')
+  );
+
+  return $perms;
+}
+
+/**
+ * PHP Passbook module settings form.
+ */
+function phppassbook_settings($form, &$form_state) {
+  $form = array();
+
+  $form['php_passbook'] = array(
+    '#type' => 'fieldset', 
+	'#title' => t('PHP Passbook Settings')
+  );
+
+  $form['php_passbook']['phppassbook_pass_type_identifier'] = array(
+    '#type' => 'textfield', 
+	'#title' => t('Pass Type Identifier'), 
+	'#default_value' => variable_get('phppassbook_pass_type_identifier')
+  );
+
+  $form['php_passbook']['phppassbook_team_identifier'] = array(
+    '#type' => 'textfield', 
+	'#title' => t('Team Identifier'), 
+	'#default_value' => variable_get('phppassbook_team_identifier')
+  );
+
+  $form['php_passbook']['phppassbook_organization_name'] = array(
+    '#type' => 'textfield', 
+	'#title' => t('Organization Identifier'), 
+	'#default_value' => variable_get('phppassbook_organization_name')
+  );
+
+  $form['php_passbook']['phppassbook_p12file_path'] = array(
+    '#type' => 'textfield', 
+	'#title' => t('p12 File Path'), 
+	'#default_value' => variable_get('phppassbook_p12file_path')
+  );
+
+  $form['php_passbook']['phppassbook_p12pass'] = array(
+    '#type' => 'textfield', 
+	'#title' => t('P12 Pass phrase'), 
+	'#default_value' => variable_get('phppassbook_p12pass')
+  );
+
+  $form['php_passbook']['phppassbook_wwdrfile_path'] = array(
+    '#type' => 'textfield', 
+	'#title' => t('WWDR File Path'), 
+	'#default_value' => variable_get('phppassbook_wwdrfile_path')
+  );
+
+  $form['php_passbook']['phppassbook_output_file_dir'] = array(
+    '#type' => 'textfield', 
+	'#title' => t('PHP Passbook Output file Directory'), 
+	'#default_value' => variable_get('phppassbook_output_file_dir')
+  );
+
+  $form['php_passbook']['phppassbook_images_directory'] = array(
+    '#type' => 'textfield', 
+	'#title' => t('PHP Passbook Images Directory Path'), 
+	'#default_value' => variable_get('phppassbook_images_directory')
+  );
+
+  $form = system_settings_form($form);
+  return $form;
+}

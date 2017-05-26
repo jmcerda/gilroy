@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * PHP Passbook module installation functions.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function phppassbook_uninstall() {
+  $vars = array(
+    'phppassbook_pass_type_identifier',
+    'phppassbook_team_identifier',
+    'phppassbook_organization_name',
+    'phppassbook_p12file_path',
+    'phppassbook_p12pass',
+    'phppassbook_wwdrfile_path',
+    'phppassbook_output_file_dir',
+    'phppassbook_images_directory',
+  );
+
+  foreach ($vars as $var) {
+    variable_del($var);
+  }
+}
