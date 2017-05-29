@@ -75,15 +75,17 @@ class RegistrationMetadataController extends EntityDefaultMetadataController {
       'type' => 'text',
       'schema field' => 'anon_mail',
       'description' => t('An e-mail address associated with the registration of an anonymous user.'),
-      'setter callback' => 'entity_property_verbatim_set',
+      'getter callback' => 'registration_get_properties',
+      'setter callback' => 'registration_property_email_set',
     );
 
-    // Provides a single calculated property that contains the associated registrant's email address.
-    $properties['registrant_mail'] = array(
+    // Provides a single calculated property that contains either the associated user's email address or the
+    // anonymous email used if no user is associated with the registration
+    $properties['mail'] = array(
       'label' => t('Registrant e-mail'),
       'type' => 'text',
-      'description' => t('The registrant\'s email address.'),
-      'getter callback' => 'registration_property_registrant_mail_get',
+      'description' => t('Either the user email address, if registration is for a user, or the anonymous user email property.'),
+      'getter callback' => 'registration_get_properties',
       'computed' => TRUE,
     );
 
@@ -106,13 +108,13 @@ class RegistrationMetadataController extends EntityDefaultMetadataController {
       'setter callback' => 'entity_property_verbatim_set',
     );
 
-    $properties['registrant'] = array(
-      'label' => t("Registrant entity"),
+    $properties['user'] = array(
+      'label' => t("User entity"),
       'type' => 'entity',
-      'schema field' => 'registrant_id',
+      'schema field' => 'user_uid',
       'description' => t("The entity for which the registration belongs to. Usually a user."),
-      'getter callback' => 'registration_property_registrant_get',
-      'setter callback' => 'registration_property_registrant_set',
+      'getter callback' => 'registration_property_user_get',
+      'setter callback' => 'registration_property_user_set',
     );
 
     $properties['state'] = array(
