@@ -18,22 +18,16 @@ function registration_field_info() {
         'default_registration_settings' => array(
           'status' => 0,
           'capacity' => 0,
-          'event' => array(
-            'event_date_field' => NULL,
-          ),
           'scheduling' => array(
-            'scheduling_type' => NULL,
             'open' => NULL,
+            'open_date_token' => NULL,
             'close' => NULL,
-            'open_relative' => NULL,
-            'close_relative' => NULL,
+            'close_date_token' => NULL,
           ),
           'reminder' => array(
             'send_reminder' => 0,
             'reminder_settings' => array(
-              'reminder_type' => NULL,
               'reminder_date' => NULL,
-              'reminder_relative' => NULL,
               'reminder_template' => NULL,
             ),
           ),
@@ -44,6 +38,7 @@ function registration_field_info() {
           ),
         ),
       ),
+      'property_type' => 'text',
       'default_widget' => 'registration_select',
       'default_formatter' => 'registration_default',
       'no_ui' => FALSE,
@@ -89,37 +84,6 @@ function registration_field_instance_settings_form($field, $instance) {
   // Unset the save button just in case.
   unset($settings_form['save']);
   $form['default_registration_settings'] += $settings_form;
-
-  // List all parent entity fields suitable for being base date.
-  $parent_field_options = array(NULL => t("- None -"));
-  if (module_exists('date')) {
-    $parent_entity_fields = field_info_instances($instance['entity_type'], $instance['bundle']);
-    foreach ($parent_entity_fields as $field_name => $field_instance) {
-      $field_info = field_info_field($field_name);
-      if (in_array($field_info['type'], array('date', 'datestamp', 'datetime'))) {
-        $parent_field_options[$field_name] = $field_instance['label'];
-      }
-    }
-
-    $form['default_registration_settings']['event'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Event Date'),
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
-      '#tree' => TRUE,
-      '#weight' => 0,
-    );
-
-    // Add a date field selection option for field instance forms.
-    $form['default_registration_settings']['event']['event_date_field'] = array(
-      '#type' => "select",
-      '#title' => "Date field to use for relative dates",
-      '#options' => $parent_field_options,
-      '#default_value' => isset($default_settings['event_date_field']) ? $default_settings['event_date_field'] : 0,
-      '#description' => t("If this entity contains a date field, you can select it here so you can use it for automatic calculation of relative dates."),
-      '#weight' => 0,
-    );
-  }
 
   $form['hide_register_tab'] = array(
     '#type' => 'checkbox',
@@ -386,21 +350,9 @@ function registration_form_field_ui_field_edit_form_validate(&$form, &$form_stat
       form_set_error($base_elem_key . 'settings][from_address', t('From email address is invalid.'));
     }
 
-    // If a relative date is set, make sure we have an event date to work with.
-    if (!empty($default_settings['scheduling']['open_relative']) || !empty($default_settings['scheduling']['close_relative']) || $default_settings['reminder']['reminder_settings']['reminder_relative']) {
-      if (empty($default_settings['event']['event_date_field'])) {
-        form_set_error($base_elem_key . 'event][event_date_field', t('Relative dates require an event date field to be set.'));
-      }
-    }
-
     // Validate open date.
     if (!empty($default_settings['scheduling']['open']) && strtotime($default_settings['scheduling']['open']) === FALSE) {
       form_set_error($base_elem_key . 'scheduling][open', t('Date is invalid.'));
-    }
-
-    // Validate relative open date.
-    if (!empty($default_settings['scheduling']['open_relative']) && strtotime($default_settings['scheduling']['open_relative']) === FALSE) {
-      form_set_error($base_elem_key . 'scheduling][open_relative', t('Date is invalid.'));
     }
 
     // Validate close date.
@@ -408,16 +360,10 @@ function registration_form_field_ui_field_edit_form_validate(&$form, &$form_stat
       form_set_error($base_elem_key . 'scheduling][close', t('Date is invalid.'));
     }
 
-    // Validate relative close date.
-    if (!empty($default_settings['scheduling']['close_relative']) && strtotime($default_settings['scheduling']['close_relative']) === FALSE) {
-      form_set_error($base_elem_key . 'scheduling][close_relative', t('Date is invalid.'));
-    }
-
     // If sending a reminder, ensure date and template are set.
     if ($default_settings['reminder']['send_reminder']
-      && (empty($default_settings['reminder']['reminder_settings']['reminder_template'])
-        || !(!empty($default_settings['reminder']['reminder_settings']['reminder_date'])
-          || !empty($default_settings['reminder']['reminder_settings']['reminder_relative'])))) {
+      && (empty($default_settings['reminder']['reminder_settings']['reminder_date']) ||
+        empty($default_settings['reminder']['reminder_settings']['reminder_template']))) {
       form_set_error($base_elem_key . 'reminder][send_reminder', t('If sending a reminder, provide a date and template.'));
     }
 
@@ -425,12 +371,6 @@ function registration_form_field_ui_field_edit_form_validate(&$form, &$form_stat
     if (!empty($default_settings['reminder']['reminder_settings']['reminder_date'])
       && strtotime($default_settings['reminder']['reminder_settings']['reminder_date']) === FALSE) {
       form_set_error($base_elem_key . 'reminder][reminder_settings][reminder_date', t('Reminder date is invalid.'));
-    }
-
-    // Validate relative reminder date.
-    if (!empty($default_settings['reminder']['reminder_settings']['reminder_relative'])
-      && strtotime($default_settings['reminder']['reminder_settings']['reminder_relative']) === FALSE) {
-      form_set_error($base_elem_key . 'reminder][reminder_settings][reminder_relative', t('Reminder date is invalid.'));
     }
   }
 }

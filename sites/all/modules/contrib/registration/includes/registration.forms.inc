@@ -12,14 +12,17 @@
  *   The registration object to edit or for a create form an empty registration
  *   object with a node defined.
  */
-function registration_form($form, &$form_state, Registration $registration) {
+function registration_form($form, &$form_state, Registration $registration, $new = TRUE) {
+  global $user;
+
   $wrapper = entity_metadata_wrapper('registration', $registration);
-  $user = $wrapper->user->value();
   $host = $wrapper->entity->value();
   $state = $wrapper->state->value();
-  $type = $wrapper->type->value();
+  $type = $wrapper->getBundle();
+  $registrant_mail = $wrapper->registrant_mail->value();
 
   $form_state['registration'] = $registration;
+  $form['#registration_is_new'] = $new;
 
   $settings = registration_entity_settings($registration->entity_type, $registration->entity_id);
 
@@ -29,25 +32,31 @@ function registration_form($form, &$form_state, Registration $registration) {
     }
   }
 
-  $who_options = registration_access_people($registration);
+  // Options for who is registering.
+  $who_options = array();
+
+  if (!empty($user->mail) && user_access("create own $type registration")) {
+    $who_options[REGISTRATION_REGISTRANT_TYPE_SELF] = t('Myself');
+  }
+
+  if (user_access("create $type registration")) {
+    $who_options[REGISTRATION_REGISTRANT_TYPE_OTHER] = t('Other person');
+  }
 
   // Default value for who is registering.
   $who_default = NULL;
-  if (isset($registration->registration_id)) {
-    $who_default = $registration->registrant_type($GLOBALS['user']);
+
+  if (isset($registration->registration_id) && $registrant_mail) {
+    if (!empty($user->mail) && $user->mail === $registrant_mail) {
+      $who_default = REGISTRATION_REGISTRANT_TYPE_SELF;
+    }
+    else {
+      $who_default = REGISTRATION_REGISTRANT_TYPE_OTHER;
+    }
   }
   elseif (count($who_options) == 1) {
     $keys = array_keys($who_options);
     $who_default = reset($keys);
-  }
-
-  // Show a message if there's only one option as we're going to hide the form.
-  if (count($who_options) == 1 && !user_is_anonymous()) {
-    $form['who_message'] = array(
-      '#markup' => '<div class="registration-who-msg">' .
-      t('You are registering: %who', array('%who' => current($who_options))) .
-      '</div>',
-    );
   }
 
   $form['who_is_registering'] = array(
@@ -59,44 +68,51 @@ function registration_form($form, &$form_state, Registration $registration) {
     '#access' => (count($who_options) > 1),
   );
 
-  $form['user'] = array(
-    '#type' => 'textfield',
-    '#title' => t('User'),
-    '#default_value' => ($user ? $user->name : ''),
-    '#maxlength' => 60,
-    '#size' => 30,
-    '#description' => t('Select a user by typing their username to get a list of matches.'),
-    '#autocomplete_path' => 'user/autocomplete',
-    '#access' => isset($who_options[REGISTRATION_REGISTRANT_TYPE_USER]),
-    '#states' => array(
-      'visible' => array(
-        ':input[name="who_is_registering"]' => array('value' => REGISTRATION_REGISTRANT_TYPE_USER),
+  if (isset($who_options[REGISTRATION_REGISTRANT_TYPE_SELF])) {
+    // Show a message for registering yourself.
+    $form['registrant_self'] = array(
+      '#type' => 'container',
+      '#states' => array(
+        'visible' => array(
+          ':input[name="who_is_registering"]' => array('value' => REGISTRATION_REGISTRANT_TYPE_SELF),
+        ),
       ),
-      'required' => array(
-        ':input[name="who_is_registering"]' => array('value' => REGISTRATION_REGISTRANT_TYPE_USER),
-      ),
-    ),
-  );
+    );
 
-  $form['anon_mail'] = array(
+    $form['registrant_self']['content'] = array(
+      '#markup' => '<div class="form-item registration-registrant-self">' .
+        t('You are registering: %mail', array('%mail' => $user->mail)) .
+        '</div>',
+    );
+  }
+
+  $form['registrant_mail'] = array(
     '#type' => 'textfield',
     '#title' => t('Email'),
     '#description' => t('The email to associate with this registration.'),
-    '#default_value' => isset($registration->anon_mail) ? $registration->anon_mail : '',
+    '#default_value' => $registrant_mail,
     '#size' => 40,
     '#maxlength' => 255,
-    '#access' => isset($who_options[REGISTRATION_REGISTRANT_TYPE_ANON]),
+    '#access' => isset($who_options[REGISTRATION_REGISTRANT_TYPE_OTHER]),
     '#states' => array(
       'visible' => array(
-        ':input[name="who_is_registering"]' => array('value' => REGISTRATION_REGISTRANT_TYPE_ANON),
+        ':input[name="who_is_registering"]' => array('value' => REGISTRATION_REGISTRANT_TYPE_OTHER),
       ),
       'required' => array(
-        ':input[name="who_is_registering"]' => array('value' => REGISTRATION_REGISTRANT_TYPE_ANON),
+        ':input[name="who_is_registering"]' => array('value' => REGISTRATION_REGISTRANT_TYPE_OTHER),
       ),
     ),
   );
 
-  $settings = registration_entity_settings($registration->entity_type, $registration->entity_id);
+  // Add a container to hold registrant form fields.
+  $form['registrant_fields'] = array(
+    '#type' => 'container',
+    '#access' => !empty($settings['settings']['upsert_registrants']),
+    '#attributes' => array(
+      'class' => array('registrant-fields'),
+    ),
+  );
+
   $capacity = $settings['capacity'];
   $limit = isset($settings['settings']['maximum_spaces']) ? $settings['settings']['maximum_spaces'] : 1;
   // Just in case it was unset:
@@ -167,13 +183,11 @@ function registration_form($form, &$form_state, Registration $registration) {
 
   if ($host && entity_access('view', $registration->entity_type, $host)) {
     $uri = entity_uri($registration->entity_type, $host);
-    if(isset($uri['path'])){
-      $form['actions']['cancel'] = array(
-        '#type' => 'link',
-        '#title' => t('Cancel'),
-        '#href' => $uri['path'],
-      );
-    }
+    $form['actions']['cancel'] = array(
+      '#type' => 'link',
+      '#title' => t('Cancel'),
+      '#href' => $uri['path'],
+    );
   }
   $form['#registration_settings'] = $settings;
 
@@ -184,6 +198,8 @@ function registration_form($form, &$form_state, Registration $registration) {
  * Validation callback for registration_form().
  */
 function registration_form_validate($form, &$form_state) {
+  global $user;
+
   $registration = $form_state['registration'];
 
   $count = $form_state['values']['count'];
@@ -216,46 +232,20 @@ function registration_form_validate($form, &$form_state) {
 
   // Validate according to who's registering.
   switch ($form_state['values']['who_is_registering']) {
-    case REGISTRATION_REGISTRANT_TYPE_ANON:
-      $form_state['values']['anon_mail'] = trim($form_state['values']['anon_mail']);
-      if (!valid_email_address($form_state['values']['anon_mail'])) {
-        form_set_error('anon_mail', t('The email address is invalid.'));
-      }
-      if (!$allow_multiple && registration_is_registered($registration, $form_state['values']['anon_mail'])) {
-        form_set_error('anon_mail', t('%mail is already registered for this event.',
-          array('%mail' => $form_state['values']['anon_mail'])));
+    case REGISTRATION_REGISTRANT_TYPE_SELF:
+      if (!$allow_multiple && registration_is_registered($registration, $user->mail)) {
+        form_set_error('registrant_self', t('You are already registered for this event.'));
       }
       break;
 
-    case REGISTRATION_REGISTRANT_TYPE_ME:
-      global $user;
-      if (!$allow_multiple && registration_is_registered($registration, NULL, $user->uid)) {
-        form_set_error('user', t('You are already registered for this event.'));
+    case REGISTRATION_REGISTRANT_TYPE_OTHER:
+      $form_state['values']['registrant_mail'] = trim($form_state['values']['registrant_mail']);
+      if (!valid_email_address($form_state['values']['registrant_mail'])) {
+        form_set_error('registrant_mail', t('The email address is invalid.'));
       }
-      break;
-
-    case REGISTRATION_REGISTRANT_TYPE_USER:
-      if (empty($form_state['values']['user'])) {
-        form_set_error('user', t('User name is required.'));
-      }
-      $user = user_load_by_name($form_state['values']['user']);
-      if ($user) {
-        if (!$allow_multiple && registration_is_registered($registration, NULL, $user->uid)) {
-          if (user_access('access user profiles')) {
-            form_set_error('user', t('%user is already registered for this event.', array('%user' => $user->name)));
-          }
-          else {
-            form_set_error('user', t('Registration Failed.'));
-          }
-        }
-      }
-      else {
-        if (user_access('access user profiles')) {
-          form_set_error('user', t('%user is not a valid user.', array('%user' => $form_state['values']['user'])));
-        }
-        else {
-          form_set_error('user', t('Registration Failed.'));
-        }
+      if (!$allow_multiple && registration_is_registered($registration, $form_state['values']['registrant_mail'])) {
+        form_set_error('registrant_mail', t('%mail is already registered for this event.',
+          array('%mail' => $form_state['values']['registrant_mail'])));
       }
       break;
   }
@@ -268,11 +258,17 @@ function registration_form_validate($form, &$form_state) {
  * Submit callback for registration_form().
  */
 function registration_form_submit($form, &$form_state) {
+  global $user;
   $registration = $form_state['registration'];
+  $registration_type = registration_get_types($registration->type);
+  $settings = registration_entity_settings($registration->entity_type, $registration->entity_id);
+  $registrant_entity_type = $registration_type->registrant_entity_type;
+  $registrant_bundle = $registration_type->registrant_bundle;
+  $registrant_entity_info = entity_get_info($registrant_entity_type);
 
   // Set the registration's author uid:
   if (!isset($registration->registration_id)) {
-    $registration->author_uid = $GLOBALS['user']->uid;
+    $registration->author_uid = $user->uid;
   }
   $registration->count = $form_state['values']['count'];
 
@@ -280,21 +276,50 @@ function registration_form_submit($form, &$form_state) {
     $registration->state = $form_state['values']['state'];
   }
 
+  $registrant_mail = NULL;
+
   switch ($form_state['values']['who_is_registering']) {
-    case REGISTRATION_REGISTRANT_TYPE_ANON:
-      $registration->anon_mail = trim($form_state['values']['anon_mail']);
+    case REGISTRATION_REGISTRANT_TYPE_SELF:
+      $registrant_mail = $user->mail;
       break;
 
-    case REGISTRATION_REGISTRANT_TYPE_ME:
-      global $user;
-      $registration->user_uid = $user->uid;
+    case REGISTRATION_REGISTRANT_TYPE_OTHER:
+      $registrant_mail = $form_state['values']['registrant_mail'];
       break;
+  }
 
-    case REGISTRATION_REGISTRANT_TYPE_USER:
-      if ($reg_user = user_load_by_name($form_state['values']['user'])) {
-        $registration->user_uid = $reg_user->uid;
-      }
-      break;
+  // Look up entity by $registrant_mail.
+  $registrant_wrapper = registration_registrant_load_by_mail($registration_type, $registrant_mail);
+
+  if (!empty($settings['settings']['upsert_registrants'])) {
+    if (!$registrant_wrapper) {
+      $registrant_wrapper = registration_registrant_create($registration_type, $registrant_mail);
+    }
+    $registrant = $registrant_wrapper->value();
+
+    $values_excluding_fields = $form_state['values'];
+    if ($registrant_entity_info['fieldable']) {
+      $values_excluding_fields = array_diff_key($form_state['values'], field_info_instances($registrant_entity_type, $registrant_bundle));
+    }
+    $values_in_sub_form = array_intersect_key($values_excluding_fields, $form['registrant_fields']);
+    foreach ($values_in_sub_form as $key => $value) {
+      $registrant->$key = $value;
+    }
+
+    if ($registrant_entity_info['fieldable']) {
+      field_attach_submit($registrant_entity_type, $registrant, $form, $form_state);
+    }
+
+    $registrant_wrapper = entity_metadata_wrapper($registrant_entity_type, $registrant);
+    $registrant_wrapper->save();
+  }
+
+  // Set registrant_id if possible. Otherwise, store just the email.
+  if ($registrant_wrapper) {
+    $registration->registrant_id = $registrant_wrapper->getIdentifier();
+  }
+  else {
+    $registration->anon_mail = $registrant_mail;
   }
 
   // Notify field widgets.
@@ -311,7 +336,15 @@ function registration_form_submit($form, &$form_state) {
 
     // Set redirect to configured value, if there is one.
     if (!empty($reg_config['settings']['confirmation_redirect']) && strlen($reg_config['settings']['confirmation_redirect'])) {
-      $form_state['redirect'] = $reg_config['settings']['confirmation_redirect'];
+      if (module_exists('token')) {
+        $form_state['redirect'] = token_replace($reg_config['settings']['confirmation_redirect'], array(
+          $host->type => $host,
+          'registration' => $registration,
+        ));
+      }
+      else {
+        $form_state['redirect'] = $reg_config['settings']['confirmation_redirect'];
+      }
     }
     else {
       // Redirect to registration:
@@ -486,47 +519,14 @@ function registration_registrations_broadcast_form_submit($form, &$form_state) {
  *
  * @param array $form
  * @param array $form_state
- * @param array $settings
- *   The registration settings for the entity.
- * @param string $entity_type
- *   The entity type.
- * @param integer $entity_id
- *   The entity ID.
+ * @param object $entity_type
+ * @param object $entity
  *
  * @return array $form
  *
  * @see hook_registration_entity_settings()
  */
 function registration_entity_settings_form($form, &$form_state, $settings, $entity_type = NULL, $entity_id = NULL) {
-  // Prepare the event date value we derive from the entity date field. We need
-  // to set it as a value so it can be used inside registration_convert_form_settings().
-  $form['event_date'] = array(
-    '#type' => 'value',
-    '#value' => '',
-  );
-
-  // Retrieve the date field from the field instance's registration settings.
-  if ($entity_type && $entity_id) {
-    // See if there was an event date field on the field instance.
-    $entity = entity_load_single($entity_type, $entity_id);
-    list(, , $entity_bundle) = entity_extract_ids($entity_type, $entity);
-    $registration_instances = registration_get_registration_instances(array(
-      'entity_type' => $entity_type,
-      'bundle' => $entity_bundle,
-    ));
-    foreach ($registration_instances as $instance) {
-      if (isset($instance['settings']['default_registration_settings']['event']['event_date_field'])) {
-        $date_field_name = $instance['settings']['default_registration_settings']['event']['event_date_field'];
-        $form['event_date']['#value'] = registration_get_base_entity_date($entity_type, $entity, $date_field_name);
-      }
-    }
-  }
-
-  // Convert the values we stored in the settings back to normal values.
-  foreach ($settings['settings'] as $key => $value) {
-    $settings[$key] = $value;
-  }
-
   if ($entity_id) {
     // We'll need this info when we submit the form:
     $form_state['entity'] = array(
@@ -539,22 +539,12 @@ function registration_entity_settings_form($form, &$form_state, $settings, $enti
   if (module_exists('date_popup')) {
     $date_popup_installed = TRUE;
   }
-
-  // If there is no date field and we are not editing the field instance, unset
-  // the relative date option.
-  $relative_date_disabled = FALSE;
-  if (empty($form['event_date']['#value']) && (!empty($entity_type) && !empty($entity_id))) {
-    $relative_date_disabled = TRUE;
-  }
-
   $form['status'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable'),
     '#description' => t('Check to enable registrations.'),
     '#default_value' => isset($settings['status']) ? $settings['status'] : -1,
-    '#weight' => -1,
   );
-
   $form['capacity'] = array(
     '#type' => 'textfield',
     '#title' => t('Capacity'),
@@ -563,7 +553,6 @@ function registration_entity_settings_form($form, &$form_state, $settings, $enti
     '#maxlength' => 10,
     '#required' => TRUE,
     '#default_value' => isset($settings['capacity']) ? $settings['capacity'] : 0,
-    '#weight' => -1,
   );
 
   $form['scheduling'] = array(
@@ -573,110 +562,103 @@ function registration_entity_settings_form($form, &$form_state, $settings, $enti
     '#collapsed' => FALSE,
     '#tree' => TRUE,
   );
-
-  $form['scheduling']['scheduling_type'] = array(
-    '#type' => 'radios',
-    '#title' => t('Date format'),
-    '#default_value' => (isset($settings['scheduling_type']) && empty($relative_date_disabled)) ? $settings['scheduling_type'] : 'absolute',
-    '#options' => array(
-      'absolute' => t('Absolute'),
-      'relative' => t('Relative'),
-    ),
-    '#description' => t('Choose to use a date relative to the event date, or an absolute date.'),
-  );
-  if ($relative_date_disabled) {
-    $form['scheduling']['scheduling_type']['relative'] = array(
-      '#disabled' => TRUE,
-      '#title' => $form['scheduling']['scheduling_type']['#options']['relative'] . ' - ' . t('This option is disabled because there is no date field selected on this registration field.'),
-    );
-  }
-
-  $form['scheduling']['open_relative'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Offset for automatic opening of registrations'),
-    '#description' => t("Uses PHP !relative_date_formats relative to the event date. Examples: !examples. You can omit this field if you don't want registrations to !action automatically", array(
-      '!relative_date_formats' => l(t('relative date formats'), 'http://php.net/manual/en/datetime.formats.relative.php'),
-      '!examples' => "'-1 day', '-2 days 14:00', '-7 weekdays', 'first day of this month'",
-      // Relative date examples can't be translated.
-      '!action' => t('open'),
-    )),
-    '#default_value' => !empty($settings['open_relative']) ? $settings['open_relative'] : '',
-    '#states' => array(
-      'visible' => array('xor',
-        array(':input[name="scheduling[scheduling_type]"]' => array('value' => 'relative')),
-        array(':input[name="instance[settings][default_registration_settings][scheduling][scheduling_type]"]' => array('value' => 'relative')),
-      ),
-    ),
-  );
-
   $form['scheduling']['open'] = array(
     '#type' => 'textfield',
     '#title' => t('Open Date'),
     '#maxlength' => 25,
     '#description' => t('When to automatically open registrations. Format: %time. The date format is YYYY-MM-DD and %timezone is the time zone offset from UTC. Leave blank to disable.', array(
-        '%time' => !empty($settings['open']) ? date_format(date_create($settings['open']), 'Y-m-d H:i:s O') : format_date(time(), 'custom', 'Y-m-d H:i:s O'),
-        '%timezone' => !empty($settings['open']) ? date_format(date_create($settings['open']), 'O') : format_date(time(), 'custom', 'O'),
-      )
-    ),
+      '%time' => !empty($settings['open']) ? date_format(date_create($settings['open']), 'Y-m-d H:i:s O') : format_date(time(), 'custom', 'Y-m-d H:i:s O'),
+      '%timezone' => !empty($settings['open']) ? date_format(date_create($settings['open']), 'O') : format_date(time(), 'custom', 'O'),
+    )),
     '#default_value' => !empty($settings['open']) ? $settings['open'] : '',
-    '#states' => array(
-      'visible' => array('xor',
-        array(':input[name="scheduling[scheduling_type]"]' => array('value' => 'absolute')),
-        array(':input[name="instance[settings][default_registration_settings][scheduling][scheduling_type]"]' => array('value' => 'absolute')),
-      ),
-    ),
+    '#weight' => 0,
   );
   if ($date_popup_installed) {
     $form['scheduling']['open']['#type'] = 'date_popup';
     $form['scheduling']['open']['#date_format'] = 'Y-m-d H:i:s O';
     $form['scheduling']['open']['#description'] = t('When to automatically open registrations. (This uses the !timezone.)', array(
       '!timezone' => l(t('site default time zone'), 'admin/config/regional/settings'),
-      ));
+    ));
     unset($form['scheduling']['open']['#maxlength']);
   }
-
-  $form['scheduling']['close_relative'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Offset for automatic closing of registrations'),
-    '#description' => t("Uses PHP !relative_date_formats relative to the event date. Examples: !examples. You can omit this field if you don't want registrations to !action automatically", array(
-      '!relative_date_formats' => l(t('relative date formats'), 'http://php.net/manual/en/datetime.formats.relative.php'),
-      '!examples' => "'-1 day', '-2 days 14:00', '-7 weekdays', 'first day of this month'",
-      // Relative date examples can't be translated.
-      '!action' => t('close'),
-    )),
-    '#default_value' => !empty($settings['close_relative']) ? $settings['close_relative'] : '',
-    '#states' => array(
-      'visible' => array('xor',
-        array(':input[name="scheduling[scheduling_type]"]' => array('value' => 'relative')),
-        array(':input[name="instance[settings][default_registration_settings][scheduling][scheduling_type]"]' => array('value' => 'relative')),
-      ),
-    ),
-  );
 
   $form['scheduling']['close'] = array(
     '#type' => 'textfield',
     '#title' => t('Close Date'),
     '#maxlength' => 25,
     '#description' => t('When to automatically close registrations. Format: %time. The date format is YYYY-MM-DD and %timezone is the time zone offset from UTC. Leave blank to disable.', array(
-        '%time' => !empty($settings['close']) ? date_format(date_create($settings['close']), 'Y-m-d H:i:s O') : format_date(time(), 'custom', 'Y-m-d H:i:s O'),
-        '%timezone' => !empty($settings['close']) ? date_format(date_create($settings['close']), 'O') : format_date(time(), 'custom', 'O'),
-      )
-    ),
+      '%time' => !empty($settings['close']) ? date_format(date_create($settings['close']), 'Y-m-d H:i:s O') : format_date(time(), 'custom', 'Y-m-d H:i:s O'),
+      '%timezone' => !empty($settings['close']) ? date_format(date_create($settings['close']), 'O') : format_date(time(), 'custom', 'O'),
+    )),
     '#default_value' => !empty($settings['close']) ? $settings['close'] : '',
-    '#states' => array(
-      'visible' => array('xor',
-        array(':input[name="scheduling[scheduling_type]"]' => array('value' => 'absolute')),
-        array(':input[name="instance[settings][default_registration_settings][scheduling][scheduling_type]"]' => array('value' => 'absolute')),
-      ),
-    ),
+    '#weight' => 2,
   );
   if ($date_popup_installed) {
     $form['scheduling']['close']['#type'] = 'date_popup';
     $form['scheduling']['close']['#date_format'] = 'Y-m-d H:i:s O';
-    $form['scheduling']['close']['#description'] = t('When to automatically close registrations. (This uses the !timezone.)', array(
+    $form['scheduling']['close']['#description'] = t('When to automatically close registrations.. (This uses the !timezone.)', array(
       '!timezone' => l(t('site default time zone'), 'admin/config/regional/settings'),
-      ));
+    ));
     unset($form['scheduling']['close']['#maxlength']);
+  }
+
+  // Allow for setting open and close date based on tokens:
+  if (module_exists('token')) {
+    $date_fields = array(
+      array(
+        'name' => 'open',
+        'label' => 'Open Date',
+        'set' => 'scheduling',
+      ),
+      array(
+        'name' => 'close',
+        'label' => 'Close Date',
+        'set' => 'scheduling',
+      ),
+    );
+    foreach ($date_fields as $field) {
+      $input_root = $entity_id ? $field['set'] . '[' : 'instance[settings][default_registration_settings][' . $field['set'] . '][';
+      $base_weight = isset($form[$field['set']][$field['name']]['#weight']) ? $form[$field['set']][$field['name']]['#weight'] : 0;
+      $form[$field['set']][$field['name'] . '_use_token'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Use a token to set the @label.', array('@label' => $field['label'])),
+        '#default_value' => !empty($settings[$field['name'] . '_date_token']) ? TRUE : FALSE,
+        '#weight' => $base_weight - 0.5,
+      );
+      $form[$field['set']][$field['name'] . '_date_token'] = array(
+        '#type' => 'textfield',
+        '#title' => t('@label Source', array('@label' => $field['label'])),
+        '#description' => $form[$field['set']][$field['name']]['#description'] . t(". <i>Choose a token that will return the time in 'Y-m-d H:i:s' format.</i>"),
+        '#default_value' => isset($settings[$field['name'] . '_date_token']) ? $settings[$field['name'] . '_date_token'] : NULL,
+        '#states' => array(
+          'visible' => array(
+            ':input[name="' . $input_root . $field['name'] . '_use_token]"]' => array('checked' => TRUE),
+          ),
+        ),
+        '#weight' => $base_weight,
+      );
+      $form[$field['set']][$field['name']]['#states'] = array(
+        'visible' => array(
+          ':input[name="' . $input_root . $field['name'] . '_use_token]"]' => array('checked' => FALSE),
+        ),
+      );
+      if ($entity_id) {
+        // Only add this validation when on an actual entity: allows for setting
+        // defaults on the field configuration page.
+        $form[$field['set']][$field['name'] . '_date_token']['#element_validate'] = array('token_element_validate');
+        $form[$field['set']][$field['name'] . '_date_token']['#token_types'] = array($entity_type);
+      }
+    }
+    if ($entity_id) {
+      // Add the UI for browsing tokens.
+      $form['scheduling']['_tokens'] = array(
+        '#theme' => 'token_tree_link',
+        '#token_types' => array($entity_type),
+        '#global_types' => FALSE,
+        '#click_insert' => TRUE,
+        '#weight' => 3,
+      );
+    }
   }
 
   $form['reminder'] = array(
@@ -699,44 +681,8 @@ function registration_entity_settings_form($form, &$form_state, $settings, $enti
     '#title' => t('Settings'),
     '#collapsible' => FALSE,
     '#states' => array(
-      'visible' => array('xor',
-        array(':input[name="reminder[send_reminder]"]' => array('checked' => TRUE)),
-        array(':input[name="instance[settings][default_registration_settings][reminder][send_reminder]"]' => array('checked' => TRUE)),
-      ),
-    ),
-  );
-
-  $form['reminder']['reminder_settings']['reminder_type'] = array(
-    '#type' => 'radios',
-    '#title' => t('Date format'),
-    '#default_value' => (isset($settings['reminder_type']) && empty($relative_date_disabled)) ? $settings['reminder_type'] : 'absolute',
-    '#options' => array(
-      'absolute' => t('Absolute'),
-      'relative' => t('Relative'),
-    ),
-    '#description' => t('Choose to use a date relative to the event date, or an absolute date.'),
-  );
-  if ($relative_date_disabled) {
-    $form['reminder']['reminder_settings']['reminder_type']['relative'] = array(
-      '#disabled' => TRUE,
-      '#title' => $form['reminder']['reminder_settings']['reminder_type']['#options']['relative'] . ' - ' . t('This option is disabled because there is no date field selected on this registration field.'),
-    );
-  }
-
-  $form['reminder']['reminder_settings']['reminder_relative'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Offset for automatic sending of reminders'),
-    '#description' => t("Uses PHP !relative_date_formats relative to the event date. Examples: !examples. You can omit this field if you don't want registrations to !action automatically", array(
-      '!relative_date_formats' => l(t('relative date formats'), 'http://php.net/manual/en/datetime.formats.relative.php'),
-      '!examples' => "'-1 day', '-2 days 14:00', '-7 weekdays', 'first day of this month'",
-      // Relative date examples can't be translated.
-      '!action' => t('remind'),
-    )),
-    '#default_value' => !empty($settings['reminder_relative']) ? $settings['reminder_relative'] : '',
-    '#states' => array(
-      'visible' => array('xor',
-        array(':input[name="reminder[reminder_settings][reminder_type]"]' => array('value' => 'relative')),
-        array(':input[name="instance[settings][default_registration_settings][reminder][reminder_settings][reminder_type]"]' => array('value' => 'relative')),
+      'visible' => array(
+        ':input[name="send_reminder"]' => array('checked' => TRUE),
       ),
     ),
   );
@@ -746,24 +692,17 @@ function registration_entity_settings_form($form, &$form_state, $settings, $enti
     '#title' => t('Reminder Date'),
     '#maxlength' => 25,
     '#description' => t('When to send reminders. Format: %time. The date format is YYYY-MM-DD and %timezone is the time zone offset from UTC.', array(
-        '%time' => !empty($settings['open']) ? date_format(date_create($settings['reminder_date']), 'Y-m-d H:i:s O') : format_date(time(), 'custom', 'Y-m-d H:i:s O'),
-        '%timezone' => !empty($settings['open']) ? date_format(date_create($settings['reminder_date']), 'O') : format_date(time(), 'custom', 'O'),
-      )
-    ),
+      '%time' => !empty($settings['open']) ? date_format(date_create($settings['reminder_date']), 'Y-m-d H:i:s O') : format_date(time(), 'custom', 'Y-m-d H:i:s O'),
+      '%timezone' => !empty($settings['open']) ? date_format(date_create($settings['reminder_date']), 'O') : format_date(time(), 'custom', 'O'),
+    )),
     '#default_value' => !empty($settings['reminder_date']) ? $settings['reminder_date'] : '',
-    '#states' => array(
-      'visible' => array('xor',
-        array(':input[name="reminder[reminder_settings][reminder_type]"]' => array('value' => 'absolute')),
-        array(':input[name="instance[settings][default_registration_settings][reminder][reminder_settings][reminder_type]"]' => array('value' => 'absolute')),
-      ),
-    ),
   );
   if ($date_popup_installed) {
     $form['reminder']['reminder_settings']['reminder_date']['#type'] = 'date_popup';
     $form['reminder']['reminder_settings']['reminder_date']['#date_format'] = 'Y-m-d H:i:s O';
     $form['reminder']['reminder_settings']['reminder_date']['#description'] = t('When to send reminders. (This uses the !timezone.)', array(
       '!timezone' => l(t('site default time zone'), 'admin/config/regional/settings'),
-      ));
+    ));
     unset($form['reminder']['reminder_settings']['reminder_date']['#maxlength']);
   }
 
@@ -794,6 +733,20 @@ function registration_entity_settings_form($form, &$form_state, $settings, $enti
     '#tree' => TRUE,
   );
 
+  $form['settings']['upsert_registrants'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Automatically create and update registrant entities'),
+    '#description' => t('If selected, anonymous registrants will have a registrant entity automatically created and attached when the registration is saved. Additionally, if a module exposes registrant form fields on the registration form, those values will be set on the registrant entity.'),
+    '#default_value' => isset($settings['settings']['upsert_registrants']) ? $settings['settings']['upsert_registrants'] : NULL,
+  );
+
+  $form['settings']['multiple_registrations'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Allow multiple registrations'),
+    '#description' => t('If selected, each person can create multiple registrations for this event.'),
+    '#default_value' => isset($settings['settings']['multiple_registrations']) ? $settings['settings']['multiple_registrations'] : -1,
+  );
+
   $form['settings']['maximum_spaces'] = array(
     '#type' => 'textfield',
     '#title' => t('Spaces allowed'),
@@ -802,13 +755,6 @@ function registration_entity_settings_form($form, &$form_state, $settings, $enti
     '#required' => TRUE,
     '#description' => t('The maximum number of spaces allowed for each registrations. For no limit, use 0. (Default is 1)'),
     '#default_value' => isset($settings['settings']['maximum_spaces']) ? $settings['settings']['maximum_spaces'] : 1,
-  );
-
-  $form['settings']['multiple_registrations'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Allow multiple registrations'),
-    '#description' => t('If selected, each person can create multiple registrations for this event.'),
-    '#default_value' => isset($settings['settings']['multiple_registrations']) ? $settings['settings']['multiple_registrations'] : -1,
   );
 
   $form['settings']['from_address'] = array(
@@ -838,6 +784,21 @@ function registration_entity_settings_form($form, &$form_state, $settings, $enti
     '#required' => FALSE,
     '#default_value' => isset($settings['settings']['confirmation_redirect']) ? $settings['settings']['confirmation_redirect'] : '',
   );
+  // Display the list of available placeholders if token module is installed.
+  if (module_exists('token')) {
+    $form['settings']['confirmation_redirect']['#description'] .= ' ' . t('Tokens may be used.');
+    $form['settings']['token_help'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Available Tokens'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+      '#tree' => TRUE,
+      'token_help_details' => array(
+        '#theme' => 'token_tree',
+        '#token_types' => array($entity_type, 'registration'),
+      ),
+    );
+  }
 
   // Allow other modules to add their own custom settings:
   $form['settings'] += module_invoke_all('registration_entity_settings', $settings);
@@ -882,27 +843,17 @@ function registration_entity_settings_form_validate($form, &$form_state) {
     form_set_error('scheduling][open', t('Date is invalid.'));
   }
 
-  // Validate relative open date.
-  if (!empty($form_state['values']['scheduling']['open_relative']) && strtotime($form_state['values']['scheduling']['open_relative']) === FALSE) {
-    form_set_error('scheduling][open_relative', t('Date is invalid.'));
-  }
-
   // Validate close date:
   if (!empty($form_state['values']['scheduling']['close']) && is_string($form_state['values']['scheduling']['close']) && strtotime($form_state['values']['scheduling']['close']) === FALSE) {
     form_set_error('scheduling][close', t('Date is invalid.'));
   }
 
-  // Validate relative close date.
-  if (!empty($form_state['values']['scheduling']['close_relative']) && strtotime($form_state['values']['scheduling']['close_relative']) === FALSE) {
-    form_set_error('scheduling][close_relative', t('Date is invalid.'));
-  }
-
   // If sending a reminder, ensure date and template are set.
   $reminder = $form_state['values']['reminder'];
   if ($reminder['send_reminder']
-    && (empty($reminder['reminder_settings']['reminder_template'])
-      || !(!empty($reminder['reminder_settings']['reminder_date'])
-        || !empty($reminder['reminder_settings']['reminder_relative'])))) {
+    && (empty($reminder['reminder_settings']['reminder_date']) ||
+      empty($reminder['reminder_settings']['reminder_template']))
+  ) {
     form_set_error('reminder][send_reminder', t('If sending a reminder, provide a date and template.'));
   }
 
@@ -914,50 +865,20 @@ function registration_entity_settings_form_validate($form, &$form_state) {
     if (!empty($reminder['reminder_settings']['reminder_date'])) {
       form_set_error('reminder][reminder_settings][reminder_date', t('You have provided a reminder date, but not opted to send a reminder. Either check the box to send a reminder, or do not provide a reminder date.'));
     }
-    if (!empty($reminder['reminder_settings']['reminder_relative'])) {
-      form_set_error('reminder][reminder_settings][reminder_relative', t('You have provided a reminder date, but not opted to send a reminder. Either check the box to send a reminder, or do not provide a reminder date.'));
-    }
   }
 
   // Validate reminder date:
-  if (!empty($reminder['reminder_settings']['reminder_date']) && $reminder['reminder_settings']['reminder_type'] == 'absolute'
+  if (!empty($reminder['reminder_settings']['reminder_date'])
     && strtotime($reminder['reminder_settings']['reminder_date']) === FALSE
   ) {
     form_set_error('reminder][reminder_settings][reminder_date', t('Reminder date is invalid.'));
   }
 
-  // Validate relative reminder date.
-  if (!empty($reminder['reminder_settings']['reminder_relative']) && $reminder['reminder_settings']['reminder_type'] == 'relative'
-    && strtotime($reminder['reminder_settings']['reminder_relative']) === FALSE) {
-    form_set_error('reminder][reminder_settings][reminder_relative', t('Reminder date is invalid.'));
-  }
-
   // Ensure reminder date is not in the past when "send_reminder" is TRUE:
-  if ($reminder['send_reminder'] && !empty($reminder['reminder_settings']['reminder_date']) && $reminder['reminder_settings']['reminder_type'] == 'absolute') {
+  if ($reminder['send_reminder'] && !empty($reminder['reminder_settings']['reminder_date'])) {
     if (strtotime($reminder['reminder_settings']['reminder_date']) <= time()) {
       form_set_error('reminder][reminder_settings][reminder_date', t('Reminder must be in the future.'));
     }
-  }
-
-  // Ensure relative reminder date is not in the past when "send_reminder" is TRUE:
-  if ($reminder['send_reminder'] && !empty($reminder['reminder_settings']['reminder_relative']) && $reminder['reminder_settings']['reminder_type'] == 'relative') {
-    if (strtotime($reminder['reminder_settings']['reminder_date'], $form_state['values']['event_date']) <= time()) {
-      form_set_error('reminder][reminder_settings][reminder_relative', t('Reminder must be in the future.'));
-    }
-  }
-
-  // Ensure none of the relative dates is set later than the event date.
-  registration_convert_relative_date($relative_open, $form_state['values']['event_date'], $form_state['values']['scheduling']['open_relative']);
-  if (strtotime($relative_open) > $form_state['values']['event_date']) {
-    form_set_error('scheduling][open_relative', t('Date is set later then the event date.'));
-  }
-  registration_convert_relative_date($relative_close, $form_state['values']['event_date'], $form_state['values']['scheduling']['close_relative']);
-  if (strtotime($relative_close) > $form_state['values']['event_date']) {
-    form_set_error('scheduling][close_relative', t('Date is set later then the event date.'));
-  }
-  registration_convert_relative_date($relative_reminder, $form_state['values']['event_date'], $reminder['reminder_settings']['reminder_relative']);
-  if (strtotime($relative_reminder) > $form_state['values']['event_date']) {
-    form_set_error('reminder][reminder_settings][reminder_relative', t('Date is set later then the event date.'));
   }
 }
 
@@ -970,7 +891,7 @@ function registration_entity_settings_form_validate($form, &$form_state) {
 function registration_entity_settings_form_submit($form, &$form_state) {
   $entity = $form_state['entity'];
 
-  $fields = registration_convert_form_settings($form_state['values'], $entity);
+  $fields = registration_convert_form_settings($form_state['values']);
 
   registration_update_entity_settings($entity['entity_type'], $entity['entity_id'], $fields);
 
@@ -986,66 +907,46 @@ function registration_entity_settings_form_submit($form, &$form_state) {
  *
  * @return array
  */
-function registration_convert_form_settings($values, $entity) {
-  // Add additional settings for relative date processing to settings.
-  $values['settings']['scheduling_type'] = isset($values['scheduling']['scheduling_type']) ? $values['scheduling']['scheduling_type'] : NULL;
-  $values['settings']['open_relative'] = isset($values['scheduling']['open_relative']) ? $values['scheduling']['open_relative'] : NULL;
-  $values['settings']['close_relative'] = isset($values['scheduling']['close_relative']) ? $values['scheduling']['close_relative'] : NULL;
-  $values['settings']['reminder_type'] = isset($values['reminder']['reminder_settings']['reminder_type']) ? $values['reminder']['reminder_settings']['reminder_type'] : NULL;
-  $values['settings']['reminder_relative'] = isset($values['reminder']['reminder_settings']['reminder_relative']) ? $values['reminder']['reminder_settings']['reminder_relative'] : NULL;
-
+function registration_convert_form_settings($values) {
   $fields = array(
     'status' => $values['status'],
     'capacity' => $values['capacity'],
     'send_reminder' => isset($values['reminder']['send_reminder']) ? $values['reminder']['send_reminder'] : 0,
     'reminder_date' => NULL,
     'reminder_template' => isset($values['reminder']['reminder_settings']['reminder_template']) ? $values['reminder']['reminder_settings']['reminder_template'] : NULL,
-    'settings' => serialize($values['settings']),
+    'settings' => $values['settings'],
     'open' => NULL,
     'close' => NULL,
+    'open_date_token' => $values['scheduling']['open_date_token'],
+    'close_date_token' => $values['scheduling']['close_date_token'],
   );
 
+  $date_fields = array(
+    array(
+      'name' => 'open',
+      'label' => 'Open Date',
+      'set' => 'scheduling',
+    ),
+    array(
+      'name' => 'close',
+      'label' => 'Close Date',
+      'set' => 'scheduling',
+    ),
+  );
+  foreach ($date_fields as $field) {
+    if (!empty($values[$field['set']][$field['name']])) {
+      $fields[$field['name']] = date('Y-m-d H:i:s', strtotime($values[$field['set']][$field['name']]));
+    }
+  }
+
   // Reminder: Reminder Date:
-  if (!empty($values['reminder']['reminder_settings']['reminder_date']) && $values['reminder']['reminder_settings']['reminder_type'] == 'absolute') {
+  if (!empty($values['reminder']['reminder_settings']['reminder_date'])) {
     $fields['reminder_date'] = date('Y-m-d H:i:s', strtotime($values['reminder']['reminder_settings']['reminder_date']));
   }
-  elseif (!empty($values['reminder']['reminder_settings']['reminder_relative']) && $values['reminder']['reminder_settings']['reminder_type'] == 'relative' && !empty($values['event_date'])) {
-    registration_convert_relative_date($fields['reminder_date'], $values['event_date'], $values['reminder']['reminder_settings']['reminder_relative']);
-  }
 
-  // Scheduling: open date:
-  if (!empty($values['scheduling']['open']) && $values['scheduling']['scheduling_type'] == 'absolute') {
-    $fields['open'] = date('Y-m-d H:i:s', strtotime($values['scheduling']['open']));
-  }
-  elseif (!empty($values['scheduling']['open_relative']) && $values['scheduling']['scheduling_type'] == 'relative' && !empty($values['event_date'])) {
-    registration_convert_relative_date($fields['open'], $values['event_date'], $values['scheduling']['open_relative']);
-  }
-
-  // Scheduling: close date:
-  if (!empty($values['scheduling']['close']) && $values['scheduling']['scheduling_type'] == 'absolute') {
-    $fields['close'] = date('Y-m-d H:i:s', strtotime($values['scheduling']['close']));
-  }
-  elseif (!empty($values['scheduling']['close_relative']) && $values['scheduling']['scheduling_type'] == 'relative' && !empty($values['event_date'])) {
-    registration_convert_relative_date($fields['close'], $values['event_date'], $values['scheduling']['close_relative']);
-  }
+  $fields['settings'] = serialize($fields['settings']);
 
   return $fields;
-}
-
-/**
- * Combines a relative date with the event date into a new date value.
- *
- * @param &$field
- *   Reference to the field that will be converted.
- * @param string $event_date
- *   Date of the event (base date for relative calculations).
- * @param string $relative_date
- *   Relative date.
- */
-function registration_convert_relative_date(&$field, $event_date, $relative_date) {
-  if (!empty($relative_date)) {
-    $field = date('Y-m-d H:i:s', strtotime($relative_date, $event_date));
-  }
 }
 
 /**
@@ -1160,6 +1061,13 @@ function registration_state_overview_form($form, &$form_state) {
         '#tree' => FALSE,
         '#default_value' => ($state->default_state) ? $sid : FALSE,
       );
+      $form['state'][$sid]['attended'] = array(
+        '#type' => 'radio',
+        '#name' => 'attended',
+        '#return_value' => $sid,
+        '#tree' => FALSE,
+        '#default_value' => ($state->attended) ? $sid : FALSE,
+      );
       $form['state'][$sid]['weight'] = array(
         '#title' => t('Weight'),
         '#type' => 'weight',
@@ -1258,6 +1166,7 @@ function theme_registration_state_overview_form($variables) {
     array('data' => t('Label !required', array('!required' => '<span class="form-required" title="' . t('This field is required.') . '">*</span>'))),
     array('data' => t('Description')),
     array('data' => t('Default')),
+    array('data' => t('Attended')),
     array('data' => t('Active')),
     array('data' => t('Held')),
     array('data' => t('Show on form')),
@@ -1271,6 +1180,7 @@ function theme_registration_state_overview_form($variables) {
                'label',
                'description',
                'default_state',
+               'attended',
                'active',
                'held',
                'show_on_form',
