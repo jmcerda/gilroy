@@ -20,9 +20,7 @@ function registration_field_info() {
           'capacity' => 0,
           'scheduling' => array(
             'open' => NULL,
-            'open_date_token' => NULL,
             'close' => NULL,
-            'close_date_token' => NULL,
           ),
           'reminder' => array(
             'send_reminder' => 0,
