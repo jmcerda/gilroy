@@ -1,0 +1,761 @@
+<?php
+
+/**
+ * @file
+ * Tests for the RedHen lead module.
+ */
+
+
+/**
+ * Contains useful helper functions/variables to be used by RedHen Lead tests.
+ */
+class RedHenLeadWebTestCase extends DrupalWebTestCase {
+  /**
+   * Keep track of all admin URLs.
+   */
+  protected $admin_urls = array(
+    'lead_form_add' => 'admin/structure/redhen/lead-forms/add',
+    'lead_form_list' => 'admin/structure/redhen/lead-forms',
+    'lead_form_configure_basic' => 'admin/structure/redhen/lead-forms/manage/basic',
+    'lead_form_configure_static' => 'admin/structure/redhen/lead-forms/manage/static',
+    'block_configure' => 'admin/structure/block',
+    'block_configure_basic' => 'admin/structure/block/manage/redhen_lead_form/basic/configure',
+  );
+
+  /**
+   * Keep track of form configuration data suitable for use in drupalPost().
+   */
+  protected $form_configs = array(
+    'basic' => array(
+      'label' => 'Basic',
+      'name' => 'basic',
+      'block_config[settings][title]' => 'Basic form',
+      'cta[button_text]' => 'Basic CTA',
+      'cta[static][url]' => 'node',
+      'cta[target]' => '_blank',
+    ),
+  );
+
+  /**
+   * Creates a RedHen contact type with optionally specified fields.
+   *
+   * @param $name
+   *   The name of the contact type to create.
+   *
+   * @param $fields
+   *   (Optional) An array of field definitions.
+   */
+  protected function createContactType($machine_name, $fields = array()) {
+    $contact_type = entity_get_controller('redhen_contact_type')->create(array(
+      'name' => $machine_name,
+      'label' => ucwords($machine_name),
+    ));
+
+    if (!empty($fields)) {
+      foreach ($fields as $field_label => $field) {
+        // Create the initial field.
+        field_create_field($field);
+
+        // Attach the field to the contact type.
+        $field_instance = array(
+          'field_name' => $field['field_name'],
+          'entity_type' => 'redhen_contact',
+          'bundle' => $machine_name,
+          'label' => $field_label,
+          'widget' => array(
+            'type' => 'text_textfield',
+          ),
+          'required' => isset($field['required']) ? $field['required'] : FALSE,
+        );
+        field_create_instance($field_instance);
+      }
+    }
+
+    return redhen_contact_type_save($contact_type);
+  }
+
+  /**
+   * Imports a RedHen Lead Form.
+   *
+   * @param $serialized_entity
+   *   A serialized string as exported by entity_export().
+   */
+  protected function importLeadform($serialized_entity) {
+    $lead_form = entity_import('redhen_lead_form', $serialized_entity);
+    entity_save('redhen_lead_form', $lead_form);
+  }
+
+  /**
+   * Attaches fields to the lead entity.
+   *
+   * @param $fields
+   *   An array of field definitions.
+   */
+  protected function createLeadField($fields) {
+    foreach ($fields as $field_label => $field) {
+      // Create the initial field.
+      field_create_field($field);
+
+      // Attach the field to the lead entity.
+      $field_instance = array(
+        'field_name' => $field['field_name'],
+        'entity_type' => 'redhen_lead',
+        'bundle' => 'redhen_lead',
+        'label' => $field_label,
+        'widget' => array(
+          'type' => 'text_textfield',
+        ),
+        'required' => isset($field['required']) ? $field['required'] : FALSE,
+      );
+      field_create_instance($field_instance);
+    }
+  }
+
+  /**
+   * Creates a new file field.
+   *
+   * @param $name
+   *   The name of the new field (all lowercase).
+   * @param $type_name
+   *   The node type that this field will be added to.
+   * @param $settings
+   *   A list of field settings that will be added to the defaults.
+   */
+  protected function createFileField($fields) {
+    foreach ($fields as $field_label => $field) {
+      field_create_field($field);
+
+      field_create_instance(array(
+        'field_name' => $field['field_name'],
+        'entity_type' => 'node',
+        'bundle' => 'page',
+        'label' => $field_label,
+        'widget' => array(
+          'type' => 'file_generic',
+          'settings' => array(),
+        ),
+        'required' => isset($field['required']) ? $field['required'] : FALSE,
+      ));
+    }
+  }
+
+  /**
+   * Uploads a file to a node.
+   */
+  function uploadNodeFile($file, $field_name, $nid_or_type, $new_revision = TRUE, $extras = array()) {
+    $langcode = LANGUAGE_NONE;
+    $edit = array(
+      "title" => $this->randomName(),
+      'revision' => (string) (int) $new_revision,
+    );
+
+    if (is_numeric($nid_or_type)) {
+      $nid = $nid_or_type;
+    }
+    else {
+      // Add a new node.
+      $extras['type'] = $nid_or_type;
+      $node = $this->drupalCreateNode($extras);
+      $nid = $node->nid;
+      // Save at least one revision to better simulate a real site.
+      $this->drupalCreateNode(get_object_vars($node));
+      $node = node_load($nid, NULL, TRUE);
+      $this->assertNotEqual($nid, $node->vid, t('Node revision exists.'));
+    }
+
+    // Attach a file to the node.
+    $edit['files[' . $field_name . '_' . $langcode . '_0]'] = drupal_realpath($file->uri);
+    $this->drupalPost("node/$nid/edit", $edit, t('Save'));
+
+    return $nid;
+  }
+}
+
+
+/**
+ * Tests configuration changes of the RedHen Lead module.
+ */
+class RedHenLeadConfigurationTestCase extends RedHenLeadWebTestCase {
+  /**
+   * Keep track of block configuration data suitable for use in drupalPost().
+   *
+   * Note each key corresponds to a private method, which performs tests for the
+   * configuration of the same name.
+   */
+  private $block_configs = array(
+    // @see RedHenLeadConfigurationTestCase::testPageAllButAdmin()
+    'testPageAllButAdmin' => array(
+      'block_config[regions][bartik]' => 'sidebar_second',
+      'block_config[visibility][path][visibility]' => BLOCK_VISIBILITY_NOTLISTED,
+      'block_config[visibility][path][pages]' => 'admin*',
+    ),
+    // @see RedHenLeadConfigurationTestCase::testPageOnlyNode()
+    'testPageOnlyNode' => array(
+      'block_config[regions][bartik]' => 'sidebar_second',
+      'block_config[visibility][path][visibility]' => BLOCK_VISIBILITY_LISTED,
+      'block_config[visibility][path][pages]' => 'node',
+    ),
+    // @see RedHenLeadConfigurationTestCase::testPagePHPOnlyFront()
+    'testPagePHPOnlyFront' => array(
+      'block_config[regions][bartik]' => 'sidebar_second',
+      'block_config[visibility][path][visibility]' => BLOCK_VISIBILITY_PHP,
+      'block_config[visibility][path][pages]' => '<?php return drupal_is_front_page(); ?>',
+    ),
+    // @see RedHenLeadConfigurationTestCase::testContentTypesPage()
+    'testContentTypesPage' => array(
+      'block_config[regions][bartik]' => 'sidebar_second',
+      'block_config[visibility][node_type][types][page]' => 'page',
+    ),
+    // @see RedHenLeadConfigurationTestCase::testRolesAnonymous()
+    'testRolesAnonymous' => array(
+      'block_config[regions][bartik]' => 'sidebar_second',
+      'block_config[visibility][role][roles][1]' => 1,
+    ),
+  );
+
+  public static function getInfo() {
+    return array(
+      'name' => 'RedHen Lead Configuration',
+      'description' => 'Tests RedHen lead configurations and config forms.',
+      'group' => 'RedHen',
+    );
+  }
+
+  function setUp() {
+    // Ensure required modules are enabled.
+    parent::setUp(array('entity', 'redhen', 'redhen_contact', 'redhen_fields', 'redhen_lead', 'redhen_lead_form', 'php'));
+
+    // Create an admin user with all requisite permissions and log him in.
+    $this->admin_user = $this->drupalCreateUser(array(
+      'access administration pages',
+      'access content',
+      'administer blocks',
+      'use PHP for settings',
+      'administer redhen leads',
+      'manage redhen leads',
+      'access redhen leads',
+      'administer redhen lead forms',
+      'administer redhen_contact types',
+      'administer redhen contacts',
+      'manage redhen contacts',
+      'access redhen contacts',
+      'view own redhen contact',
+      'edit own redhen contact',
+    ));
+    $this->drupalLogin($this->admin_user);
+  }
+
+  function tearDown() {
+    parent::tearDown();
+  }
+
+  /**
+   * Tests basic config changes of the RedHen Lead (and Lead Form) modules.
+   */
+  public function testBasicConfiguration() {
+    // Link to "create a contact type" should appear when none are defined.
+    $this->drupalGet($this->admin_urls['lead_form_add']);
+    $this->assertText('You must create a RedHen contact type before you can create a lead form.', 'Error message displayed when no contact types are defined.');
+    
+    // There should be no other fields on the page.
+    $this->assertNoField('label', 'RedHen Lead Form configuration fields not present when no contact types are defined.');
+
+    // Create a contact type and ensure the message disappears.
+    $this->createContactType('generic');
+    $this->drupalGet($this->admin_urls['lead_form_add']);
+    $this->assertNoText('You must create a RedHen contact type before you can create a lead form.', 'Error message hidden when contact types are defined.');
+    $this->assertField('label', 'RedHen Lead Form configuration fields present when contact type is defined.');
+
+	  // Test that error appears if a file field does not exist on any entity.
+    $this->assertText('You must attach a file field or Link field to an entity to use this option.', 'Message displayed when no dynamic CTA field options are defined.');
+
+    // Test that basic lead form configuration form submission works.
+    $this->drupalPost(NULL, $this->form_configs['basic'], t('Save lead form'));
+    $this->assertTrue(strpos($this->url, $this->admin_urls['lead_form_list']) !== FALSE, 'Successfully redirected back to lead form list page after saving lead form.');
+    $this->assertText('The block configuration has been saved.', 'Block configuration saved message displayed after saving lead form.');
+
+    // There should be a link to configure the form on the block admin page.
+    $this->drupalGet($this->admin_urls['block_configure']);
+    $this->assertText('RedHen Lead Form: Basic', 'Link to configure lead form block displayed on block configuration page.');
+
+    // Going to configure the block using the path seen on administer block page
+    // should redirect to the RedHen Lead Form config page.
+    $this->drupalGet($this->admin_urls['block_configure_basic']);
+    $this->assertTrue(strpos($this->url, $this->admin_urls['lead_form_configure_basic']) !== FALSE, 'Successfully redirected back to lead form configuration page when clicking from block admin page.');
+
+    // Ensure values submitted on the form are stored and retrieved properly.
+    foreach ($this->form_configs['basic'] as $name => $value) {
+      $this->assertFieldByName($name, $value, format_string('Value %value saved and retrieved correctly on field %field on lead form configuration.', array('%value' => $value, '%field' => $name)));
+    }
+
+    // Deleting a lead form configuration should also remove the block, at least from the block configuration page.
+    $this->drupalPost(NULL, array(), t('Delete lead form'));
+    $this->drupalPost(NULL, array(), t('Confirm'));
+    $this->assertText('Deleted Redhen lead forms Basic.', 'Successfully deleted "Basic" RedHen lead form');
+    $this->drupalGet($this->admin_urls['block_configure']);
+    $this->assertNoText('RedHen Lead Form: Basic', 'Link to configure lead form block no longer displayed on block configuration page.');
+  }
+
+  /**
+   * Tests block configurations associated with a RedHen Lead Form.
+   */
+  public function testBlockConfiguration() {
+    // Create a contact type, navigate to lead form add page.
+    $this->createContactType('generic');
+    $this->drupalGet($this->admin_urls['lead_form_add']);
+
+    // Ensure all enabled block region/visibility settings are displayed.
+    $this->assertFieldByName('block_config[regions][bartik]', NULL, '"Region settings" displayed on lead form add page. ');
+    $this->assertFieldByName('block_config[visibility][path][pages]', NULL, '"By page" visibility settings displayed on lead form add page.');
+    $this->assertFieldByName('block_config[visibility][path][visibility]', BLOCK_VISIBILITY_PHP, 'PHP filter visibility settings displayed on lead form add page.');
+    $this->assertFieldByName('block_config[visibility][node_type][types][page]', NULL, '"By content type" visibility settings displayed on lead form add page.');
+    $this->assertFieldByName('block_config[visibility][role][roles][1]', NULL, '"By role" visibility settings displayed on lead form add page.');
+    $this->assertFieldByName('block_config[visibility][user][custom]', NULL, '"By user" visibility settings displayed on lead form add page.');
+
+    // Create a basic lead form.
+    $this->drupalPost(NULL, $this->form_configs['basic'], t('Save lead form'));
+
+    // Go through each defined block configuration.
+    foreach ($this->block_configs as $config_name => $config) {
+      // Save the specified configurations.
+      $this->drupalGet($this->admin_urls['lead_form_configure_basic']);
+      $edit = $this->block_configs[$config_name];
+      $this->drupalPost(NULL, $edit, t('Save lead form'));
+
+      // Ensure the configurations were saved and are retrieved properly.
+      foreach ($this->block_configs[$config_name] as $name => $value) {
+        $this->drupalGet($this->admin_urls['lead_form_configure_basic']);
+        $this->assertFieldByName($name, $value, format_string('Value %value saved and retrieved correctly on field %field for %test configuration on lead form configuration.', array('%value' => $value, '%field' => $name, '%test' => $config_name)));
+      }
+
+      // Perform placement tests.
+      $reset = $this->$config_name();
+
+      // Revert the configurations to defaults.
+      $this->drupalPost($this->admin_urls['lead_form_configure_basic'], $reset, t('Save lead form'));
+    }
+  }
+
+  /**
+   * Tests that the testPageAllButAdmin block configuration is respected.
+   *
+   * @return
+   *   An array of values keyed by field name to be used to revert the
+   *   configurations once testing is complete.
+   */
+  private function testPageAllButAdmin() {
+    // Going to a non-admin page, we should see the lead form.
+    $this->drupalGet('user/login');
+    $this->assertFieldByName('op', 'Basic CTA', 'Lead form found on non-admin page.');
+
+    // Going to an admin page, we shouldn't see the lead form.
+    $this->drupalGet($this->admin_urls['lead_form_list']);
+    $this->assertNoFieldByName('op', 'Basic CTA', 'Lead form not found on admin page.');
+
+    return array(
+      'block_config[regions][bartik]' => BLOCK_REGION_NONE,
+      'block_config[visibility][path][visibility]' => BLOCK_VISIBILITY_NOTLISTED,
+      'block_config[visibility][path][pages]' => '',
+    );
+  }
+
+  /**
+   * Tests that the testPageOnlyNode block configuration is respected.
+   *
+   * @return
+   *   An array of values keyed by field name to be used to revert the
+   *   configurations once testing is complete.
+   */
+  private function testPageOnlyNode() {
+    // Going to the node page, we should see the lead form.
+    $this->drupalGet('node');
+    $this->assertFieldByName('op', 'Basic CTA', 'Lead form found on node page.');
+
+    // Going to any other page, we shouldn't see the lead form.
+    $this->drupalGet('user/login');
+    $this->assertNoFieldByName('op', 'Basic CTA', 'Lead form not found on non-node page.'); 
+   
+    return array(
+      'block_config[regions][bartik]' => BLOCK_REGION_NONE,
+      'block_config[visibility][path][visibility]' => BLOCK_VISIBILITY_NOTLISTED,
+      'block_config[visibility][path][pages]' => '',
+    );
+  }
+
+  /**
+   * Tests that the testPageOnlyNode block configuration is respected.
+   *
+   * @return
+   *   An array of values keyed by field name to be used to revert the
+   *   configurations once testing is complete.
+   */
+  private function testPagePHPOnlyFront() {
+    // Going to the front page, we should see the lead form.
+    $this->drupalGet('<front>');
+    $this->assertFieldByName('op', 'Basic CTA', 'Lead form found on front page.');
+
+    // Going to any other page, we shouldn't see the lead form.
+    $this->drupalGet('user/login');
+    $this->assertNoFieldByName('op', 'Basic CTA', 'Lead form not found on non-front page.'); 
+
+    return array(
+      'block_config[regions][bartik]' => BLOCK_REGION_NONE,
+      'block_config[visibility][path][visibility]' => BLOCK_VISIBILITY_NOTLISTED,
+      'block_config[visibility][path][pages]' => '',
+    );
+  }
+
+  /**
+   * Tests that the testContentTypesPage block configuration is respected.
+   *
+   * @return
+   *   An array of values keyed by field name to be used to revert the
+   *   configurations once testing is complete.
+   */
+  private function testContentTypesPage() {
+    // Create a node of type "page."
+    $node = $this->drupalCreateNode();
+
+    // Going to the node page, we should see the lead form.
+    $this->drupalGet('node/' . $node->nid);
+    $this->assertFieldByName('op', 'Basic CTA', 'Lead form found on node of type page.');
+
+    // Going to any other page, we shouldn't see the lead form.
+    $this->drupalGet('<front>');
+    $this->assertNoFieldByName('op', 'Basic CTA', 'Lead form not found on non-page node page.'); 
+    
+    return array(
+      'block_config[regions][bartik]' => BLOCK_REGION_NONE,
+      'block_config[visibility][node_type][types][page]' => FALSE,
+    );
+  }
+
+  /**
+   * Tests that the testRolesAnonymous block configuration is respected.
+   *
+   * @return
+   *   An array of values keyed by field name to be used to revert the
+   *   configurations once testing is complete.
+   */
+  private function testRolesAnonymous() {
+    // Log the admin user out.
+    $this->drupalLogout();
+
+    // Going to a page unauthenticated, we should see the lead form.
+    $this->drupalGet('<front>');
+    $this->assertFieldByName('op', 'Basic CTA', 'Lead form found as anonymous user.');
+
+    // Log the admin user back in.
+    $this->drupalLogin($this->admin_user);
+
+    // Going to the same page authenticated, we shouldn't see the lead form.
+    $this->drupalGet('<front>');
+    $this->assertNoFieldByName('op', 'Basic CTA', 'Lead form not found as authenticated user.'); 
+    
+    return array(
+      'block_config[regions][bartik]' => BLOCK_REGION_NONE,
+      'block_config[visibility][role][roles][1]' => FALSE,
+    );
+  }
+}
+
+/**
+ * Tests end-user functionality of the RedHen Lead module.
+ */
+class RedHenLeadFunctionalityTestCase extends RedHenLeadWebTestCase {
+  private $form_data = array(
+    'basic_lead' => array(
+      'first_name' => 'Dries',
+      'last_name' => 'Buytaert',
+      'contact_field[und][0][value]' => 'Contact Field Value',
+      'lead_field[und][0][value]' => 'Lead Field Value',
+      'mail' => 'test@example.com',
+    ),
+    'alternate_lead' => array(
+      'first_name' => 'Drew',
+      'last_name' => 'Paul',
+      'contact_field[und][0][value]' => 'Contact Field Value',
+      'lead_field[und][0][value]' => 'Lead Field Value',
+      'mail' => 'test2@example.com',
+    ),
+  );
+
+  public static function getInfo() {
+    return array(
+      'name' => 'RedHen Lead Functionality',
+      'description' => 'Tests end-user functionality of the RedHen Lead module.',
+      'group' => 'RedHen',
+    );
+  }
+
+  function setUp() {
+    // Ensure required modules are enabled.
+    parent::setUp(array('entity', 'redhen', 'redhen_contact', 'redhen_fields', 'redhen_lead', 'redhen_lead_form', 'file'));
+
+    // Create a contact type and attach a custom field.
+    $this->createContactType('generic', array(
+      'Contact field' => array(
+        'field_name' => 'contact_field',
+        'type' => 'text',
+        'cardinality' => 1,
+        'locked' => FALSE,
+        'required' => TRUE,
+      ),
+    ));
+
+    // Create a field and attach it to the lead entity.
+    $this->createLeadField(array(
+      'Lead field' => array(
+        'field_name' => 'lead_field',
+        'type' => 'text',
+        'cardinality' => 1,
+        'locked' => FALSE,
+        'required' => TRUE,
+      ),
+    ));
+
+    // Create a static lead form that points to the user registration page.
+    $this->importLeadForm('{
+      "name" : "static",
+      "label" : "Static",
+      "weight" : 0,
+      "settings" : {
+        "contact" : { "contact_type" : "generic", "session" : 0 },
+        "cta" : {
+          "button_text" : "Static CTA",
+          "type" : "static",
+          "static" : { "url" : "user/register" },
+          "dynamic" : { "field" : "" },
+          "target" : "_blank",
+          "message" : { "value" : "This is the success message!", "format" : "plain_text" }
+        },
+        "block_config" : {
+          "regions" : { "seven" : -1, "bartik" : "sidebar_second" },
+          "visibility" : {
+            "path" : { "visibility" : 1, "pages" : "node" },
+            "role" : { "roles" : { "3" : 0, "1" : 0, "2" : 0, "4" : 0 } },
+            "user" : { "custom" : "0" },
+            "node_type" : { "types" : {
+                "page" : 0,
+                "story" : 0
+              }
+            }
+          },
+          "settings" : { "title" : "Static Form Title!" }
+        }
+      }
+    }');
+
+    // Create a file field and attach it to nodes of type page.
+    $this->createFileField(array(
+      'File field' => array(
+        'field_name' => 'file_field',
+        'type' => 'file',
+        'cardinality' => 1,
+        'locked' => FALSE,
+        'required' => FALSE,
+      ),
+    ));
+
+    // Create a node of type "page."
+    $files = $this->drupalGetTestFiles('text');
+    $this->admin_user = $this->drupalCreateUser(array(
+      'access administration pages',
+      'access content',
+      'administer nodes',
+      'create page content',
+      'edit any page content',
+    ));
+    $this->drupalLogin($this->admin_user);
+    $this->uploadNodeFile($files[0], 'file_field', 'page');
+    $this->drupalCreateNode();
+    $this->drupalLogout();
+
+    // Create a dynamic lead form that points to the user registration page.
+    $this->importLeadForm('{
+      "name" : "dynamic",
+      "label" : "Dynamic",
+      "weight" : 0,
+      "settings" : {
+        "contact" : { "contact_type" : "generic", "session" : 1 },
+        "cta" : {
+          "button_text" : "Dynamic CTA",
+          "type" : "dynamic",
+          "static" : { "url" : "" },
+          "dynamic" : { "field" : "file_field" },
+          "target" : "_self"
+        },
+        "block_config" : {
+          "regions" : { "seven" : -1, "bartik" : "sidebar_second" },
+          "visibility" : {
+            "path" : { "visibility" : 0, "pages" : "" },
+            "role" : { "roles" : { "3" : 0, "1" : 0, "2" : 0, "4" : 0 } },
+            "user" : { "custom" : "0" },
+            "node_type" : { "types" : {
+                "page" : "page",
+                "story" : 0
+              }
+            }
+          },
+          "settings" : { "title" : "Dynamic Form Title!" }
+        }
+      }
+    }');
+  }
+
+  function tearDown() {
+    parent::tearDown();
+  }
+
+  /**
+   * Tests basic user interactions with a lead form.
+   */
+  public function testBasicUserInteraction() {
+    // Test that the static form title makes it to the form.
+    $this->drupalGet('node');
+    $this->assertText('Static Form Title!', t('Static form title appears on lead form block'));
+
+    // Test that CTA button text makes it to the form.
+    $this->assertFieldByName('op', 'Static CTA', t('Static form CTA appears on lead form.'));
+
+    // Test that CTA target makes it to the form.
+    $xpath = $this->buildXPathQuery('//form[@target=:target]', array(':target' => '_blank'));
+    $this->assertFieldByXPath($xpath, NULL, t('Static form target appears on lead form.'));
+
+    // Contact Type fields specified in configuration appear on the form.
+    $this->assertFieldByName('contact_field[und][0][value]', NULL, t('Contact Type field appears on lead form.'));
+
+    // Lead fields specified appear on the form.
+    $this->assertFieldByName('lead_field[und][0][value]', NULL, t('Lead field appears on lead form.'));
+
+    // Check form submission errors
+    $this->drupalPost(NULL, array(), 'Static CTA');
+    $this->assertText('First name field is required.', t('First name field required.'));
+    $this->assertText('Last name field is required.', t('Last name field required.'));
+    $this->assertText('E-mail field is required.', t('E-mail field required.'));
+    $this->assertText('Lead field field is required.', t('Lead field required.'));
+    $this->assertText('Contact field field is required.', t('Contact field required.'));
+
+    // Check more "exotic" form submission errors.
+    $this->drupalPost(NULL, array(
+      'mail' => 'test@example',
+      'first_name' => $this->randomString(256),
+    ), 'Static CTA');
+    $this->assertText('First name cannot be longer than 255 characters', t('Prevented overly long first name.'));
+    $this->assertText('The e-mail address test@example is not valid.', t('Prevented invalid e-mail address.'));
+
+    // Sucessful submission with a static action redirects to the static path.
+    $this->drupalPost(NULL, $this->form_data['basic_lead'], 'Static CTA');
+    $this->assertTrue(strpos($this->url, 'user/register') !== FALSE, t('Static form successfully redirected to static path.'));
+    $this->assertText('This is the success message', t('Success message displayed properly.'));
+
+    // Basic tests re-run for the dynamic form.
+    $this->drupalGet('node/1');
+    $this->assertText('Dynamic Form Title!', t('Dynamic form title appears on lead form block'));
+    $this->assertFieldByName('op', 'Dynamic CTA', t('Dynamic form CTA appears on lead form.'));
+    $xpath = $this->buildXPathQuery('//form[@target=:target]', array(':target' => '_self'));
+    $this->assertFieldByXPath($xpath, NULL, t('Dynamic form target appears on lead form.'));
+
+    // Dynamic form does not appear if the dynamic field specified is empty.
+    $this->drupalGet('node/2');
+    $this->assertNoText('Dynamic Form Title!', t('Dynamic form does not appear when dynamic field is empty.'));
+
+    // Successful submission with a dynamic action redirects dynamically.
+    $this->drupalPost('node/1', $this->form_data['basic_lead'], 'Dynamic CTA');
+    $this->assertTrue(strpos($this->url, '/sites/default/files/') !== FALSE, t('Dynamic form successfully redirected to file.'));
+
+    // Submitting a form when session caching and viewing the form again shows only the button and no fields.
+    $headers = $this->drupalGetHeaders(TRUE);
+    $cookie = $headers[0]['set-cookie'];
+    $this->drupalGet('node/1', array(), array('cookie' => $cookie));
+    $this->assertFieldByName('op', 'Dynamic CTA', t('Dynamic form CTA appears on lead form.'));
+    $this->assertNoFieldByName('contact_field[und][0][value]', NULL, t('Contact Type field does not appear on lead form with session caching.'));
+    $this->assertNoFieldByName('first_name', NULL, t('First name field does not appear on lead form with session caching.'));
+    $this->assertNoFieldByName('last_name', NULL, t('Last name field does not appear on lead form with session caching.'));
+    $this->assertNoFieldByName('mail', NULL, t('E-mail field does not appear on lead form with session caching.'));
+    $this->assertFieldByName('lead_field[und][0][value]', NULL, t('Lead field appears on lead form with session caching.'));
+  }
+
+  /**
+   * Tests data storage associated with end user interactions.
+   */
+  public function testDataStorage() {
+    // Submit a static form.
+    $this->drupalGet('node');
+    $this->drupalPost(NULL, $this->form_data['basic_lead'], 'Static CTA');
+
+    // Static form submission successfully creates Lead and Contact entries.
+    $lead_q = db_query('SELECT * FROM {redhen_lead}');
+    $rows = $lead_q->rowCount();
+    $this->assertTrue($rows == 1, t('Lead form submission created a Lead record.'));
+    $contact_q = db_query('SELECT * FROM {redhen_contact}');
+    $rows = $contact_q->rowCount();
+    $this->assertTrue($rows == 1, t('Lead form submission created a Contact.'));
+
+    // The correct data is stored on the Lead and Contact entities.
+    $lead = $lead_q->fetchAll();
+    $lead = $lead[0];
+    $lead_wrapper = entity_metadata_wrapper('redhen_lead', $lead->lead_id);
+    $contact = $contact_q->fetchAll();
+    $contact = $contact[0];
+    $contact_wrapper = entity_metadata_wrapper('redhen_contact', $contact->contact_id);
+    $this->assertTrue($contact->type == 'generic', t('Contact of the right type was created.'));
+    $this->assertTrue($contact->first_name == $this->form_data['basic_lead']['first_name'], t('Contact first name passed successfully.'));
+    $this->assertTrue($contact->last_name == $this->form_data['basic_lead']['last_name'], t('Contact last name passed successfully.'));
+    $this->assertTrue($contact_wrapper->contact_field->value() == $this->form_data['basic_lead']['contact_field[und][0][value]'], t('Contact field value successfully saved to Contact entity.'));
+    $this->assertTrue($lead->contact_id == $contact->contact_id, t('Contact and Lead successfully associated.'));
+    $this->assertTrue(empty($lead->entity_type), t('Lead entity type properly ignored when submitted from non-entity.'));
+    $this->assertTrue(empty($lead->entity_id), t('Lead entity ID properly ignored when submitted from non-entity.'));
+    $this->assertTrue($lead_wrapper->lead_field->value() == $this->form_data['basic_lead']['lead_field[und][0][value]'], t('Lead field value successfully saved to Lead entity.'));
+
+    // By default, submitting duplicate data will not create another contact.
+    $this->drupalGet('node');
+    $this->drupalPost(NULL, $this->form_data['basic_lead'], 'Static CTA');
+    $contact_q = db_query('SELECT * FROM {redhen_contact}');
+    $rows = $contact_q->rowCount();
+    $this->assertTrue($rows == 1, t('Duplicate contact info for lead form submission did not create a new Contact.'));
+    $lead_q = db_query('SELECT * FROM {redhen_lead}');
+    $rows = $lead_q->rowCount();
+    $this->assertTrue($rows == 2, t('Lead form submission created a Lead record.'));
+
+    // Configuring it the other way should yield the opposite effect.
+    variable_set('redhen_lead_form_unique_email', FALSE);
+    $this->drupalGet('node');
+    $this->drupalPost(NULL, $this->form_data['basic_lead'], 'Static CTA');
+    $contact_q = db_query('SELECT * FROM {redhen_contact}');
+    $rows = $contact_q->rowCount();
+    $this->assertTrue($rows == 2, t('Duplicate contact info for lead form submission created a new Contact when configured to do so.'));
+    $lead_q = db_query('SELECT * FROM {redhen_lead}');
+    $rows = $lead_q->rowCount();
+    $this->assertTrue($rows == 3, t('Lead form submission created a Lead record.'));
+    variable_del('redhen_lead_form_unique_email');
+
+    // Submit a dynamic form.
+    $this->drupalGet('node/1');
+    $this->drupalPost(NULL, $this->form_data['alternate_lead'], 'Dynamic CTA');
+
+    // Dynamic form submission successfully creates Lead and Contact entries.
+    $lead_q = db_query('SELECT * FROM {redhen_lead}');
+    $rows = $lead_q->rowCount();
+    $this->assertTrue($rows == 4, t('Lead form submission created a Lead record.'));
+    $contact_q = db_query('SELECT * FROM {redhen_contact}');
+    $rows = $contact_q->rowCount();
+    $this->assertTrue($rows == 3, t('Lead form submission created a Contact.'));
+
+    // The correct data is stored on the Lead and Contact entities.
+    $lead = $lead_q->fetchAll();
+    $lead = $lead[3];
+    $lead_wrapper = entity_metadata_wrapper('redhen_lead', $lead->lead_id);
+    $contact = $contact_q->fetchAll();
+    $contact = $contact[2];
+    $contact_wrapper = entity_metadata_wrapper('redhen_contact', $contact->contact_id);
+    $this->assertTrue($contact->type == 'generic', t('Contact of the right type was created.'));
+    $this->assertTrue($contact->first_name == $this->form_data['alternate_lead']['first_name'], t('Contact first name passed successfully.'));
+    $this->assertTrue($contact->last_name == $this->form_data['alternate_lead']['last_name'], t('Contact last name passed successfully.'));
+    $this->assertTrue($contact_wrapper->contact_field->value() == $this->form_data['alternate_lead']['contact_field[und][0][value]'], t('Contact field value successfully saved to Contact entity.'));
+    $this->assertTrue($lead->contact_id == $contact->contact_id, t('Contact and Lead successfully associated.'));
+    $this->assertTrue($lead->entity_type == 'node', t('Lead entity type properly set to "node" when submitted from node/1.'));
+    $this->assertTrue($lead->entity_id == 1, t('Lead entity ID properly set to 1 when submitted from node/1.'));
+    $this->assertTrue($lead_wrapper->lead_field->value() == $this->form_data['alternate_lead']['lead_field[und][0][value]'], t('Lead field value successfully saved to Lead entity.'));
+  }
+}

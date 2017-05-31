@@ -1,0 +1,119 @@
+<?php
+
+/**
+ * @file
+ * Hooks and functions for the Redhen Lead Generation module.
+ */
+
+
+/**
+ * Include Redhen lead generation form CRUD operations and main block callbacks.
+ */
+require_once(dirname(__FILE__) . '/includes/redhen_lead_form.crud.inc');
+require_once(dirname(__FILE__) . '/includes/redhen_lead_form.blocks.inc');
+
+
+/**
+ * Implements hook_menu().
+ */
+function redhen_lead_form_menu() {
+  $items['admin/structure/block/manage/redhen_lead_form/%/configure'] = array(
+    'title' => 'Configure block',
+    'page callback' => 'redhen_lead_form_block_configure_goto',
+    'page arguments' => array(5),
+    'access arguments' => array('administer redhen lead forms'),
+    'file' => 'includes/redhen_lead_form.pages.inc',
+  );
+
+  return $items;
+}
+
+
+/**
+ * Implements hook_permission().
+ */
+function redhen_lead_form_permission() {
+  // Administer gumroad types.
+  $permissions['administer redhen lead forms'] = array(
+    'title' => t('Administer Redhen lead generation forms'),
+    'description' => t('Allows users to configure and import Redhen lead generation forms'),
+    'restrict access' => TRUE,
+  );
+
+  return $permissions;
+}
+
+
+/**
+ * Implements hook_entity_info().
+ */
+function redhen_lead_form_entity_info() {
+  $entities['redhen_lead_form'] = array(
+    'label' => t('Redhen lead forms'),
+    'entity class' => 'RedhenLeadForm',
+    'controller class' => 'RedhenLeadFormController',
+    'base table' => 'redhen_lead_form',
+    'fieldable' => FALSE,
+    'exportable' => TRUE,
+    'entity keys' => array(
+      'id' => 'id',
+      'name' => 'name',
+      'label' => 'label',
+    ),
+    'module' => 'redhen_lead_form',
+    // Enable the entity API's admin UI.
+    'admin ui' => array(
+      'path' => 'admin/structure/redhen/lead-forms',
+      'file' => 'includes/redhen_lead_form.forms.inc',
+      'controller class' => 'RedhenLeadFormUIController',
+    ),
+    'access callback' => 'redhen_lead_form_access',
+  );
+
+  return $entities;
+}
+
+
+/**
+ * Access callback for Redhen Lead Gen forms.
+ */
+function redhen_lead_form_access($op, $entity = NULL) {
+  return user_access('administer redhen lead forms');
+}
+
+
+/**
+ * Implements hook_block_info().
+ */
+function redhen_lead_form_block_info() {
+  $blocks = array();
+
+  foreach (redhen_lead_form_forms() as $name => $lg_form) {
+    $blocks[$name] = array(
+      'info' => 'RedHen Lead Form: ' . entity_label('redhen_lead_form', $lg_form),
+      'cache' => DRUPAL_NO_CACHE,
+    );
+  }
+
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function redhen_lead_form_block_view($delta = '') {
+  return redhen_lead_form_get_block($delta); 
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function redhen_lead_form_form_redhen_lead_admin_form_alter(&$form, &$form_state, $form_id) {
+  // Only perform the form alterations if the user has access.
+  if (user_access('administer redhen lead forms')) {
+    require_once(dirname(__FILE__) . '/includes/redhen_lead_form.pages.inc');
+    _redhen_lead_form_form_redhen_lead_admin_form_alter($form, $form_state, $form_id);
+  }
+}

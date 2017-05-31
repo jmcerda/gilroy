@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * Install hooks and functions for the Redhen Lead Form module.
+ */
+
+
+/**
+ * Implements hook_schema().
+ */
+function redhen_lead_form_schema() {
+  $schema['redhen_lead_form'] = array(
+    'description' => 'Stores information about all defined Redhen lead forms.',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique Redhen lead form config ID.',
+      ),
+      'name' => array(
+        'description' => 'The machine-readable name of this form configuration.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+      ),
+      'label' => array(
+        'description' => 'The human-readable name of this form configuration.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'settings' => array(
+        'description' => 'Settings associated with this form configurations.',
+        'type' => 'blob',
+        'size' => 'big',
+        'not null' => TRUE,
+        'serialize' => TRUE,        
+      ),
+      'status' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        // Set the default to ENTITY_CUSTOM without using the constant as it is
+        // not safe to use it at this point.
+        'default' => 0x01,
+        'size' => 'tiny',
+        'description' => 'The exportable status of the entity.',
+      ),
+      'module' => array(
+        'description' => 'The name of the providing module if the entity has been defined in code.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('id'),
+    'unique keys' => array(
+      'name' => array('name'),
+    ),
+  );
+
+  return $schema;
+}
+
+
+/**
+ * Implements hook_uninstall().
+ */
+function redhen_lead_form_uninstall() {
+  $vars = array(
+    'redhen_lead_form_unique_email',
+  );
+
+  foreach ($vars as $var) {
+    variable_del($var);
+  }
+}

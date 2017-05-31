@@ -1,0 +1,153 @@
+<?php
+
+/**
+ * @file
+ * Hooks and functions for the RedHen Lead module.
+ */
+
+
+/**
+ * Include Redhen lead CRUD operations.
+ */
+require_once(dirname(__FILE__) . '/includes/redhen_lead.crud.inc');
+
+
+/**
+ * Implements hook_entity_info().
+ */
+function redhen_lead_entity_info() {
+  return array(
+    'redhen_lead' => array(
+      'label' => t('Lead'),
+      'plural label' => t('Leads'),
+      'controller class' => 'EntityAPIController',
+      'metadata controller class' => 'RedhenLeadMetadataController',
+      'entity class' => 'RedhenLead',
+      'base table' => 'redhen_lead',
+      'fieldable' => TRUE,
+      'entity keys' => array(
+        'id' => 'lead_id',
+      ),
+      'bundle keys' => array(
+        'bundle' => 'name',
+      ),
+      'bundles' => array(
+        'redhen_lead' => array(
+          'label' => 'Leads',
+          'admin' => array(
+            'path' => 'admin/structure/redhen/leads',
+            'access arguments' => array('administer redhen leads'),
+          ),
+        ),
+      ),
+      'view modes' => array(
+        'full' => array(
+          'label' => t('Full lead'),
+          'custom settings' => FALSE,
+        ),
+      ),
+      'uri callback' => 'entity_class_uri',
+      'token type' => 'redhen_lead',
+      'module' => 'redhen_lead',
+      'label callback' => 'entity_class_label'
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function redhen_lead_menu() {
+  $items['admin/structure/redhen/leads'] = array(
+    'title' => 'Leads',
+    'description' => 'Manage RedHen leads',
+    'page callback' => 'redhen_lead_manage_page',
+    'file' => 'includes/redhen_lead.pages.inc',
+    'access arguments' => array('administer redhen leads'),
+  );
+  $items['admin/config/redhen/leads'] = array(
+    'title' => 'RedHen lead settings',
+    'description' => 'Configure the RedHen Lead module.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('redhen_lead_admin_form'),
+    'file' => 'includes/redhen_lead.pages.inc',
+    'access arguments' => array('administer redhen leads'),
+  );
+
+  return $items;
+}
+
+
+/**
+ * Implements hook_permission().
+ */
+function redhen_lead_permission() {
+  return array(
+    'administer redhen leads' => array(
+      'title' => t('Administer RedHen Leads'),
+      'description' => t('Perform administration tasks and manage the structure of RedHen Leads.'),
+    ),
+    'manage redhen leads' => array(
+      'title' => t('Manage RedHen Leads'),
+      'description' => t('Create, update or delete RedHen Leads.'),
+    ),
+    'access redhen leads' => array(
+      'title' => t('Access Redhen Leads'),
+      'description' => t('View RedHen Leads.'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_redhen_contact_delete().
+ */
+function redhen_lead_redhen_contact_delete($contact) {
+  // Retreive an array of lead IDs associated with this contact.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'redhen_lead');
+  $query->propertyCondition('contact_id', entity_id('redhen_contact', $contact));
+  $result = $query->execute();
+
+  redhen_lead_delete_multiple(array_keys($result['redhen_lead']));
+}
+
+
+/**
+ * Returns a Redhen Contact based on an e-mail address if one exists.
+ *
+ * @param $email
+ *   The e-mail address associated with the contact.
+ *
+ * @return
+ *   A Redhen Contact if one exists; FALSE otherwise.
+ */
+function redhen_lead_load_contact_by_email($email) {
+  $emails = &drupal_static(__FUNCTION__);
+
+  if (!isset($emails[$email])) {
+    $result = db_query('SELECT entity_id FROM {field_data_redhen_contact_email} WHERE redhen_contact_email_value = :email', array(':email' => $email));
+    $entity_id = $result->fetchAllKeyed(0, 0);
+
+    if (!empty($entity_id)) {
+      $emails[$email] = redhen_contact_load(key($entity_id));
+    }
+    else {
+      $emails[$email] = FALSE;
+    }
+  }
+
+  return $emails[$email];
+}
+
+
+/**
+ * Implements hook_views_api().
+ */
+function redhen_lead_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'redhen_lead') . '/includes',
+  );
+}

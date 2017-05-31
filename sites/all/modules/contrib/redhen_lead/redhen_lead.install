@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * Install functions and hooks for the RedHen Lead module.
+ */
+
+
+/**
+ * Implements hook_schema().
+ */
+function redhen_lead_schema() {
+  $schema['redhen_lead'] = array(
+    'description' => 'The base table for the RedHen Lead module.',
+    'fields' => array(
+      'lead_id' => array(
+        'description' => 'The primary identifier for a RedHen Lead.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'contact_id' => array(
+        'description' => 'The RedHen Contact associated with this lead.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'entity_type' => array(
+        'description' => 'The type of entity associated with this lead.',
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => '',
+      ),
+      'entity_id' => array(
+        'description' => 'The id of the entity associated with this lead.',
+        'type' => 'int',
+        'default' => 0,
+      ),
+      'author_uid' => array(
+        'description' => 'The uid of the user who created this lead.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'created' => array(
+        'description' => 'The Unix timestamp when the lead was created.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'updated' => array(
+        'description' => 'The Unix timestamp when the lead was most recently saved.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'indexes' => array(
+      'redhen_lead_updated' => array('updated'),
+      'redhen_lead_created' => array('created'),
+      'redhen_lead_contact_id' => array('contact_id'),
+      'redhen_lead_entity_id' => array('entity_id'),
+    ),
+    'unique keys' => array(
+      'lead_id' => array('lead_id'),
+    ),
+    'foreign keys' => array(
+      'redhen_lead_contact' => array(
+        'table' => 'redhen_contact',
+        'columns' => array('contact_id' => 'contact_id'),
+      ),
+      'redhen_lead_author' => array(
+        'table' => 'users',
+        'columns' => array('author_uid' => 'uid'),
+      ),
+    ),
+    'primary key' => array('lead_id'),
+  );
+
+  return $schema;
+}

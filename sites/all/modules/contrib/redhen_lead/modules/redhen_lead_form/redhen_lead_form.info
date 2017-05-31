@@ -1,0 +1,19 @@
+name = Redhen Lead Form
+description = Add and configure block forms to capture Redhen Leads.
+package = Redhen
+core = "7.x"
+
+dependencies[] = redhen
+dependencies[] = redhen_contact
+dependencies[] = redhen_lead
+dependencies[] = entity
+dependencies[] = block
+
+files[] = includes/redhen_lead_form.entity.inc
+
+; Information added by Drupal.org packaging script on 2015-04-16
+version = "7.x-1.0-alpha5"
+core = "7.x"
+project = "redhen_lead"
+datestamp = "1429207382"
+
