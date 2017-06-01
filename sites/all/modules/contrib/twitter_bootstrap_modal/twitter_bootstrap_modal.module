@@ -120,6 +120,7 @@ function twitter_bootstrap_modal_delivery_callback($page_callback_result) {
       'render_string' => $html,
       )
     );
+    $view_mode = 'twitter_bootstrap_modal';
     print $render_string;
     // Perform end-of-request tasks.
     drupal_page_footer();
