@@ -120,7 +120,7 @@ function twitter_bootstrap_modal_delivery_callback($page_callback_result) {
       'render_string' => $html,
       )
     );
-    $view_mode = 'twitter_bootstrap_modal';
+
     print $render_string;
     // Perform end-of-request tasks.
     drupal_page_footer();
@@ -139,7 +139,8 @@ function twitter_bootstrap_modal_theme($existing, $type, $theme, $path) {
         'site_name' => NULL, 
         'render_string' => '<span>' . t("No content found") . "</span>"
       ),
-      'template' => 'twitter_bootstrap_modal_modal'
+      'template' => 'twitter_bootstrap_modal_modal',
+			'view_mode'=> 'twitter_bootstrap_modal'
     ),
   );
   return $themes;
