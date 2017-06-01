@@ -36,16 +36,5 @@ function redhen_feeds_feeds_plugins() {
       'path' => drupal_get_path('module', 'redhen_feeds') . '/lib',
     ),
   );
-  $info['RedhenFeedsMembershipProcessor'] = array(
-    'name' => 'RedHen Membership Processor',
-    'description' => 'Import RedHen memberships',
-    'help' => 'Creates or updates RedHen memberships from feeds.',
-    'handler' => array(
-      'parent' => 'FeedsProcessor',
-      'class' => 'RedhenFeedsMembershipProcessor',
-      'file' => 'RedhenFeedsMembershipProcessor.inc',
-      'path' => drupal_get_path('module', 'redhen_feeds') . '/lib',
-    ),
-  );
   return $info;
 }

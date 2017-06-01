@@ -7,7 +7,6 @@ dependencies[] = ctools
 dependencies[] = redhen_contact
 
 files[] = lib/RedhenFeedsContactProcessor.inc
-files[] = lib/RedhenFeedsMembershipProcessor.inc
 
 
 ; Information added by drupal.org packaging script on 2013-05-29
