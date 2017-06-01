@@ -139,8 +139,7 @@ function twitter_bootstrap_modal_theme($existing, $type, $theme, $path) {
         'site_name' => NULL, 
         'render_string' => '<span>' . t("No content found") . "</span>"
       ),
-      'template' => 'twitter_bootstrap_modal_modal',
-			'view_mode'=> 'twitter_bootstrap_modal'
+      'template' => 'twitter_bootstrap_modal_modal'
     ),
   );
   return $themes;
