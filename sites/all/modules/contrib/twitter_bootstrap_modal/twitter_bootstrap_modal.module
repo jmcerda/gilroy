@@ -87,13 +87,6 @@ function twitter_bootstrap_modal_entity_view_mode_alter(&$view_mode, $context) {
 	if ($context['entity_type'] == 'node') {
 		$view_mode = 'modal';
 	}
-	if ($context['membership']) {
-		$view_mode = 'modal';
-	}
-	if ($context['user']) {
-		$view_mode = 'modal';
-	}
-
 }
 
 /**
