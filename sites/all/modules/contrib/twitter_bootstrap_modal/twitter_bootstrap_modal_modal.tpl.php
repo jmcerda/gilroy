@@ -9,5 +9,5 @@
  *
  */
 ?>
-  <?php dpm($theme_registry); ?>
+
   <?php  print $render_string; ?>
