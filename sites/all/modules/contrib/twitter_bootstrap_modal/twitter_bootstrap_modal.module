@@ -82,7 +82,7 @@ function twitter_bootstrap_modal_admin() {
  */
 
 function twitter_bootstrap_modal_delivery_callback($page_callback_result) {
-  if (isset($page_callback_result) && is_null(drupal_get_http_header('Content-Type'))) {
+  if (isset($page_callback_result) && is_null(drupal_get_http_header('Content-Type' ))) {
     drupal_add_http_header('Content-Type', 'text/html; charset=utf-8');
   }
 
@@ -143,4 +143,16 @@ function twitter_bootstrap_modal_theme($existing, $type, $theme, $path) {
     ),
   );
   return $themes;
+}
+
+/**
+ * Implementation of hook_entity_view_mode_alter().
+ *
+ * Select custom view mode.
+ */
+function twitter_bootstrap_modal_entity_view_mode_alter(&$view_mode, $context) {
+	// For nodes, change the view mode when it is teaser.
+	if ($context['entity_type'] == 'node' && $view_mode == 'full_content') {
+		$view_mode = 'twitter_bootstrap_modal_modal';
+	}
 }
