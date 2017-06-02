@@ -37,3 +37,15 @@ function chamber_preprocess_node(&$variables) {
 function chamber_menu_link__menu_block($variables) {
     return theme_menu_link($variables);
 }
+
+/**
+ * Implementation of hook_entity_view_mode_alter().
+ *
+ * Select custom view mode.
+ */
+//function chamber_entity_view_mode_alter(&$view_mode, $context) {
+//    // For nodes, change the view mode when it is teaser.
+//    if ($context['entity_type'] == 'node') {
+//        $view_mode = 'modal';
+//    }
+//}
