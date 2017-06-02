@@ -22,6 +22,9 @@ function debut_redhen_event_default_registration_type() {
     "locked" : "0",
     "default_state" : null,
     "data" : null,
+    "registrant_entity_type" : "",
+    "registrant_bundle" : "",
+    "registrant_email_property" : "",
     "weight" : "0",
     "rdf_mapping" : []
   }');

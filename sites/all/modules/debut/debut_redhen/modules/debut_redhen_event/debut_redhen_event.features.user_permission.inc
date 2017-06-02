@@ -41,26 +41,6 @@ function debut_redhen_event_user_default_permissions() {
     'module' => 'registration',
   );
 
-  // Exported permission: 'create standard registration other anonymous'.
-  $permissions['create standard registration other anonymous'] = array(
-    'name' => 'create standard registration other anonymous',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'crm manager' => 'crm manager',
-    ),
-    'module' => 'registration',
-  );
-
-  // Exported permission: 'create standard registration other users'.
-  $permissions['create standard registration other users'] = array(
-    'name' => 'create standard registration other users',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'crm manager' => 'crm manager',
-    ),
-    'module' => 'registration',
-  );
-
   // Exported permission: 'delete any standard registration'.
   $permissions['delete any standard registration'] = array(
     'name' => 'delete any standard registration',

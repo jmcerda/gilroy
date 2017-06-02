@@ -18,16 +18,14 @@ features[registration_type][] = standard
 features[user_permission][] = administer registration
 features[user_permission][] = administer standard registration
 features[user_permission][] = create standard registration
-features[user_permission][] = create standard registration other anonymous
-features[user_permission][] = create standard registration other users
 features[user_permission][] = delete any standard registration
 features[user_permission][] = update any standard registration
 features[user_permission][] = view standard registration
 features[views_view][] = registration
 
-; Information added by Drupal.org packaging script on 2016-10-12
-version = "7.x-1.2"
+; Information added by Drupal.org packaging script on 2017-05-31
+version = "7.x-1.3"
 core = "7.x"
 project = "debut_redhen"
-datestamp = "1476293159"
+datestamp = "1496268030"
 

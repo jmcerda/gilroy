@@ -10,7 +10,7 @@
 function debut_redhen_event_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-event-field_registration'
+  // Exported field_instance: 'node-event-field_registration'.
   $field_instances['node-event-field_registration'] = array(
     'bundle' => 'event',
     'default_value' => array(

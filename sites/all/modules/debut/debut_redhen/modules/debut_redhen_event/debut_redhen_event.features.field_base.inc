@@ -10,7 +10,7 @@
 function debut_redhen_event_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_registration'
+  // Exported field_base: 'field_registration'.
   $field_bases['field_registration'] = array(
     'active' => 1,
     'cardinality' => 1,
