@@ -1,0 +1,12 @@
+name = commerce_pricelist_feeds_example
+description = An example price list importer from CSV files
+core = 7.x
+package = Commerce (contrib)
+project = commerce_pricelist_feeds_example
+dependencies[] = commerce_pricelist_feeds
+; Information added by Drupal.org packaging script on 2016-04-03
+version = "7.x-1.1"
+core = "7.x"
+project = "commerce_pricelist"
+datestamp = "1459678441"
+

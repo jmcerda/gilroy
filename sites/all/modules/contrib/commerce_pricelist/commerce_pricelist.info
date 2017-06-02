@@ -1,0 +1,31 @@
+name = Commerce Pricelists
+description = Set product prices through price lists
+core = 7.x
+package = Commerce (contrib)
+configure = admin/commerce/pricelist
+
+; Module includes
+files[] = includes/commerce_pricelist_list.controller.inc
+files[] = includes/commerce_pricelist_item.controller.inc
+files[] = commerce_pricelist.rules_default.inc
+files[] = commerce_pricelist.rules.inc
+
+; Tests
+files[] = tests/commerce_pricelist.test
+files[] = tests/commerce_pricelist_tax.test
+
+dependencies[] = commerce
+dependencies[] = commerce_line_item
+dependencies[] = commerce_checkout
+dependencies[] = commerce_product_reference
+dependencies[] = commerce_price
+dependencies[] = commerce_product
+dependencies[] = entity
+dependencies[] = rules
+
+; Information added by Drupal.org packaging script on 2016-04-03
+version = "7.x-1.1"
+core = "7.x"
+project = "commerce_pricelist"
+datestamp = "1459678441"
+
