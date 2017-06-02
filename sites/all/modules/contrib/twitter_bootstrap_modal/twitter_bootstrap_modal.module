@@ -78,6 +78,18 @@ function twitter_bootstrap_modal_admin() {
 }
 
 /**
+ * Implementation of hook_entity_view_mode_alter().
+ *
+ * Select custom view mode.
+ */
+function twitter_bootstrap_modal_entity_view_mode_alter(&$view_mode, $context) {
+	// For nodes, change the view mode when it is teaser.
+	if ($context['entity_type'] == 'node' && $view_mode == 'full_content') {
+		$view_mode = 'twitter_bootstrap_modal_modal';
+	}
+}
+
+/**
  * Returns only content part of page for Delibery Callback function.
  */
 
@@ -143,16 +155,4 @@ function twitter_bootstrap_modal_theme($existing, $type, $theme, $path) {
     ),
   );
   return $themes;
-}
-
-/**
- * Implementation of hook_entity_view_mode_alter().
- *
- * Select custom view mode.
- */
-function twitter_bootstrap_modal_entity_view_mode_alter(&$view_mode, $context) {
-	// For nodes, change the view mode when it is teaser.
-	if ($context['entity_type'] == 'node' && $view_mode == 'full_content') {
-		$view_mode = 'twitter_bootstrap_modal_modal';
-	}
 }
